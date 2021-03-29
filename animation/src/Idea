@@ -1,0 +1,105 @@
+
+
+ShapeNode
+    - Fields: id, ShapeI, appears, disappears
+    Method
+        - setAppear
+        - setDisappear
+        - getAppear
+        - getDisappear
+        - toString
+            "Name: " + id + "\n"
+            + shape.toString + "\n"
+            + "Appear: " + getAppear + "\n"
+            + "Disappear: " + getDisappear
+
+Shape Interface
+    - Oval
+        - Fields: centerX, centerY, radiusX, radiusY, color
+    - Rectangle
+        - Fields: height, width, color, cornerX, cornerY
+
+    Methods
+        - getColor
+        - getPosition
+        - getHeight or getWidth (getRadiusX or getRadiusY)
+        - getID
+        - String:
+            "Type: Rectangle " + "\n"
+            Min: Height: Width: Color:
+
+             "Type: Oval " + "\n"
+              Center: X: Y: Color:
+
+Movement
+    - ShapeNode
+    - Fields: startTime, endTime, toX, toY, toColor, toHeight, toWidth, transformation
+
+    Methods
+        - getMovement
+            - if transformation == "position"
+            - if transformation == "color"
+            - if transformation == "height"; if shape is oval  == "yRadius"
+            - if transformation == "width"; if shape is oval  == "xRadius"
+            - if transformation == "color"
+            - if transformation == "height"
+        - changePosition
+        - changeColor
+        - changeHeight
+        - changeWidth
+        - changeXRadius
+        - changeYRadius
+        - getAppears
+        - getDiasappears
+        - getPosition
+        - getEndColor
+        - getHeight
+        - getWidth
+        -
+        - addMovement
+            - this.shape.movement = this
+        - toString:
+            - Structure: Shape name transformation from <start> to <end> from <tstart> to <tend>
+            - Postion:
+            - Color:
+            - Height/Width
+            - Radius
+
+MovementNode
+    - Shape
+    - Movement
+    Methods
+        - getShape
+        - getMovement
+
+AnimationI
+AnimationImpl
+    - Field: List<Shapes>
+    - Constructor()
+        - new HashMap<Integer, ArrayList<MovementNodes>>
+    - ArrayList<ShapeNode> addToHashMap
+    - getMovement
+
+
+HashMap<Integer, ArrayList<ShapeNode>>
+{time: List<Shapes>}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
