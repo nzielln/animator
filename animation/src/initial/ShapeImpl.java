@@ -1,3 +1,5 @@
+package initial;
+
 import java.awt.Color;
 
 /**
@@ -11,6 +13,13 @@ public abstract class ShapeImpl implements Shape {
   private int appears;
   private int disappears;
 
+  //We might need to rework this a little bit because i don't think this will work
+  // this is what I suggest, initial.Oval and initial.Rectangle shouldn't be implementing the same interface as this
+  // for the impl class
+  // public class ShapeInterfaceImpl(Shape shape, float appears, float disappears)
+  //This way we are able to differentiate between oval and rectangle
+  //the way it's set up now, there's no way to tell what shape we're creating since it's creating a whole new object
+  //seperate from the oval and rectangle
   /**
    *
    * @param name
