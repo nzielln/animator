@@ -1,0 +1,147 @@
+Animation (Interface):
+    - addShape
+    - removeShape
+    - addTransformation
+    - removeTransformation // do we need this method?
+    - getShapeAtTick?? //implemented in later HW
+
+AnimationImpl (subtype):
+    Constructor:
+        - shapes (ArrayList<Shape>)
+        - transformation (ArrayList<Transformation>)
+
+--------------------------------------------------
+
+//Should we use a new class to contain position to a point?
+
+Shape (Interface):
+   - getType
+   - getName
+   - getColor //what should this return? Should it return a String or Color object?
+   - getAppears
+   - getDisappears
+   - getPositionX
+   - getPositionY
+
+ShapeImpl (abstract class)
+    Constructor:
+        -
+
+    Methods:
+        - All the methods from the Shape interface, except getType
+
+
+Rectangle (subclass of ShapeImpl):
+    Constructor:
+        - super
+        - shapeType
+        - height
+        - width
+
+    Methods:
+        - getType
+        - getHeight
+        - getWidth
+
+Oval (subclass of ShapeImpl):
+    Constructor:
+        - super
+        - shapeType
+        - radiusX
+        - radiusY
+
+    Methods:
+        - getType
+        - getRadiusX
+        - getRadiusY
+
+--------------------------------------------------
+
+//When we transform the shape, we don't want to change the original shape but create a
+//copy
+
+Transformation (Interface):
+    - addTransformation
+    - removeTransformation
+
+TransformationImpl (subtype):
+    Constructor:
+        - name
+        - Color(r, g, b);
+        - positionX
+        - positionY
+        - width / radiusX
+        - height / radiusY
+        - appears
+        - disappears
+
+Moving (subclass):
+    Constructor:
+        - super
+        - transformType
+
+    Methods:
+        - setPositionX
+        - setPositionY
+        - getTransformType
+        - getName
+        - getColor
+        - getPositionX
+        - getPositionY
+        - getWidth/getRadiusX
+        - getHeight/getRadiusY
+        - getAppears
+        - getDisappears
+
+Scaling (subclass):
+    Constructor:
+        - super
+        - transformType
+
+
+    Methods:
+        - set Width/RadiusX
+        - set Height/RadiusY
+        - getTransformType
+        - getName
+        - getColor
+        - getPositionX
+        - getPositionY
+        - getWidth/getRadiusX
+        - getHeight/getRadiusY
+        - getAppears
+        - getDisappears
+
+
+changeColor (subclass):
+    Constructor:
+        - super
+        - transformType
+
+    Methods:
+        - setColor
+        - getTransformType
+        - getName
+        - getColor
+        - getPositionX
+        - getPositionY
+        - getWidth/getRadiusX
+        - getHeight/getRadiusY
+        - getAppears
+        - getDisappears
+
+--------------------------------------------------
+
+Color (class to hold RGB values): // should this be package private?
+    Constructor(int r, int g, int b):
+        - r
+        - g
+        - b
+
+    Methods:
+        - getR
+        - getG
+        - getB
+        - getColor
+        - toString
+

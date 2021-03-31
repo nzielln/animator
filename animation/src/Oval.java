@@ -2,28 +2,9 @@
  *
  */
 public class Oval extends ShapeImpl {
-  private float radiusX;
-  private float radiusY;
+  private double radiusX;
+  private double radiusY;
   private String shapeType;
-
-  /**
-   *
-   * @param name
-   * @param color
-   * @param positionX
-   * @param positionY
-   * @param appears
-   * @param disappears
-   * @param radiusX
-   * @param radiusY
-   */
-  public Oval(String name, String color, float positionX, float positionY,
-              int appears, int disappears, float radiusX, float radiusY) {
-    super(name, color, positionX, positionY, appears, disappears);
-    this.shapeType = "OVAL";
-    this.radiusX = radiusX;
-    this.radiusY = radiusY;
-  }
 
   /**
    *
@@ -38,8 +19,8 @@ public class Oval extends ShapeImpl {
    * @param radiusX
    * @param radiusY
    */
-  public Oval(String name, int r, int g, int b, float positionX, float positionY,
-              int appears, int disappears, float radiusX, float radiusY) {
+  public Oval(String name, int r, int g, int b, double positionX, double positionY,
+              double appears, double disappears, double radiusX, double radiusY) {
     super(name, r, g, b, positionX, positionY, appears, disappears);
     this.shapeType = "OVAL";
     this.radiusX = radiusX;
@@ -55,7 +36,7 @@ public class Oval extends ShapeImpl {
    *
    * @return
    */
-  public float getRadiusX() {
+  public double getRadiusX() {
     return this.radiusX;
   }
 
@@ -63,7 +44,7 @@ public class Oval extends ShapeImpl {
    *
    * @return
    */
-  public float getRadiusY() {
+  public double getRadiusY() {
     return this.radiusY;
   }
 }

@@ -1,5 +1,3 @@
-
-
 ShapeNode
     - Fields: id, ShapeI, appears, disappears
     Method
@@ -60,7 +58,7 @@ Movement
             - this.shape.movement = this
         - toString:
             - Structure: Shape name transformation from <start> to <end> from <tstart> to <tend>
-            - Postion:
+            - Position:
             - Color:
             - Height/Width
             - Radius
@@ -73,7 +71,7 @@ MovementNode
         - getMovement
 
 AnimationI
-AnimationImpl
+AnimationImpl // should we use a Hashmap or a LinkedHashMap?
     - Field: List<Shapes>
     - Constructor()
         - new HashMap<Integer, ArrayList<MovementNodes>>

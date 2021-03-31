@@ -1,34 +1,13 @@
-import java.awt.Color;
-
 /**
  *
  */
 public abstract class ShapeImpl implements Shape {
   private final String name;
-  private final Color color;
-  private float positionX;
-  private float positionY;
-  private int appears;
-  private int disappears;
-
-  /**
-   *
-   * @param name
-   * @param color
-   * @param positionX
-   * @param positionY
-   * @param appears
-   * @param disappears
-   */
-  public ShapeImpl(String name, String color, float positionX, float positionY,
-                   int appears, int disappears) {
-    this.name = name;
-    this.color = Color.getColor(color);
-    this.positionX = positionX;
-    this.positionY = positionY;
-    this.appears = appears;
-    this.disappears = disappears;
-  }
+  private Color color;
+  private double positionX;
+  private double positionY;
+  private double appears;
+  private double disappears;
 
   /**
    *
@@ -41,8 +20,8 @@ public abstract class ShapeImpl implements Shape {
    * @param appears
    * @param disappears
    */
-  public ShapeImpl(String name, int r, int g, int b, float positionX,
-                   float positionY, int appears, int disappears) {
+  public ShapeImpl(String name, int r, int g, int b, double positionX,
+                   double positionY, double appears, double disappears) {
     this.name = name;
     this.color = new Color(r, g, b);
     this.positionX = positionX;
@@ -74,7 +53,7 @@ public abstract class ShapeImpl implements Shape {
    * @return
    */
   @Override
-  public float getAppears() {
+  public double getAppears() {
     return this.appears;
   }
 
@@ -83,7 +62,7 @@ public abstract class ShapeImpl implements Shape {
    * @return
    */
   @Override
-  public float getDisappears(){
+  public double getDisappears(){
     return this.disappears;
   }
 
@@ -92,7 +71,7 @@ public abstract class ShapeImpl implements Shape {
    * @return
    */
   @Override
-  public float getPositionX() {
+  public double getPositionX() {
     return this.positionX;
   }
 
@@ -101,7 +80,7 @@ public abstract class ShapeImpl implements Shape {
    * @return
    */
   @Override
-  public float getPositionY() {
+  public double getPositionY() {
     return this.positionY;
   }
 
