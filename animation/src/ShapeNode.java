@@ -1,3 +1,5 @@
+import java.util.List;
+
 public interface ShapeNode {
   /**
    *
@@ -16,4 +18,23 @@ public interface ShapeNode {
    * @return
    */
   float getAppears();
+  
+  /**
+   *
+   * @return
+   */
+  void setDisappears(float d);
+  
+  /**
+   *
+   * @return
+   */
+  void setAppears(float a);
+  
+  
+  /**
+   *
+   * @return
+   */
+  List<Transformation> getTransformations();
 }
