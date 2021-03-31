@@ -31,7 +31,7 @@ Shape Interface
              "Type: initial.Oval " + "\n"
               Center: X: Y: Color:
 
-Movement
+Transformation
     - ShapeNode
     - Fields: startTime, endTime, toX, toY, toColor, toHeight, toWidth, transformation
 
@@ -67,7 +67,7 @@ Movement
 
 MovementNode
     - Shape
-    - Movement
+    - Transformation
     Methods
         - getShape
         - getMovement
@@ -87,7 +87,14 @@ HashMap<Integer, ArrayList<ShapeNode>>
 
 
 
-
+Steps:
+1. User puts in information for a shape
+    - Create a new list of ShapeNode (Animation Impl)
+    - Make Shape object and a ShapeNode with id and shape (other fields will be added as information is recieved)
+    - When they enter information for appear and disappear, set these in the ShapeNode object
+    - When they enter a transformation -> create a new Transformation object -> add this object to the List<Transformation>
+      in the ShapeNode class
+    - Add the ShapeNode to the list
 
 
 

@@ -21,6 +21,14 @@ public class Rectangle extends AbstractShape {
     return this.getY();
   }
   
-  
-  
+  @Override
+  public String toString() {
+    return "Name: " + this.getName() + "\n"
+            + "Type: " + this.type + "\n"
+            + "Corner: (" + this.getPositionX() + "," + this.getPositionY() + ")\n"
+            + "Width: " + this.getWidth() + "\n"
+            + "Length: " + this.getLength() + "\n"
+            + "Color: " + this.getColor() + "\n";
+  }
+
 }

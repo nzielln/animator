@@ -21,5 +21,15 @@ public class Oval extends AbstractShape {
     return this.getY();
   }
   
-
+  @Override
+  public String toString() {
+    return "Name: " + this.getName() + "\n"
+            + "Type: " + this.type + "\n"
+            + "Center: (" + this.getPositionX() + "," + this.getPositionY() + ")\n"
+            + "X-Radius: " + this.getRadiusX() + "\n"
+            + "Y-Radius: " + this.getRadiusY() + "\n"
+            + "Color: " + this.getColor() + "\n";
+  }
+  
+  
 }
