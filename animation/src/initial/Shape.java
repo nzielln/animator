@@ -1,4 +1,6 @@
-import java.awt.Color;
+package initial;
+
+import java.awt.*;
 
 /**
  *
@@ -27,6 +29,18 @@ public interface Shape {
    *
    * @return
    */
+  float getAppears();
+
+  /**
+   *
+   * @return
+   */
+  float getDisappears();
+
+  /**
+   *
+   * @return
+   */
   float getPositionX();
 
   /**
@@ -34,16 +48,4 @@ public interface Shape {
    * @return
    */
   float getPositionY();
-  
-  /**
-   *
-   * @return
-   */
-  float getX();
-  
-  /**
-   *
-   * @return
-   */
-  float getY();
 }

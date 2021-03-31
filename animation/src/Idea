@@ -12,9 +12,9 @@ ShapeNode
             + "Disappear: " + getDisappear
 
 Shape Interface
-    - Oval
+    - initial.Oval
         - Fields: centerX, centerY, radiusX, radiusY, color
-    - Rectangle
+    - initial.Rectangle
         - Fields: height, width, color, cornerX, cornerY
 
     Methods
@@ -23,10 +23,10 @@ Shape Interface
         - getHeight or getWidth (getRadiusX or getRadiusY)
         - getID
         - String:
-            "Type: Rectangle " + "\n"
+            "Type: initial.Rectangle " + "\n"
             Min: Height: Width: Color:
 
-             "Type: Oval " + "\n"
+             "Type: initial.Oval " + "\n"
               Center: X: Y: Color:
 
 Movement
