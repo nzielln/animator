@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Oval extends ShapeAbstract {
+public class Oval extends AbstractShape {
   private final String type;
   
   public Oval(String name, Color color, float pointX, float pointY, float X, float Y) {

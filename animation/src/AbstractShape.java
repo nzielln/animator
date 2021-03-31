@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  *
  */
-public abstract class ShapeAbstract implements Shape {
+public abstract class AbstractShape implements Shape {
   private final String name;
   private final Color color;
   private float pointX;
@@ -20,7 +20,7 @@ public abstract class ShapeAbstract implements Shape {
    * @param X
    * @param Y
    */
-  public ShapeAbstract(String name, Color color, float pointX, float pointY, float X, float Y) {
+  public AbstractShape(String name, Color color, float pointX, float pointY, float X, float Y) {
     this.name = name;
     this.color = color;
     this.pointX = pointX;

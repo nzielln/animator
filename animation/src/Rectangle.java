@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Rectangle extends ShapeAbstract {
+public class Rectangle extends AbstractShape {
   private final String type;
   
   public Rectangle(String name, Color color, float pointX, float pointY, float X, float Y) {
