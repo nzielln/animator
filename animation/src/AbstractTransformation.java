@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.List;
 
 public class AbstractTransformation implements Transformation {

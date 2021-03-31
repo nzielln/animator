@@ -1,5 +1,3 @@
-import java.awt.*;
-
 public class ChangeColor extends AbstractTransformation {
   private Color toColor;
   private int timeStart;

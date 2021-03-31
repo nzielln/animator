@@ -1,5 +1,3 @@
-import java.awt.*;
-
 public class Rectangle extends AbstractShape {
   private final String type;
   

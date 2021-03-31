@@ -4,11 +4,12 @@ Animation (Interface):
     - addTransformation
     - removeTransformation // do we need this method?
     - getShapeAtTick?? //implemented in later HW
+    - filter
 
 AnimationImpl (subtype):
     Constructor:
         - shapes (ArrayList<Shape>)
-        - transformation (ArrayList<Transformation>)
+        - transformations (ArrayList<Transformation>)
 
 --------------------------------------------------
 
@@ -75,6 +76,16 @@ TransformationImpl (subtype):
         - appears
         - disappears
 
+    Methods:
+        - getName
+        - getColor
+        - getPositionX
+        - getPositionY
+        - getWidth/getRadiusX
+        - getHeight/getRadiusY
+        - getAppears
+        - getDisappears
+
 Moving (subclass):
     Constructor:
         - super
@@ -84,14 +95,6 @@ Moving (subclass):
         - setPositionX
         - setPositionY
         - getTransformType
-        - getName
-        - getColor
-        - getPositionX
-        - getPositionY
-        - getWidth/getRadiusX
-        - getHeight/getRadiusY
-        - getAppears
-        - getDisappears
 
 Scaling (subclass):
     Constructor:
@@ -103,14 +106,6 @@ Scaling (subclass):
         - set Width/RadiusX
         - set Height/RadiusY
         - getTransformType
-        - getName
-        - getColor
-        - getPositionX
-        - getPositionY
-        - getWidth/getRadiusX
-        - getHeight/getRadiusY
-        - getAppears
-        - getDisappears
 
 
 changeColor (subclass):
@@ -121,14 +116,6 @@ changeColor (subclass):
     Methods:
         - setColor
         - getTransformType
-        - getName
-        - getColor
-        - getPositionX
-        - getPositionY
-        - getWidth/getRadiusX
-        - getHeight/getRadiusY
-        - getAppears
-        - getDisappears
 
 --------------------------------------------------
 
@@ -144,4 +131,3 @@ Color (class to hold RGB values): // should this be package private?
         - getB
         - getColor
         - toString
-
