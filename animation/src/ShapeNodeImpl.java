@@ -7,14 +7,12 @@ public class ShapeNodeImpl implements ShapeNode {
   private float disappears;
   private List<Transformation> transformations;
   
-  
-  
-  public ShapeNodeImpl(Shape shape /*, float appears, float disappears*/) {
+  public ShapeNodeImpl(Shape shape, float appears, float disappears) {
     this.shape = shape;
-    this.appears = 0.0f;
-    this.disappears = 0.0f;
+    this.appears = appears;
+    this.disappears =disappears;
     this.transformations = new ArrayList<>();
-  
+
   }
   
   @Override
@@ -30,16 +28,6 @@ public class ShapeNodeImpl implements ShapeNode {
   @Override
   public float getDisappears(){
     return this.disappears;
-  }
-  
-  @Override
-  public void setDisappears(float d) {
-    this.disappears = d;
-  }
-  
-  @Override
-  public void setAppears(float a) {
-    this.appears = a;
   }
   
   @Override

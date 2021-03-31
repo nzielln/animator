@@ -15,15 +15,18 @@ public abstract class AbstractShape implements Shape {
   /**
    *
    * @param name
-   * @param color
    * @param pointX
    * @param pointY
    * @param X
    * @param Y
+   * @param r
+   * @param g
+   * @param b
    */
-  public AbstractShape(String name, Color color, float pointX, float pointY, float X, float Y) {
+  public AbstractShape
+  (String name, float pointX, float pointY, float X, float Y, int r, int g, int b) {
     this.name = name;
-    this.color = color;
+    this.color = new Color(r, g, b);
     this.pointX = pointX;
     this.pointY = pointY;
     this.X = X;

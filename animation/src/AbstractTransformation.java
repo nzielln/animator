@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class AbstractTransformation implements Transformation {
+public abstract class AbstractTransformation implements Transformation {
   private ShapeNode shape;
   
   public AbstractTransformation(ShapeNode s) {
@@ -14,18 +14,18 @@ public class AbstractTransformation implements Transformation {
   }
   
   @Override
-  public void changePosition(ShapeNode s, float positionX, float positionY) {
-  
+  public ShapeNode moveShape(float toX, float toY, int timeStart, int timeEnd) {
+    return null;
   }
   
   @Override
-  public void changeColor(ShapeNode s, Color C) {
-  
+  public ShapeNode changeColor(Color toColor, int timeStart, int timeEnd) {
+    return null;
   }
   
   @Override
-  public void changeSize(ShapeNode s, int X, int Y) {
-  
+  public ShapeNode scaleShape(float toX, float toY, int timeStart, int timeEnd) {
+    return null;
   }
   
   @Override

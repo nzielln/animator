@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
 
 public class AnimationImpl implements Animation {
   private List<ShapeNode> shapes;
@@ -21,6 +24,18 @@ public class AnimationImpl implements Animation {
   }
   
   public ShapeNode getByTime(int t) {
+    return null;
+  }
+  
+  public List<ShapeNode> filter(Predicate<ShapeNode> p) {
+    return null;
+  }
+  
+  public List<ShapeNode> sort(Comparator<ShapeNode> comp) {
+    return null;
+  }
+  
+  public <R> R fold(BiFunction<ShapeNode, R, R> bf, R seed) {
     return null;
   }
   

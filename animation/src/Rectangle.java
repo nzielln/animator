@@ -1,22 +1,16 @@
 public class Rectangle extends AbstractShape {
   private final String type;
   
-  public Rectangle(String name, Color color, float pointX, float pointY, float X, float Y) {
-    super(name, color, pointX, pointY, X, Y);
+  public Rectangle
+          (String name, float pointX, float pointY, float X, float Y, int r, int g, int b) {
+    super(name, pointX, pointY, X, Y,  r, g, b);
     this.type = "RECTANGLE";
   }
   
   @Override
   public String getType() {
     return this.type;
-  }
   
-  public float getWidth() {
-    return this.getX();
-  }
-  
-  public float getLength() {
-    return this.getY();
   }
   
   @Override
@@ -24,8 +18,8 @@ public class Rectangle extends AbstractShape {
     return "Name: " + this.getName() + "\n"
             + "Type: " + this.type + "\n"
             + "Corner: (" + this.getPositionX() + "," + this.getPositionY() + ")\n"
-            + "Width: " + this.getWidth() + "\n"
-            + "Length: " + this.getLength() + "\n"
+            + "Width: " + this.getX() + "\n"
+            + "Length: " + this.getY() + "\n"
             + "Color: " + this.getColor() + "\n";
   }
 

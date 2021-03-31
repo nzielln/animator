@@ -3,6 +3,7 @@ public class Move extends AbstractTransformation {
   private float toY;
   private int timeStart;
   private int timeEnd;
+  private String type;
   
   
   public Move(ShapeNode s, float toX, float toY, int timeStart, int timeEnd) {
@@ -11,11 +12,15 @@ public class Move extends AbstractTransformation {
     this.toY = toY;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
+    this.type = "Moves";
   }
   
-  public void moveShape(float toX, float toY, int timeStart, int timeEnd) {
-    
-    //add to List<Transformation> after making transformation
-    this.getShape().getTransformations().add(this);
+  @Override
+  public ShapeNode moveShape(float toX, float toY, int timeStart, int timeEnd) {
+    return null;
+  }
+  
+  public String getTransformType() {
+    return this.type;
   }
 }

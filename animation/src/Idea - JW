@@ -1,124 +1,3 @@
-Animation (Interface):
-    - addShape
-    - removeShape
-    - addTransformation
-    - removeTransformation // do we need this method?
-    - getShapeAtTick?? //implemented in later HW
-    - filter
-
-AnimationImpl (subtype):
-    Constructor:
-        - shapes (ArrayList<Shape>)
-        - transformations (ArrayList<Transformation>)
-
---------------------------------------------------
-
-//Should we use a new class to contain position to a point?
-
-Shape (Interface):
-   - getType
-   - getName
-   - getColor //what should this return? Should it return a String or Color object?
-   - getAppears
-   - getDisappears
-   - getPositionX
-   - getPositionY
-
-ShapeImpl (abstract class)
-    Constructor:
-        -
-
-    Methods:
-        - All the methods from the Shape interface, except getType
-
-
-Rectangle (subclass of ShapeImpl):
-    Constructor:
-        - super
-        - shapeType
-        - height
-        - width
-
-    Methods:
-        - getType
-        - getHeight
-        - getWidth
-
-Oval (subclass of ShapeImpl):
-    Constructor:
-        - super
-        - shapeType
-        - radiusX
-        - radiusY
-
-    Methods:
-        - getType
-        - getRadiusX
-        - getRadiusY
-
---------------------------------------------------
-
-//When we transform the shape, we don't want to change the original shape but create a
-//copy
-
-Transformation (Interface):
-    - addTransformation
-    - removeTransformation
-
-TransformationImpl (subtype):
-    Constructor:
-        - name
-        - Color(r, g, b);
-        - positionX
-        - positionY
-        - width / radiusX
-        - height / radiusY
-        - appears
-        - disappears
-
-    Methods:
-        - getName
-        - getColor
-        - getPositionX
-        - getPositionY
-        - getWidth/getRadiusX
-        - getHeight/getRadiusY
-        - getAppears
-        - getDisappears
-
-Moving (subclass):
-    Constructor:
-        - super
-        - transformType
-
-    Methods:
-        - setPositionX
-        - setPositionY
-        - getTransformType
-
-Scaling (subclass):
-    Constructor:
-        - super
-        - transformType
-
-
-    Methods:
-        - set Width/RadiusX
-        - set Height/RadiusY
-        - getTransformType
-
-
-changeColor (subclass):
-    Constructor:
-        - super
-        - transformType
-
-    Methods:
-        - setColor
-        - getTransformType
-
---------------------------------------------------
-
 Color (class to hold RGB values): // should this be package private?
     Constructor(int r, int g, int b):
         - r
@@ -131,3 +10,67 @@ Color (class to hold RGB values): // should this be package private?
         - getB
         - getColor
         - toString
+
+--------------------------------------------------
+
+Animation (Interface):
+    AnimationImpl
+        Field: List<ShapeNode> as ArrayList<>
+        Methods:
+            - addShape (ShapeNode)
+            - removeShape (ShapeNode)
+            - getById (String)
+            - getByTime (int)
+            - getShapeAtTick?? //implemented in later HW
+            - filter - (Predicate)
+            - sort - (Comparator)
+
+Transformation (Interface):
+    AbstractTransformation
+    Constructor:
+        - shape (ShapeNode)
+    Subclasses
+        - Move
+            Constructor: (ShapeNode, toX, toY, timeStart, timeEnd)
+            Methods:
+                - moveShape
+        - Scale
+            Constructor: (ShapeNode, toX, toY, timeStart, timeEnd)
+            Methods:
+                - scaleShape
+        - ChangeColor
+            Constructor: (ShapeNode, toX, toY, timeStart, timeEnd)
+            Methods:
+                - changeColor(toColor, timeStart, timeEnd)
+
+--------------------------------------------------
+
+Shape (Interface):
+   - getType
+   - getName
+   - getColor //what should this return? Should it return a String or Color object?
+   - getAppears //
+   - getDisappears //
+   - getPositionX
+   - getPositionY
+   - getX
+   - getY
+   - toString()
+   AbstractShape
+        - Constructor: (String name, float pointX, float pointY, float X, float Y, int r, int g, int b)
+    Subclasses
+        - Oval
+            Field: type
+        - Rectangle
+            Field: type
+
+ShapeNode (Interface)
+    ShapeNodeImpl
+        - Field: ShapeNode, appears, disappears, List<Transformation> as ArrayList
+        - Constructor: (Shape shape, float appears, float disappears)
+    Methods:
+        - getShape()
+        - getAppears()
+        - getDisappears()
+        - getTransformations()
+        - toString()

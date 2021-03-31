@@ -23,18 +23,5 @@ public interface ShapeNode {
    *
    * @return
    */
-  void setDisappears(float d);
-  
-  /**
-   *
-   * @return
-   */
-  void setAppears(float a);
-  
-  
-  /**
-   *
-   * @return
-   */
   List<Transformation> getTransformations();
 }
