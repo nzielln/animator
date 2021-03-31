@@ -1,40 +1,46 @@
 import java.util.List;
+import java.util.Objects;
 
 public abstract class AbstractTransformation implements Transformation {
-  private ShapeNode shape;
+  private Shape shape;
   
-  public AbstractTransformation(ShapeNode s) {
+  public AbstractTransformation(Shape s) {
+    if (s == null) {
+      throw new NullPointerException("Shape can't be null");
+    }
     this.shape = s;
   }
   
   
   @Override
-  public ShapeNode getShape() {
+  public Shape getShape() {
     return this.shape;
   }
   
   @Override
-  public ShapeNode moveShape(float toX, float toY, int timeStart, int timeEnd) {
+  public Shape moveShape(float toX, float toY, int timeStart, int timeEnd) {
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end time must be positive");
+    }
     return null;
   }
   
   @Override
-  public ShapeNode changeColor(Color toColor, int timeStart, int timeEnd) {
+  public Shape changeColor(Color toColor, int timeStart, int timeEnd) {
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end time must be positive");
+    }
     return null;
   }
   
   @Override
-  public ShapeNode scaleShape(float toX, float toY, int timeStart, int timeEnd) {
+  public Shape scaleShape(float toX, float toY, int timeStart, int timeEnd) {
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end time must be positive");
+    }
     return null;
   }
   
-  @Override
-  public void addTransformation(ShapeNode s, List<ShapeNode> l) {
   
-  }
   
-  @Override
-  public void removeTransformation(ShapeNode s, List<ShapeNode> l) {
-  
-  }
 }

@@ -20,7 +20,9 @@ public class Rectangle extends AbstractShape {
             + "Corner: (" + this.getPositionX() + "," + this.getPositionY() + ")\n"
             + "Width: " + this.getX() + "\n"
             + "Length: " + this.getY() + "\n"
-            + "Color: " + this.getColor() + "\n";
+            + "Color: " + this.getColor() + "\n"
+            + "Appears: " + this.getAppears() + "\n"
+            + "Disappears: " + this.getDisappears() + "\n";
   }
 
 }

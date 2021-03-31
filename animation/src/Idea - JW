@@ -15,10 +15,10 @@ Color (class to hold RGB values): // should this be package private?
 
 Animation (Interface):
     AnimationImpl
-        Field: List<ShapeNode> as ArrayList<>
+        Field: List<initial.ShapeNode> as ArrayList<>
         Methods:
-            - addShape (ShapeNode)
-            - removeShape (ShapeNode)
+            - addShape (initial.ShapeNode)
+            - removeShape (initial.ShapeNode)
             - getById (String)
             - getByTime (int)
             - getShapeAtTick?? //implemented in later HW
@@ -28,18 +28,18 @@ Animation (Interface):
 Transformation (Interface):
     AbstractTransformation
     Constructor:
-        - shape (ShapeNode)
+        - shape (initial.ShapeNode)
     Subclasses
         - Move
-            Constructor: (ShapeNode, toX, toY, timeStart, timeEnd)
+            Constructor: (initial.ShapeNode, toX, toY, timeStart, timeEnd)
             Methods:
                 - moveShape
         - Scale
-            Constructor: (ShapeNode, toX, toY, timeStart, timeEnd)
+            Constructor: (initial.ShapeNode, toX, toY, timeStart, timeEnd)
             Methods:
                 - scaleShape
         - ChangeColor
-            Constructor: (ShapeNode, toX, toY, timeStart, timeEnd)
+            Constructor: (initial.ShapeNode, toX, toY, timeStart, timeEnd)
             Methods:
                 - changeColor(toColor, timeStart, timeEnd)
 
@@ -64,9 +64,9 @@ Shape (Interface):
         - Rectangle
             Field: type
 
-ShapeNode (Interface)
-    ShapeNodeImpl
-        - Field: ShapeNode, appears, disappears, List<Transformation> as ArrayList
+initial.ShapeNode (Interface)
+    initial.ShapeNodeImpl
+        - Field: initial.ShapeNode, appears, disappears, List<Transformation> as ArrayList
         - Constructor: (Shape shape, float appears, float disappears)
     Methods:
         - getShape()

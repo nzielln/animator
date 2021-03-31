@@ -47,4 +47,36 @@ public interface Shape {
    */
   float getY();
   
+  /**
+   *
+   * @param appears
+   * @return
+   */
+  void setAppears(int appears);
+  
+  /**
+   *
+   * @param disappears
+   * @return
+   */
+  void setDisappears(int disappears);
+  
+  /**
+   *
+   * @return
+   */
+  int getAppears();
+  
+  /**
+   *
+   * @return
+   */
+  int getDisappears();
+  
+  /**
+   *
+   * @return
+   */
+  String toString();
+  
 }

@@ -6,7 +6,7 @@ public class Move extends AbstractTransformation {
   private String type;
   
   
-  public Move(ShapeNode s, float toX, float toY, int timeStart, int timeEnd) {
+  public Move(Shape s, float toX, float toY, int timeStart, int timeEnd) {
     super(s);
     this.toX = toX;
     this.toY = toY;
@@ -16,11 +16,20 @@ public class Move extends AbstractTransformation {
   }
   
   @Override
-  public ShapeNode moveShape(float toX, float toY, int timeStart, int timeEnd) {
+  public Shape moveShape(float toX, float toY, int timeStart, int timeEnd) {
     return null;
   }
   
   public String getTransformType() {
     return this.type;
+  }
+  
+  @Override
+  public String toString() {
+    return "Shape" + this.getShape().getName() + "moves from (" + this.getShape().getPositionX()
+            + "," + this.getShape().getPositionY() + ") to (" + this.toX + ","
+            + this.toY + ") from " + this.timeStart + "to " + this.timeEnd + ".\n";
+    
+    
   }
 }

@@ -1,41 +1,82 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 public class AnimationImpl implements Animation {
-  private List<ShapeNode> shapes;
+  private List<Shape> shapes;
+  private List<Transformation> transformations;
   
   public AnimationImpl() {
     shapes = new ArrayList<>();
+    transformations = new ArrayList<>();
   }
   
-  public void addShape(ShapeNode s) {
+  public void addShape(Shape s) {
     shapes.add(s);
   }
   
-  public void removeShape(ShapeNode s) {
+  public void removeShape(Shape s) {
     shapes.remove(s);
   }
   
-  public ShapeNode getById(String id) {
+  @Override
+  public void addTransformation(Transformation t) {
+    Objects.requireNonNull(t, "Object can't be null.");
+  }
+  
+  @Override
+  public void removeTransformation(Transformation t) {
+    Objects.requireNonNull(t, "Object can't be null.");
+  }
+  
+  public Shape getById(String id) {
     return null;
   }
   
-  public ShapeNode getByTime(int t) {
+  public Shape getByTime(int t) {
     return null;
   }
   
-  public List<ShapeNode> filter(Predicate<ShapeNode> p) {
+  @Override
+  public List<Transformation> getTransformations() {
+    return this.transformations;
+  }
+  
+  @Override
+  public List<Shape> getShapes() {
+    return this.shapes;
+  }
+  
+  @Override
+  public List<Shape> filterShapes(Predicate<Shape> p) {
     return null;
   }
   
-  public List<ShapeNode> sort(Comparator<ShapeNode> comp) {
+  @Override
+  public List<Shape> sortShapes(Comparator<Shape> comp) {
     return null;
   }
   
-  public <R> R fold(BiFunction<ShapeNode, R, R> bf, R seed) {
+  @Override
+  public <R> R foldShapes(BiFunction<Shape, R, R> bf, R seed) {
+    return null;
+  }
+  
+  @Override
+  public List<Transformation> filterTransformations(Predicate<Shape> p) {
+    return null;
+  }
+  
+  @Override
+  public List<Transformation> sortTransformations(Comparator<Shape> comp) {
+    return null;
+  }
+  
+  @Override
+  public <R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed) {
     return null;
   }
   

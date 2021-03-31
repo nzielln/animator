@@ -5,7 +5,7 @@ public class Scale extends AbstractTransformation {
   private int timeEnd;
   private String type;
   
-  public Scale(ShapeNode s, int toX, int toY, int timeStart, int timeEnd) {
+  public Scale(Shape s, int toX, int toY, int timeStart, int timeEnd) {
     super(s);
     this.toX = toX;
     this.toY = toY;
@@ -15,11 +15,25 @@ public class Scale extends AbstractTransformation {
   }
   
   @Override
-  public ShapeNode scaleShape(float toX, float toY, int timeStart, int timeEnd) {
+  public Shape scaleShape(float toX, float toY, int timeStart, int timeEnd) {
     return null;
   }
   
   public String getTransformType() {
     return this.type;
+  }
+  
+  @Override
+  public String toString() {
+    if (this.getShape().getType().equals("RECTANGLE")) {
+      return "Shape" + this.getShape().getName() + "scales from Width: " + this.getShape().getX()
+              + "Height: " + this.getShape().getY() + "to Width: " + this.toX + "and Height: "
+              + this.toY + "from " + this.timeStart + "to " + this.timeEnd + ".\n";
+    } else {
+      return "Shape" + this.getShape().getName() + "scales from X-Radius: " + this.getShape().getX()
+              + "Y-Radius: " + this.getShape().getY() + "to X-Radius: " + this.toX + "and Y-Radius: "
+              + this.toY + "from " + this.timeStart + "to " + this.timeEnd + ".\n";
+    }
+  
   }
 }

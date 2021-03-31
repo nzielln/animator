@@ -18,7 +18,9 @@ public class Oval extends AbstractShape {
             + "Center: (" + this.getPositionX() + "," + this.getPositionY() + ")\n"
             + "X-Radius: " + this.getX() + "\n"
             + "Y-Radius: " + this.getY() + "\n"
-            + "Color: " + this.getColor() + "\n";
+            + "Color: " + this.getColor() + "\n"
+            + "Appears: " + this.getAppears() + "\n"
+            + "Disappears: " + this.getDisappears() + "\n";
   }
   
   
