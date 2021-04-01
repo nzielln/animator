@@ -15,12 +15,16 @@ public class AnimationImpl implements Animation {
   }
   
   public void addShape(Shape s) {
+    Objects.requireNonNull(s, "Object can't be null.");
+
     shapes.add(s);
   }
   
   public void removeShape(String id) {
+    if (id == null || id.equals("")) {
+      throw new IllegalArgumentException("Invalid id provided");
+    }
     shapes.removeIf(s -> s.getName().equals(id));
-    
   }
   
   @Override
@@ -69,6 +73,9 @@ public class AnimationImpl implements Animation {
   
   @Override
   public List<Shape> filterShapes(Predicate<Shape> p) {
+    if (this.shapes.size() == 0) {
+      throw new IllegalStateException("Shapes list is empty");
+    }
     Objects.requireNonNull(p, "Predicate can't be null.");
     
     List<Shape> filtered = new ArrayList<>();
@@ -84,14 +91,21 @@ public class AnimationImpl implements Animation {
   
   @Override
   public void sortShapes(Comparator<Shape> comp) {
+    if (this.shapes.size() == 0) {
+      throw new IllegalStateException("Shapes list is empty");
+    }
     Objects.requireNonNull(comp, "Comparator can't be null.");
     
-    shapes.sort((shapea, shapeb) -> comp.compare(shapea.getShape(), shapeb.getShape()));
+    shapes.sort((shapeA, shapeB) -> comp.compare(shapeA.getShape(), shapeB.getShape()));
   }
   
   @Override
   public <R> R foldShapes(BiFunction<Shape, R, R> bf, R seed) {
-    Objects.requireNonNull(seed, "Argument provided not valid.");
+    if (this.shapes.size() == 0) {
+      throw new IllegalStateException("Shapes list is empty");
+    }
+    Objects.requireNonNull(bf, "BiFunction is null.");
+    Objects.requireNonNull(seed, "Seed is null.");
   
     for (Shape t : shapes) {
       seed = bf.apply(t.getShape(), seed);
@@ -101,6 +115,9 @@ public class AnimationImpl implements Animation {
   
   @Override
   public List<Transformation> filterTransformations(Predicate<Transformation> p) {
+    if (this.transformations.size() == 0) {
+      throw new IllegalStateException("Transformations list is empty");
+    }
     Objects.requireNonNull(p, "Predicate can't be null.");
   
     List<Transformation> filtered = new ArrayList<>();
@@ -116,15 +133,21 @@ public class AnimationImpl implements Animation {
   
   @Override
   public void sortTransformations(Comparator<Transformation> comp) {
+    if (this.transformations.size() == 0) {
+      throw new IllegalStateException("Transformations list is empty");
+    }
     Objects.requireNonNull(comp, "Comparator can't be null.");
   
     transformations.sort((ta, tb) -> comp.compare(ta.getTransformation(), tb.getTransformation()));
   }
 
-  
   @Override
   public <R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed) {
-    Objects.requireNonNull(seed, "Argument provided not valid.");
+    if (this.transformations.size() == 0) {
+      throw new IllegalStateException("Transformations list is empty");
+    }
+    Objects.requireNonNull(bf, "BiFunction can't be null.");
+    Objects.requireNonNull(seed, "Seed can't be null.");
     
     for (Transformation t : transformations) {
       seed = bf.apply(t.getTransformation(), seed);

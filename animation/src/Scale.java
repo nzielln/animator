@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Scale extends AbstractTransformation {
   private int toX;
   private int toY;
@@ -7,6 +9,8 @@ public class Scale extends AbstractTransformation {
   
   public Scale(Shape s, int toX, int toY, int timeStart, int timeEnd) {
     super(s);
+    //do we need null checks here if we check in abstract?
+    Objects.requireNonNull(s, "Shape can't be null");
     this.toX = toX;
     this.toY = toY;
     this.timeStart = timeStart;
