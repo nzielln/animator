@@ -34,6 +34,7 @@ public class AnimationImpl implements Animation {
   public void removeTransformation(Transformation t) {
     Objects.requireNonNull(t, "Object can't be null.");
     //How do we want to remove this? by shape ID or should we have an ID for each transformation?
+    //maybe create an ID for each transformation, i'm just not sure what type
     
   }
   
