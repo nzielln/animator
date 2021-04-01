@@ -14,9 +14,9 @@ public interface Animation {
   
   /**
    *
-   * @param s
+   * @param id
    */
-  void removeShape(Shape s);
+  void removeShape(String id);
   
   /**
    *

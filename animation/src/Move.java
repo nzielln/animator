@@ -29,6 +29,14 @@ public class Move extends AbstractTransformation {
     return new Move(this.getShape(), this.toX, this.toY, this.timeStart, this.timeEnd);
   }
   
+  public int getTimeStart() {
+    return this.timeStart;
+  }
+  
+  public int getTimeEnd() {
+    return this.timeEnd;
+  }
+  
   
   @Override
   public String toString() {

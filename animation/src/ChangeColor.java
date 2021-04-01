@@ -27,6 +27,13 @@ public class ChangeColor extends AbstractTransformation {
     return new ChangeColor(this.getShape(), this.toColor, this.timeStart, this.timeEnd);
   }
   
+  public int getTimeStart() {
+    return this.timeStart;
+  }
+  
+  public int getTimeEnd() {
+    return this.timeEnd;
+  }
   
   @Override
   public String toString() {

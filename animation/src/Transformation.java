@@ -9,6 +9,10 @@ public interface Transformation {
   
   String getTransformationType();
   
+  int getTimeStart();
+  
+  int getTimeEnd();
+  
   Shape moveShape(float toX, float toY, int timeStart, int timeEnd);
   
   Shape changeColor(Color toColor, int timeStart, int timeEnd);
