@@ -95,7 +95,7 @@ public class AnimationImpl implements Animation {
     }
     Objects.requireNonNull(comp, "Comparator can't be null.");
     
-    shapes.sort((shapea, shapeb) -> comp.compare(shapea.getShape(), shapeb.getShape()));
+    shapes.sort((shapeA, shapeB) -> comp.compare(shapeA.getShape(), shapeB.getShape()));
   }
   
   @Override
