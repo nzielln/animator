@@ -15,24 +15,31 @@ public class AnimationImpl implements Animation {
   }
   
   public void addShape(Shape s) {
+    Objects.requireNonNull(s, "Shape object can't be null.");
+
     shapes.add(s);
   }
   
   public void removeShape(Shape s) {
+    Objects.requireNonNull(s, "Shape object can't be null.");
+
     shapes.remove(s);
   }
   
   @Override
   public void addTransformation(Transformation t) {
-    Objects.requireNonNull(t, "Object can't be null.");
+    Objects.requireNonNull(t, "Transformation object can't be null.");
   }
   
   @Override
   public void removeTransformation(Transformation t) {
-    Objects.requireNonNull(t, "Object can't be null.");
+    Objects.requireNonNull(t, "Transformation object can't be null.");
   }
   
   public Shape getById(String id) {
+    if (id == null || id.equals("")) {
+      throw new IllegalArgumentException("Shape id can't be null or empty string");
+    }
     return null;
   }
   
@@ -74,6 +81,8 @@ public class AnimationImpl implements Animation {
   
   @Override
   public <R> R foldShapes(BiFunction<Shape, R, R> bf, R seed) {
+    Objects.requireNonNull(bf, "BiFunction can't be null.");
+    Objects.requireNonNull(seed, "Seed can't be null.");
     return null;
   }
   
@@ -101,6 +110,9 @@ public class AnimationImpl implements Animation {
   
   @Override
   public <R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed) {
+    Objects.requireNonNull(bf, "BiFunction can't be null.");
+    Objects.requireNonNull(seed, "Seed can't be null.");
+
     return null;
   }
   
