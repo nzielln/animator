@@ -4,7 +4,7 @@ public class Rectangle extends AbstractShape {
   private final String type;
   
   public Rectangle
-          (String name, float pointX, float pointY, float X, float Y, int r, int g, int b) {
+          (String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
     super(name, pointX, pointY, X, Y,  r, g, b);
     this.type = "RECTANGLE";
   }

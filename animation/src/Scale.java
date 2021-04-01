@@ -56,13 +56,13 @@ public class Scale extends AbstractTransformation {
   @Override
   public String toString() {
     if (this.getShape().getType().equals("RECTANGLE")) {
-      return "Shape" + this.getShape().getName() + "scales from Width: " + this.getShape().getX()
-              + "Height: " + this.getShape().getY() + "to Width: " + this.toX + "and Height: "
-              + this.toY + "from " + this.timeStart + "to " + this.timeEnd + ".\n";
+      return "Shape " + this.getShape().getName() + " scales from Width: " + this.getShape().getX()
+              + " Height: " + this.getShape().getY() + " to Width: " + this.toX + " and Height: "
+              + this.toY + " from " + this.timeStart + " to " + this.timeEnd + ".\n";
     } else {
-      return "Shape" + this.getShape().getName() + "scales from X-Radius: " + this.getShape().getX()
-              + "Y-Radius: " + this.getShape().getY() + "to X-Radius: " + this.toX + "and Y-Radius: "
-              + this.toY + "from " + this.timeStart + "to " + this.timeEnd + ".\n";
+      return "Shape" + this.getShape().getName() + " scales from X-Radius: " + this.getShape().getX()
+              + " Y-Radius: " + this.getShape().getY() + " to X-Radius: " + this.toX + " and Y-Radius: "
+              + this.toY + " from " + this.timeStart + " to " + this.timeEnd + ".";
     }
     
   }

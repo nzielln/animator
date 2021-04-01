@@ -1,35 +1,37 @@
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
+/**
+ * Animation interface, represents methods implemented by the {@link AnimationImpl} class.
+ */
 public interface Animation {
   //GETTERS----------------------------------------------------------------------------------------
   
   /**
-   *
-   * @param id
-   * @return
+   * Returns a {@link Shape} in the animation that matches the provided ID.
+   * @param id ID of the shape to return
+   * @return a {@link Shape} object
    */
   Shape getById(String id);
   
   /**
-   *
-   * @param t
-   * @return
+   * Returns a {@link Shape}(s)  in the animation at the time provided.
+   * @param t time of the shape to return
+   * @return a {@link Shape} at time t
    */
   Shape getByTime(int t);
   
   /**
-   *
-   * @return
+   * Returns a list of all the {@link Transformation}(s) in the animation.
+   * @return a list of transformations in the list
    */
   List<Transformation> getTransformations();
   
   /**
-   *
-   * @return
+   * Returns a list of all the {@link Shape}(s)  in the animation.
+   * @return a list of shapes in the list
    */
   List<Shape> getShapes();
   
@@ -37,78 +39,89 @@ public interface Animation {
   //OTHER------------------------------------------------------------------------------------------
   
   /**
-   *
-   * @param s
+   * Adds a shape to the list of {@link Shape}(s) in the animation.
+   * @param s a {@link Shape} to add to list
    */
   void addShape(Shape s);
   
   /**
-   *
-   * @param id
+   * Removes a shape from the list of {@link Shape}(s), if it matches the ID provided.
+   * @param id of {@link Shape} to remove.
    */
   void removeShape(String id);
   
   /**
-   *
-   * @param t
+   * Adds a transformation to the list of {@link Transformation}(s) in the animation.
+   * @param t a {@link Transformation} to add to list
    */
   void addTransformation(Transformation t);
   
   /**
-   *
-   * @param t
+   * Removes a transformation from the list of {@link Transformation}(s).
+   * @param t a {@link Transformation} to remove from the list
    */
   void removeTransformation(Transformation t);
   
   /**
-   *
-   * @param p
-   * @return
+   * Filters the list of {@link Shape}(s) based on the predicate provided.
+   * @param p {@link Predicate} provided
+   * @return a new list that is filtered
    */
   List<Shape> filterShapes(Predicate<Shape> p);
   
   /**
-   *
-   * @param comp
-   * @return
+   * Sorts the list of {@link Shape}(s) based on the comparator provided.
+   * @param comp {@link Comparator} provided
    */
   void sortShapes(Comparator<Shape> comp);
   
   /**
-   *
-   * @param bf
-   * @param seed
-   * @param <R>
-   * @return
+   * Fold the list of {@link Shape}(s) based on the arguments provided.
+   * @param bf bi-function
+   * @param seed seed to fold into
+   * @param <R> return type
+   * @return folded resulted
    */
   <R> R foldShapes(BiFunction<Shape, R, R> bf, R seed);
   
   /**
-   *
-   * @param p
-   * @return
+   * Filters the list of {@link Transformation}(s) based on the predicate provided.
+   * @param p {@link Predicate} provided
+   * @return a new list that is filtered
    */
   List<Transformation> filterTransformations(Predicate<Transformation> p);
   
   /**
-   *
-   * @param comp
-   * @return
+   * Sorts the list of {@link Transformation}(s) based on the comparator provided.
+   * @param comp {@link Comparator} provided
    */
   void sortTransformations(Comparator<Transformation> comp);
   
   /**
-   *
-   * @param bf
-   * @param seed
-   * @param <R>
-   * @return
+   * Fold the list of {@link Transformation}(s) based on the arguments provided.
+   * @param bf bi-function
+   * @param seed seed to fold into
+   * @param <R> return type
+   * @return folded resulted
    */
   <R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed);
   
   /**
+   * Returns a string representation of the animation.
+   * @return a string
+   * "Shape:
+   * //For each shape
+   * "Name:
+   *  Type:
+   *  Corner/Center:
+   *  Width/X-Radius:
+   *  Length/Y-Radius:
+   *  Appears:
+   *  Disappears:
    *
-   * @return
+   *
+   *  //For each transformation
+   *  Description of transformation: Shape, name, changes, times
    */
   String toString();
 }

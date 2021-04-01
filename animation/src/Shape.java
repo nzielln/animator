@@ -1,69 +1,68 @@
-import java.util.List;
 
 /**
- *
+ * Shape interface, represents methods implemented by the {@link AbstractShape} class.
  */
 public interface Shape {
   
   //GETTERS----------------------------------------------------------------------------------------
   
   /**
-   *
-   * @return
+   * Returns the {@link Shape}.
+   * @return a {@link Shape} object
    */
   Shape getShape();
   
   /**
-   *
-   * @return
+   * Returns the type of the {@link Shape}.
+   * @return a string, type of shape
    */
   String getType();
 
   /**
-   *
-   * @return
+   * Returns the name of the {@link Shape}.
+   * @return a string, name/id of the shape
    */
   String getName();
 
   /**
-   *
-   * @return
+   * Retunrs the color of the {@link Shape}.
+   * @return a {@link Color} object of the current shape's color
    */
   Color getColor();
 
   /**
-   *
-   * @return
+   * Returns the x-position of the corner/center of the {@link Shape}.
+   * @return float, x-position of shape's center/corner
    */
   float getPositionX();
-
+  
   /**
-   *
-   * @return
+   * Returns the y-position of the corner/center of the {@link Shape}.
+   * @return float, y-position of shape's center/corner
    */
   float getPositionY();
   
   /**
-   *
-   * @return
+   * Returns the x-radius/width of the {@link Shape}.
+   * @return int, x-radius/width of shape
    */
-  float getX();
+  int getX();
   
   /**
-   *
-   * @return
+   * Returns the y-radius/length of the {@link Shape}.
+   * @return int, y-radius/length of shape
    */
-  float getY();
+  int getY();
   
   /**
-   *
-   * @return
+   * Returns the time the {@link Shape} appears in the animation.
+   * @return int, time the shape appears
    */
   int getAppears();
   
   /**
-   *
-   * @return
+   * Returns the time the {@link Shape} disappears in the animation.
+   * @return int, time the shape disappears
    */
   int getDisappears();
   
@@ -71,30 +70,35 @@ public interface Shape {
   //SETTERS AND OTHER------------------------------------------------------------------------------
   
   /**
-   *
-   * @param appears
-   * @return
+   * Set the time the {@link Shape} appears in the animation.
+   * @param appears time in int, when shape appears
    */
   void setAppears(int appears);
   
   /**
-   *
-   * @param disappears
-   * @return
+   * Set the time the {@link Shape} disappears in the animation.
+   * @param disappears time in int, when shape disappears
    */
   void setDisappears(int disappears);
   
-  
   /**
-   *
-   * @return
-   */
-  String toString();
-  
-  /**
-   *
-   * @return
+   * Returns a copy of the {@link Shape} object.
+   * @return a shape
    */
   Shape copy();
+  
+  /**
+   * Returns a string representation of the {@link Shape}.
+   * @return a string
+   * "Name:
+   *  Type:
+   *  Corner/Center:
+   *  Width/X-Radius:
+   *  Length/Y-Radius:
+   *  Appears:
+   *  Disappears: "
+   */
+  String toString();
+
   
 }

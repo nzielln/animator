@@ -47,9 +47,9 @@ public class ChangeColor extends AbstractTransformation {
   
   @Override
   public String toString() {
-    return "Shape" + this.getShape().getName() + "changes color from "
-            + this.getShape().getColor().toString() + "to " + this.toColor.toString() + "from "
-            + this.timeStart + "to " + this.timeEnd + ".\n";
+    return "Shape " + this.getShape().getName() + " changes color from "
+            + this.getShape().getColor().toString() + " to " + this.toColor.toString() + " from "
+            + this.timeStart + " to " + this.timeEnd + ".";
   }
   
 }

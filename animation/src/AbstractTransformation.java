@@ -1,9 +1,11 @@
-import java.util.List;
-import java.util.Objects;
 
 public abstract class AbstractTransformation implements Transformation {
   private final Shape shape;
   
+  /**
+   *
+   * @param s
+   */
   public AbstractTransformation(Shape s) {
     if (s == null) {
       throw new NullPointerException("Shape can't be null");
@@ -79,7 +81,7 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
-  public Shape scaleShape(float toX, float toY, int timeStart, int timeEnd) {
+  public Shape scaleShape(int toX, int toY, int timeStart, int timeEnd) {
     if (timeStart < 0 || timeEnd < 0) {
       throw new IllegalArgumentException("Start and end time must be positive");
     }

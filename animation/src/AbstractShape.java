@@ -11,8 +11,8 @@ public abstract class AbstractShape implements Shape {
   private final Color color;
   private final float pointX;
   private final float pointY;
-  private final float X;
-  private final float Y;
+  private final int X;
+  private final int Y;
   private int appears;
   private int disappears;
   
@@ -28,7 +28,7 @@ public abstract class AbstractShape implements Shape {
    * @param b
    */
   public AbstractShape
-  (String name, float pointX, float pointY, float X, float Y, int r, int g, int b) {
+  (String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
     if (name == null || name.equals("")) {
       throw new IllegalArgumentException("Name can't be null or empty string");
     } else if (pointX <= 0 || pointY <= 0) {
@@ -80,12 +80,12 @@ public abstract class AbstractShape implements Shape {
   }
   
   @Override
-  public float getX() {
+  public int getX() {
     return this.X;
   }
   
   @Override
-  public float getY() {
+  public int getY() {
     return this.Y;
   }
   

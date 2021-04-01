@@ -164,13 +164,13 @@ public class AnimationImpl implements Animation {
   public String toString() {
     StringBuilder str = new StringBuilder();
     for (Shape s : shapes) {
-      str.append(s.toString()).append("\n\n");
+      str.append(s.toString()).append("\n");
     }
   
     for (Transformation t : transformations) {
       str.append(t.toString()).append("\n");
     }
-    return "Shapes: \n" + str.toString().trim();
+    return "Shapes: \n\n" + str.toString().trim();
   }
   
 }
