@@ -24,14 +24,16 @@ public class Move extends AbstractTransformation {
     return this.type;
   }
   
+  @Override
   public float getToX() {
     return this.toX;
   }
   
+  @Override
   public float getToY() {
     return this.toY;
   }
-
+  
   @Override
   public int getTimeStart() {
     return this.timeStart;
@@ -40,6 +42,12 @@ public class Move extends AbstractTransformation {
   @Override
   public int getTimeEnd() {
     return this.timeEnd;
+  }
+  
+  //weird
+  @Override
+  public Color getToColor() {
+    return null;
   }
   
   //OTHER------------------------------------------------------------------------------------------

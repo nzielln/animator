@@ -33,6 +33,17 @@ public class ChangeColor extends AbstractTransformation {
     return this.timeEnd;
   }
   
+  //This is weird, it's forcing me to call these methods but I don't think i need to
+  @Override
+  public float getToX() {
+    return 0;
+  }
+  
+  @Override
+  public float getToY() {
+    return 0;
+  }
+  
   @Override
   public Color getToColor() {
     return this.toColor;
