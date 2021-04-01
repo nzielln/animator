@@ -23,13 +23,9 @@ public class ChangeColor extends AbstractTransformation {
     return null;
   }
   
+  //GETTERS
   public String getTransformType() {
     return this.type;
-  }
-  
-  @Override
-  public Transformation copy() {
-    return new ChangeColor(this.getShape(), this.toColor, this.timeStart, this.timeEnd);
   }
   
   public int getTimeStart() {
@@ -38,6 +34,11 @@ public class ChangeColor extends AbstractTransformation {
   
   public int getTimeEnd() {
     return this.timeEnd;
+  }
+  
+  @Override
+  public Transformation copy() {
+    return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
   }
   
   @Override

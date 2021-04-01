@@ -18,19 +18,17 @@ public class Move extends AbstractTransformation {
     this.type = "Moves";
   }
   
-  @Override
-  public Shape moveShape(float toX, float toY, int timeStart, int timeEnd) {
-    return null;
-  }
-  
+  //GETTERS
   public String getTransformType() {
     return this.type;
   }
-
-  //Should we return a Transformation or should we return a new Shape?
-  @Override
-  public Transformation copy() {
-    return new Move(this.getShape(), this.toX, this.toY, this.timeStart, this.timeEnd);
+  
+  public float getToX() {
+    return this.toX;
+  }
+  
+  public float getToY() {
+    return this.toY;
   }
   
   public int getTimeStart() {
@@ -39,6 +37,12 @@ public class Move extends AbstractTransformation {
   
   public int getTimeEnd() {
     return this.timeEnd;
+  }
+  
+  //Should we return a Transformation or should we return a new Shape?
+  @Override
+  public Transformation copy() {
+    return new Move(this.getShape().copy(), this.toX, this.toY, this.timeStart, this.timeEnd);
   }
   
   @Override

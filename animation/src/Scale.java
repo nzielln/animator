@@ -18,26 +18,32 @@ public class Scale extends AbstractTransformation {
     this.type = "Scales";
   }
   
-  @Override
-  public Shape scaleShape(float toX, float toY, int timeStart, int timeEnd) {
-    return null;
-  }
-  
+  //GETTERS
   public String getTransformType() {
     return this.type;
   }
   
   @Override
-  public Transformation copy() {
-    return new Scale(this.getShape(), this.toX, this.toY, this.timeStart, this.timeEnd);
-  }
-  
   public int getTimeStart() {
     return this.timeStart;
   }
   
+  @Override
   public int getTimeEnd() {
     return this.timeEnd;
+  }
+  
+  public float getToX() {
+    return this.toX;
+  }
+  
+  public float getToY() {
+    return this.toY;
+  }
+  
+  @Override
+  public Transformation copy() {
+    return new Scale(this.getShape().copy(), this.toX, this.toY, this.timeStart, this.timeEnd);
   }
   
   @Override
