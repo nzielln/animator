@@ -16,6 +16,16 @@ public class AnimationImpl implements Animation {
   
   //GETTERS----------------------------------------------------------------------------------------
   
+  @Override
+  public int getSizeShapes() {
+    return shapes.size();
+  }
+  
+  @Override
+  public int getSizeTransformations() {
+    return transformations.size();
+  }
+  
   public Shape getById(String id) {
     
     for (Shape s : shapes) {

@@ -10,6 +10,19 @@ public interface Animation {
   //GETTERS----------------------------------------------------------------------------------------
   
   /**
+   * Returns a the numebr of {@link Shape} in the animation.
+   * @return int, number of {@link Shape} objects
+   */
+  int getSizeShapes();
+  
+  /**
+   * Returns a the numebr of {@link Transformation} in the animation.
+   * @return int, number of {@link Transformation} objects
+   */
+  int getSizeTransformations();
+  
+  
+  /**
    * Returns a {@link Shape} in the animation that matches the provided ID.
    * @param id ID of the shape to return
    * @return a {@link Shape} object
