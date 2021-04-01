@@ -23,6 +23,12 @@ public class ChangeColor extends AbstractTransformation {
   }
   
   @Override
+  public Transformation copy() {
+    return new ChangeColor(this.getShape(), this.toColor, this.timeStart, this.timeEnd);
+  }
+  
+  
+  @Override
   public String toString() {
     return "Shape" + this.getShape().getName() + "changes color from "
             + this.getShape().getColor().toString() + "to " + this.toColor.toString() + "from "

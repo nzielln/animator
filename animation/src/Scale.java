@@ -24,6 +24,11 @@ public class Scale extends AbstractTransformation {
   }
   
   @Override
+  public Transformation copy() {
+    return new Scale(this.getShape(), this.toX, this.toY, this.timeStart, this.timeEnd);
+  }
+  
+  @Override
   public String toString() {
     if (this.getShape().getType().equals("RECTANGLE")) {
       return "Shape" + this.getShape().getName() + "scales from Width: " + this.getShape().getX()

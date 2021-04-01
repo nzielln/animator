@@ -4,7 +4,13 @@ import java.util.List;
  *
  */
 public interface Shape {
-
+  
+  /**
+   *
+   * @return
+   */
+  Shape getShape();
+  
   /**
    *
    * @return
@@ -78,5 +84,11 @@ public interface Shape {
    * @return
    */
   String toString();
+  
+  /**
+   *
+   * @return
+   */
+  Shape copy();
   
 }

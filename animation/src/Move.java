@@ -25,6 +25,12 @@ public class Move extends AbstractTransformation {
   }
   
   @Override
+  public Transformation copy() {
+    return new Move(this.getShape(), this.toX, this.toY, this.timeStart, this.timeEnd);
+  }
+  
+  
+  @Override
   public String toString() {
     return "Shape" + this.getShape().getName() + "moves from (" + this.getShape().getPositionX()
             + "," + this.getShape().getPositionY() + ") to (" + this.toX + ","

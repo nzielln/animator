@@ -52,12 +52,24 @@ public class AnimationImpl implements Animation {
   
   @Override
   public List<Shape> filterShapes(Predicate<Shape> p) {
-    return null;
+    Objects.requireNonNull(p, "Predicate can't be null.");
+    
+    List<Shape> filtered = new ArrayList<>();
+    for (Shape s : shapes) {
+      if (p.test(s.getShape())) {
+        Shape sh = s.getShape().copy();
+        filtered.add(sh);
+      }
+    }
+    
+    return filtered;
   }
   
   @Override
-  public List<Shape> sortShapes(Comparator<Shape> comp) {
-    return null;
+  public void sortShapes(Comparator<Shape> comp) {
+    Objects.requireNonNull(comp, "Comparator can't be null.");
+    
+    shapes.sort((shapea, shapeb) -> comp.compare(shapea.getShape(), shapeb.getShape()));
   }
   
   @Override
@@ -66,13 +78,25 @@ public class AnimationImpl implements Animation {
   }
   
   @Override
-  public List<Transformation> filterTransformations(Predicate<Shape> p) {
-    return null;
+  public List<Transformation> filterTransformations(Predicate<Transformation> p) {
+    Objects.requireNonNull(p, "Predicate can't be null.");
+  
+    List<Transformation> filtered = new ArrayList<>();
+    for (Transformation t : transformations) {
+      if (p.test(t.getTransformation())) {
+        Transformation tr = t.getTransformation().copy();
+        filtered.add(tr);
+      }
+    }
+  
+    return filtered;
   }
   
   @Override
-  public List<Transformation> sortTransformations(Comparator<Shape> comp) {
-    return null;
+  public void sortTransformations(Comparator<Transformation> comp) {
+    Objects.requireNonNull(comp, "Comparator can't be null.");
+  
+    transformations.sort((ta, tb) -> comp.compare(ta.getTransformation(), tb.getTransformation()));
   }
   
   @Override

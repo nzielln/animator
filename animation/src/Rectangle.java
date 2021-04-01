@@ -14,6 +14,12 @@ public class Rectangle extends AbstractShape {
   }
   
   @Override
+  public Shape copy() {
+    return new Rectangle(this.getName(), this.getPositionX(), this.getPositionY(), this.getX(),
+            this.getY(), this.getColor().getR(), this.getColor().getG(),  this.getColor().getB());
+  }
+  
+  @Override
   public String toString() {
     return "Name: " + this.getName() + "\n"
             + "Type: " + this.type + "\n"

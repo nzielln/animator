@@ -47,6 +47,11 @@ public abstract class AbstractShape implements Shape {
   }
   
   @Override
+  public Shape getShape() {
+    return this;
+  }
+  
+  @Override
   public String getType() {
     return null;
   }
@@ -107,6 +112,9 @@ public abstract class AbstractShape implements Shape {
     return this.disappears;
   }
   
-  
+  @Override
+  public Shape copy() {
+    return null;
+  }
   
 }

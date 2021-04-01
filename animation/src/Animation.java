@@ -68,7 +68,7 @@ public interface Animation {
    * @param comp
    * @return
    */
-  List<Shape> sortShapes(Comparator<Shape> comp);
+  void sortShapes(Comparator<Shape> comp);
   
   /**
    *
@@ -84,14 +84,14 @@ public interface Animation {
    * @param p
    * @return
    */
-  List<Transformation> filterTransformations(Predicate<Shape> p);
+  List<Transformation> filterTransformations(Predicate<Transformation> p);
   
   /**
    *
    * @param comp
    * @return
    */
-  List<Transformation> sortTransformations(Comparator<Shape> comp);
+  void sortTransformations(Comparator<Transformation> comp);
   
   /**
    *

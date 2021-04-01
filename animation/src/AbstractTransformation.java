@@ -18,6 +18,21 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
+  public Transformation getTransformation() {
+    return this;
+  }
+  
+  @Override
+  public String getTransformationType() {
+    return null;
+  }
+  
+  @Override
+  public Transformation copy() {
+    return null;
+  }
+  
+  @Override
   public Shape moveShape(float toX, float toY, int timeStart, int timeEnd) {
     if (timeStart < 0 || timeEnd < 0) {
       throw new IllegalArgumentException("Start and end time must be positive");
