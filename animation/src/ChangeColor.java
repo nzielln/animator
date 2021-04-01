@@ -54,10 +54,12 @@ public class ChangeColor extends AbstractTransformation {
   public Transformation copy() {
     return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
   }
-
+  
   @Override
   public Shape changeColor(Color toColor, int timeStart, int timeEnd) {
-    Objects.requireNonNull(toColor, "toColor can't be null.");
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end time must be positive");
+    }
     return null;
   }
   
