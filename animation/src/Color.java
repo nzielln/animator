@@ -12,7 +12,8 @@ public class Color {
     this.g = g;
     this.b = b;
   }
-
+  
+  //GETTERS----------------------------------------------------------------------------------------
   public int getR() {
     return this.r;
   }
@@ -28,7 +29,8 @@ public class Color {
   public Color getColor() {
     return this;
   }
-
+  
+  //OTHER------------------------------------------------------------------------------------------
   @Override
   public String toString() {
     return "(" + this.r + ", " + this.g + ", " + this.b + ")";

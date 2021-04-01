@@ -5,30 +5,7 @@ import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 public interface Animation {
-  
-  /**
-   *
-   * @param s
-   */
-  void addShape(Shape s);
-  
-  /**
-   *
-   * @param id
-   */
-  void removeShape(String id);
-  
-  /**
-   *
-   * @param t
-   */
-  void addTransformation(Transformation t);
-  
-  /**
-   *
-   * @param t
-   */
-  void removeTransformation(Transformation t);
+  //GETTERS----------------------------------------------------------------------------------------
   
   /**
    *
@@ -55,6 +32,33 @@ public interface Animation {
    * @return
    */
   List<Shape> getShapes();
+  
+  
+  //OTHER------------------------------------------------------------------------------------------
+  
+  /**
+   *
+   * @param s
+   */
+  void addShape(Shape s);
+  
+  /**
+   *
+   * @param id
+   */
+  void removeShape(String id);
+  
+  /**
+   *
+   * @param t
+   */
+  void addTransformation(Transformation t);
+  
+  /**
+   *
+   * @param t
+   */
+  void removeTransformation(Transformation t);
   
   /**
    *

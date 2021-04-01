@@ -6,11 +6,13 @@ public class Oval extends AbstractShape {
     this.type = "OVAL";
   }
   
+  //GETTERS----------------------------------------------------------------------------------------
   @Override
   public String getType() {
     return this.type;
   }
   
+  //OTHER------------------------------------------------------------------------------------------
   @Override
   public Shape copy() {
     return new Oval(this.getName(), this.getPositionX(), this.getPositionY(), this.getX(),

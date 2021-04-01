@@ -5,6 +5,8 @@ import java.util.List;
  */
 public interface Shape {
   
+  //GETTERS----------------------------------------------------------------------------------------
+  
   /**
    *
    * @return
@@ -55,6 +57,21 @@ public interface Shape {
   
   /**
    *
+   * @return
+   */
+  int getAppears();
+  
+  /**
+   *
+   * @return
+   */
+  int getDisappears();
+  
+  
+  //SETTERS AND OTHER------------------------------------------------------------------------------
+  
+  /**
+   *
    * @param appears
    * @return
    */
@@ -67,17 +84,6 @@ public interface Shape {
    */
   void setDisappears(int disappears);
   
-  /**
-   *
-   * @return
-   */
-  int getAppears();
-  
-  /**
-   *
-   * @return
-   */
-  int getDisappears();
   
   /**
    *

@@ -48,6 +48,7 @@ public abstract class AbstractShape implements Shape {
     }
   }
   
+  //GETTERS----------------------------------------------------------------------------------------
   @Override
   public Shape getShape() {
     return this;
@@ -89,6 +90,18 @@ public abstract class AbstractShape implements Shape {
   }
   
   @Override
+  public int getAppears() {
+    return this.appears;
+  }
+  
+  @Override
+  public int getDisappears() {
+    return this.disappears;
+  }
+  
+  
+  //SETTERS AND OTHER OTHER------------------------------------------------------------------------
+  @Override
   public void setAppears(int appears) {
     if (appears < 0) {
       throw new IllegalArgumentException("Must be positive integer");
@@ -102,16 +115,6 @@ public abstract class AbstractShape implements Shape {
       throw new IllegalArgumentException("Must be positive integer");
     }
     this.disappears = disappears;
-  }
-
-  @Override
-  public int getAppears() {
-    return this.appears;
-  }
-  
-  @Override
-  public int getDisappears() {
-    return this.disappears;
   }
   
 }
