@@ -32,6 +32,14 @@ public abstract class AbstractTransformation implements Transformation {
     return null;
   }
   
+  public int getTimeStart() {
+    return 0;
+  }
+  
+  public int getTimeEnd() {
+    return 0;
+  }
+  
   @Override
   public Shape moveShape(float toX, float toY, int timeStart, int timeEnd) {
     if (timeStart < 0 || timeEnd < 0) {

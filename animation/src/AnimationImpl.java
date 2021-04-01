@@ -18,25 +18,41 @@ public class AnimationImpl implements Animation {
     shapes.add(s);
   }
   
-  public void removeShape(Shape s) {
-    shapes.remove(s);
+  public void removeShape(String id) {
+    shapes.removeIf(s -> s.getName().equals(id));
+    
   }
   
   @Override
   public void addTransformation(Transformation t) {
     Objects.requireNonNull(t, "Object can't be null.");
+    
+    transformations.add(t);
   }
   
   @Override
   public void removeTransformation(Transformation t) {
     Objects.requireNonNull(t, "Object can't be null.");
+    //How do we want to remove this? by shape ID or should we have an ID for each transformation?
+    
   }
   
   public Shape getById(String id) {
+    
+    for (Shape s : shapes) {
+      if (s.getName().equals(id)) {
+        return s;
+      }
+    }
     return null;
   }
   
   public Shape getByTime(int t) {
+    for (Transformation tr : transformations) {
+      if ( t >= tr.getTransformation().getTimeStart() && t < tr.getTransformation().getTimeEnd()) {
+        return tr.getShape();
+      }
+    }
     return null;
   }
   
@@ -74,7 +90,12 @@ public class AnimationImpl implements Animation {
   
   @Override
   public <R> R foldShapes(BiFunction<Shape, R, R> bf, R seed) {
-    return null;
+    Objects.requireNonNull(seed, "Argument provided not valid.");
+  
+    for (Shape t : shapes) {
+      seed = bf.apply(t.getShape(), seed);
+    }
+    return seed;
   }
   
   @Override
@@ -98,10 +119,29 @@ public class AnimationImpl implements Animation {
   
     transformations.sort((ta, tb) -> comp.compare(ta.getTransformation(), tb.getTransformation()));
   }
+
   
   @Override
   public <R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed) {
-    return null;
+    Objects.requireNonNull(seed, "Argument provided not valid.");
+    
+    for (Transformation t : transformations) {
+      seed = bf.apply(t.getTransformation(), seed);
+    }
+    return seed;
+  }
+  
+  @Override
+  public String toString() {
+    StringBuilder str = new StringBuilder();
+    for (Shape s : shapes) {
+      str.append(s.toString()).append("\n\n");
+    }
+  
+    for (Transformation t : transformations) {
+      str.append(t.toString()).append("\n");
+    }
+    return "Shapes: \n" + str.toString().trim();
   }
   
 }
