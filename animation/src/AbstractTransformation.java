@@ -11,7 +11,7 @@ public abstract class AbstractTransformation implements Transformation {
     this.shape = s;
   }
   
-  //GETTERS----------------------------------------------------------------------------------------
+  
   @Override
   public Shape getShape() {
     return this.shape;
@@ -20,42 +20,6 @@ public abstract class AbstractTransformation implements Transformation {
   @Override
   public Transformation getTransformation() {
     return this;
-  }
-  
-  @Override
-  public String getTransformationType() {
-    return "";
-  }
-  
-  @Override
-  public int getTimeStart() {
-    return 0;
-  }
-  
-  @Override
-  public int getTimeEnd() {
-    return 0;
-  }
-  
-  @Override
-  public Color getToColor() {
-    return null;
-  }
-  
-  @Override
-  public float getToX() {
-    return 0;
-  }
-  
-  @Override
-  public float getToY() {
-    return 0;
-  }
-  
-  //OTHER------------------------------------------------------------------------------------------
-  @Override
-  public Transformation copy() {
-    return null;
   }
   
   @Override

@@ -17,39 +17,33 @@ public class ChangeColor extends AbstractTransformation {
     this.type = "Change Color";
   }
   
-  //GETTERS----------------------------------------------------------------------------------------
-  @Override
-  public String getTransformationType() {
-    return this.type;
-  }
-  
-  @Override
-  public int getTimeStart() {
-    return this.timeStart;
-  }
-  
-  @Override
-  public int getTimeEnd() {
-    return this.timeEnd;
-  }
-  
-  @Override
-  public Color getToColor() {
-    return this.toColor;
-  }
-  
-  //OTHER------------------------------------------------------------------------------------------
-  @Override
-  public Transformation copy() {
-    return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
-  }
-  
   @Override
   public Shape changeColor(Color toColor, int timeStart, int timeEnd) {
     Objects.requireNonNull(toColor, "toColor can't be null.");
     return null;
   }
   
+  //GETTERS
+  @Override
+  public String getTransformationType() {
+    return this.type;
+  }
+
+  @Override
+  public int getTimeStart() {
+    return this.timeStart;
+  }
+
+  @Override
+  public int getTimeEnd() {
+    return this.timeEnd;
+  }
+  
+  @Override
+  public Transformation copy() {
+    return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
+  }
+
   @Override
   public String toString() {
     return "Shape" + this.getShape().getName() + "changes color from "
