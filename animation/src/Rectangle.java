@@ -9,12 +9,14 @@ public class Rectangle extends AbstractShape {
     this.type = "RECTANGLE";
   }
   
+  //GETTERS----------------------------------------------------------------------------------------
   @Override
   public String getType() {
     return this.type;
   
   }
   
+  //OTHER------------------------------------------------------------------------------------------
   @Override
   public Shape copy() {
     return new Rectangle(this.getName(), this.getPositionX(), this.getPositionY(), this.getX(),

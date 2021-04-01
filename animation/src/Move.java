@@ -17,28 +17,34 @@ public class Move extends AbstractTransformation {
     this.timeEnd = timeEnd;
     this.type = "Moves";
   }
-  
-  //GETTERS
-  public String getTransformType() {
+
+//GETTERS----------------------------------------------------------------------------------------
+@Override
+public String getTransformationType() {
     return this.type;
   }
   
+  @Override
   public float getToX() {
     return this.toX;
   }
   
+  @Override
   public float getToY() {
     return this.toY;
   }
   
+  @Override
   public int getTimeStart() {
     return this.timeStart;
   }
   
+  @Override
   public int getTimeEnd() {
     return this.timeEnd;
   }
   
+  //OTHER------------------------------------------------------------------------------------------
   //Should we return a Transformation or should we return a new Shape?
   @Override
   public Transformation copy() {

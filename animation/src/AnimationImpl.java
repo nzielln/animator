@@ -14,33 +14,7 @@ public class AnimationImpl implements Animation {
     transformations = new ArrayList<>();
   }
   
-  public void addShape(Shape s) {
-    Objects.requireNonNull(s, "Object can't be null.");
-
-    shapes.add(s);
-  }
-  
-  public void removeShape(String id) {
-    if (id == null || id.equals("")) {
-      throw new IllegalArgumentException("Invalid id provided");
-    }
-    shapes.removeIf(s -> s.getName().equals(id));
-  }
-  
-  @Override
-  public void addTransformation(Transformation t) {
-    Objects.requireNonNull(t, "Object can't be null.");
-    
-    transformations.add(t);
-  }
-  
-  @Override
-  public void removeTransformation(Transformation t) {
-    Objects.requireNonNull(t, "Object can't be null.");
-    //How do we want to remove this? by shape ID or should we have an ID for each transformation?
-    //maybe create an ID for each transformation, i'm just not sure what type of id to use
-    
-  }
+  //GETTERS----------------------------------------------------------------------------------------
   
   public Shape getById(String id) {
     
@@ -69,6 +43,37 @@ public class AnimationImpl implements Animation {
   @Override
   public List<Shape> getShapes() {
     return this.shapes;
+  }
+  
+  
+  //OTHER------------------------------------------------------------------------------------------
+  
+  public void addShape(Shape s) {
+    Objects.requireNonNull(s, "Object can't be null.");
+    
+    shapes.add(s);
+  }
+  
+  public void removeShape(String id) {
+    if (id == null || id.equals("")) {
+      throw new IllegalArgumentException("Invalid id provided");
+    }
+    shapes.removeIf(s -> s.getName().equals(id));
+  }
+  
+  @Override
+  public void addTransformation(Transformation t) {
+    Objects.requireNonNull(t, "Object can't be null.");
+    
+    transformations.add(t);
+  }
+  
+  @Override
+  public void removeTransformation(Transformation t) {
+    Objects.requireNonNull(t, "Object can't be null.");
+    //How do we want to remove this? by shape ID or should we have an ID for each transformation?
+    //maybe create an ID for each transformation, i'm just not sure what type of id to use
+    
   }
   
   @Override

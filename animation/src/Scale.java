@@ -18,8 +18,9 @@ public class Scale extends AbstractTransformation {
     this.type = "Scales";
   }
   
-  //GETTERS
-  public String getTransformType() {
+  //GETTERS----------------------------------------------------------------------------------------
+  @Override
+  public String getTransformationType() {
     return this.type;
   }
   
@@ -33,14 +34,18 @@ public class Scale extends AbstractTransformation {
     return this.timeEnd;
   }
   
+  @Override
   public float getToX() {
     return this.toX;
   }
   
+  @Override
   public float getToY() {
     return this.toY;
   }
   
+  
+  //OTHER------------------------------------------------------------------------------------------
   @Override
   public Transformation copy() {
     return new Scale(this.getShape().copy(), this.toX, this.toY, this.timeStart, this.timeEnd);
