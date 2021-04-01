@@ -44,38 +44,7 @@ public class Move extends AbstractTransformation {
     return this.timeEnd;
   }
   
-  //weird
-  @Override
-  public Color getToColor() {
-    return null;
-  }
-  
   //OTHER------------------------------------------------------------------------------------------
-  @Override
-  public Shape moveShape(float toX, float toY, int timeStart, int timeEnd) {
-    if (timeStart < 0 || timeEnd < 0) {
-      throw new IllegalArgumentException("Start and end time must be positive");
-    }
-  
-    if (this.getShape().getType().equals("OVAL")) {
-      Shape s = new Oval(this.getShape().getName(), toX,
-              toY, this.getShape().getX(), this.getShape().getY(),
-              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
-      s.setAppears(timeStart);
-      s.setDisappears(timeEnd);
-      return s;
-    } else if (this.getShape().getType().equals("RECTANGLE")) {
-      Shape s = new Rectangle(this.getShape().getName(), toX,
-              toY, this.getShape().getX(), this.getShape().getY(),
-              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
-      s.setAppears(timeStart);
-      s.setDisappears(timeEnd);
-      return s;
-    }
-    return null;
-  }
-  
-  
   
   //Should we return a Transformation or should we return a new Shape?
   @Override

@@ -33,17 +33,6 @@ public class ChangeColor extends AbstractTransformation {
     return this.timeEnd;
   }
   
-  //This is weird, it's forcing me to call these methods but I don't think i need to
-  @Override
-  public float getToX() {
-    return 0;
-  }
-  
-  @Override
-  public float getToY() {
-    return 0;
-  }
-  
   @Override
   public Color getToColor() {
     return this.toColor;
@@ -55,13 +44,6 @@ public class ChangeColor extends AbstractTransformation {
     return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
   }
   
-  @Override
-  public Shape changeColor(Color toColor, int timeStart, int timeEnd) {
-    if (timeStart < 0 || timeEnd < 0) {
-      throw new IllegalArgumentException("Start and end time must be positive");
-    }
-    return null;
-  }
   
   @Override
   public String toString() {
