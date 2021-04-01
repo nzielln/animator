@@ -19,33 +19,15 @@ public class ChangeColor extends AbstractTransformation {
   
   //GETTERS----------------------------------------------------------------------------------------
   @Override
-<<<<<<< HEAD
-  public String getTransformationType() {
-    return this.type;
-  }
-  
-=======
-  public Shape changeColor(Color toColor, int timeStart, int timeEnd) {
-    Objects.requireNonNull(toColor, "toColor can't be null.");
-    return null;
-  }
-  
-  //GETTERS
-  @Override
   public String getTransformationType() {
     return this.type;
   }
 
->>>>>>> origin/main
   @Override
   public int getTimeStart() {
     return this.timeStart;
   }
-<<<<<<< HEAD
-
-=======
-
->>>>>>> origin/main
+  
   @Override
   public int getTimeEnd() {
     return this.timeEnd;

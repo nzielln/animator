@@ -18,7 +18,7 @@ public class Move extends AbstractTransformation {
     this.type = "Moves";
   }
   
-  //GETTERS
+  //GETTERS----------------------------------------------------------------------------------------
   @Override
   public String getTransformationType() {
     return this.type;
@@ -41,6 +41,8 @@ public class Move extends AbstractTransformation {
   public int getTimeEnd() {
     return this.timeEnd;
   }
+  
+  //OTHER------------------------------------------------------------------------------------------
   
   //Should we return a Transformation or should we return a new Shape?
   @Override
