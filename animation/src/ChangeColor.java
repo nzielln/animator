@@ -24,14 +24,17 @@ public class ChangeColor extends AbstractTransformation {
   }
   
   //GETTERS
-  public String getTransformType() {
+  @Override
+  public String getTransformationType() {
     return this.type;
   }
-  
+
+  @Override
   public int getTimeStart() {
     return this.timeStart;
   }
-  
+
+  @Override
   public int getTimeEnd() {
     return this.timeEnd;
   }
@@ -40,7 +43,7 @@ public class ChangeColor extends AbstractTransformation {
   public Transformation copy() {
     return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
   }
-  
+
   @Override
   public String toString() {
     return "Shape" + this.getShape().getName() + "changes color from "

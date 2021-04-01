@@ -19,7 +19,8 @@ public class Move extends AbstractTransformation {
   }
   
   //GETTERS
-  public String getTransformType() {
+  @Override
+  public String getTransformationType() {
     return this.type;
   }
   
@@ -30,11 +31,13 @@ public class Move extends AbstractTransformation {
   public float getToY() {
     return this.toY;
   }
-  
+
+  @Override
   public int getTimeStart() {
     return this.timeStart;
   }
-  
+
+  @Override
   public int getTimeEnd() {
     return this.timeEnd;
   }

@@ -23,26 +23,6 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
-  public String getTransformationType() {
-    return null;
-  }
-  
-  @Override
-  public Transformation copy() {
-    return null;
-  }
-  
-  @Override
-  public int getTimeStart() {
-    return 0;
-  }
-  
-  @Override
-  public int getTimeEnd() {
-    return 0;
-  }
-  
-  @Override
   public Shape moveShape(float toX, float toY, int timeStart, int timeEnd) {
     return move(toX, toY, timeStart, timeEnd);
   }

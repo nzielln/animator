@@ -19,7 +19,8 @@ public class Scale extends AbstractTransformation {
   }
   
   //GETTERS
-  public String getTransformType() {
+  @Override
+  public String getTransformationType() {
     return this.type;
   }
   
