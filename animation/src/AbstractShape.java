@@ -5,6 +5,8 @@ import java.util.List;
  *
  */
 public abstract class AbstractShape implements Shape {
+  //should we make these package private so we don't have to call getters when
+  //we want to use this info in rectangle and oval?
   private final String name;
   private final Color color;
   private float pointX;
@@ -110,11 +112,6 @@ public abstract class AbstractShape implements Shape {
   @Override
   public int getDisappears() {
     return this.disappears;
-  }
-  
-  @Override
-  public Shape copy() {
-    return null;
   }
   
 }
