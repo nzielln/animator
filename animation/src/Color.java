@@ -4,6 +4,10 @@ public class Color {
   private int b;
 
   public Color (int r, int g, int b) {
+    if (r < 0 || g < 0 || b < 0
+            || r > 255 || g > 255 || b > 255) {
+      throw new IllegalArgumentException("RGB values must be between 0 - 255");
+    }
     this.r = r;
     this.g = g;
     this.b = b;

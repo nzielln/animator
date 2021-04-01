@@ -1,13 +1,17 @@
+import java.util.Objects;
+
 public class ChangeColor extends AbstractTransformation {
   private Color toColor;
   private int timeStart;
   private int timeEnd;
   private String type;
-  private Color tocolor;
-  
+
   public ChangeColor(Shape s, Color toColor, int timeStart, int timeEnd) {
     super(s);
-    this.tocolor = toColor;
+    //do we need null checks here if we check in abstract?
+    Objects.requireNonNull(s, "Shape can't be null");
+    Objects.requireNonNull(toColor, "BiFunction can't be null.");
+    this.toColor = toColor;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
     this.type = "Change Color";
@@ -15,6 +19,7 @@ public class ChangeColor extends AbstractTransformation {
   
   @Override
   public Shape changeColor(Color toColor, int timeStart, int timeEnd) {
+    Objects.requireNonNull(toColor, "toColor can't be null.");
     return null;
   }
   

@@ -140,7 +140,6 @@ public class AnimationImpl implements Animation {
     transformations.sort((ta, tb) -> comp.compare(ta.getTransformation(), tb.getTransformation()));
   }
 
-  
   @Override
   public <R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed) {
     if (this.transformations.size() == 0) {
