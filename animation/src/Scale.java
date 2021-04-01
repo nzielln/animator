@@ -1,11 +1,11 @@
 import java.util.Objects;
 
 public class Scale extends AbstractTransformation {
-  private int toX;
-  private int toY;
-  private int timeStart;
-  private int timeEnd;
-  private String type;
+  private final int toX;
+  private final int toY;
+  private final int timeStart;
+  private final int timeEnd;
+  private final String type;
   
   public Scale(Shape s, int toX, int toY, int timeStart, int timeEnd) {
     super(s);

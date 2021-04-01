@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Objects;
 
 public abstract class AbstractTransformation implements Transformation {
-  private Shape shape;
+  private final Shape shape;
   
   public AbstractTransformation(Shape s) {
     if (s == null) {

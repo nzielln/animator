@@ -1,10 +1,10 @@
 import java.util.Objects;
 
 public class ChangeColor extends AbstractTransformation {
-  private Color toColor;
-  private int timeStart;
-  private int timeEnd;
-  private String type;
+  private final Color toColor;
+  private final int timeStart;
+  private final int timeEnd;
+  private final String type;
 
   public ChangeColor(Shape s, Color toColor, int timeStart, int timeEnd) {
     super(s);

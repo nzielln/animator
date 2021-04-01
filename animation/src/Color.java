@@ -1,7 +1,7 @@
 public class Color {
-  private int r;
-  private int g;
-  private int b;
+  private final int r;
+  private final int g;
+  private final int b;
 
   public Color (int r, int g, int b) {
     if (r < 0 || g < 0 || b < 0

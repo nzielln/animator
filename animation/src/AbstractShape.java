@@ -9,10 +9,10 @@ public abstract class AbstractShape implements Shape {
   //we want to use this info in rectangle and oval?
   private final String name;
   private final Color color;
-  private float pointX;
-  private float pointY;
-  private float X;
-  private float Y;
+  private final float pointX;
+  private final float pointY;
+  private final float X;
+  private final float Y;
   private int appears;
   private int disappears;
   

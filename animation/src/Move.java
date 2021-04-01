@@ -1,11 +1,11 @@
 import java.util.Objects;
 
 public class Move extends AbstractTransformation {
-  private float toX;
-  private float toY;
-  private int timeStart;
-  private int timeEnd;
-  private String type;
+  private final float toX;
+  private final float toY;
+  private final int timeStart;
+  private final int timeEnd;
+  private final String type;
   
   public Move(Shape s, float toX, float toY, int timeStart, int timeEnd) {
     super(s);
