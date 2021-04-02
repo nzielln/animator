@@ -1,5 +1,7 @@
+import java.util.Objects;
+
 public class Oval extends AbstractShape {
-  private final String type;
+  final String type;
   
   public Oval(String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
     super(name, pointX, pointY, X, Y,  r, g, b);
@@ -15,20 +17,26 @@ public class Oval extends AbstractShape {
   //OTHER------------------------------------------------------------------------------------------
   @Override
   public Shape copy() {
-    return new Oval(this.getName(), this.getPositionX(), this.getPositionY(), this.getX(),
-            this.getY(), this.getColor().getR(), this.getColor().getG(),  this.getColor().getB());
+    return new Oval(this.name, this.pointX, this.pointY, this.X,
+            this.Y, this.color.getR(), this.color.getG(),  this.color.getB());
+  }
+
+  @Override
+  public boolean equals(Shape other) {
+    Objects.requireNonNull(other);
+    return super.equals(other) && this.type.equals(other.getType());
   }
   
   @Override
   public String toString() {
-    return "Name: " + this.getName() + "\n"
+    return "Name: " + this.name + "\n"
             + "Type: " + this.type + "\n"
-            + "Center: (" + this.getPositionX() + "," + this.getPositionY() + ")\n"
-            + "X-Radius: " + this.getX() + "\n"
-            + "Y-Radius: " + this.getY() + "\n"
-            + "Color: " + this.getColor() + "\n"
-            + "Appears: " + this.getAppears() + "\n"
-            + "Disappears: " + this.getDisappears() + "\n";
+            + "Center: (" + this.pointX + "," + this.pointY + ")\n"
+            + "X-Radius: " + this.X + "\n"
+            + "Y-Radius: " + this.Y + "\n"
+            + "Color: " + this.getColor().toString() + "\n"
+            + "Appears: " + this.appears + "\n"
+            + "Disappears: " + this.disappears + "\n";
   }
   
   

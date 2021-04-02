@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -7,14 +8,14 @@ import java.util.List;
 public abstract class AbstractShape implements Shape {
   //should we make these package private so we don't have to call getters when
   //we want to use this info in rectangle and oval?
-  private final String name;
-  private final Color color;
-  private final float pointX;
-  private final float pointY;
-  private final int X;
-  private final int Y;
-  private int appears;
-  private int disappears;
+  final String name;
+  final Color color;
+  final float pointX;
+  final float pointY;
+  final int X;
+  final int Y;
+  int appears;
+  int disappears;
   
   /**
    *
@@ -115,6 +116,14 @@ public abstract class AbstractShape implements Shape {
       throw new IllegalArgumentException("Must be positive integer");
     }
     this.disappears = disappears;
+  }
+
+  @Override
+  public boolean equals(Shape other) {
+    Objects.requireNonNull(other);
+    return this.name.equals(other.getName()) && this.color.equals(other.getColor())
+            && this.pointX == other.getX() && this.pointY == other.getY()
+            && this.appears == other.getAppears() && this.disappears == other.getDisappears();
   }
   
 }

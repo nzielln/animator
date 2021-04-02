@@ -46,7 +46,30 @@ public class Scale extends AbstractTransformation {
   
   
   //OTHER------------------------------------------------------------------------------------------
-  
+
+  @Override
+  public Shape scaleShape(int toX, int toY, int timeStart, int timeEnd) {
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end time must be positive");
+    }
+
+    if (this.getShape().getType().equals("OVAL")) {
+      Shape s = new Oval(this.getShape().getName(), this.getShape().getPositionX(),
+              this.getShape().getPositionY(), toX, toY,
+              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
+      s.setAppears(timeStart);
+      s.setDisappears(timeEnd);
+      return s;
+    } else if (this.getShape().getType().equals("RECTANGLE")) {
+      Shape s = new Rectangle(this.getShape().getName(), this.getShape().getPositionX(),
+              this.getShape().getPositionY(), toX, toY,
+              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
+      s.setAppears(timeStart);
+      s.setDisappears(timeEnd);
+      return s;
+    }
+    return null;
+  }
   
   @Override
   public Transformation copy() {

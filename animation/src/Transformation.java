@@ -92,6 +92,13 @@ public interface Transformation {
    * @return a new shape object
    */
   Shape scaleShape(int toX, int toY, int timeStart, int timeEnd);
+
+  /**
+   *
+   * @param other
+   * @return
+   */
+  boolean equals(Transformation other);
   
   /**
    * Returns a string representation of the {@link Transformation} object.

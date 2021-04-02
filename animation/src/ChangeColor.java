@@ -10,7 +10,12 @@ public class ChangeColor extends AbstractTransformation {
     super(s);
     //do we need null checks here if we check in abstract?
     Objects.requireNonNull(s, "Shape can't be null");
-    Objects.requireNonNull(toColor, "BiFunction can't be null.");
+    Objects.requireNonNull(toColor, "New color can't be null.");
+
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Time start and end must be positive");
+    }
+
     this.toColor = toColor;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
@@ -39,6 +44,7 @@ public class ChangeColor extends AbstractTransformation {
   }
   
   //OTHER------------------------------------------------------------------------------------------
+
   @Override
   public Transformation copy() {
     return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
