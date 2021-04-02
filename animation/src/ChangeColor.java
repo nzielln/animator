@@ -1,10 +1,10 @@
 import java.util.Objects;
 
 public class ChangeColor extends AbstractTransformation {
-  private final Color toColor;
-  private final int timeStart;
-  private final int timeEnd;
-  private final String type;
+  final Color toColor;
+  final int timeStart;
+  final int timeEnd;
+  final String type;
 
   public ChangeColor(Shape s, Color toColor, int timeStart, int timeEnd) {
     super(s);
@@ -37,20 +37,60 @@ public class ChangeColor extends AbstractTransformation {
   public int getTimeEnd() {
     return this.timeEnd;
   }
-  
-  @Override
+
+  /**
+   * Returns the color the new shape should have.
+   * @return {@link Color}, color of new shape
+   */
   public Color getToColor() {
     return this.toColor;
   }
   
   //OTHER------------------------------------------------------------------------------------------
 
+  /**
+   * Returns a new {@link Shape} with provided color.
+   * @param toColor {@link Color} of the new shape
+   * @param timeStart time transformation starts
+   * @param timeEnd time transformation ends
+   * @return a new shape object
+   */
+  public Shape changeColor(Color toColor, int timeStart, int timeEnd) {
+    Objects.requireNonNull(toColor);
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end times must be positive");
+    }
+
+    if (this.shape.getType().equals("RECTANGLE")) {
+      return new Rectangle(this.shape.getName(), this.shape.getPositionX(),
+              this.shape.getPositionY(), this.shape.getX(), this.shape.getY(),
+              this.toColor.getR(), this.toColor.getG(), this.toColor.getB());
+    } else if (this.shape.getType().equals("OVAL")) {
+      return new Oval(this.shape.getName(), this.shape.getPositionX(),
+              this.shape.getPositionY(), this.shape.getX(), this.shape.getY(),
+              this.toColor.getR(), this.toColor.getG(), this.toColor.getB());
+    }
+    return null;
+  }
+
   @Override
   public Transformation copy() {
     return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
   }
-  
-  
+
+  /*
+  @Override
+  public boolean equals(Transformation other) {
+    Objects.requireNonNull(other);
+
+    if (this.shape.equals(other.getShape())
+            && this.getToColor().equals(other.getToColor())) {
+      return true;
+    }
+    return false;
+  }*/
+
+
   @Override
   public String toString() {
     return "Shape " + this.getShape().getName() + " changes color from "

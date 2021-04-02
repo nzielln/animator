@@ -1,11 +1,11 @@
 import java.util.Objects;
 
 public class Scale extends AbstractTransformation {
-  private final int toX;
-  private final int toY;
-  private final int timeStart;
-  private final int timeEnd;
-  private final String type;
+  final int toX;
+  final int toY;
+  final int timeStart;
+  final int timeEnd;
+  final String type;
   
   public Scale(Shape s, int toX, int toY, int timeStart, int timeEnd) {
     super(s);
@@ -33,13 +33,19 @@ public class Scale extends AbstractTransformation {
   public int getTimeEnd() {
     return this.timeEnd;
   }
-  
-  @Override
+
+  /**
+   * Returns the new width/x-radius length the new shape should have.
+   * @return (float) the new width/x-radius.
+   */
   public float getToX() {
     return this.toX;
   }
-  
-  @Override
+
+  /**
+   * Returns the new height/y-radius length the new shape should have.
+   * @return (float) the new height/y-radius.
+   */
   public float getToY() {
     return this.toY;
   }
@@ -47,7 +53,14 @@ public class Scale extends AbstractTransformation {
   
   //OTHER------------------------------------------------------------------------------------------
 
-  @Override
+  /**
+   * Returns a new {@link Shape} with provided x and y positions.
+   * @param toX width of the new shape object
+   * @param toY length of the new shape object
+   * @param timeStart time transformation starts
+   * @param timeEnd time transformation ends
+   * @return a new shape object
+   */
   public Shape scaleShape(int toX, int toY, int timeStart, int timeEnd) {
     if (timeStart < 0 || timeEnd < 0) {
       throw new IllegalArgumentException("Start and end time must be positive");
@@ -75,7 +88,12 @@ public class Scale extends AbstractTransformation {
   public Transformation copy() {
     return new Scale(this.getShape().copy(), this.toX, this.toY, this.timeStart, this.timeEnd);
   }
-  
+
+  /*@Override
+  public boolean equals(Transformation other) {
+    return false;
+  }*/
+
   @Override
   public String toString() {
     if (this.getShape().getType().equals("RECTANGLE")) {
