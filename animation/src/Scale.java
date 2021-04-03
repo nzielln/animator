@@ -1,39 +1,23 @@
 import java.util.Objects;
 
 public class Scale extends AbstractTransformation {
-  private final int toX;
-  private final int toY;
-  private final int timeStart;
-  private final int timeEnd;
-  private final String type;
+  final int toX;
+  final int toY;
+  final int timeStart;
+  final int timeEnd;
   
   public Scale(Shape s, int toX, int toY, int timeStart, int timeEnd) {
-    super(s);
+    super(s, timeStart, timeEnd);
     //do we need null checks here if we check in abstract?
     Objects.requireNonNull(s, "Shape can't be null");
     this.toX = toX;
     this.toY = toY;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
-    this.type = "Scales";
+    super.type = "Scales";
   }
   
   //GETTERS----------------------------------------------------------------------------------------
-  @Override
-  public String getTransformationType() {
-    return this.type;
-  }
-  
-  @Override
-  public int getTimeStart() {
-    return this.timeStart;
-  }
-  
-  @Override
-  public int getTimeEnd() {
-    return this.timeEnd;
-  }
-  
   @Override
   public float getToX() {
     return this.toX;
@@ -46,12 +30,16 @@ public class Scale extends AbstractTransformation {
   
   
   //OTHER------------------------------------------------------------------------------------------
-  
-  
   @Override
   public Transformation copy() {
     return new Scale(this.getShape().copy(), this.toX, this.toY, this.timeStart, this.timeEnd);
   }
+  
+  /*@Override
+  public boolean equals(Transformation other) {
+    return false;
+  }*/
+  
   
   @Override
   public String toString() {

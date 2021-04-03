@@ -1,29 +1,23 @@
 import java.util.Objects;
 
 public class Move extends AbstractTransformation {
-  private final float toX;
-  private final float toY;
-  private final int timeStart;
-  private final int timeEnd;
-  private final String type;
+  final float toX;
+  final float toY;
+  final int timeStart;
+  final int timeEnd;
   
   public Move(Shape s, float toX, float toY, int timeStart, int timeEnd) {
-    super(s);
+    super(s, timeStart, timeEnd);
     //do we need null checks here if we check in abstract?
     Objects.requireNonNull(s, "Shape can't be null");
     this.toX = toX;
     this.toY = toY;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
-    this.type = "Moves";
+    super.type = "Moves";
   }
   
   //GETTERS----------------------------------------------------------------------------------------
-  @Override
-  public String getTransformationType() {
-    return this.type;
-  }
-  
   @Override
   public float getToX() {
     return this.toX;
@@ -34,16 +28,6 @@ public class Move extends AbstractTransformation {
     return this.toY;
   }
   
-  @Override
-  public int getTimeStart() {
-    return this.timeStart;
-  }
-
-  @Override
-  public int getTimeEnd() {
-    return this.timeEnd;
-  }
-  
   //OTHER------------------------------------------------------------------------------------------
   
   //Should we return a Transformation or should we return a new Shape?
@@ -51,6 +35,18 @@ public class Move extends AbstractTransformation {
   public Transformation copy() {
     return new Move(this.getShape().copy(), this.toX, this.toY, this.timeStart, this.timeEnd);
   }
+  
+  /*
+  @Override
+  public boolean equals(Transformation other) {
+    if (this.shape.equals(other.getShape())
+            && this.getTransformationType().equals(other.getTransformationType())
+            && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
+            && this.toX == other.getToX())
+    return false;
+  }
+  
+   */
   
   @Override
   public String toString() {

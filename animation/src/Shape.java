@@ -88,6 +88,13 @@ public interface Shape {
   Shape copy();
   
   /**
+   * Returns true if a shape is equal to another shape, false if not.
+   * @param other (shape) the other shape to compare the shape to.
+   * @return (boolean) true if the shapes are the same, false if not.
+   */
+  boolean equals(Shape other);
+  
+  /**
    * Returns a string representation of the {@link Shape}.
    * @return a string
    * "Name:

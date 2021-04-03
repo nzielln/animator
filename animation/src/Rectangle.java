@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 public class Rectangle extends AbstractShape {
-  private final String type;
+  final String type;
   
   public Rectangle
           (String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
@@ -19,20 +19,26 @@ public class Rectangle extends AbstractShape {
   //OTHER------------------------------------------------------------------------------------------
   @Override
   public Shape copy() {
-    return new Rectangle(this.getName(), this.getPositionX(), this.getPositionY(), this.getX(),
-            this.getY(), this.getColor().getR(), this.getColor().getG(),  this.getColor().getB());
+    return new Rectangle(this.name, this.pointX, this.pointY, this.X,
+            this.Y, this.color.getR(), this.color.getG(),  this.color.getB());
+  }
+  
+  @Override
+  public boolean equals(Shape other) {
+    Objects.requireNonNull(other);
+    return super.equals(other) && this.type.equals(other.getType());
   }
   
   @Override
   public String toString() {
-    return "Name: " + this.getName() + "\n"
+    return "Name: " + this.name + "\n"
             + "Type: " + this.type + "\n"
-            + "Corner: (" + this.getPositionX() + "," + this.getPositionY() + ")\n"
-            + "Width: " + this.getX() + "\n"
-            + "Length: " + this.getY() + "\n"
-            + "Color: " + this.getColor() + "\n"
-            + "Appears: " + this.getAppears() + "\n"
-            + "Disappears: " + this.getDisappears() + "\n";
+            + "Corner: (" + this.pointX + "," + this.pointY + ")\n"
+            + "Width: " + this.X + "\n"
+            + "Length: " + this.Y + "\n"
+            + "Color: " + this.color.toString() + "\n"
+            + "Appears: " + this.appears + "\n"
+            + "Disappears: " + this.disappears + "\n";
   }
 
 }

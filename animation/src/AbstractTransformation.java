@@ -1,16 +1,22 @@
 
 public abstract class AbstractTransformation implements Transformation {
-  private final Shape shape;
+  final Shape shape;
+  final int timeStart;
+  final int timeEnd;
+  String type;
   
   /**
    *
    * @param s
    */
-  public AbstractTransformation(Shape s) {
+  public AbstractTransformation(Shape s, int timeStart, int timeEnd) {
     if (s == null) {
       throw new NullPointerException("Shape can't be null");
     }
     this.shape = s;
+    this.timeStart = timeStart;
+    this.timeEnd = timeEnd;
+    this.type = "";
   }
   
   //GETTER-----------------------------------------------------------------------------------------
@@ -26,7 +32,7 @@ public abstract class AbstractTransformation implements Transformation {
   
   @Override
   public String getTransformationType() {
-    return null;
+    return this.type;
   }
   
   @Override
@@ -41,15 +47,14 @@ public abstract class AbstractTransformation implements Transformation {
   
   @Override
   public int getTimeStart() {
-    return 0;
+    return this.timeStart;
   }
   
   @Override
   public int getTimeEnd() {
-    return 0;
+    return this.timeEnd;
   }
   
-  //weird
   @Override
   public Color getToColor() {
     return null;
