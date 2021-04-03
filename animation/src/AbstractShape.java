@@ -126,4 +126,12 @@ public abstract class AbstractShape implements Shape {
             && this.appears == other.getAppears() && this.disappears == other.getDisappears();
   }
   
+  @Override
+  public boolean equals(Shape other) {
+    Objects.requireNonNull(other);
+    return this.name.equals(other.getName()) && this.color.equals(other.getColor())
+            && this.pointX == other.getX() && this.pointY == other.getY()
+            && this.appears == other.getAppears() && this.disappears == other.getDisappears();
+  }
+  
 }

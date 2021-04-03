@@ -22,7 +22,7 @@ public class Rectangle extends AbstractShape {
     return new Rectangle(this.name, this.pointX, this.pointY, this.X,
             this.Y, this.color.getR(), this.color.getG(),  this.color.getB());
   }
-
+  
   @Override
   public boolean equals(Shape other) {
     Objects.requireNonNull(other);

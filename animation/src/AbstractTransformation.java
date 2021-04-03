@@ -1,16 +1,22 @@
 
 public abstract class AbstractTransformation implements Transformation {
   final Shape shape;
+  final int timeStart;
+  final int timeEnd;
+  String type;
   
   /**
    *
    * @param s
    */
-  public AbstractTransformation(Shape s) {
+  public AbstractTransformation(Shape s, int timeStart, int timeEnd) {
     if (s == null) {
       throw new NullPointerException("Shape can't be null");
     }
     this.shape = s;
+    this.timeStart = timeStart;
+    this.timeEnd = timeEnd;
+    this.type = "";
   }
   
   //GETTER-----------------------------------------------------------------------------------------
@@ -23,17 +29,94 @@ public abstract class AbstractTransformation implements Transformation {
   public Transformation getTransformation() {
     return this;
   }
-
-  //Are users required to input this when adding a transformation? If so, keep here.
-  //Otherwise, should probably remove.
+  
   @Override
-  public int getTimeStart() {
+  public String getTransformationType() {
+    return this.type;
+  }
+  
+  @Override
+  public float getToX() {
     return 0;
   }
   
   @Override
-  public int getTimeEnd() {
+  public float getToY() {
     return 0;
   }
-
+  
+  @Override
+  public int getTimeStart() {
+    return this.timeStart;
+  }
+  
+  @Override
+  public int getTimeEnd() {
+    return this.timeEnd;
+  }
+  
+  @Override
+  public Color getToColor() {
+    return null;
+  }
+  
+  //OTHER------------------------------------------------------------------------------------------
+  @Override
+  public Shape moveShape(float toX, float toY, int timeStart, int timeEnd) {
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end time must be positive");
+    }
+  
+    if (this.getShape().getType().equals("OVAL")) {
+      Shape s = new Oval(this.getShape().getName(), toX,
+              toY, this.getShape().getX(), this.getShape().getY(),
+              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
+      s.setAppears(timeStart);
+      s.setDisappears(timeEnd);
+      return s;
+    } else if (this.getShape().getType().equals("RECTANGLE")) {
+      Shape s = new Rectangle(this.getShape().getName(), toX,
+              toY, this.getShape().getX(), this.getShape().getY(),
+              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
+      s.setAppears(timeStart);
+      s.setDisappears(timeEnd);
+      return s;
+    }
+    return null;
+  }
+  
+  @Override
+  public Shape scaleShape(int toX, int toY, int timeStart, int timeEnd) {
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end time must be positive");
+    }
+  
+    if (this.getShape().getType().equals("OVAL")) {
+      Shape s = new Oval(this.getShape().getName(), this.getShape().getPositionX(),
+              this.getShape().getPositionY(), toX, toY,
+              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
+      s.setAppears(timeStart);
+      s.setDisappears(timeEnd);
+      return s;
+    } else if (this.getShape().getType().equals("RECTANGLE")) {
+      Shape s = new Rectangle(this.getShape().getName(), this.getShape().getPositionX(),
+              this.getShape().getPositionY(), toX, toY,
+              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
+      s.setAppears(timeStart);
+      s.setDisappears(timeEnd);
+      return s;
+    }
+    return null;
+  }
+  
+  
+  @Override
+  public Shape changeColor(Color toColor, int timeStart, int timeEnd) {
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end time must be positive");
+    }
+    return null;
+  }
+  
+  
 }
