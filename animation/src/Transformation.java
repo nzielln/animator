@@ -64,7 +64,7 @@ public interface Transformation {
    * @param timeEnd time transformation ends
    * @return a new shape object
    */
-  Shape moveShape(float toX, float toY, int timeStart, int timeEnd);
+  Shape moveShape(Shape shape, float toX, float toY, int timeStart, int timeEnd);
   
   /**
    * Returns a new {@link Shape} with provided color.
@@ -73,7 +73,7 @@ public interface Transformation {
    * @param timeEnd time transformation ends
    * @return a new shape object
    */
-  Shape changeColor(Color toColor, int timeStart, int timeEnd);
+  Shape changeColor(Shape shape, Color toColor, int timeStart, int timeEnd);
   
   /**
    * Returns a new {@link Shape} with provided x and y positions.
@@ -83,7 +83,7 @@ public interface Transformation {
    * @param timeEnd time transformation ends
    * @return a new shape object
    */
-  Shape scaleShape(int toX, int toY, int timeStart, int timeEnd);
+  Shape scaleShape(Shape shape, int toX, int toY, int timeStart, int timeEnd);
   
   /**
    *
