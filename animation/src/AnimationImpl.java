@@ -10,11 +10,7 @@ import java.util.stream.Collectors;
 
 public class AnimationImpl implements Animation {
   HashMap<Shape, List<Transformation>> hashmap;
-  
-  //hashmap of shapes to a list of transformation
-  /*
-  {Shape: <Transformation>}
-   */
+
   public AnimationImpl() {
     hashmap = new HashMap<>();
   }
@@ -174,7 +170,8 @@ public class AnimationImpl implements Animation {
     return filtered;
   }
   
-  //Not sure if we still need this class because each shape has it's own list of transformations
+  
+  //Not sure if we still need this method because each shape has it's own list of transformations
   public void sortTransformations(Comparator<Transformation> comp) {
     if (this.hashmap.size() == 0) {
       throw new IllegalStateException("Transformations list is empty");
