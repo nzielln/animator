@@ -7,12 +7,6 @@ public interface Transformation {
   
   //GETTERS----------------------------------------------------------------------------------------
   /**
-   * Returns the {@link Shape}.
-   * @return a {@link Shape} object
-   */
-  Shape getShape();
-  
-  /**
    * Returns the {@link Transformation}(s).
    * @return a transformations
    */
