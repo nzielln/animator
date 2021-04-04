@@ -37,7 +37,9 @@ public class AnimationImpl implements Animation {
   public Shape getById(String id) {
     
     for (Shape s : hashmap.keySet()) {
-      return s;
+      if(s.getName().equals(id)) {
+        return s;
+      }
     }
     return null;
   }
@@ -47,9 +49,11 @@ public class AnimationImpl implements Animation {
   }
   
   
-  public List<Transformation> getTransformations() {
+  public List<Transformation> getTransformations(String id) {
     for (Shape s : hashmap.keySet()) {
-      return hashmap.get(s);
+      if(s.getName().equals(id)) {
+        return hashmap.get(s);
+      }
     }
     return null;
   }

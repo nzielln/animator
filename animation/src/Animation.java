@@ -40,7 +40,7 @@ public interface Animation {
    * Returns a list of all the {@link Transformation}(s) in the animation.
    * @return a list of transformations in the list
    */
-  List<Transformation> getTransformations();
+  List<Transformation> getTransformations(String id);
   
   /**
    * Returns a list of all the {@link Shape}(s)  in the animation.
