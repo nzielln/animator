@@ -194,6 +194,8 @@ public class ShapeTest {
   
   @Test
   public void copy() {
+    oval.setAppears(2);
+    oval.setDisappears(12);
     Shape ovalCp = oval.copy();
     
     assertEquals("oval", ovalCp.getName());
@@ -204,6 +206,12 @@ public class ShapeTest {
   
     assertEquals(23, ovalCp.getPositionX(), 0.001);
     assertEquals(45, ovalCp.getPositionY(), 0.001);
+    
+    //original shape not mutated
+    ovalCp.setDisappears(24);
+    assertEquals(12, oval.getDisappears());
+    assertEquals(24, ovalCp.getDisappears());
+    
   }
   
   @Test
