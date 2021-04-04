@@ -85,6 +85,10 @@ public class AnimationImpl implements Animation {
     
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
+        if (t.getTimeStart() < s.getAppears() || t.getTimeStart() > s.getDisappears()
+                || t.getTimeEnd() < s.getAppears() || t.getTimeEnd() > s.getDisappears()) {
+          throw new IllegalArgumentException("Time provided not within acceptable range.");
+        }
         hashmap.get(s).add(t);
       }
     }
@@ -219,12 +223,12 @@ public class AnimationImpl implements Animation {
           if (s.getType().equals("RECTANGLE")) {
             String desc =  "Shape " + s.getName() + " scales from Width: " + s.getX()
                     + " Height: " + s.getY() + " to Width: " + t.getToX() + " and Height: "
-                    + t.getToY() + " from " + t.getTimeStart() + " to " + t.getTimeEnd() + ".\n";
+                    + t.getToY() + " from " + t.getTimeStart() + " to " + t.getTimeEnd() + ".";
             str.append(desc).append("\n");
           } else {
             String desc = "Shape" + s.getName() + " scales from X-Radius: " + s.getX()
                     + " Y-Radius: " + s.getY() + " to X-Radius: " + t.getToX() + " and Y-Radius: "
-                    + t.getToY() + " from " + t.getTimeStart() + " to " + t.getTimeEnd() + ".\n";
+                    + t.getToY() + " from " + t.getTimeStart() + " to " + t.getTimeEnd() + ".";
             str.append(desc).append("\n");
           }
         }
