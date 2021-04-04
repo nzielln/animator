@@ -6,9 +6,13 @@ import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 public class AnimationImpl implements Animation {
-  private List<Shape> shapes;
-  private List<Transformation> transformations;
+  List<Shape> shapes;
+  List<Transformation> transformations;
   
+  //hashmap of shapes to a list of transformation
+  /*
+  {Shape: <Transformation>}
+   */
   public AnimationImpl() {
     shapes = new ArrayList<>();
     transformations = new ArrayList<>();

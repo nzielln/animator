@@ -5,95 +5,49 @@ public class Scale extends AbstractTransformation {
   final int toY;
   final int timeStart;
   final int timeEnd;
-  final String type;
   
   public Scale(Shape s, int toX, int toY, int timeStart, int timeEnd) {
-    super(s);
+    super(s, timeStart, timeEnd);
     //do we need null checks here if we check in abstract?
-    Objects.requireNonNull(s, "Shape can't be null");
+    if (toX <= 0 || toY <= 0) {
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    }
+    
     this.toX = toX;
     this.toY = toY;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
-    this.type = "Scales";
+    super.type = "Scales";
   }
   
   //GETTERS----------------------------------------------------------------------------------------
   @Override
-  public String getTransformationType() {
-    return this.type;
-  }
-  
-  @Override
-  public int getTimeStart() {
-    return this.timeStart;
-  }
-  
-  @Override
-  public int getTimeEnd() {
-    return this.timeEnd;
-  }
-
-  /**
-   * Returns the new width/x-radius length the new shape should have.
-   * @return (float) the new width/x-radius.
-   */
   public float getToX() {
     return this.toX;
   }
-
-  /**
-   * Returns the new height/y-radius length the new shape should have.
-   * @return (float) the new height/y-radius.
-   */
+  
+  @Override
   public float getToY() {
     return this.toY;
   }
   
   
   //OTHER------------------------------------------------------------------------------------------
-
-  /**
-   * Returns a new {@link Shape} with provided x and y positions.
-   * @param toX width of the new shape object
-   * @param toY length of the new shape object
-   * @param timeStart time transformation starts
-   * @param timeEnd time transformation ends
-   * @return a new shape object
-   */
-  public Shape scaleShape(int toX, int toY, int timeStart, int timeEnd) {
-    if (timeStart < 0 || timeEnd < 0) {
-      throw new IllegalArgumentException("Start and end time must be positive");
-    }
-
-    if (this.getShape().getType().equals("OVAL")) {
-      Shape s = new Oval(this.getShape().getName(), this.getShape().getPositionX(),
-              this.getShape().getPositionY(), toX, toY,
-              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
-      s.setAppears(timeStart);
-      s.setDisappears(timeEnd);
-      return s;
-    } else if (this.getShape().getType().equals("RECTANGLE")) {
-      Shape s = new Rectangle(this.getShape().getName(), this.getShape().getPositionX(),
-              this.getShape().getPositionY(), toX, toY,
-              this.getShape().getColor().getR(), this.getShape().getColor().getG(), this.getShape().getColor().getB());
-      s.setAppears(timeStart);
-      s.setDisappears(timeEnd);
-      return s;
-    }
-    return null;
-  }
-  
   @Override
   public Transformation copy() {
     return new Scale(this.getShape().copy(), this.toX, this.toY, this.timeStart, this.timeEnd);
   }
-
-  /*@Override
+  
+  
+  @Override
   public boolean equals(Transformation other) {
-    return false;
-  }*/
-
+    return (this.shape.equals(other.getShape())
+            && this.getTransformationType().equals(other.getTransformationType())
+            && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
+            && this.toX == other.getToX() && this.toY == other.getToY());
+  }
+  
+  
   @Override
   public String toString() {
     if (this.getShape().getType().equals("RECTANGLE")) {

@@ -1,12 +1,10 @@
 import java.util.Objects;
 
 public class Rectangle extends AbstractShape {
-  final String type;
-  
   public Rectangle
           (String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
     super(name, pointX, pointY, X, Y,  r, g, b);
-    this.type = "RECTANGLE";
+    super.type = "RECTANGLE";
   }
   
   //GETTERS----------------------------------------------------------------------------------------
@@ -22,7 +20,7 @@ public class Rectangle extends AbstractShape {
     return new Rectangle(this.name, this.pointX, this.pointY, this.X,
             this.Y, this.color.getR(), this.color.getG(),  this.color.getB());
   }
-
+  
   @Override
   public boolean equals(Shape other) {
     Objects.requireNonNull(other);

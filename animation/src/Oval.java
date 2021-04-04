@@ -1,11 +1,9 @@
 import java.util.Objects;
 
 public class Oval extends AbstractShape {
-  final String type;
-  
   public Oval(String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
     super(name, pointX, pointY, X, Y,  r, g, b);
-    this.type = "OVAL";
+    super.type = "OVAL";
   }
   
   //GETTERS----------------------------------------------------------------------------------------
@@ -20,7 +18,7 @@ public class Oval extends AbstractShape {
     return new Oval(this.name, this.pointX, this.pointY, this.X,
             this.Y, this.color.getR(), this.color.getG(),  this.color.getB());
   }
-
+  
   @Override
   public boolean equals(Shape other) {
     Objects.requireNonNull(other);
@@ -34,7 +32,7 @@ public class Oval extends AbstractShape {
             + "Center: (" + this.pointX + "," + this.pointY + ")\n"
             + "X-Radius: " + this.X + "\n"
             + "Y-Radius: " + this.Y + "\n"
-            + "Color: " + this.getColor().toString() + "\n"
+            + "Color: " + this.color.toString() + "\n"
             + "Appears: " + this.appears + "\n"
             + "Disappears: " + this.disappears + "\n";
   }

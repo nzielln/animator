@@ -6,7 +6,6 @@ import java.util.List;
 public interface Transformation {
   
   //GETTERS----------------------------------------------------------------------------------------
-  
   /**
    * Returns the {@link Shape}.
    * @return a {@link Shape} object
@@ -38,7 +37,6 @@ public interface Transformation {
   int getTimeEnd();
   
   //OTHER------------------------------------------------------------------------------------------
-  
   /**
    * Returns a copy of a transformation object.
    * @return a {@link Transformation} object
@@ -51,6 +49,14 @@ public interface Transformation {
    * @return
    */
   //boolean equals(Transformation other);
+  
+  /**
+   *
+   * @param other
+   * @return
+   */
+  boolean equals(Transformation other);
+  
   
   /**
    * Returns a string representation of the {@link Transformation} object.
