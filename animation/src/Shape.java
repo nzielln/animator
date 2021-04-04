@@ -5,7 +5,6 @@
 public interface Shape {
   
   //GETTERS----------------------------------------------------------------------------------------
-  
   /**
    * Returns the {@link Shape}.
    * @return a {@link Shape} object

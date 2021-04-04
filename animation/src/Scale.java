@@ -9,7 +9,10 @@ public class Scale extends AbstractTransformation {
   public Scale(Shape s, int toX, int toY, int timeStart, int timeEnd) {
     super(s, timeStart, timeEnd);
     //do we need null checks here if we check in abstract?
-    Objects.requireNonNull(s, "Shape can't be null");
+    if (toX <= 0 || toY <= 0) {
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    }
+    
     this.toX = toX;
     this.toY = toY;
     this.timeStart = timeStart;
@@ -35,10 +38,14 @@ public class Scale extends AbstractTransformation {
     return new Scale(this.getShape().copy(), this.toX, this.toY, this.timeStart, this.timeEnd);
   }
   
-  /*@Override
+  
+  @Override
   public boolean equals(Transformation other) {
-    return false;
-  }*/
+    return (this.shape.equals(other.getShape())
+            && this.getTransformationType().equals(other.getTransformationType())
+            && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
+            && this.toX == other.getToX() && this.toY == other.getToY());
+  }
   
   
   @Override

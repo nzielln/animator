@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public abstract class AbstractTransformation implements Transformation {
   final Shape shape;
@@ -10,9 +11,15 @@ public abstract class AbstractTransformation implements Transformation {
    * @param s
    */
   public AbstractTransformation(Shape s, int timeStart, int timeEnd) {
-    if (s == null) {
-      throw new NullPointerException("Shape can't be null");
+    Objects.requireNonNull(s, "Shape can't be null");
+    
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Time must be a positive integer.");
+    } else if (timeStart < s.getAppears() || timeStart > s.getDisappears()
+            || timeEnd < s.getAppears() || timeEnd > s.getDisappears()) {
+      throw new IllegalArgumentException("Time provided not within acceptable range.");
     }
+    
     this.shape = s;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;

@@ -16,6 +16,7 @@ public abstract class AbstractShape implements Shape {
   final int Y;
   int appears;
   int disappears;
+  String type;
   
   /**
    *
@@ -33,7 +34,9 @@ public abstract class AbstractShape implements Shape {
     if (name == null || name.equals("")) {
       throw new IllegalArgumentException("Name can't be null or empty string");
     } else if (pointX <= 0 || pointY <= 0) {
-      throw new IllegalArgumentException("Length must be positive integer");
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    } else if (X < 0 || Y < 0) {
+      throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
     } else if (r < 0 || g < 0 || b < 0
             || r > 255 || g > 255 || b > 255) {
       throw new IllegalArgumentException("RGB values must be between 0 - 255");
@@ -46,6 +49,7 @@ public abstract class AbstractShape implements Shape {
       this.Y = Y;
       this.appears = 0;
       this.disappears = 0;
+      this.type = null;
     }
   }
   
@@ -57,7 +61,7 @@ public abstract class AbstractShape implements Shape {
   
   @Override
   public String getType() {
-    return null;
+    return this.type;
   }
   
   @Override
@@ -129,9 +133,10 @@ public abstract class AbstractShape implements Shape {
   @Override
   public boolean equals(Shape other) {
     Objects.requireNonNull(other);
-    return this.name.equals(other.getName()) && this.color.equals(other.getColor())
-            && this.pointX == other.getX() && this.pointY == other.getY()
-            && this.appears == other.getAppears() && this.disappears == other.getDisappears();
+    return (this.name.equals(other.getName()) && this.color.equals(other.getColor())
+            && this.pointX == other.getPositionX() && this.pointY == other.getPositionY()
+            && this.X == other.getX() && this.Y == other.getY()
+            && this.appears == other.getAppears() && this.disappears == other.getDisappears());
   }
   
 }

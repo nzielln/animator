@@ -1,12 +1,10 @@
 import java.util.Objects;
 
 public class Rectangle extends AbstractShape {
-  final String type;
-  
   public Rectangle
           (String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
     super(name, pointX, pointY, X, Y,  r, g, b);
-    this.type = "RECTANGLE";
+    super.type = "RECTANGLE";
   }
   
   //GETTERS----------------------------------------------------------------------------------------

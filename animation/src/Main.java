@@ -7,11 +7,18 @@ public class Main {
     //Create a new oval and rectangle shape
     
     Shape ov = new Oval("oval",5, 23, 4, 4, 24, 45, 57);
+    Shape ova = new Oval("oval",5, 23, 4, 4, 24, 45, 57);
     Shape rect = new Rectangle("rectangle",5, 23, 4, 7, 244, 145, 7);
     
     ov.setAppears(0);
     ov.setDisappears(10);
   
+    ova.setAppears(0);
+    ova.setDisappears(10);
+    System.out.println(ov.toString());
+    System.out.println(ova.toString());
+    System.out.println("Are these equal: \n" + ov.equals(ova) + "\n");
+    /*
     rect.setAppears(2);
     rect.setDisappears(10);
     
@@ -39,5 +46,7 @@ public class Main {
     System.out.println(ani.toString());
     
     
+    
+     */
   }
 }
