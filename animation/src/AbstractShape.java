@@ -33,9 +33,9 @@ public abstract class AbstractShape implements Shape {
   (String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
     if (name == null || name.equals("")) {
       throw new IllegalArgumentException("Name can't be null or empty string");
-    } else if (pointX <= 0 || pointY <= 0) {
+    } else if (pointX < 0 || pointY < 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
-    } else if (X < 0 || Y < 0) {
+    } else if (X <= 0 || Y <= 0) {
       throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
     } else if (r < 0 || g < 0 || b < 0
             || r > 255 || g > 255 || b > 255) {
@@ -109,7 +109,7 @@ public abstract class AbstractShape implements Shape {
   @Override
   public void setAppears(int appears) {
     if (appears < 0) {
-      throw new IllegalArgumentException("Must be positive integer");
+      throw new IllegalArgumentException("Must be positive integer.");
     }
     this.appears = appears;
   }
@@ -117,8 +117,9 @@ public abstract class AbstractShape implements Shape {
   @Override
   public void setDisappears(int disappears) {
     if (disappears < 0) {
-      throw new IllegalArgumentException("Must be positive integer");
+      throw new IllegalArgumentException("Must be positive integer.");
     }
+    
     this.disappears = disappears;
   }
 
