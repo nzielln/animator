@@ -17,7 +17,7 @@ public abstract class AbstractTransformation implements Transformation {
     
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
-    this.type = "";
+    this.type = null;
   }
   
   //GETTER-----------------------------------------------------------------------------------------
