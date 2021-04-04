@@ -28,18 +28,13 @@ public class ChangeColor extends AbstractTransformation {
     return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
   }
   
-  
-   /*
   @Override
   public boolean equals(Transformation other) {
-    Objects.requireNonNull(other);
-    if (this.shape.equals(other.getShape())
-            && this.getToColor().equals(other.getToColor())) {
-      return true;
-    }
-    return false;
-  }*/
-  
+    return (this.shape.equals(other.getShape())
+            && this.getTransformationType().equals(other.getTransformationType())
+            && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
+            && this.toColor == other.getToColor());
+  }
   
   @Override
   public String toString() {

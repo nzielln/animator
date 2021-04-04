@@ -9,6 +9,10 @@ public class AnimationImpl implements Animation {
   List<Shape> shapes;
   List<Transformation> transformations;
   
+  //hashmap of shapes to a list of transformation
+  /*
+  {Shape: <Transformation>}
+   */
   public AnimationImpl() {
     shapes = new ArrayList<>();
     transformations = new ArrayList<>();
