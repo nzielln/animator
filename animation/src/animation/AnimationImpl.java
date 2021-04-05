@@ -92,22 +92,18 @@ public class AnimationImpl implements Animation {
       throw new IllegalArgumentException("ID already exists.");
     }
     
-    if (hashmap == null) {
-      throw new IllegalStateException("Invalid state for hashmap");
-    }
     hashmap.put(s, l);
   }
   
   @Override
   public void removeShape(String id) {
+    Objects.requireNonNull(id, "Id can't be null");
     if (hashmap.size() == 0) {
       throw new IllegalStateException("Can't remove from empty hashmap");
     } else if (id.equals("")) {
       throw new IllegalArgumentException("Invalid id provided");
     }
-    
-    Objects.requireNonNull(id, "Id can't be null");
-    
+   
     ArrayList<String> ids = new ArrayList<>();
     
     for (Shape s: hashmap.keySet()) {
@@ -147,15 +143,11 @@ public class AnimationImpl implements Animation {
   
   @Override
   public void addTransformation(String id, Transformation t) {
-    if (id.equals("")) {
-      throw new IllegalArgumentException("Id can't be empty string");
-    }
-    
     Objects.requireNonNull(id, "Id can't be null.");
     Objects.requireNonNull(t, "Transformation can't be null.");
     
-    if (hashmap == null) {
-      throw new IllegalStateException("Invalid state for hashmap");
+    if (id.equals("")) {
+      throw new IllegalArgumentException("Id can't be empty string");
     }
     
     if(!validTransformation(id, t)) {
@@ -175,15 +167,13 @@ public class AnimationImpl implements Animation {
   
   @Override
   public void removeTransformation(String id, Transformation t) {
+    Objects.requireNonNull(id, "Id can't be null.");
+    Objects.requireNonNull(t, "Transformation can't be null.");
+    
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
     }
     
-    Objects.requireNonNull(id, "Id can't be null.");
-    Objects.requireNonNull(t, "Transformation can't be null.");
-    
-    //how should we handle removing from empty transformation list?
-    //how should we handle not being able to find id?
     
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
