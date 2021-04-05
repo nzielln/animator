@@ -213,17 +213,26 @@ public class AnimationTest {
             "Appears: 0\n" +
             "Disappears: 0\n]", ani2.getShapes().toString());
 
-    //Can't add null object
+    //add null object
     try {
       ani.addShape(ovalNull, new ArrayList<>());
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
     }
 
-    //can't add to a null hashmap
+    //add to a null hashmap
     try {
       Animation ani3 = null;
       ani3.addShape(oval, new ArrayList<>());
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //add identical shape
+    try {
+      Shape rect5 = new Rectangle("rect4", 3, 3,
+              5, 10, 255, 0, 255);
+      ani2.addShape(rect5, new ArrayList<>());
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
