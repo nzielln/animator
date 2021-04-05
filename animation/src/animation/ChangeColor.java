@@ -19,25 +19,6 @@ public class ChangeColor extends AbstractTransformation {
     return this.toColor;
   }
   
-  //OTHER------------------------------------------------------------------------------------------
-  @Override
-  public Shape changeColor(Shape shape, Color toColor, int timeStart, int timeEnd) {
-    if (timeStart < 0 || timeEnd < 0) {
-      throw new IllegalArgumentException("Start and end times must be positive");
-    }
-    
-    if (shape.getType().equals("RECTANGLE")) {
-      return new Rectangle(shape.getName(), shape.getPositionX(),
-              shape.getPositionY(), shape.getX(), shape.getY(),
-              this.toColor.getR(), this.toColor.getG(), this.toColor.getB());
-    } else if (shape.getType().equals("OVAL")) {
-      return new Oval(shape.getName(), shape.getPositionX(),
-              shape.getPositionY(), shape.getX(), shape.getY(),
-              this.toColor.getR(), this.toColor.getG(), this.toColor.getB());
-    }
-    return null;
-  }
-  
   @Override
   public boolean equals(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())

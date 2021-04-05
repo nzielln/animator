@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class AnimationImpl implements Animation {
   HashMap<Shape, List<Transformation>> hashmap;
-
+  
   public AnimationImpl() {
     hashmap = new HashMap<>();
   }
@@ -18,14 +18,14 @@ public class AnimationImpl implements Animation {
   public int getSize() {
     return hashmap.size();
   }
-
+  
   @Override
   public int getSizeTransformations(String id) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
     }
     Objects.requireNonNull(id, "Id can't be null");
-
+    
     for (Shape s : hashmap.keySet()) {
       if (s.getName().equals(id)) {
         return hashmap.get(s).size();
@@ -34,14 +34,14 @@ public class AnimationImpl implements Animation {
     }
     return 0;
   }
-
+  
   @Override
   public Shape getById(String id) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
     }
     Objects.requireNonNull(id, "Id can't be null");
-
+    
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         return s;
@@ -49,19 +49,19 @@ public class AnimationImpl implements Animation {
     }
     throw new NoSuchElementException("Shape not found");
   }
-
+  
   @Override
   public Shape getByTime(int t) {
     return null;
   }
-
+  
   @Override
   public List<Transformation> getTransformations(String id) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
     }
     Objects.requireNonNull(id, "Id can't be null");
-
+    
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         return hashmap.get(s);
@@ -69,7 +69,7 @@ public class AnimationImpl implements Animation {
     }
     throw new NoSuchElementException("Id not found");
   }
-
+  
   @Override
   public List<Shape> getShapes() {
     return new ArrayList<>(hashmap.keySet());
@@ -77,18 +77,27 @@ public class AnimationImpl implements Animation {
   
   
   //OTHER------------------------------------------------------------------------------------------
-
   @Override
   public void addShape(Shape s, List<Transformation> l) {
     Objects.requireNonNull(s, "Shape can't be null.");
     Objects.requireNonNull(l, "Transformation list can't be null.");
-
+    
+    ArrayList<String> ids = new ArrayList<>();
+    
+    for (Shape sh: hashmap.keySet()) {
+      ids.add(sh.getName());
+    }
+    
+    if (ids.contains(s.getName())) {
+      throw new IllegalArgumentException("ID already exists.");
+    }
+    
     if (hashmap == null) {
       throw new IllegalStateException("Invalid state for hashmap");
     }
     hashmap.put(s, l);
   }
-
+  
   @Override
   public void removeShape(String id) {
     if (hashmap.size() == 0) {
@@ -96,33 +105,61 @@ public class AnimationImpl implements Animation {
     } else if (id.equals("")) {
       throw new IllegalArgumentException("Invalid id provided");
     }
-
+    
     Objects.requireNonNull(id, "Id can't be null");
-
-    //throw exception in valid case if uncommented
-    //throws exception in id not found case if commented
-    /*if (!hashmap.containsKey(id)) {
+    
+    ArrayList<String> ids = new ArrayList<>();
+    
+    for (Shape s: hashmap.keySet()) {
+      ids.add(s.getName());
+    }
+    
+    if (!ids.contains(id)) {
       throw new NoSuchElementException("Shape not found");
-    }*/
-
+    }
+    
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         hashmap.remove(s);
       }
     }
   }
-
+  
+  public boolean validTransformation(String id, Transformation t) {
+    List<Transformation> tlist = new ArrayList<>();
+    for (Shape s: hashmap.keySet()) {
+      if (s.getName().equals(id)) {
+        tlist = hashmap.get(s);
+      }
+    }
+    
+    for(Transformation ts : tlist) {
+      if (ts.equals(t)) {
+        return false;
+      } else if (ts.getTransformationType().equals(t.getTransformationType())
+              && t.getTimeStart() < ts.getTimeEnd()) {
+        return false;
+      }
+    }
+    
+    return true;
+  }
+  
   @Override
   public void addTransformation(String id, Transformation t) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
     }
-
+    
     Objects.requireNonNull(id, "Id can't be null.");
     Objects.requireNonNull(t, "Transformation can't be null.");
-
+    
     if (hashmap == null) {
       throw new IllegalStateException("Invalid state for hashmap");
+    }
+    
+    if(!validTransformation(id, t)) {
+      throw new IllegalArgumentException("Transformation not vaid.");
     }
     
     for (Shape s : hashmap.keySet()) {
@@ -135,19 +172,19 @@ public class AnimationImpl implements Animation {
       }
     }
   }
-
+  
   @Override
   public void removeTransformation(String id, Transformation t) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
     }
-
+    
     Objects.requireNonNull(id, "Id can't be null.");
     Objects.requireNonNull(t, "Transformation can't be null.");
-
+    
     //how should we handle removing from empty transformation list?
     //how should we handle not being able to find id?
-  
+    
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         if (hashmap.get(s).size() == 0) {
@@ -159,95 +196,6 @@ public class AnimationImpl implements Animation {
     throw new NoSuchElementException("Id not found");
   }
   
-  /*
-  public List<Shape> filterShapes(Predicate<Shape> p) {
-    if (this.hashmap.size() == 0) {
-      throw new IllegalStateException("Shapes list is empty");
-    }
-    Objects.requireNonNull(p, "Predicate can't be null.");
-    
-    List<Shape> filtered = new ArrayList<>();
-    for (Shape s : hashmap.keySet()) {
-      if (p.test(s.getShape())) {
-        Shape sh = s.getShape().copy();
-        filtered.add(sh);
-      }
-    }
-    
-    return filtered;
-  }
-  
-  
-  public void sortShapes(Comparator<Shape> comp) {
-    if (this.hashmap.size() == 0) {
-      throw new IllegalStateException("Shapes list is empty");
-    }
-    
-    List<Shape> shapes = new ArrayList<>(hashmap.keySet());
-    shapes.sort((shapeA, shapeB) -> comp.compare(shapeA.getShape(), shapeB.getShape()));
-  }
-  
-  public <R> R foldShapes(BiFunction<Shape, R, R> bf, R seed) {
-    if (this.hashmap.size() == 0) {
-      throw new IllegalStateException("Shapes list is empty");
-    }
-    Objects.requireNonNull(bf, "BiFunction is null.");
-    Objects.requireNonNull(seed, "Seed is null.");
-    
-    for (Shape t : hashmap.keySet()) {
-      seed = bf.apply(t.getShape(), seed);
-    }
-    return seed;
-  }
-  
-  public List<Transformation> filterTransformations(Predicate<Transformation> p) {
-    if (this.hashmap.size() == 0) {
-      throw new IllegalStateException("Transformations list is empty");
-    }
-    Objects.requireNonNull(p, "Predicate can't be null.");
-    
-    List<Transformation> filtered = new ArrayList<>();
-    
-    for (Shape s : hashmap.keySet()) {
-      for (Transformation t : hashmap.get(s)) {
-        if (p.test(t.getTransformation())) {
-          Transformation tr = t.getTransformation().copy();
-          filtered.add(tr);
-        }
-      }
-    }
-    
-    return filtered;
-  }
-  
-  
-  //Not sure if we still need this method because each shape has it's own list of transformations
-  public void sortTransformations(Comparator<Transformation> comp) {
-    if (this.hashmap.size() == 0) {
-      throw new IllegalStateException("Transformations list is empty");
-    }
-    Objects.requireNonNull(comp, "Comparator can't be null.");
-    List<List<Transformation>> transformations = new ArrayList<>(hashmap.values());
-
-  }
-  
-  public <R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed) {
-    if (this.hashmap.size() == 0) {
-      throw new IllegalStateException("Transformations list is empty");
-    }
-    Objects.requireNonNull(bf, "BiFunction can't be null.");
-    Objects.requireNonNull(seed, "Seed can't be null.");
-    
-    for (Shape s : hashmap.keySet()) {
-      for (Transformation t : hashmap.get(s)) {
-        seed = bf.apply(t.getTransformation(), seed);
-      }
-    }
-    return seed;
-  }
-  
-   */
-
   @Override
   public String toString() {
     if (hashmap.size() == 0) {
