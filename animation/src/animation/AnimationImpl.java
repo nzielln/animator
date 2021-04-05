@@ -1,14 +1,9 @@
 package animation;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
-import java.util.TreeMap;
-import java.util.function.BiFunction;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class AnimationImpl implements Animation {
   HashMap<Shape, List<Transformation>> hashmap;

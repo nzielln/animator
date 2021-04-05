@@ -1,4 +1,7 @@
 package animation;
+
+import java.util.Objects;
+
 public class Color {
   private final int r;
   private final int g;
@@ -33,6 +36,8 @@ public class Color {
   
   //OTHER------------------------------------------------------------------------------------------
   public boolean equals(Color other) {
+    //Objects.requireNonNull(this, "Color can't be null");
+    Objects.requireNonNull(other, "Color can't be null");
     return (this.r == other.r && this.b == other.b && this.g == other.g);
   }
   

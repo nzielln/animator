@@ -75,6 +75,30 @@ public class ColorTest {
     assertEquals(214, c.getColor().getG());
     assertEquals(34, c.getColor().getB());
   }
+
+  @Test
+  public void testEquals() {
+    try {
+      Color c2 = new Color(122, 214, 34);
+      assertTrue(c.equals(c2));
+    } catch (Exception e) {
+      fail("No exception should be thrown");
+    }
+
+    try {
+      Color c2 = null;
+      c.equals(c2);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    try {
+      Color c2 = null;
+      c2.equals(c);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  }
   
   @Test
   public void testToString() {
