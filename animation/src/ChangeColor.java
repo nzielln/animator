@@ -5,15 +5,14 @@ public class ChangeColor extends AbstractTransformation {
   final int timeStart;
   final int timeEnd;
 
-  public ChangeColor(Shape s, Color toColor, int timeStart, int timeEnd) {
-    super(s, timeStart, timeEnd);
-    //do we need null checks here if we check in abstract?
-    Objects.requireNonNull(s, "Shape can't be null");
-    Objects.requireNonNull(toColor, "BiFunction can't be null.");
+  public ChangeColor(Color toColor, int timeStart, int timeEnd) {
+    super(timeStart, timeEnd);
+    Objects.requireNonNull(toColor, "Color object can't be null.");
+    
     this.toColor = toColor;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
-    super.type = "Change Color";
+    super.type = "Color";
   }
   
   //GETTERS----------------------------------------------------------------------------------------
@@ -24,23 +23,33 @@ public class ChangeColor extends AbstractTransformation {
   
   //OTHER------------------------------------------------------------------------------------------
   @Override
+  public Shape changeColor(Shape shape, Color toColor, int timeStart, int timeEnd) {
+    if (timeStart < 0 || timeEnd < 0) {
+      throw new IllegalArgumentException("Start and end times must be positive");
+    }
+    
+    if (shape.getType().equals("RECTANGLE")) {
+      return new Rectangle(shape.getName(), shape.getPositionX(),
+              shape.getPositionY(), shape.getX(), shape.getY(),
+              this.toColor.getR(), this.toColor.getG(), this.toColor.getB());
+    } else if (shape.getType().equals("OVAL")) {
+      return new Oval(shape.getName(), shape.getPositionX(),
+              shape.getPositionY(), shape.getX(), shape.getY(),
+              this.toColor.getR(), this.toColor.getG(), this.toColor.getB());
+    }
+    return null;
+  }
+  
+  @Override
   public Transformation copy() {
-    return new ChangeColor(this.getShape().copy(), this.toColor, this.timeStart, this.timeEnd);
+    return new ChangeColor(this.toColor, this.timeStart, this.timeEnd);
   }
   
   @Override
   public boolean equals(Transformation other) {
-    return (this.shape.equals(other.getShape())
-            && this.getTransformationType().equals(other.getTransformationType())
+    return (this.getTransformationType().equals(other.getTransformationType())
             && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
             && this.toColor == other.getToColor());
-  }
-  
-  @Override
-  public String toString() {
-    return "Shape " + this.getShape().getName() + " changes color from "
-            + this.getShape().getColor().toString() + " to " + this.toColor.toString() + " from "
-            + this.timeStart + " to " + this.timeEnd + ".";
   }
   
 }

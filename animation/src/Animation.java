@@ -13,13 +13,13 @@ public interface Animation {
    * Returns a the numebr of {@link Shape} in the animation.
    * @return int, number of {@link Shape} objects
    */
-  int getSizeShapes();
+  int getSize();
   
   /**
    * Returns a the numebr of {@link Transformation} in the animation.
    * @return int, number of {@link Transformation} objects
    */
-  int getSizeTransformations();
+  int getSizeTransformations(String id);
   
   
   /**
@@ -40,7 +40,7 @@ public interface Animation {
    * Returns a list of all the {@link Transformation}(s) in the animation.
    * @return a list of transformations in the list
    */
-  List<Transformation> getTransformations();
+  List<Transformation> getTransformations(String id);
   
   /**
    * Returns a list of all the {@link Shape}(s)  in the animation.
@@ -55,7 +55,7 @@ public interface Animation {
    * Adds a shape to the list of {@link Shape}(s) in the animation.
    * @param s a {@link Shape} to add to list
    */
-  void addShape(Shape s);
+  void addShape(Shape s, List<Transformation> l);
   
   /**
    * Removes a shape from the list of {@link Shape}(s), if it matches the ID provided.
@@ -67,13 +67,13 @@ public interface Animation {
    * Adds a transformation to the list of {@link Transformation}(s) in the animation.
    * @param t a {@link Transformation} to add to list
    */
-  void addTransformation(Transformation t);
+  void addTransformation(String id, Transformation t);
   
   /**
    * Removes a transformation from the list of {@link Transformation}(s).
    * @param t a {@link Transformation} to remove from the list
    */
-  void removeTransformation(Transformation t);
+  void removeTransformation(String id, Transformation t);
   
   /**
    * Filters the list of {@link Shape}(s) based on the predicate provided.
