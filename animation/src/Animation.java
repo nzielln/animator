@@ -80,13 +80,13 @@ public interface Animation {
    * @param p {@link Predicate} provided
    * @return a new list that is filtered
    */
-  List<Shape> filterShapes(Predicate<Shape> p);
+  //List<Shape> filterShapes(Predicate<Shape> p);
   
   /**
    * Sorts the list of {@link Shape}(s) based on the comparator provided.
    * @param comp {@link Comparator} provided
    */
-  void sortShapes(Comparator<Shape> comp);
+  //void sortShapes(Comparator<Shape> comp);
   
   /**
    * Fold the list of {@link Shape}(s) based on the arguments provided.
@@ -95,20 +95,20 @@ public interface Animation {
    * @param <R> return type
    * @return folded resulted
    */
-  <R> R foldShapes(BiFunction<Shape, R, R> bf, R seed);
+  //<R> R foldShapes(BiFunction<Shape, R, R> bf, R seed);
   
   /**
    * Filters the list of {@link Transformation}(s) based on the predicate provided.
    * @param p {@link Predicate} provided
    * @return a new list that is filtered
    */
-  List<Transformation> filterTransformations(Predicate<Transformation> p);
+  //List<Transformation> filterTransformations(Predicate<Transformation> p);
   
   /**
    * Sorts the list of {@link Transformation}(s) based on the comparator provided.
    * @param comp {@link Comparator} provided
    */
-  void sortTransformations(Comparator<Transformation> comp);
+  //void sortTransformations(Comparator<Transformation> comp);
   
   /**
    * Fold the list of {@link Transformation}(s) based on the arguments provided.
@@ -117,7 +117,7 @@ public interface Animation {
    * @param <R> return type
    * @return folded resulted
    */
-  <R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed);
+  //<R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed);
   
   /**
    * Returns a string representation of the animation.
