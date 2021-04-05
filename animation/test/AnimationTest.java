@@ -37,7 +37,8 @@ public class AnimationTest {
     ani = new AnimationImpl();
     oval = new Oval("oval", 34, 34, 4, 5, 122, 122, 122);
     rect = new Rectangle("rect", 12, 34, 8, 11, 1, 22, 89);
-    rect2 = new Rectangle("rect 2", 45, 50.5f, 12, 12, 0, 125, 255);
+    rect2 = new Rectangle("rect 2", 45, 50.5f,
+            12, 12, 0, 125, 255);
     oval.setAppears(1);
     oval.setDisappears(15);
   
@@ -229,20 +230,45 @@ public class AnimationTest {
   
   @Test
   public void removeShape() {
-    assertEquals(3, ani.getShapes().size());
-    ani.removeShape("rect 2");
-    assertEquals(2, ani.getShapes().size());
-    assertFalse(ani.getShapes().contains(rect2));
+    try {
+      assertEquals(3, ani.getShapes().size());
+      ani.removeShape("rect 2");
+      assertEquals(2, ani.getShapes().size());
+      assertFalse(ani.getShapes().contains(rect2));
+    } catch (Exception e) {
+      fail("Exception shouldn't be thrown");
+    }
 
     //trying to remove null
+    try {
+      assertEquals(2, ani.getShapes().size());
+      ani.removeShape(null);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
 
     //trying to remove from empty hashmap
+    try {
+      Animation ani2 = new AnimationImpl();
+      assertEquals(0, ani2.getShapes().size());
+      ani2.removeShape("rect");
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
 
     //shape not found
+    try {
+      assertEquals(2, ani.getShapes().size());
+      ani.removeShape("rect4");
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
   }
   
   @Test
   public void addTransformation() {
+    //valid add transformation: move, scale, changeColor
+
     //should not add if start time and end time are not within range
     Transformation bad = new Move(3, 4, 15, 19);
     try {
@@ -259,6 +285,13 @@ public class AnimationTest {
     }
     
    */
+
+    //adding to null hashmap
+
+
+    //add null to hashmap
+
+    //add empty string transformation
   
   
     try {
@@ -270,6 +303,87 @@ public class AnimationTest {
   
   @Test
   public void removeTransformation() {
+    //add transformations to animation
+    ani.addTransformation("oval", move);
+    ani.addTransformation("oval", scale);
+    ani.addTransformation("rect", move2);
+    ani.addTransformation("rect", scale2);
+    ani.addTransformation("rect 2", move3);
+    ani.addTransformation("rect 2", scale3);
+    ani.addTransformation("rect 2", color);
+
+    //valid remove cases: scale, move, changeColor
+    try {
+      assertEquals(2, ani.getTransformations("oval").size());
+      ani.removeTransformation("oval", move);
+      assertEquals(1, ani.getTransformations("oval").size());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+
+    try {
+      assertEquals(2, ani.getTransformations("rect").size());
+      ani.removeTransformation("rect", scale2);
+      assertEquals(1, ani.getTransformations("rect").size());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+
+    try {
+      assertEquals(3, ani.getTransformations("rect 2").size());
+      ani.removeTransformation("rect 2", color);
+      assertEquals(2, ani.getTransformations("rect 2").size());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+
+    //remove id not found
+    try {
+      ani.removeTransformation("oval 3", move);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //empty string id
+    try {
+      ani.removeTransformation("", scale);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //null id
+    try {
+      ani.removeTransformation(null, color);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //remove transformation not found
+    try {
+      Transformation color2 = new ChangeColor(new Color(255, 255, 255),
+              2, 6);
+      ani.removeTransformation("rect", color2);
+      fail("Exception should be thrown");
+    } catch (Exception ignored){
+    }
+
+    //try to remove null transformation
+    try {
+      ani.removeTransformation("rect", null);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //remove from empty transformation list
+    try {
+      Animation ani2 = new AnimationImpl();
+      Shape rect3 = new Rectangle("rect3", 3, 3, 4, 5,
+              0, 255, 0);
+      ani2.addShape(rect3, new ArrayList<>());
+      ani2.removeTransformation("rect3", move);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
   }
 
   @Test

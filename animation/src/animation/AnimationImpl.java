@@ -99,6 +99,12 @@ public class AnimationImpl implements Animation {
 
     Objects.requireNonNull(id, "Id can't be null");
 
+    //throw exception in valid case if uncommented
+    //throws exception in id not found case if commented
+    /*if (!hashmap.containsKey(id)) {
+      throw new NoSuchElementException("Shape not found");
+    }*/
+
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         hashmap.remove(s);
@@ -114,6 +120,10 @@ public class AnimationImpl implements Animation {
 
     Objects.requireNonNull(id, "Id can't be null.");
     Objects.requireNonNull(t, "Transformation can't be null.");
+
+    if (hashmap == null) {
+      throw new IllegalStateException("Invalid state for hashmap");
+    }
     
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
