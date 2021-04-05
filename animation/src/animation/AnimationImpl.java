@@ -81,16 +81,20 @@ public class AnimationImpl implements Animation {
   @Override
   public void addShape(Shape s, List<Transformation> l) {
     Objects.requireNonNull(s, "Shape can't be null.");
-    
+    Objects.requireNonNull(l, "Transformation list can't be null.");
+
+    if (hashmap == null) {
+      throw new IllegalStateException("Invalid state for hashmap");
+    }
     hashmap.put(s, l);
   }
 
   @Override
   public void removeShape(String id) {
-    if (id.equals("")) {
-      throw new IllegalArgumentException("Invalid id provided");
-    } else if (hashmap.size() == 0) {
+    if (hashmap.size() == 0) {
       throw new IllegalStateException("Can't remove from empty hashmap");
+    } else if (id.equals("")) {
+      throw new IllegalArgumentException("Invalid id provided");
     }
 
     Objects.requireNonNull(id, "Id can't be null");
@@ -142,6 +146,7 @@ public class AnimationImpl implements Animation {
         hashmap.get(s).remove(t);
       }
     }
+    throw new NoSuchElementException("Id not found");
   }
   
   /*
