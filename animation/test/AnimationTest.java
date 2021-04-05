@@ -180,10 +180,35 @@ public class AnimationTest {
   
   @Test
   public void addShape() {
+    Animation ani2 = new AnimationImpl();
+
     //Add rectangle
+    Shape rect4 = new Rectangle("rect4", 3, 3,
+            5, 10, 255, 0, 255);
+    ani2.addShape(rect4, new ArrayList<>());
 
     //add oval
+    Shape oval4 = new Oval("oval4", 5, 5, 2, 4, 0, 0, 0);
+    ani2.addShape(oval4, new ArrayList<>());
 
+    //Check that shapes were correctly added
+    assertEquals(2, ani2.getSize());
+    assertEquals("[Name: rect4\n" +
+            "Type: RECTANGLE\n" +
+            "Corner: (3.0,3.0)\n" +
+            "Width: 5\n" +
+            "Length: 10\n" +
+            "Color: (255, 0, 255)\n" +
+            "Appears: 0\n" +
+            "Disappears: 0\n" +
+            ", Name: oval4\n" +
+            "Type: OVAL\n" +
+            "Center: (5.0,5.0)\n" +
+            "X-Radius: 2\n" +
+            "Y-Radius: 4\n" +
+            "Color: (0, 0, 0)\n" +
+            "Appears: 0\n" +
+            "Disappears: 0\n]", ani2.getShapes().toString());
 
     //Can't add null object
     try {
@@ -194,8 +219,8 @@ public class AnimationTest {
 
     //can't add to a null hashmap
     try {
-      Animation ani2 = null;
-      ani2.addShape(oval, new ArrayList<>());
+      Animation ani3 = null;
+      ani3.addShape(oval, new ArrayList<>());
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -204,13 +229,16 @@ public class AnimationTest {
   
   @Test
   public void removeShape() {
-    ani.removeShape("rect2");
+    assertEquals(3, ani.getShapes().size());
+    ani.removeShape("rect 2");
     assertEquals(2, ani.getShapes().size());
     assertFalse(ani.getShapes().contains(rect2));
 
     //trying to remove null
 
     //trying to remove from empty hashmap
+
+    //shape not found
   }
   
   @Test
