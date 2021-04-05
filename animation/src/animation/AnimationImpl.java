@@ -3,6 +3,7 @@ package animation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class AnimationImpl implements Animation {
@@ -13,10 +14,12 @@ public class AnimationImpl implements Animation {
   }
   
   //GETTERS----------------------------------------------------------------------------------------
+  @Override
   public int getSize() {
     return hashmap.size();
   }
-  
+
+  @Override
   public int getSizeTransformations(String id) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
@@ -31,7 +34,8 @@ public class AnimationImpl implements Animation {
     }
     return 0;
   }
-  
+
+  @Override
   public Shape getById(String id) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
@@ -43,13 +47,15 @@ public class AnimationImpl implements Animation {
         return s;
       }
     }
-    return null;
+    throw new NoSuchElementException("Shape not found");
   }
-  
+
+  @Override
   public Shape getByTime(int t) {
     return null;
   }
-  
+
+  @Override
   public List<Transformation> getTransformations(String id) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
@@ -61,32 +67,33 @@ public class AnimationImpl implements Animation {
         return hashmap.get(s);
       }
     }
-    return null;
+    throw new NoSuchElementException("Id not found");
   }
-  
+
+  @Override
   public List<Shape> getShapes() {
     return new ArrayList<>(hashmap.keySet());
   }
   
   
   //OTHER------------------------------------------------------------------------------------------
-  
+
+  @Override
   public void addShape(Shape s, List<Transformation> l) {
     Objects.requireNonNull(s, "Shape can't be null.");
     
     hashmap.put(s, l);
   }
-  
+
+  @Override
   public void removeShape(String id) {
-    if (id == null || id.equals("")) {
+    if (id.equals("")) {
       throw new IllegalArgumentException("Invalid id provided");
+    } else if (hashmap.size() == 0) {
+      throw new IllegalStateException("Can't remove from empty hashmap");
     }
 
     Objects.requireNonNull(id, "Id can't be null");
-
-    if (hashmap.size() == 0) {
-      throw new IllegalStateException("Can't remove from empty hashmap");
-    }
 
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
@@ -94,11 +101,13 @@ public class AnimationImpl implements Animation {
       }
     }
   }
-  
+
+  @Override
   public void addTransformation(String id, Transformation t) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
     }
+
     Objects.requireNonNull(id, "Id can't be null.");
     Objects.requireNonNull(t, "Transformation can't be null.");
     
@@ -112,7 +121,8 @@ public class AnimationImpl implements Animation {
       }
     }
   }
-  
+
+  @Override
   public void removeTransformation(String id, Transformation t) {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
@@ -126,6 +136,9 @@ public class AnimationImpl implements Animation {
   
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
+        if (hashmap.get(s).size() == 0) {
+          throw new IllegalArgumentException("Can't remove transformation from empty list");
+        }
         hashmap.get(s).remove(t);
       }
     }
@@ -219,7 +232,8 @@ public class AnimationImpl implements Animation {
   }
   
    */
-  
+
+  @Override
   public String toString() {
     if (hashmap.size() == 0) {
       return "";

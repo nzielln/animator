@@ -82,6 +82,9 @@ public class AnimationTest {
   
   @Test
   public void getSize() {
+    Animation ani2 = new AnimationImpl();
+
+    assertEquals(0, ani2.getSize());
     assertEquals(3, ani.getSize());
   }
   
@@ -95,8 +98,43 @@ public class AnimationTest {
   
   @Test
   public void getById() {
+    //Get oval
     assertEquals("OVAL", ani.getById("oval").getType());
     assertEquals(122, ani.getById("oval").getColor().getR());
+
+    //Get rectangle
+    assertEquals("RECTANGLE", ani.getById("rect").getType());
+    assertEquals(1, ani.getById("rect").getAppears());
+
+
+    //Empty string id
+    try {
+      ani.getTransformations("");
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //Null id
+    try {
+      ani.getTransformations(null);
+      fail("Exception should be thrown");
+    } catch (Exception ignored){
+    }
+
+    //Get from empty hashmap
+    try {
+      Animation ani2 = new AnimationImpl();
+      ani2.getById("rect");
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //Id not found
+    try {
+      ani.getById("rect 4");
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
   }
   
   @Test
@@ -105,6 +143,28 @@ public class AnimationTest {
   
   @Test
   public void getTransformations() {
+    //Empty string id
+    try {
+      ani.getTransformations("");
+      fail("Exception should be thrown");
+    } catch (Exception ignored){
+    }
+
+    //Null id
+    try {
+      ani.getTransformations(null);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //Id not found
+    try {
+      ani.getTransformations("rect 4");
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //With valid transformations
     ani.addTransformation("oval", move);
     ani.addTransformation("oval", scale);
     assertEquals(2, ani.getTransformations("oval").size());
@@ -120,6 +180,11 @@ public class AnimationTest {
   
   @Test
   public void addShape() {
+    //Add rectangle
+
+    //add oval
+
+
     //Can't add null object
     try {
       ani.addShape(ovalNull, new ArrayList<>());
@@ -128,6 +193,12 @@ public class AnimationTest {
     }
 
     //can't add to a null hashmap
+    try {
+      Animation ani2 = null;
+      ani2.addShape(oval, new ArrayList<>());
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
     
   }
   
