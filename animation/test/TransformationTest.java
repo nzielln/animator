@@ -144,16 +144,4 @@ public class TransformationTest {
     assertEquals(122, color.getToColor().getB());
   }
   
-  @Test
-  public void moveShape() {
-  }
-  
-  @Test
-  public void changeColor() {
-  }
-  
-  @Test
-  public void scaleShape() {
-  }
-  
 }
