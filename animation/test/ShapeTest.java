@@ -1,6 +1,10 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import animation.Oval;
+import animation.Rectangle;
+import animation.Shape;
+
 import static org.junit.Assert.*;
 
 public class ShapeTest {

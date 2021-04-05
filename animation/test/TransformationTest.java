@@ -2,6 +2,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import animation.ChangeColor;
+import animation.Color;
+import animation.Move;
+import animation.Scale;
+import animation.Transformation;
+
 import static org.junit.Assert.*;
 
 public class TransformationTest {
@@ -9,6 +15,7 @@ public class TransformationTest {
   private Transformation scale;
   private Transformation color;
   private Transformation bad;
+
   @Before
   public void setUp() throws Exception {
     try {
@@ -132,6 +139,8 @@ public class TransformationTest {
   
   @Test
   public void getToColor() {
+    assertEquals(122, color.getToColor().getR());
+    assertEquals(122, color.getToColor().getG());
     assertEquals(122, color.getToColor().getB());
   }
   
