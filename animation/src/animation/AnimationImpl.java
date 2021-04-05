@@ -18,6 +18,11 @@ public class AnimationImpl implements Animation {
   }
   
   public int getSizeTransformations(String id) {
+    if (id.equals("")) {
+      throw new IllegalArgumentException("Id can't be empty string");
+    }
+    Objects.requireNonNull(id, "Id can't be null");
+
     for (Shape s : hashmap.keySet()) {
       if (s.getName().equals(id)) {
         return hashmap.get(s).size();
@@ -28,7 +33,11 @@ public class AnimationImpl implements Animation {
   }
   
   public Shape getById(String id) {
-    
+    if (id.equals("")) {
+      throw new IllegalArgumentException("Id can't be empty string");
+    }
+    Objects.requireNonNull(id, "Id can't be null");
+
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         return s;
@@ -42,6 +51,11 @@ public class AnimationImpl implements Animation {
   }
   
   public List<Transformation> getTransformations(String id) {
+    if (id.equals("")) {
+      throw new IllegalArgumentException("Id can't be empty string");
+    }
+    Objects.requireNonNull(id, "Id can't be null");
+
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         return hashmap.get(s);
@@ -58,7 +72,7 @@ public class AnimationImpl implements Animation {
   //OTHER------------------------------------------------------------------------------------------
   
   public void addShape(Shape s, List<Transformation> l) {
-    Objects.requireNonNull(s, "Object can't be null.");
+    Objects.requireNonNull(s, "Shape can't be null.");
     
     hashmap.put(s, l);
   }
@@ -67,6 +81,13 @@ public class AnimationImpl implements Animation {
     if (id == null || id.equals("")) {
       throw new IllegalArgumentException("Invalid id provided");
     }
+
+    Objects.requireNonNull(id, "Id can't be null");
+
+    if (hashmap.size() == 0) {
+      throw new IllegalStateException("Can't remove from empty hashmap");
+    }
+
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         hashmap.remove(s);
@@ -75,7 +96,11 @@ public class AnimationImpl implements Animation {
   }
   
   public void addTransformation(String id, Transformation t) {
-    Objects.requireNonNull(t, "Object can't be null.");
+    if (id.equals("")) {
+      throw new IllegalArgumentException("Id can't be empty string");
+    }
+    Objects.requireNonNull(id, "Id can't be null.");
+    Objects.requireNonNull(t, "Transformation can't be null.");
     
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
@@ -89,7 +114,15 @@ public class AnimationImpl implements Animation {
   }
   
   public void removeTransformation(String id, Transformation t) {
-    Objects.requireNonNull(t, "Object can't be null.");
+    if (id.equals("")) {
+      throw new IllegalArgumentException("Id can't be empty string");
+    }
+
+    Objects.requireNonNull(id, "Id can't be null.");
+    Objects.requireNonNull(t, "Transformation can't be null.");
+
+    //how should we handle removing from empty transformation list?
+    //how should we handle not being able to find id?
   
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
@@ -188,6 +221,9 @@ public class AnimationImpl implements Animation {
    */
   
   public String toString() {
+    if (hashmap.size() == 0) {
+      return "";
+    }
     StringBuilder str = new StringBuilder();
     for (Shape s : hashmap.keySet()) {
       str.append(s.toString()).append("\n");

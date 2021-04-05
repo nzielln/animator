@@ -126,6 +126,8 @@ public class AnimationTest {
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
     }
+
+    //can't add to a null hashmap
     
   }
   
@@ -134,6 +136,10 @@ public class AnimationTest {
     ani.removeShape("rect2");
     assertEquals(2, ani.getShapes().size());
     assertFalse(ani.getShapes().contains(rect2));
+
+    //trying to remove null
+
+    //trying to remove from empty hashmap
   }
   
   @Test
@@ -169,5 +175,60 @@ public class AnimationTest {
 
   @Test
   public void testToString() {
+    //empty hashmap
+    try {
+      Animation ani2 = new AnimationImpl();
+      assertEquals("", ani2.toString());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+
+    //No transformations
+    try {
+      AnimationImpl ani2 = new AnimationImpl();
+      Shape rect3 = new Rectangle("rect3", 3, 3, 50,
+              25, 255, 255, 255);
+      ani2.addShape(rect3, new ArrayList<>());
+      assertEquals("Shapes: \n"
+              + "\n"
+              + "Name: rect3\n"
+              + "Type: RECTANGLE\n"
+              + "Corner: (3.0,3.0)\n"
+              + "Width: 50\n"
+              + "Length: 25\n"
+              + "Color: (255, 255, 255)\n"
+              + "Appears: 0\n"
+              + "Disappears: 0", ani2.toString());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+
+    //With transformations
+    try {
+      AnimationImpl ani2 = new AnimationImpl();
+      Shape rect3 = new Rectangle("rect3", 3, 3, 50,
+              25, 255, 255, 255);
+      rect3.setAppears(1);
+      rect3.setDisappears(200);
+      ani2.addShape(rect3, new ArrayList<>());
+
+      Transformation move4 = new Move(9, 9, 10, 100);
+      ani2.addTransformation("rect3", move4);
+
+      assertEquals("Shapes: \n"
+              + "\n"
+              + "Name: rect3\n"
+              + "Type: RECTANGLE\n"
+              + "Corner: (3.0,3.0)\n"
+              + "Width: 50\n"
+              + "Length: 25\n"
+              + "Color: (255, 255, 255)\n"
+              + "Appears: 1\n"
+              + "Disappears: 200\n"
+              + "\n"
+              + "Shape rect3 moves from (3.0,3.0) to (9.0,9.0) from 10 to 100.", ani2.toString());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
   }
 }
