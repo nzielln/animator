@@ -22,12 +22,6 @@ public class Rectangle extends AbstractShape {
   }
   
   @Override
-  public boolean equals(Shape other) {
-    Objects.requireNonNull(other);
-    return super.equals(other) && this.type.equals(other.getType());
-  }
-  
-  @Override
   public String toString() {
     return "Name: " + this.name + "\n"
             + "Type: " + this.type + "\n"

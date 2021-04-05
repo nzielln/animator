@@ -44,7 +44,6 @@ public class AnimationImpl implements Animation {
     return null;
   }
   
-  
   public List<Transformation> getTransformations(String id) {
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
@@ -53,7 +52,6 @@ public class AnimationImpl implements Animation {
     }
     return null;
   }
-  
   
   public List<Shape> getShapes() {
     return new ArrayList<>(hashmap.keySet());
@@ -79,7 +77,6 @@ public class AnimationImpl implements Animation {
     }
   }
   
-  
   public void addTransformation(String id, Transformation t) {
     Objects.requireNonNull(t, "Object can't be null.");
     
@@ -94,11 +91,9 @@ public class AnimationImpl implements Animation {
     }
   }
   
-  
   public void removeTransformation(String id, Transformation t) {
     Objects.requireNonNull(t, "Object can't be null.");
-    //How do we want to remove this? by shape ID or should we have an ID for each transformation?
-    //maybe create an ID for each transformation, i'm just not sure what type of id to use
+  
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         hashmap.get(s).remove(t);
@@ -106,7 +101,7 @@ public class AnimationImpl implements Animation {
     }
   }
   
-  
+  /*
   public List<Shape> filterShapes(Predicate<Shape> p) {
     if (this.hashmap.size() == 0) {
       throw new IllegalStateException("Shapes list is empty");
@@ -130,11 +125,9 @@ public class AnimationImpl implements Animation {
       throw new IllegalStateException("Shapes list is empty");
     }
     
-    //TreeMap<Shape, List<Transformation>> sort = new TreeMap<>(hashmap);
     List<Shape> shapes = new ArrayList<>(hashmap.keySet());
     shapes.sort((shapeA, shapeB) -> comp.compare(shapeA.getShape(), shapeB.getShape()));
   }
-  
   
   public <R> R foldShapes(BiFunction<Shape, R, R> bf, R seed) {
     if (this.hashmap.size() == 0) {
@@ -148,7 +141,6 @@ public class AnimationImpl implements Animation {
     }
     return seed;
   }
-  
   
   public List<Transformation> filterTransformations(Predicate<Transformation> p) {
     if (this.hashmap.size() == 0) {
@@ -181,8 +173,6 @@ public class AnimationImpl implements Animation {
 
   }
   
-  
-  
   public <R> R foldTransformations(BiFunction<Transformation, R, R> bf, R seed) {
     if (this.hashmap.size() == 0) {
       throw new IllegalStateException("Transformations list is empty");
@@ -198,6 +188,7 @@ public class AnimationImpl implements Animation {
     return seed;
   }
   
+   */
   
   public String toString() {
     StringBuilder str = new StringBuilder();

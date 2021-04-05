@@ -31,6 +31,10 @@ public class Color {
   }
   
   //OTHER------------------------------------------------------------------------------------------
+  public boolean equals(Color other) {
+    return (this.r == other.r && this.b == other.b && this.g == other.g);
+  }
+  
   @Override
   public String toString() {
     return "(" + this.r + ", " + this.g + ", " + this.b + ")";
