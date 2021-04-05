@@ -1,3 +1,4 @@
+package animation;
 public class Color {
   private final int r;
   private final int g;
