@@ -32,8 +32,8 @@ public class Main {
     //System.out.println(ani.toString());
   
     //create new move transformation
-    Transformation color = new ChangeColor(new Color(35, 45, 56), 3, 7);
-    Transformation scale = new Scale(12, 7, 2, 7);
+    Transformation color = new ChangeColor("co", new Color(35, 45, 56), 3, 7);
+    Transformation scale = new Scale("sc", 12, 7, 2, 7);
   
     ani.addTransformation("oval", color);
     ani.addTransformation("rectangle", scale);

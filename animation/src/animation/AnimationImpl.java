@@ -90,9 +90,10 @@ public class AnimationImpl implements Animation {
     
     if (ids.contains(s.getName())) {
       throw new IllegalArgumentException("ID already exists.");
+    } else {
+  
+      hashmap.put(s, l);
     }
-    
-    hashmap.put(s, l);
   }
   
   @Override
@@ -112,11 +113,13 @@ public class AnimationImpl implements Animation {
     
     if (!ids.contains(id)) {
       throw new NoSuchElementException("Shape not found");
-    }
-    
-    for (Shape s : hashmap.keySet()) {
-      if(s.getName().equals(id)) {
-        hashmap.remove(s);
+    } else {
+  
+      for (Shape s : hashmap.keySet()) {
+        if (s.getName().equals(id)) {
+          hashmap.remove(s);
+          return;
+        }
       }
     }
   }
@@ -161,6 +164,7 @@ public class AnimationImpl implements Animation {
           throw new IllegalArgumentException("Time provided not within acceptable range.");
         }
         hashmap.get(s).add(t);
+
       }
     }
   }
@@ -173,17 +177,35 @@ public class AnimationImpl implements Animation {
     if (id.equals("")) {
       throw new IllegalArgumentException("Id can't be empty string");
     }
-    
+  
+    ArrayList<String> ids = new ArrayList<>();
+  
+    for (Shape s: hashmap.keySet()) {
+      ids.add(s.getName());
+    }
+  
+    if (!ids.contains(id)) {
+      throw new NoSuchElementException("Shape not found");
+    }
     
     for (Shape s : hashmap.keySet()) {
       if(s.getName().equals(id)) {
         if (hashmap.get(s).size() == 0) {
           throw new IllegalArgumentException("Can't remove transformation from empty list");
         }
+        
+        ArrayList<String>  tids = new ArrayList<>();
+        for (Transformation tr: hashmap.get(s)) {
+          tids.add(tr.getID());
+        }
+        
+        if (!tids.contains(t.getID())) {
+          throw new NoSuchElementException("Transformation not found");
+        }
+        
         hashmap.get(s).remove(t);
       }
     }
-    throw new NoSuchElementException("Id not found");
   }
   
   @Override

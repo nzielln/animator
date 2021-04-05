@@ -49,18 +49,18 @@ public class AnimationTest {
     rect2.setDisappears(15);
     
     //for oval
-    move = new Move(45, 45, 3, 7);
-    scale = new Scale(8, 5, 7, 15);
+    move = new Move("move", 45, 45, 3, 7);
+    scale = new Scale("scale", 8, 5, 7, 15);
     
     //for rect
-    move2 = new Move(45, 70, 2, 7);
-    scale2 = new Scale(11, 11, 4, 7);
+    move2 = new Move("move2", 45, 70, 2, 7);
+    scale2 = new Scale("scale2",11, 11, 4, 7);
   
     //for rect2
-    move3 = new Move(45, 70, 2, 7);
-    scale3 = new Scale(24, 24, 8, 14);
+    move3 = new Move("move3",45, 70, 2, 7);
+    scale3 = new Scale("scale3",24, 24, 8, 14);
     
-    color = new ChangeColor(new Color(1, 12, 122), 7, 10);
+    color = new ChangeColor("color", new Color(1, 12, 122), 7, 10);
     
     try {
       ani.addShape(oval, new ArrayList<>());
@@ -299,7 +299,7 @@ public class AnimationTest {
     try {
       Shape oval2 = new Oval("oval 2", 3, 3, 6, 10, 0, 255, 0);
       oval2.setAppears(1);
-      oval2.setAppears(15);
+      oval2.setDisappears(15);
       ani.addShape(oval2, new ArrayList<>());
       ani.addTransformation("oval 2", scale);
       assertEquals("Scales",
@@ -309,22 +309,20 @@ public class AnimationTest {
     }
 
     //should not add if start time and end time are not within range
-    Transformation bad = new Move(3, 4, 15, 19);
+    Transformation bad = new Move("bad", 3, 4, 15, 19);
     try {
       ani.addTransformation("oval", bad);
       fail("Exception should be thrown.");
     } catch (Exception ignore) {
     }
 
-  /*
-    //should not add if transformation already in list TODO
+  
     try {
       ani.addTransformation("oval", move);
       fail("Exception should be thrown.");
     } catch (Exception ignore) {
     }
     
-   */
 
     //adding to null hashmap
     try {
@@ -357,7 +355,6 @@ public class AnimationTest {
     ani.addTransformation("oval", scale);
     ani.addTransformation("rect", move2);
     ani.addTransformation("rect", scale2);
-    ani.addTransformation("rect 2", move3);
     ani.addTransformation("rect 2", scale3);
     ani.addTransformation("rect 2", color);
 
@@ -379,9 +376,9 @@ public class AnimationTest {
     }
 
     try {
-      assertEquals(3, ani.getTransformations("rect 2").size());
-      ani.removeTransformation("rect 2", color);
       assertEquals(2, ani.getTransformations("rect 2").size());
+      ani.removeTransformation("rect 2", color);
+      assertEquals(1, ani.getTransformations("rect 2").size());
     } catch (Exception e) {
       fail("Exception should not be thrown");
     }
@@ -409,7 +406,7 @@ public class AnimationTest {
 
     //remove transformation not found
     try {
-      Transformation color2 = new ChangeColor(new Color(255, 255, 255),
+      Transformation color2 = new ChangeColor("color2", new Color(255, 255, 255),
               2, 6);
       ani.removeTransformation("rect", color2);
       fail("Exception should be thrown");
@@ -477,7 +474,7 @@ public class AnimationTest {
       rect3.setDisappears(200);
       ani2.addShape(rect3, new ArrayList<>());
 
-      Transformation move4 = new Move(9, 9, 10, 100);
+      Transformation move4 = new Move("move4", 9, 9, 10, 100);
       ani2.addTransformation("rect3", move4);
 
       assertEquals("Shapes: \n"

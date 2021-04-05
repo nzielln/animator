@@ -14,9 +14,8 @@ public class Scale extends AbstractTransformation {
    * @param timeStart (int) start time for the transformation
    * @param timeEnd (int) start time for the transformation
    */
-  public Scale(int toX, int toY, int timeStart, int timeEnd) {
-    super(timeStart, timeEnd);
-
+  public Scale(String tid, int toX, int toY, int timeStart, int timeEnd) {
+    super(tid, timeStart, timeEnd);
     if (toX <= 0 || toY <= 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
     }

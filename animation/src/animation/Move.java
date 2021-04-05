@@ -14,9 +14,8 @@ public class Move extends AbstractTransformation {
    * @param timeStart (int) start time for the transformation
    * @param timeEnd (int) start time for the transformation
    */
-  public Move(float toX, float toY, int timeStart, int timeEnd) {
-    super(timeStart, timeEnd);
-
+  public Move(String tid, float toX, float toY, int timeStart, int timeEnd) {
+    super(tid, timeStart, timeEnd);
     if (toX < 0 || toY < 0) {
       throw new IllegalArgumentException("Coordinates points must be greater than or equal to 0.");
     }
