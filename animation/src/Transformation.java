@@ -51,12 +51,6 @@ public interface Transformation {
   
   //OTHER------------------------------------------------------------------------------------------
   /**
-   * Returns a copy of a transformation object.
-   * @return a {@link Transformation} object
-   */
-  Transformation copy();
-  
-  /**
    * Returns a new {@link Shape} with provided x and y positions.
    * @param toX x-position of the new shape object
    * @param toY y-position of the new shape object

@@ -16,6 +16,8 @@ public abstract class AbstractShape implements Shape {
   final int Y;
   int appears;
   int disappears;
+  boolean appearsFlag;
+  boolean disappearsFlag;
   String type;
   
   /**
@@ -49,6 +51,8 @@ public abstract class AbstractShape implements Shape {
       this.Y = Y;
       this.appears = 0;
       this.disappears = 0;
+      this.appearsFlag = false;
+      this.disappearsFlag = false;
       this.type = null;
     }
   }
@@ -110,17 +114,24 @@ public abstract class AbstractShape implements Shape {
   public void setAppears(int appears) {
     if (appears < 0) {
       throw new IllegalArgumentException("Must be positive integer.");
+    } else if (this.disappearsFlag && appears > this.disappears) {
+      throw new IllegalArgumentException("Must be within acceptable range.");
     }
+    
     this.appears = appears;
+    this.appearsFlag = true;
   }
   
   @Override
   public void setDisappears(int disappears) {
     if (disappears < 0) {
       throw new IllegalArgumentException("Must be positive integer.");
+    } else if (this.appearsFlag && disappears < this.appears) {
+      throw new IllegalArgumentException("Must be within acceptable range.");
     }
     
     this.disappears = disappears;
+    this.disappearsFlag = true;
   }
 
   @Override

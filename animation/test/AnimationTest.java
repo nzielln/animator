@@ -155,31 +155,6 @@ public class AnimationTest {
   @Test
   public void removeTransformation() {
   }
-  
-  @Test
-  public void filterShapes() {
-  }
-  
-  @Test
-  public void sortShapes() {
-  }
-  
-  @Test
-  public void foldShapes() {
-  }
-  
-  @Test
-  public void filterTransformations() {
-  }
-  
-  @Test
-  public void sortTransformations() {
-  }
-  
-  @Test
-  public void foldTransformations() {
-  }
-  
 
   @Test
   public void testToString() {

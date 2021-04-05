@@ -244,4 +244,9 @@ public class ShapeTest {
     assertEquals(ov, oval.toString());
   
   }
+  
+  @Test
+  public void testEquals() {
+  
+  }
 }
