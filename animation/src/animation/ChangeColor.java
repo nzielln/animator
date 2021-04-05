@@ -2,9 +2,18 @@ package animation;
 
 import java.util.Objects;
 
+/**
+ * Represents a ChangeColor transformation, extends methods from the AbstractTransformation.
+ */
 public class ChangeColor extends AbstractTransformation {
   final Color toColor;
-
+  
+  /**
+   * Constructor calls the AbstractTransformation super class, takes in the color to change to.
+   * @param toColor (Color) to change to
+   * @param timeStart (int) start time for the transformation
+   * @param timeEnd (int) start time for the transformation
+   */
   public ChangeColor(Color toColor, int timeStart, int timeEnd) {
     super(timeStart, timeEnd);
     Objects.requireNonNull(toColor, "Color object can't be null.");

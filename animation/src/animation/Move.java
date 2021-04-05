@@ -1,11 +1,19 @@
 package animation;
 
-import java.util.Objects;
-
+/**
+ * Represents a Move transformation, extends methods from the AbstractTransformation.
+ */
 public class Move extends AbstractTransformation {
   final float toX;
   final float toY;
   
+  /**
+   * Constructor calls the AbstractTransformation super class, takes in the color to change to.
+   * @param toX (float) x positon to move to
+   * @param toY (float) y position to move to
+   * @param timeStart (int) start time for the transformation
+   * @param timeEnd (int) start time for the transformation
+   */
   public Move(float toX, float toY, int timeStart, int timeEnd) {
     super(timeStart, timeEnd);
 

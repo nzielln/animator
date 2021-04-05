@@ -3,11 +3,10 @@ package animation;
 import java.util.Objects;
 
 /**
- *
+ * AbstractShape implements the Shape interface, it represents methods common to shapes in the
+ * animation.
  */
 public abstract class AbstractShape implements Shape {
-  //should we make these package private so we don't have to call getters when
-  //we want to use this info in rectangle and oval?
   final String name;
   final Color color;
   final float pointX;
@@ -21,15 +20,18 @@ public abstract class AbstractShape implements Shape {
   String type;
   
   /**
-   *
-   * @param name
-   * @param pointX
-   * @param pointY
-   * @param X
-   * @param Y
-   * @param r
-   * @param g
-   * @param b
+   * Constructor a shape, takes in parameter to create a shape.
+   * @param name unique id/name for the shape
+   * @param pointX (float) the initial X coordinate position of the shape on a positive plane
+   * @param pointY (float)  the initial Y coordinate position of the shape on a positive plane
+   * @param X (int) the initial x-radius or width of the shape
+   * @param Y (int) the initial y-radius or length of the shape
+   * @param r (int) the red value of the shape's color
+   * @param g (int) the green value of the shape's color
+   * @param b (int) the blue value of the shape's color
+   * @throws IllegalArgumentException if pointX or pointY are less than 0, X or Y are less than or
+   * equal to 0, if RGB values provided are less than 0 or greater than 255 and if name provided is
+   * null or an empty string.
    */
   public AbstractShape
   (String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
@@ -110,6 +112,10 @@ public abstract class AbstractShape implements Shape {
   
   
   //SETTERS AND OTHER OTHER------------------------------------------------------------------------
+  /**
+   * @throws IllegalArgumentException if time object appears in less than 0 or if appears is greater
+   * than this.disappears.
+   */
   @Override
   public void setAppears(int appears) {
     if (appears < 0) {
@@ -122,6 +128,10 @@ public abstract class AbstractShape implements Shape {
     this.appearsFlag = true;
   }
   
+  /**
+   * @throws IllegalArgumentException if time object disappears in less than 0 or if disappears is
+   * less than this.appears.
+   */
   @Override
   public void setDisappears(int disappears) {
     if (disappears < 0) {

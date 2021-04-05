@@ -1,13 +1,19 @@
 package animation;
+
+/**
+ * AbstractTransformation implements the Transformation interface and represents methods that
+ * are common to all transformation classes.
+ */
 public abstract class AbstractTransformation implements Transformation {
   final int timeStart;
   final int timeEnd;
   String type;
   
   /**
-   *
-   * @param timeStart
-   * @param timeEnd
+   * The constructor takes the start and end time for the transformation, intitilizes type to null.
+   * @param timeStart (int) transformation start time
+   * @param timeEnd (int) transformation end time
+   * @throws IllegalArgumentException is timeStart or timeEnd are less than 0.
    */
   public AbstractTransformation(int timeStart, int timeEnd) {
     if (timeStart < 0 || timeEnd < 0) {
