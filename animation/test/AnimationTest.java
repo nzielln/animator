@@ -5,6 +5,17 @@ import org.junit.Test;
 import java.io.CharArrayReader;
 import java.util.ArrayList;
 
+import animation.Animation;
+import animation.AnimationImpl;
+import animation.ChangeColor;
+import animation.Color;
+import animation.Move;
+import animation.Oval;
+import animation.Rectangle;
+import animation.Scale;
+import animation.Shape;
+import animation.Transformation;
+
 import static org.junit.Assert.*;
 
 public class AnimationTest {

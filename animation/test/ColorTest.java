@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import animation.Color;
+
 import static org.junit.Assert.*;
 
 public class ColorTest {
