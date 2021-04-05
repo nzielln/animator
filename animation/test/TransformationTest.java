@@ -136,12 +136,6 @@ public class TransformationTest {
   }
   
   @Test
-  public void copy() {
-    Transformation copy = color.copy();
-    assertEquals(copy.getTransformationType(), color.getTransformationType());
-  }
-  
-  @Test
   public void moveShape() {
   }
   

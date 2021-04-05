@@ -3,8 +3,6 @@ import java.util.Objects;
 public class Move extends AbstractTransformation {
   final float toX;
   final float toY;
-  final int timeStart;
-  final int timeEnd;
   
   public Move(float toX, float toY, int timeStart, int timeEnd) {
     super(timeStart, timeEnd);
@@ -15,8 +13,6 @@ public class Move extends AbstractTransformation {
     
     this.toX = toX;
     this.toY = toY;
-    this.timeStart = timeStart;
-    this.timeEnd = timeEnd;
     super.type = "Moves";
   }
   
@@ -32,13 +28,6 @@ public class Move extends AbstractTransformation {
   }
   
   //OTHER------------------------------------------------------------------------------------------
-  
-  //Should we return a Transformation or should we return a new Shape?
-  @Override
-  public Transformation copy() {
-    return new Move(this.toX, this.toY, this.timeStart, this.timeEnd);
-  }
-  
   @Override
   public boolean equals(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())

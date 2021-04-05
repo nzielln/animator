@@ -3,8 +3,6 @@ import java.util.Objects;
 public class Scale extends AbstractTransformation {
   final int toX;
   final int toY;
-  final int timeStart;
-  final int timeEnd;
   
   public Scale(int toX, int toY, int timeStart, int timeEnd) {
     super(timeStart, timeEnd);
@@ -15,8 +13,6 @@ public class Scale extends AbstractTransformation {
     
     this.toX = toX;
     this.toY = toY;
-    this.timeStart = timeStart;
-    this.timeEnd = timeEnd;
     super.type = "Scales";
   }
   
@@ -33,12 +29,6 @@ public class Scale extends AbstractTransformation {
   
   
   //OTHER------------------------------------------------------------------------------------------
-  @Override
-  public Transformation copy() {
-    return new Scale(this.toX, this.toY, this.timeStart, this.timeEnd);
-  }
-  
-  
   @Override
   public boolean equals(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())
