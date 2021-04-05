@@ -13,7 +13,6 @@ public class Rectangle extends AbstractShape {
   @Override
   public String getType() {
     return this.type;
-  
   }
   
   //OTHER------------------------------------------------------------------------------------------
