@@ -1,3 +1,5 @@
+package animation;
+
 import java.util.Objects;
 
 public class ChangeColor extends AbstractTransformation {

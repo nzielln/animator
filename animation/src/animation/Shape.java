@@ -1,3 +1,4 @@
+package animation;
 
 /**
  * Shape interface, represents methods implemented by the {@link AbstractShape} class.
