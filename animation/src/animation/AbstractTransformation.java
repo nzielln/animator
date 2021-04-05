@@ -1,5 +1,4 @@
-import java.util.Objects;
-
+package animation;
 public abstract class AbstractTransformation implements Transformation {
   final int timeStart;
   final int timeEnd;
