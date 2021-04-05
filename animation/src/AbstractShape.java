@@ -137,7 +137,8 @@ public abstract class AbstractShape implements Shape {
     return (this.name.equals(other.getName()) && this.color.equals(other.getColor())
             && this.pointX == other.getPositionX() && this.pointY == other.getPositionY()
             && this.X == other.getX() && this.Y == other.getY()
-            && this.appears == other.getAppears() && this.disappears == other.getDisappears());
+            && this.appears == other.getAppears() && this.disappears == other.getDisappears()
+            && this.type.equals(other.getType()));
   }
   
 }

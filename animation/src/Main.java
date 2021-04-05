@@ -7,7 +7,7 @@ public class Main {
   
   public static void main(String[] args) {
     //Create a new oval and rectangle shape
-    
+  
     Shape ov = new Oval("oval",5, 23, 4, 4, 24, 45, 57);
     Shape ova = new Oval("oval",5, 23, 4, 4, 24, 45, 57);
     Shape rect = new Rectangle("rectangle",5, 23, 4, 7, 244, 145, 7);
@@ -38,8 +38,13 @@ public class Main {
   
     System.out.println("Animation to string:");
     System.out.println(ani.toString());
-   
     
+    Color n = new Color(122, 122, 122);
+    Color m = new Color(122, 122, 122);
+    
+    System.out.println(n.equals(m));
+   
+  
   
   }
 }
