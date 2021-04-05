@@ -86,6 +86,13 @@ public class ColorTest {
     }
 
     try {
+      Color c2 = new Color(255, 12, 156);
+      assertFalse(c.equals(c2));
+    } catch (Exception e) {
+      fail("No exception should be thrown");
+    }
+
+    try {
       Color c2 = null;
       c.equals(c2);
       fail("Exception should be thrown");
