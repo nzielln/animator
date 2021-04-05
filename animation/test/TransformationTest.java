@@ -19,82 +19,82 @@ public class TransformationTest {
   @Before
   public void setUp() throws Exception {
     try {
-      move = new Move(0, 0, 3, 11);
+      move = new Move("move", 0, 0, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
   
     try {
-      move = new Move(23.4f, 34, 0, 0);
+      move = new Move("move", 23.4f, 34, 0, 0);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     //**
     try {
-    move = new Move(23.4f, 34, 3, 11);
+    move = new Move("move", 23.4f, 34, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
   
     try {
-      scale = new Scale(1, 1, 2, 7);
+      scale = new Scale("scale", 1, 1, 2, 7);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
   
     try {
-      scale = new Scale(1, 1, 0, 0);
+      scale = new Scale("scale",1, 1, 0, 0);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     //**
     try {
-      scale = new Scale(8, 12, 2, 7);
+      scale = new Scale("scale",8, 12, 2, 7);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
   
     try {
-      color = new ChangeColor(new Color(122, 122, 122), 2, 7);
+      color = new ChangeColor("color", new Color(122, 122, 122), 2, 7);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
   
     try {
-      color = new ChangeColor(new Color(122, 122, 122), 0, 7);
+      color = new ChangeColor("color", new Color(122, 122, 122), 0, 7);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     //Invalid inputs
     try {
-      bad = new Move(-23, 33, 2, 7); //negative position
+      bad = new Move("move",-23, 33, 2, 7); //negative position
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
   
     try {
-      bad = new Move(23, 33, -2, 7); //negative time
+      bad = new Move("move",23, 33, -2, 7); //negative time
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
   
     try {
-      bad = new Move(-2, -4, 2, 7); //both positions negative
+      bad = new Move("move",-2, -4, 2, 7); //both positions negative
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
   
     try {
-      scale = new Scale(-4, 1, 2, 7); //negative length/width
+      scale = new Scale("scale",-4, 1, 2, 7); //negative length/width
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
   
     try {
-      scale = new Scale(0, 1, 2, 7); //length of 0
+      scale = new Scale("scale",0, 1, 2, 7); //length of 0
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }

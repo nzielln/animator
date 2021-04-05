@@ -7,19 +7,22 @@ package animation;
 public abstract class AbstractTransformation implements Transformation {
   final int timeStart;
   final int timeEnd;
+  final String tID;
   String type;
   
   /**
    * The constructor takes the start and end time for the transformation, intitilizes type to null.
    * @param timeStart (int) transformation start time
    * @param timeEnd (int) transformation end time
+   * @param tID (String) Transformation id
    * @throws IllegalArgumentException is timeStart or timeEnd are less than 0.
    */
-  public AbstractTransformation(int timeStart, int timeEnd) {
+  public AbstractTransformation(String tID, int timeStart, int timeEnd) {
     if (timeStart < 0 || timeEnd < 0) {
       throw new IllegalArgumentException("Time must be a positive integer.");
     }
     
+    this.tID = tID;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
     this.type = null;
@@ -29,6 +32,11 @@ public abstract class AbstractTransformation implements Transformation {
   @Override
   public Transformation getTransformation() {
     return this;
+  }
+  
+  @Override
+  public String getID() {
+    return this.tID;
   }
   
   @Override

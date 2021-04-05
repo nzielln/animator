@@ -14,8 +14,8 @@ public class ChangeColor extends AbstractTransformation {
    * @param timeStart (int) start time for the transformation
    * @param timeEnd (int) start time for the transformation
    */
-  public ChangeColor(Color toColor, int timeStart, int timeEnd) {
-    super(timeStart, timeEnd);
+  public ChangeColor(String tid, Color toColor, int timeStart, int timeEnd) {
+    super(tid, timeStart, timeEnd);
     Objects.requireNonNull(toColor, "Color object can't be null.");
     
     this.toColor = toColor;
