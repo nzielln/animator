@@ -251,6 +251,63 @@ public class ShapeTest {
   
   @Test
   public void testEquals() {
-  
+    try {
+      Shape rect2 = new Rectangle("rect", 67, 89, 8,
+              8, 122, 122, 122);
+      assertTrue(rect.equals(rect2));
+    } catch (Exception e) {
+      fail("No exception should be thrown");
+    }
+
+    //Different name
+    try {
+      Shape rect2 = new Rectangle("rect2", 67, 89, 8,
+              8, 122, 122, 122);
+      assertFalse(rect.equals(rect2));
+    } catch (Exception e) {
+      fail("No exception should be thrown");
+    }
+
+    //Different point
+    try {
+      Shape rect2 = new Rectangle("rect", 50, 75, 8,
+              8, 122, 122, 122);
+      assertFalse(rect.equals(rect2));
+    } catch (Exception e) {
+      fail("No exception should be thrown");
+    }
+
+    //Different XY
+    try {
+      Shape rect2 = new Rectangle("rect", 67, 89, 5,
+              5, 122, 122, 122);
+      assertFalse(rect.equals(rect2));
+    } catch (Exception e) {
+      fail("No exception should be thrown");
+    }
+
+    //Different RBG
+    try {
+      Shape rect2 = new Rectangle("rect", 67, 89, 8,
+              8, 255, 0, 255);
+      assertFalse(rect.equals(rect2));
+    } catch (Exception e) {
+      fail("No exception should be thrown");
+    }
+
+    //Null object
+    try {
+      Shape rect2 = null;
+      rect.equals(rect2);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    try {
+      Shape rect2 = null;
+      rect2.equals(rect);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
   }
 }
