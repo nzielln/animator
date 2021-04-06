@@ -1,5 +1,4 @@
 package animation;
-import java.util.List;
 
 /**
  * Animation interface, represents methods implemented by the {@link AbstractTransformation} class.
@@ -58,9 +57,9 @@ public interface Transformation {
   
   //OTHER------------------------------------------------------------------------------------------
   /**
-   *
-   * @param other
-   * @return
+   * Determines if two Transformation objects are identical.
+   * @param other (Transformation) another Transformation object
+   * @return true if the two objects are identical
    */
   boolean equals(Transformation other);
   

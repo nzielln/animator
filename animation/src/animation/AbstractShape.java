@@ -30,11 +30,11 @@ public abstract class AbstractShape implements Shape {
    * @param g (int) the green value of the shape's color
    * @param b (int) the blue value of the shape's color
    * @throws IllegalArgumentException if pointX or pointY are less than 0, X or Y are less than or
-   * equal to 0, if RGB values provided are less than 0 or greater than 255 and if name provided is
-   * null or an empty string.
+   *      equal to 0, if RGB values provided are less than 0 or greater than 255 and if name
+   *      provided is null or an empty string.
    */
-  public AbstractShape
-  (String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
+  public AbstractShape(
+          String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
     if (name == null || name.equals("")) {
       throw new IllegalArgumentException("Name can't be null or empty string");
     } else if (pointX < 0 || pointY < 0) {
@@ -112,10 +112,6 @@ public abstract class AbstractShape implements Shape {
   
   
   //SETTERS AND OTHER OTHER------------------------------------------------------------------------
-  /**
-   * @throws IllegalArgumentException if time object appears in less than 0 or if appears is greater
-   * than this.disappears.
-   */
   @Override
   public void setAppears(int appears) {
     if (appears < 0) {
@@ -128,10 +124,6 @@ public abstract class AbstractShape implements Shape {
     this.appearsFlag = true;
   }
   
-  /**
-   * @throws IllegalArgumentException if time object disappears in less than 0 or if disappears is
-   * less than this.appears.
-   */
   @Override
   public void setDisappears(int disappears) {
     if (disappears < 0) {

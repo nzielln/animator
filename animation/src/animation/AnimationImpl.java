@@ -6,9 +6,15 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
+/**
+ * Represents an AnimationImpl class for the animation program, implements Animation interface.
+ */
 public class AnimationImpl implements Animation {
   HashMap<Shape, List<Transformation>> hashmap;
   
+  /**
+  * Constructor for the AnimationImpl, create a hashmap of Shapes and list of Transformations.
+  */
   public AnimationImpl() {
     hashmap = new HashMap<>();
   }
@@ -43,7 +49,7 @@ public class AnimationImpl implements Animation {
     Objects.requireNonNull(id, "Id can't be null");
     
     for (Shape s : hashmap.keySet()) {
-      if(s.getName().equals(id)) {
+      if (s.getName().equals(id)) {
         return s;
       }
     }
@@ -63,7 +69,7 @@ public class AnimationImpl implements Animation {
     Objects.requireNonNull(id, "Id can't be null");
     
     for (Shape s : hashmap.keySet()) {
-      if(s.getName().equals(id)) {
+      if (s.getName().equals(id)) {
         return hashmap.get(s);
       }
     }
@@ -124,6 +130,7 @@ public class AnimationImpl implements Animation {
     }
   }
   
+  @Override
   public boolean validTransformation(String id, Transformation t) {
     List<Transformation> tlist = new ArrayList<>();
     for (Shape s: hashmap.keySet()) {
@@ -132,7 +139,7 @@ public class AnimationImpl implements Animation {
       }
     }
     
-    for(Transformation ts : tlist) {
+    for (Transformation ts : tlist) {
       if (ts.equals(t)) {
         return false;
       } else if (ts.getTransformationType().equals(t.getTransformationType())
@@ -153,12 +160,12 @@ public class AnimationImpl implements Animation {
       throw new IllegalArgumentException("Id can't be empty string");
     }
     
-    if(!validTransformation(id, t)) {
+    if (!validTransformation(id, t)) {
       throw new IllegalArgumentException("Transformation not vaid.");
     }
     
     for (Shape s : hashmap.keySet()) {
-      if(s.getName().equals(id)) {
+      if (s.getName().equals(id)) {
         if (t.getTimeStart() < s.getAppears() || t.getTimeStart() > s.getDisappears()
                 || t.getTimeEnd() < s.getAppears() || t.getTimeEnd() > s.getDisappears()) {
           throw new IllegalArgumentException("Time provided not within acceptable range.");
@@ -189,7 +196,7 @@ public class AnimationImpl implements Animation {
     }
     
     for (Shape s : hashmap.keySet()) {
-      if(s.getName().equals(id)) {
+      if (s.getName().equals(id)) {
         if (hashmap.get(s).size() == 0) {
           throw new IllegalArgumentException("Can't remove transformation from empty list");
         }
@@ -229,8 +236,8 @@ public class AnimationImpl implements Animation {
           //if move transformation
         } else if (t.getTransformationType().equals("Moves")) {
           String desc = "Shape " + s.getName() + " moves from (" + s.getPositionX()
-                  + "," + s.getPositionY() + ") to (" + t.getToX()+ ","
-                  + t.getToY() + ") from " + t.getTimeStart()+ " to " + t.getTimeEnd() + ".";
+                  + "," + s.getPositionY() + ") to (" + t.getToX() + ","
+                  + t.getToY() + ") from " + t.getTimeStart() + " to " + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
           //if scale tranformation
         } else {
