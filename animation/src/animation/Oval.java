@@ -10,13 +10,14 @@ public class Oval extends AbstractShape {
    * @param name unique id/name for the shape
    * @param pointX (float) the initial X coordinate position of the shape on a positive plane
    * @param pointY (float)  the initial Y coordinate position of the shape on a positive plane
-   * @param x (int) the initial x-radius or width of the shape
-   * @param y (int) the initial y-radius or length of the shape
-   * @param r (int) the red value of the shape's color
-   * @param g (int) the green value of the shape's color
-   * @param b (int) the blue value of the shape's color
+   * @param x (float) the initial x-radius or width of the shape
+   * @param y (float) the initial y-radius or length of the shape
+   * @param r (float) the red value of the shape's color
+   * @param g (float) the green value of the shape's color
+   * @param b (float) the blue value of the shape's color
    */
-  public Oval(String name, float pointX, float pointY, int x, int y, int r, int g, int b) {
+  public Oval(
+          String name, float pointX, float pointY, float x, float y, float r, float g, float b) {
     super(name, pointX, pointY, x, y,  r, g, b);
     super.type = "OVAL";
   }

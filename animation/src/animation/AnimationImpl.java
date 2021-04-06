@@ -256,7 +256,7 @@ public class AnimationImpl implements Animation {
         
       }
     }
-    return "Shapes: \n\n" + str.toString().trim();
+    return "Shapes: \n" + str.toString().trim();
   }
   
 }
