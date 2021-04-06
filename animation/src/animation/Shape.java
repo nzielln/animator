@@ -95,7 +95,7 @@ public interface Shape {
    * @param other (shape) the other shape to compare the shape to.
    * @return (boolean) true if the shapes are the same, false if not.
    */
-  boolean equals(Shape other);
+  boolean sameObject(Shape other);
   
   /**
    * Returns a string representation of the Shape.
