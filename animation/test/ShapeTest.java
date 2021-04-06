@@ -10,6 +10,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+/**
+ * Test class for the Shape Interface and its subtypes.
+ */
 public class ShapeTest {
   private Shape oval;
   private Shape rect;
@@ -22,7 +25,7 @@ public class ShapeTest {
     } catch (Exception e) {
       fail("Exception should not have been thrown.");
     }
-  
+    
     try {
       rect = new Rectangle("rect", 17.5f, 9.12f, 8, 8, 122, 122, 122);
     } catch (Exception e) {
@@ -34,7 +37,7 @@ public class ShapeTest {
     } catch (Exception e) {
       fail("Exception should not have been thrown.");
     }
-  
+    
     
     //Invalid Points
     Shape bad;
@@ -93,7 +96,7 @@ public class ShapeTest {
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
-  
+    
     try {
       bad = new Oval("oval", 34, 23, -4, 5, 263, -35, 123);
       fail("Exception should have been thrown.");
@@ -129,7 +132,7 @@ public class ShapeTest {
     assertEquals(35, oval.getColor().getG());
     assertEquals(123, oval.getColor().getB());
     assertEquals(122, rect.getColor().getR());
-
+    
   }
   
   @Test
@@ -146,33 +149,33 @@ public class ShapeTest {
   public void getLengthWidth() {
     assertEquals(4, oval.getX(), 0.001);
     assertEquals(8, rect.getX(), 0.001);
-  
+    
     assertEquals(5, oval.getY(), 0.001);
     assertEquals(8, rect.getY(), 0.001);
   }
   
   @Test
   public void AppearsDisappears() {
-   try{
-     oval.setAppears(1);
-   } catch (Exception ignored) {
-     fail("No exception should be thrown.");
-   }
-  
-    try{
+    try {
+      oval.setAppears(1);
+    } catch (Exception ignored) {
+      fail("No exception should be thrown.");
+    }
+    
+    try {
       oval.setAppears(0);
     } catch (Exception ignored) {
       fail("No exception should be thrown.");
     }
-  
-    try{
+    
+    try {
       oval.setDisappears(10);
     } catch (Exception ignored) {
       fail("No exception should be thrown.");
     }
-  
+    
     //Invalid inputs - negative time
-    try{
+    try {
       rect.setAppears(-2);
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
@@ -181,16 +184,16 @@ public class ShapeTest {
     rect.setAppears(2);
     
     //Invalid - disappears less than appears
-    try{
+    try {
       rect.setDisappears(1);
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
     }
     
     rect.setDisappears(13);
-  
+    
     //Invalid - appears more than appears
-    try{
+    try {
       rect.setAppears(24);
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
@@ -210,7 +213,7 @@ public class ShapeTest {
     assertEquals(24, ovalCp.getColor().getR());
     assertEquals(35, ovalCp.getColor().getG());
     assertEquals(123, ovalCp.getColor().getB());
-  
+    
     assertEquals(23, ovalCp.getPositionX(), 0.001);
     assertEquals(45, ovalCp.getPositionY(), 0.001);
     
@@ -225,7 +228,7 @@ public class ShapeTest {
   public void testToString() {
     rect.setAppears(2);
     rect.setDisappears(11);
-  
+    
     oval.setAppears(1);
     oval.setDisappears(10);
     
@@ -249,7 +252,7 @@ public class ShapeTest {
     
     assertEquals(re, rect.toString());
     assertEquals(ov, oval.toString());
-  
+    
   }
   
   @Test
@@ -261,7 +264,7 @@ public class ShapeTest {
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
-
+    
     //Different name
     try {
       Shape rect2 = new Rectangle("rect2", 67, 89, 8,
@@ -270,7 +273,7 @@ public class ShapeTest {
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
-
+    
     //Different point
     try {
       Shape rect2 = new Rectangle("rect", 50, 75, 8,
@@ -279,7 +282,7 @@ public class ShapeTest {
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
-
+    
     //Different XY
     try {
       Shape rect2 = new Rectangle("rect", 67, 89, 5,
@@ -288,7 +291,7 @@ public class ShapeTest {
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
-
+    
     //Different RBG
     try {
       Shape rect2 = new Rectangle("rect", 67, 89, 8,
@@ -297,7 +300,7 @@ public class ShapeTest {
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
-
+    
     //Null object
     try {
       Shape rect2 = null;
@@ -305,7 +308,7 @@ public class ShapeTest {
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
-
+    
     try {
       Shape rect2 = null;
       rect2.equals(rect);

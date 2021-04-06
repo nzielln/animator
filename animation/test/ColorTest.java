@@ -8,6 +8,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+/**
+ * Test class for the Color class.
+ */
 public class ColorTest {
   private Color c;
   
