@@ -28,7 +28,8 @@ public class AnimationFullTest {
     
     Shape ovalOne = new Oval("ovalOne",5, 23, 4, 4, 24, 45, 57);
     Shape ovalTwo = new Oval("ovalTwo",5, 3, 4, 5, 2, 5, 7);
-    Shape rectangleOne = new Rectangle("rectOne",5, 23, 4, 7, 244, 145, 7);
+    Shape rectangleOne = new Rectangle("rectOne",5, 23, 4, 7, 244,
+            145, 7);
   
     ovalOne.setAppears(0);
     ovalOne.setDisappears(10);
@@ -42,7 +43,8 @@ public class AnimationFullTest {
     animation.addShape(rectangleOne, new ArrayList<>());
     
     //create new transformation
-    Transformation colorOne = new ChangeColor("change_color", new Color(35, 45, 56), 3, 7);
+    Transformation colorOne = new ChangeColor("change_color", new Color(35, 45, 56),
+            3, 7);
     Transformation scaleOne = new Scale("scaleOne", 12, 7, 2, 7);
     Transformation moveOne = new Move("moveOne", 0, 0, 3, 10);
   
@@ -69,9 +71,11 @@ public class AnimationFullTest {
             + "Min corner: (5.0,23.0), Width: 4.0, Length: 7.0, Color: (244.0, 145.0, 7.0)\n"
             + "Appears at t=2\n"
             + "Disappears at t=10\n\n"
-            + "Shape ovalOne changes color from (24.0, 45.0, 57.0) to (35.0, 45.0, 56.0) from t=3 to t=7.\n"
+            + "Shape ovalOne changes color from (24.0, 45.0, 57.0) to (35.0, 45.0, 56.0) from t=3 "
+            + "to t=7.\n"
             + "Shape ovalOne moves from (5.0,23.0) to (0.0,0.0) from t=3 to t=10.\n"
-            + "Shape rectOne scales from Width: 4.0, Height: 7.0 to Width: 12.0, Height: 7.0 from t=2 to t=7.", animation.toString());
+            + "Shape rectOne scales from Width: 4.0, Height: 7.0 to Width: 12.0, Height: 7.0 from "
+            + "t=2 to t=7.", animation.toString());
   
   }
 }

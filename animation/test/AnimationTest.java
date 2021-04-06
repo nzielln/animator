@@ -471,7 +471,8 @@ public class AnimationTest {
               + "Appears at t=1\n"
               + "Disappears at t=200\n"
               + "\n"
-              + "Shape rect3 moves from (3.0,3.0) to (9.0,9.0) from t=10 to t=100.", ani2.toString());
+              + "Shape rect3 moves from (3.0,3.0) to (9.0,9.0) from t=10 to t=100.",
+              ani2.toString());
     } catch (Exception e) {
       fail("Exception should not be thrown");
     }
