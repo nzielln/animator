@@ -14,7 +14,9 @@ import animation.Scale;
 import animation.Shape;
 import animation.Transformation;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 
 public class AnimationTest {
   private Animation ani;
