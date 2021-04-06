@@ -195,20 +195,14 @@ public class AnimationTest {
     assertEquals(2, ani2.getSize());
     assertEquals("[Name: rect4\n"
             + "Type: RECTANGLE\n"
-            + "Corner: (3.0,3.0)\n"
-            + "Width: 5.0\n"
-            + "Length: 10.0\n"
-            + "Color: (255.0, 0.0, 255.0)\n"
-            + "Appears: 0\n"
-            + "Disappears: 0\n"
+            + "Min corner: (3.0,3.0), Width: 5.0, Length: 10.0, Color: (255.0, 0.0, 255.0)\n"
+            + "Appears at t=0\n"
+            + "Disappears at t=0\n"
             + ", Name: oval4\n"
             + "Type: OVAL\n"
-            + "Center: (5.0,5.0)\n"
-            + "X-Radius: 2.0\n"
-            + "Y-Radius: 4.0\n"
-            + "Color: (0.0, 0.0, 0.0)\n"
-            + "Appears: 0\n"
-            + "Disappears: 0\n]", ani2.getShapes().toString());
+            + "Center: (5.0,5.0), X radius: 2.0, Y radius: 4.0, Color: (0.0, 0.0, 0.0)\n"
+            + "Appears at t=0\n"
+            + "Disappears at t=0\n]", ani2.getShapes().toString());
     
     //add null object
     try {
@@ -451,12 +445,9 @@ public class AnimationTest {
       assertEquals("Shapes: \n"
               + "Name: rect3\n"
               + "Type: RECTANGLE\n"
-              + "Corner: (3.0,3.0)\n"
-              + "Width: 50.0\n"
-              + "Length: 25.0\n"
-              + "Color: (255.0, 255.0, 255.0)\n"
-              + "Appears: 0\n"
-              + "Disappears: 0", ani2.toString());
+              + "Min corner: (3.0,3.0), Width: 50.0, Length: 25.0, Color: (255.0, 255.0, 255.0)\n"
+              + "Appears at t=0\n"
+              + "Disappears at t=0", ani2.toString());
     } catch (Exception e) {
       fail("Exception should not be thrown");
     }
@@ -476,14 +467,11 @@ public class AnimationTest {
       assertEquals("Shapes: \n"
               + "Name: rect3\n"
               + "Type: RECTANGLE\n"
-              + "Corner: (3.0,3.0)\n"
-              + "Width: 50.0\n"
-              + "Length: 25.0\n"
-              + "Color: (255.0, 255.0, 255.0)\n"
-              + "Appears: 1\n"
-              + "Disappears: 200\n"
+              + "Min corner: (3.0,3.0), Width: 50.0, Length: 25.0, Color: (255.0, 255.0, 255.0)\n"
+              + "Appears at t=1\n"
+              + "Disappears at t=200\n"
               + "\n"
-              + "Shape rect3 moves from (3.0,3.0) to (9.0,9.0) from 10 to 100.", ani2.toString());
+              + "Shape rect3 moves from (3.0,3.0) to (9.0,9.0) from t=10 to t=100.", ani2.toString());
     } catch (Exception e) {
       fail("Exception should not be thrown");
     }
