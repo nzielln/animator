@@ -3,11 +3,16 @@ import org.junit.Test;
 
 import animation.Color;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+/**
+ * Test class for the Color class.
+ */
 public class ColorTest {
   private Color c;
-  private Color bad;
   
   
   @Before
@@ -37,6 +42,7 @@ public class ColorTest {
     }
     
     //Invalid Inputs
+    Color bad;
     try {
       bad = new Color(-123, 214, 34);
       fail("Exception should be thrown");
