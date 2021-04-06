@@ -71,12 +71,16 @@ public interface Shape {
   /**
    * Set the time the Shape appears in the animation.
    * @param appears time in int, when shape appears
+   * @throws IllegalArgumentException if time object appears in less than 0 or if appears is greater
+   *        than this.disappears.
    */
   void setAppears(int appears);
   
   /**
    * Set the time the Shape disappears in the animation.
    * @param disappears time in int, when shape disappears
+   * @throws IllegalArgumentException if time object disappears in less than 0 or if disappears is
+   *        less than this.appears.
    */
   void setDisappears(int disappears);
   
@@ -96,13 +100,13 @@ public interface Shape {
   /**
    * Returns a string representation of the Shape.
    * @return a string
-   * "Name:
-   *  Type:
-   *  Corner/Center:
-   *  Width/X-Radius:
-   *  Length/Y-Radius:
-   *  Appears:
-   *  Disappears: "
+   *        "Name:
+   *        Type:
+   *        Corner/Center:
+   *        Width/X-Radius:
+   *        Length/Y-Radius:
+   *        Appears:
+   *        Disappears: "
    */
   String toString();
 

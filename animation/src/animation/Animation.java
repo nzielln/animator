@@ -1,4 +1,5 @@
 package animation;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -56,7 +57,7 @@ public interface Animation {
   /**
    * Adds a shape to the list of Shape(s) and a new list of Transformation to the animation.
    * @param s (Shape) shape to add to list
-   * @param l (List<Transformation>) list of tranformations
+   * @param l (Listof Transformation) list of tranformations
    * @throws IllegalArgumentException if id is already in the animation's hashmap
    */
   void addShape(Shape s, List<Transformation> l);
@@ -83,7 +84,7 @@ public interface Animation {
    * @param id (String) id of Shape to add transformation to
    * @param t (Transformation) a Transformation to add to list
    * @throws IllegalArgumentException if id is an empty string or if start time of the
-   * transformation is not valid
+   *        transformation is not valid
    * @throws IllegalStateException if
    */
   void addTransformation(String id, Transformation t);
@@ -100,19 +101,19 @@ public interface Animation {
   /**
    * Returns a string representation of the animation.
    * @return a string
-   * "Shape:
-   * //For each shape
-   * "Name:
-   *  Type:
-   *  Corner/Center:
-   *  Width/X-Radius:
-   *  Length/Y-Radius:
-   *  Appears:
-   *  Disappears:
+   *        "Shape:
+   *        //For each shape
+   *        "Name:
+   *        Type:
+   *        Corner/Center:
+   *        Width/X-Radius:
+   *        Length/Y-Radius:
+   *        Appears:
+   *        Disappears:
    *
    *
-   *  //For each transformation
-   *  Description of transformation: Shape, name, changes, times
+   *        //For each transformation
+   *        Description of transformation: Shape, name, changes, times
    */
   String toString();
 }
