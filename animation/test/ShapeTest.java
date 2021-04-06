@@ -10,7 +10,6 @@ import static org.junit.Assert.*;
 public class ShapeTest {
   private Shape oval;
   private Shape rect;
-  private Shape bad;
   
   @Before
   public void setUp() throws Exception {
@@ -35,6 +34,7 @@ public class ShapeTest {
   
     
     //Invalid Points
+    Shape bad;
     try {
       bad = new Oval("oval", -34, 45, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");

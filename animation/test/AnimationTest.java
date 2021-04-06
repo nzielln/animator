@@ -1,8 +1,6 @@
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.CharArrayReader;
 import java.util.ArrayList;
 
 import animation.Animation;
@@ -22,11 +20,9 @@ public class AnimationTest {
   private Animation ani;
   private Shape ovalNull;
   private Shape oval;
-  private Shape rect;
   private Shape rect2;
   private Transformation move;
   private Transformation move2;
-  private Transformation move3;
   private Transformation scale;
   private Transformation scale2;
   private Transformation scale3;
@@ -36,7 +32,7 @@ public class AnimationTest {
   public void setUp() throws Exception {
     ani = new AnimationImpl();
     oval = new Oval("oval", 34, 34, 4, 5, 122, 122, 122);
-    rect = new Rectangle("rect", 12, 34, 8, 11, 1, 22, 89);
+    Shape rect = new Rectangle("rect", 12, 34, 8, 11, 1, 22, 89);
     rect2 = new Rectangle("rect 2", 45, 50.5f,
             12, 12, 0, 125, 255);
     oval.setAppears(1);
@@ -57,7 +53,7 @@ public class AnimationTest {
     scale2 = new Scale("scale2",11, 11, 4, 7);
   
     //for rect2
-    move3 = new Move("move3",45, 70, 2, 7);
+    Transformation move3 = new Move("move3", 45, 70, 2, 7);
     scale3 = new Scale("scale3",24, 24, 8, 14);
     
     color = new ChangeColor("color", new Color(1, 12, 122), 7, 10);
@@ -136,10 +132,6 @@ public class AnimationTest {
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
-  }
-  
-  @Test
-  public void getByTime() {
   }
   
   @Test
@@ -313,14 +305,14 @@ public class AnimationTest {
     try {
       ani.addTransformation("oval", bad);
       fail("Exception should be thrown.");
-    } catch (Exception ignore) {
+    } catch (Exception ignored) {
     }
 
   
     try {
       ani.addTransformation("oval", move);
       fail("Exception should be thrown.");
-    } catch (Exception ignore) {
+    } catch (Exception ignored) {
     }
     
 

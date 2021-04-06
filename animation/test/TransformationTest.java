@@ -1,5 +1,4 @@
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import animation.ChangeColor;
@@ -14,8 +13,7 @@ public class TransformationTest {
   private Transformation move;
   private Transformation scale;
   private Transformation color;
-  private Transformation bad;
-
+  
   @Before
   public void setUp() throws Exception {
     try {
@@ -69,6 +67,7 @@ public class TransformationTest {
     }
     
     //Invalid inputs
+    Transformation bad;
     try {
       bad = new Move("move",-23, 33, 2, 7); //negative position
       fail("Exception should be thrown");
