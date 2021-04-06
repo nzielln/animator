@@ -256,11 +256,11 @@ public class ShapeTest {
   }
   
   @Test
-  public void testEquals() {
+  public void testSame() {
     try {
       Shape rect2 = new Rectangle("rect", 67, 89, 8,
               8, 122, 122, 122);
-      assertTrue(rect.equals(rect2));
+      assertTrue(rect.sameObject(rect2));
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
@@ -269,7 +269,7 @@ public class ShapeTest {
     try {
       Shape rect2 = new Rectangle("rect2", 67, 89, 8,
               8, 122, 122, 122);
-      assertFalse(rect.equals(rect2));
+      assertFalse(rect.sameObject(rect2));
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
@@ -278,7 +278,7 @@ public class ShapeTest {
     try {
       Shape rect2 = new Rectangle("rect", 50, 75, 8,
               8, 122, 122, 122);
-      assertFalse(rect.equals(rect2));
+      assertFalse(rect.sameObject(rect2));
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
@@ -287,7 +287,7 @@ public class ShapeTest {
     try {
       Shape rect2 = new Rectangle("rect", 67, 89, 5,
               5, 122, 122, 122);
-      assertFalse(rect.equals(rect2));
+      assertFalse(rect.sameObject(rect2));
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
@@ -296,7 +296,7 @@ public class ShapeTest {
     try {
       Shape rect2 = new Rectangle("rect", 67, 89, 8,
               8, 255, 0, 255);
-      assertFalse(rect.equals(rect2));
+      assertFalse(rect.sameObject(rect2));
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
@@ -304,14 +304,14 @@ public class ShapeTest {
     //Null object
     try {
       Shape rect2 = null;
-      rect.equals(rect2);
+      rect.sameObject(rect2);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
     
     try {
       Shape rect2 = null;
-      rect2.equals(rect);
+      rect2.sameObject(rect);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }

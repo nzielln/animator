@@ -86,28 +86,28 @@ public class ColorTest {
   public void testEquals() {
     try {
       Color c2 = new Color(122, 214, 34);
-      assertTrue(c.equals(c2));
+      assertTrue(c.sameObject(c2));
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
 
     try {
       Color c2 = new Color(255, 12, 156);
-      assertFalse(c.equals(c2));
+      assertFalse(c.sameObject(c2));
     } catch (Exception e) {
       fail("No exception should be thrown");
     }
 
     try {
       Color c2 = null;
-      c.equals(c2);
+      c.sameObject(c2);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
 
     try {
       Color c2 = null;
-      c2.equals(c);
+      c2.sameObject(c);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }

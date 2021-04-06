@@ -8,6 +8,8 @@ import animation.Scale;
 import animation.Transformation;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 /**
@@ -164,6 +166,24 @@ public class TransformationTest {
     assertEquals(122, color.getToColor().getR());
     assertEquals(122, color.getToColor().getG());
     assertEquals(122, color.getToColor().getB());
+  }
+  
+  @Test
+  public void testSame() {
+    Transformation n = new Move("move", 23.4f, 34, 3, 11);
+    assertTrue(move.sameObject(n));
+  
+    Transformation sa = new Scale("scale",8, 12, 2, 7);
+    assertTrue(scale.sameObject(sa));
+  
+    Transformation nn = new Move("moves", 23.4f, 34, 3, 11);
+    assertFalse(move.sameObject(nn));
+  
+    Transformation diffp = new Move("move", 23, 34, 3, 11);
+    assertFalse(move.sameObject(diffp));
+  
+    Transformation s = new Scale("scale", 23, 34, 3, 11);
+    assertFalse(move.sameObject(s));
   }
   
 }

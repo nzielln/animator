@@ -140,7 +140,7 @@ public abstract class AbstractShape implements Shape {
   public boolean sameObject(Shape other) {
     Objects.requireNonNull(other);
 
-    return (this.name.equals(other.getName()) && this.color.equals(other.getColor())
+    return (this.name.equals(other.getName()) && this.color.sameObject(other.getColor())
             && this.pointX == other.getPositionX() && this.pointY == other.getPositionY()
             && this.x == other.getX() && this.y == other.getY()
             && this.appears == other.getAppears() && this.disappears == other.getDisappears()

@@ -490,4 +490,66 @@ public class AnimationTest {
       fail("Exception should not be thrown");
     }
   }
+  
+  @Test
+  public void animationTest() {
+    //Create a new animation
+    Animation ani = new AnimationImpl();
+    
+    Shape ov = new Oval("oval",5, 23, 4, 4, 24, 45, 57);
+    Shape ova = new Oval("oval2",5, 23, 4, 4, 24, 45, 57);
+    Shape rect = new Rectangle("rectangle",5, 23, 4, 7, 244, 145, 7);
+  
+    ov.setAppears(0);
+    ov.setDisappears(10);
+    rect.setAppears(2);
+    rect.setDisappears(10);
+  
+    //add shapes
+    ani.addShape(ov, new ArrayList<>());
+    ani.addShape(rect, new ArrayList<>());
+    ani.addShape(ova, new ArrayList<>());
+    
+    //create new transformation
+    Transformation color = new ChangeColor("change_color", new Color(35, 45, 56), 3, 7);
+    Transformation scale = new Scale("scale", 12, 7, 2, 7);
+    Transformation move = new Move("move", 0, 0, 3, 10);
+  
+    //add transformation
+    ani.addTransformation("oval", color);
+    ani.addTransformation("oval", move);
+    ani.addTransformation("rectangle", scale);
+    
+    assertEquals(3, ani.getSize());
+    assertEquals(2, ani.getSizeTransformations("oval") );
+    assertEquals("Shapes: \n\n"
+            + "Name: oval\n"
+            + "Type: OVAL\n"
+            + "Center: (5.0,23.0)\n"
+            + "X-Radius: 4\n"
+            + "Y-Radius: 4\n"
+            + "Color: (24, 45, 57)\n"
+            + "Appears: 0\n"
+            + "Disappears: 10\n\n"
+            + "Name: oval2\n"
+            + "Type: OVAL\n"
+            + "Center: (5.0,23.0)\n"
+            + "X-Radius: 4\n"
+            + "Y-Radius: 4\n"
+            + "Color: (24, 45, 57)\n"
+            + "Appears: 0\n"
+            + "Disappears: 0\n\n"
+            + "Name: rectangle\n"
+            + "Type: RECTANGLE\n"
+            + "Corner: (5.0,23.0)\n"
+            + "Width: 4\n"
+            + "Length: 7\n"
+            + "Color: (244, 145, 7)\n"
+            + "Appears: 2\n"
+            + "Disappears: 10\n\n"
+            + "Shape oval changes color from (24, 45, 57) to (35, 45, 56) from 3 to 7.\n"
+            + "Shape oval moves from (5.0,23.0) to (0.0,0.0) from 3 to 10.\n"
+            + "Shape rectangle scales from Width: 4 Height: 7 to Width: 12.0 and Height: 7.0 from 2 to 7.", ani.toString());
+  
+  }
 }
