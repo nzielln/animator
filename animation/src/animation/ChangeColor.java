@@ -29,7 +29,7 @@ public class ChangeColor extends AbstractTransformation {
   }
   
   @Override
-  public boolean equals(Transformation other) {
+  public boolean sameObject(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())
             && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
             && this.toColor == other.getToColor() && this.tID.equals(other.getID()));

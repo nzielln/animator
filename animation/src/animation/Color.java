@@ -67,7 +67,7 @@ public class Color {
    * @param other (Color) color object
    * @return true if the two objects are identical
    */
-  public boolean equals(Color other) {
+  public boolean sameObject(Color other) {
     Objects.requireNonNull(other, "Color can't be null");
     return (this.r == other.r && this.b == other.b && this.g == other.g);
   }

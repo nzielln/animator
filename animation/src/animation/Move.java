@@ -38,7 +38,7 @@ public class Move extends AbstractTransformation {
   
   //OTHER------------------------------------------------------------------------------------------
   @Override
-  public boolean equals(Transformation other) {
+  public boolean sameObject(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())
             && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
             && this.toX == other.getToX() && this.toY == other.getToY()

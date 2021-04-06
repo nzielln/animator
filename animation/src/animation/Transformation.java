@@ -61,7 +61,7 @@ public interface Transformation {
    * @param other (Transformation) another Transformation object
    * @return true if the two objects are identical
    */
-  boolean equals(Transformation other);
+  boolean sameObject(Transformation other);
   
   
   /**

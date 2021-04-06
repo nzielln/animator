@@ -111,7 +111,7 @@ public abstract class AbstractShape implements Shape {
   }
   
   
-  //SETTERS AND OTHER OTHER------------------------------------------------------------------------
+  //SETTERS AND OTHER------------------------------------------------------------------------------
   @Override
   public void setAppears(int appears) {
     if (appears < 0) {
@@ -137,16 +137,9 @@ public abstract class AbstractShape implements Shape {
   }
 
   @Override
-  public boolean equals(Shape other) {
+  public boolean sameObject(Shape other) {
     Objects.requireNonNull(other);
-    return this.name.equals(other.getName()) && this.color.equals(other.getColor())
-            && this.pointX == other.getX() && this.pointY == other.getY()
-            && this.appears == other.getAppears() && this.disappears == other.getDisappears();
-  }
-  
-  @Override
-  public boolean equals(Shape other) {
-    Objects.requireNonNull(other);
+
     return (this.name.equals(other.getName()) && this.color.equals(other.getColor())
             && this.pointX == other.getPositionX() && this.pointY == other.getPositionY()
             && this.x == other.getX() && this.y == other.getY()
