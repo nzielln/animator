@@ -41,6 +41,7 @@ public class Move extends AbstractTransformation {
   public boolean equals(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())
             && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
-            && this.toX == other.getToX() && this.toY == other.getToY());
+            && this.toX == other.getToX() && this.toY == other.getToY()
+            && this.tID.equals(other.getID()));
   }
 }

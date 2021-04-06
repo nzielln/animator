@@ -98,6 +98,18 @@ public class TransformationTest {
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
+
+    try {
+      move = new Move("", 0, 1, 5, 10);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    try {
+      scale = new Scale(null, 10, 20, 1, 5);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
   
   }
   
@@ -108,6 +120,13 @@ public class TransformationTest {
   
     assertEquals("Color", color.getTransformation().getTransformationType());
     assertEquals(122, color.getTransformation().getToColor().getB());
+  }
+
+  @Test
+  public void testGetTID() {
+    assertEquals("move", move.getID());
+    assertEquals("scale", scale.getID());
+    assertEquals("color", color.getID());
   }
   
   @Test
