@@ -128,10 +128,10 @@ public class ShapeTest {
   
   @Test
   public void getColor() {
-    assertEquals(24, oval.getColor().getR());
-    assertEquals(35, oval.getColor().getG());
-    assertEquals(123, oval.getColor().getB());
-    assertEquals(122, rect.getColor().getR());
+    assertEquals(24, oval.getColor().getR(), 0.001);
+    assertEquals(35, oval.getColor().getG(), 0.001);
+    assertEquals(123, oval.getColor().getB(), 0.001);
+    assertEquals(122, rect.getColor().getR(), 0.001);
     
   }
   
@@ -210,9 +210,9 @@ public class ShapeTest {
     
     assertEquals("oval", ovalCp.getName());
     assertEquals("OVAL", ovalCp.getType());
-    assertEquals(24, ovalCp.getColor().getR());
-    assertEquals(35, ovalCp.getColor().getG());
-    assertEquals(123, ovalCp.getColor().getB());
+    assertEquals(24, ovalCp.getColor().getR(), 0.001 );
+    assertEquals(35, ovalCp.getColor().getG(), 0.001);
+    assertEquals(123, ovalCp.getColor().getB(), 0.001);
     
     assertEquals(23, ovalCp.getPositionX(), 0.001);
     assertEquals(45, ovalCp.getPositionY(), 0.001);
@@ -234,21 +234,15 @@ public class ShapeTest {
     
     String re = "Name: rect\n"
             + "Type: RECTANGLE\n"
-            + "Corner: (67.0,89.0)\n"
-            + "Width: 8\n"
-            + "Length: 8\n"
-            + "Color: (122, 122, 122)\n"
-            + "Appears: 2\n"
-            + "Disappears: 11\n";
+            + "Min corner: (67.0,89.0), Width: 8.0, Length: 8.0, Color: (122.0, 122.0, 122.0)\n"
+            + "Appears at t=2\n"
+            + "Disappears at t=11\n";
     
     String ov = "Name: oval\n"
             + "Type: OVAL\n"
-            + "Center: (23.0,45.0)\n"
-            + "X-Radius: 4\n"
-            + "Y-Radius: 5\n"
-            + "Color: (24, 35, 123)\n"
-            + "Appears: 1\n"
-            + "Disappears: 10\n";
+            + "Center: (23.0,45.0), X radius: 4.0, Y radius: 5.0, Color: (24.0, 35.0, 123.0)\n"
+            + "Appears at t=1\n"
+            + "Disappears at t=10\n";
     
     assertEquals(re, rect.toString());
     assertEquals(ov, oval.toString());

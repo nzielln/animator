@@ -70,16 +70,16 @@ public class ColorTest {
   
   @Test
   public void getRGB() {
-    assertEquals(122, c.getR());
-    assertEquals(214, c.getG());
-    assertEquals(34, c.getB());
+    assertEquals(122, c.getR(), 0.001);
+    assertEquals(214, c.getG(), 0.001);
+    assertEquals(34, c.getB(), 0.001);
   }
   
   @Test
   public void getColor() {
-    assertEquals(122, c.getColor().getR());
-    assertEquals(214, c.getColor().getG());
-    assertEquals(34, c.getColor().getB());
+    assertEquals(122, c.getColor().getR(), 0.001);
+    assertEquals(214, c.getColor().getG(), 0.001);
+    assertEquals(34, c.getColor().getB(), 0.001);
   }
 
   @Test
@@ -115,7 +115,7 @@ public class ColorTest {
   
   @Test
   public void testToString() {
-    String cstr = "(122, 214, 34)";
+    String cstr = "(122.0, 214.0, 34.0)";
     assertEquals(cstr, c.toString());
   }
 }

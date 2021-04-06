@@ -39,12 +39,10 @@ public class Oval extends AbstractShape {
   public String toString() {
     return "Name: " + this.name + "\n"
             + "Type: " + this.type + "\n"
-            + "Center: (" + this.pointX + "," + this.pointY + ")\n"
-            + "X-Radius: " + this.x + "\n"
-            + "Y-Radius: " + this.y + "\n"
-            + "Color: " + this.color.toString() + "\n"
-            + "Appears: " + this.appears + "\n"
-            + "Disappears: " + this.disappears + "\n";
+            + "Center: (" + this.pointX + "," + this.pointY + "), X radius: " + this.x
+            + ", Y radius: " + this.y + ", Color: " + this.color.toString() + "\n"
+            + "Appears at t=" + this.appears + "\n"
+            + "Disappears at t=" + this.disappears + "\n";
   }
   
   

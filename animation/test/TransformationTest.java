@@ -124,7 +124,7 @@ public class TransformationTest {
     assertEquals(11, move.getTransformation().getTimeEnd());
     
     assertEquals("Color", color.getTransformation().getTransformationType());
-    assertEquals(122, color.getTransformation().getToColor().getB());
+    assertEquals(122, color.getTransformation().getToColor().getB(), 0.001);
   }
   
   @Test
@@ -163,9 +163,9 @@ public class TransformationTest {
   
   @Test
   public void getToColor() {
-    assertEquals(122, color.getToColor().getR());
-    assertEquals(122, color.getToColor().getG());
-    assertEquals(122, color.getToColor().getB());
+    assertEquals(122, color.getToColor().getR(), 0.001);
+    assertEquals(122, color.getToColor().getG(), 0.001);
+    assertEquals(122, color.getToColor().getB(), 0.001);
   }
   
   @Test

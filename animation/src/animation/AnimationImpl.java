@@ -230,30 +230,29 @@ public class AnimationImpl implements Animation {
         //If change color transformation
         if (t.getTransformationType().equals("Color")) {
           String desc = "Shape " + s.getName() + " changes color from "
-                  + s.getColor().toString() + " to " + t.getToColor().toString() + " from "
-                  + t.getTimeStart() + " to " + t.getTimeEnd() + ".";
+                  + s.getColor().toString() + " to " + t.getToColor().toString() + " from t="
+                  + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
           //if move transformation
         } else if (t.getTransformationType().equals("Moves")) {
           String desc = "Shape " + s.getName() + " moves from (" + s.getPositionX()
                   + "," + s.getPositionY() + ") to (" + t.getToX() + ","
-                  + t.getToY() + ") from " + t.getTimeStart() + " to " + t.getTimeEnd() + ".";
+                  + t.getToY() + ") from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
           //if scale tranformation
         } else {
           if (s.getType().equals("RECTANGLE")) {
             String desc =  "Shape " + s.getName() + " scales from Width: " + s.getX()
-                    + " Height: " + s.getY() + " to Width: " + t.getToX() + " and Height: "
-                    + t.getToY() + " from " + t.getTimeStart() + " to " + t.getTimeEnd() + ".";
+                    + ", Height: " + s.getY() + " to Width: " + t.getToX() + ", Height: "
+                    + t.getToY() + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
             str.append(desc).append("\n");
           } else {
-            String desc = "Shape" + s.getName() + " scales from X-Radius: " + s.getX()
-                    + " Y-Radius: " + s.getY() + " to X-Radius: " + t.getToX() + " and Y-Radius: "
-                    + t.getToY() + " from " + t.getTimeStart() + " to " + t.getTimeEnd() + ".";
+            String desc = "Shape" + s.getName() + " scales from X radius: " + s.getX()
+                    + ", Y radius: " + s.getY() + " to X radius: " + t.getToX() + ", Y radius: "
+                    + t.getToY() + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
             str.append(desc).append("\n");
           }
         }
-        
       }
     }
     return "Shapes: \n" + str.toString().trim();
