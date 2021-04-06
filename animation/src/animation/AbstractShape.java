@@ -135,6 +135,8 @@ public abstract class AbstractShape implements Shape {
     this.disappears = disappears;
     this.disappearsFlag = true;
   }
+  
+  
 
   @Override
   public boolean sameObject(Shape other) {
