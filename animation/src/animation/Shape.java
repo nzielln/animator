@@ -45,13 +45,13 @@ public interface Shape {
    * Returns the x-radius/width of the Shape.
    * @return int, x-radius/width of shape
    */
-  int getX();
+  float getX();
   
   /**
    * Returns the y-radius/length of the Shape.
    * @return int, y-radius/length of shape
    */
-  int getY();
+  float getY();
   
   /**
    * Returns the time the Shape appears in the animation.

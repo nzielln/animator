@@ -11,8 +11,8 @@ public abstract class AbstractShape implements Shape {
   final Color color;
   final float pointX;
   final float pointY;
-  final int x;
-  final int y;
+  final float x;
+  final float y;
   int appears;
   int disappears;
   boolean appearsFlag;
@@ -24,17 +24,17 @@ public abstract class AbstractShape implements Shape {
    * @param name unique id/name for the shape
    * @param pointX (float) the initial X coordinate position of the shape on a positive plane
    * @param pointY (float)  the initial Y coordinate position of the shape on a positive plane
-   * @param x (int) the initial x-radius or width of the shape
-   * @param y (int) the initial y-radius or length of the shape
-   * @param r (int) the red value of the shape's color
-   * @param g (int) the green value of the shape's color
-   * @param b (int) the blue value of the shape's color
+   * @param x (float) the initial x-radius or width of the shape
+   * @param y (float) the initial y-radius or length of the shape
+   * @param r (float) the red value of the shape's color
+   * @param g (float) the green value of the shape's color
+   * @param b (float) the blue value of the shape's color
    * @throws IllegalArgumentException if pointX or pointY are less than 0, X or Y are less than or
    *      equal to 0, if RGB values provided are less than 0 or greater than 255 and if name
    *      provided is null or an empty string.
    */
   public AbstractShape(
-          String name, float pointX, float pointY, int x, int y, int r, int g, int b) {
+          String name, float pointX, float pointY, float x, float y, float r, float g, float b) {
     if (name == null || name.equals("")) {
       throw new IllegalArgumentException("Name can't be null or empty string");
     } else if (pointX < 0 || pointY < 0) {
@@ -91,12 +91,12 @@ public abstract class AbstractShape implements Shape {
   }
   
   @Override
-  public int getX() {
+  public float getX() {
     return this.x;
   }
   
   @Override
-  public int getY() {
+  public float getY() {
     return this.y;
   }
   

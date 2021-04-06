@@ -4,8 +4,8 @@ package animation;
  * Represents a Scale transformation, extends methods from the AbstractTransformation.
  */
 public class Scale extends AbstractTransformation {
-  final int toX;
-  final int toY;
+  final float toX;
+  final float toY;
   
   /**
    * Constructor calls the AbstractTransformation super class, takes in the color to change to.
@@ -14,7 +14,7 @@ public class Scale extends AbstractTransformation {
    * @param timeStart (int) start time for the transformation
    * @param timeEnd (int) start time for the transformation
    */
-  public Scale(String tid, int toX, int toY, int timeStart, int timeEnd) {
+  public Scale(String tid, float toX, float toY, int timeStart, int timeEnd) {
     super(tid, timeStart, timeEnd);
     if (toX <= 0 || toY <= 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");

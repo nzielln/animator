@@ -102,7 +102,7 @@ public class AnimationTest {
   public void getById() {
     //Get oval
     assertEquals("OVAL", ani.getById("oval").getType());
-    assertEquals(122, ani.getById("oval").getColor().getR());
+    assertEquals(122, ani.getById("oval").getColor().getR(), 0.001);
     
     //Get rectangle
     assertEquals("RECTANGLE", ani.getById("rect").getType());
@@ -196,17 +196,17 @@ public class AnimationTest {
     assertEquals("[Name: rect4\n"
             + "Type: RECTANGLE\n"
             + "Corner: (3.0,3.0)\n"
-            + "Width: 5\n"
-            + "Length: 10\n"
-            + "Color: (255, 0, 255)\n"
+            + "Width: 5.0\n"
+            + "Length: 10.0\n"
+            + "Color: (255.0, 0.0, 255.0)\n"
             + "Appears: 0\n"
             + "Disappears: 0\n"
             + ", Name: oval4\n"
             + "Type: OVAL\n"
             + "Center: (5.0,5.0)\n"
-            + "X-Radius: 2\n"
-            + "Y-Radius: 4\n"
-            + "Color: (0, 0, 0)\n"
+            + "X-Radius: 2.0\n"
+            + "Y-Radius: 4.0\n"
+            + "Color: (0.0, 0.0, 0.0)\n"
             + "Appears: 0\n"
             + "Disappears: 0\n]", ani2.getShapes().toString());
     
@@ -449,13 +449,12 @@ public class AnimationTest {
               25, 255, 255, 255);
       ani2.addShape(rect3, new ArrayList<>());
       assertEquals("Shapes: \n"
-              + "\n"
               + "Name: rect3\n"
               + "Type: RECTANGLE\n"
               + "Corner: (3.0,3.0)\n"
-              + "Width: 50\n"
-              + "Length: 25\n"
-              + "Color: (255, 255, 255)\n"
+              + "Width: 50.0\n"
+              + "Length: 25.0\n"
+              + "Color: (255.0, 255.0, 255.0)\n"
               + "Appears: 0\n"
               + "Disappears: 0", ani2.toString());
     } catch (Exception e) {
@@ -475,13 +474,12 @@ public class AnimationTest {
       ani2.addTransformation("rect3", move4);
       
       assertEquals("Shapes: \n"
-              + "\n"
               + "Name: rect3\n"
               + "Type: RECTANGLE\n"
               + "Corner: (3.0,3.0)\n"
-              + "Width: 50\n"
-              + "Length: 25\n"
-              + "Color: (255, 255, 255)\n"
+              + "Width: 50.0\n"
+              + "Length: 25.0\n"
+              + "Color: (255.0, 255.0, 255.0)\n"
               + "Appears: 1\n"
               + "Disappears: 200\n"
               + "\n"
@@ -489,68 +487,5 @@ public class AnimationTest {
     } catch (Exception e) {
       fail("Exception should not be thrown");
     }
-  }
-  
-  @Test
-  public void animationTest() {
-    //Create a new animation
-    Animation ani = new AnimationImpl();
-    
-    Shape ov = new Oval("oval",5, 23, 4, 4, 24, 45, 57);
-    Shape ova = new Oval("oval2",5, 23, 4, 4, 24, 45, 57);
-    Shape rect = new Rectangle("rectangle",5, 23, 4, 7, 244, 145, 7);
-  
-    ov.setAppears(0);
-    ov.setDisappears(10);
-    rect.setAppears(2);
-    rect.setDisappears(10);
-  
-    //add shapes
-    ani.addShape(ov, new ArrayList<>());
-    ani.addShape(rect, new ArrayList<>());
-    ani.addShape(ova, new ArrayList<>());
-    
-    //create new transformation
-    Transformation color = new ChangeColor("change_color", new Color(35, 45, 56), 3, 7);
-    Transformation scale = new Scale("scale", 12, 7, 2, 7);
-    Transformation move = new Move("move", 0, 0, 3, 10);
-  
-    //add transformation
-    ani.addTransformation("oval", color);
-    ani.addTransformation("oval", move);
-    ani.addTransformation("rectangle", scale);
-    
-    assertEquals(3, ani.getSize());
-    assertEquals(2, ani.getSizeTransformations("oval") );
-    assertEquals("Shapes: \n\n"
-            + "Name: oval\n"
-            + "Type: OVAL\n"
-            + "Center: (5.0,23.0)\n"
-            + "X-Radius: 4\n"
-            + "Y-Radius: 4\n"
-            + "Color: (24, 45, 57)\n"
-            + "Appears: 0\n"
-            + "Disappears: 10\n\n"
-            + "Name: oval2\n"
-            + "Type: OVAL\n"
-            + "Center: (5.0,23.0)\n"
-            + "X-Radius: 4\n"
-            + "Y-Radius: 4\n"
-            + "Color: (24, 45, 57)\n"
-            + "Appears: 0\n"
-            + "Disappears: 0\n\n"
-            + "Name: rectangle\n"
-            + "Type: RECTANGLE\n"
-            + "Corner: (5.0,23.0)\n"
-            + "Width: 4\n"
-            + "Length: 7\n"
-            + "Color: (244, 145, 7)\n"
-            + "Appears: 2\n"
-            + "Disappears: 10\n\n"
-            + "Shape oval changes color from (24, 45, 57) to (35, 45, 56) from 3 to 7.\n"
-            + "Shape oval moves from (5.0,23.0) to (0.0,0.0) from 3 to 10.\n"
-            + "Shape rectangle scales from Width: 4 Height: 7 to Width: 12.0 and Height:"
-            + " 7.0 from 2 to 7.", ani.toString());
-  
   }
 }
