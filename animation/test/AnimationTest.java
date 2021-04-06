@@ -549,7 +549,8 @@ public class AnimationTest {
             + "Disappears: 10\n\n"
             + "Shape oval changes color from (24, 45, 57) to (35, 45, 56) from 3 to 7.\n"
             + "Shape oval moves from (5.0,23.0) to (0.0,0.0) from 3 to 10.\n"
-            + "Shape rectangle scales from Width: 4 Height: 7 to Width: 12.0 and Height: 7.0 from 2 to 7.", ani.toString());
+            + "Shape rectangle scales from Width: 4 Height: 7 to Width: 12.0 and Height:"
+            + " 7.0 from 2 to 7.", ani.toString());
   
   }
 }
