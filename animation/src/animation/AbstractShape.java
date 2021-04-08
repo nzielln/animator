@@ -1,19 +1,18 @@
-import java.util.ArrayList;
-import java.util.List;
+package animation;
+
 import java.util.Objects;
 
 /**
- *
+ * AbstractShape implements the Shape interface, it represents methods common to shapes in the
+ * animation.
  */
 public abstract class AbstractShape implements Shape {
-  //should we make these package private so we don't have to call getters when
-  //we want to use this info in rectangle and oval?
   final String name;
   final Color color;
   final float pointX;
   final float pointY;
-  final int X;
-  final int Y;
+  final float x;
+  final float y;
   int appears;
   int disappears;
   boolean appearsFlag;
@@ -21,23 +20,26 @@ public abstract class AbstractShape implements Shape {
   String type;
   
   /**
-   *
-   * @param name
-   * @param pointX
-   * @param pointY
-   * @param X
-   * @param Y
-   * @param r
-   * @param g
-   * @param b
+   * Constructor a shape, takes in parameter to create a shape.
+   * @param name unique id/name for the shape
+   * @param pointX (float) the initial X coordinate position of the shape on a positive plane
+   * @param pointY (float)  the initial Y coordinate position of the shape on a positive plane
+   * @param x (float) the initial x-radius or width of the shape
+   * @param y (float) the initial y-radius or length of the shape
+   * @param r (float) the red value of the shape's color
+   * @param g (float) the green value of the shape's color
+   * @param b (float) the blue value of the shape's color
+   * @throws IllegalArgumentException if pointX or pointY are less than 0, X or Y are less than or
+   *      equal to 0, if RGB values provided are less than 0 or greater than 255 and if name
+   *      provided is null or an empty string.
    */
-  public AbstractShape
-  (String name, float pointX, float pointY, int X, int Y, int r, int g, int b) {
+  public AbstractShape(
+          String name, float pointX, float pointY, float x, float y, float r, float g, float b) {
     if (name == null || name.equals("")) {
       throw new IllegalArgumentException("Name can't be null or empty string");
     } else if (pointX < 0 || pointY < 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
-    } else if (X <= 0 || Y <= 0) {
+    } else if (x <= 0 || y <= 0) {
       throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
     } else if (r < 0 || g < 0 || b < 0
             || r > 255 || g > 255 || b > 255) {
@@ -47,8 +49,8 @@ public abstract class AbstractShape implements Shape {
       this.color = new Color(r, g, b);
       this.pointX = pointX;
       this.pointY = pointY;
-      this.X = X;
-      this.Y = Y;
+      this.x = x;
+      this.y = y;
       this.appears = 0;
       this.disappears = 0;
       this.appearsFlag = false;
@@ -89,13 +91,13 @@ public abstract class AbstractShape implements Shape {
   }
   
   @Override
-  public int getX() {
-    return this.X;
+  public float getX() {
+    return this.x;
   }
   
   @Override
-  public int getY() {
-    return this.Y;
+  public float getY() {
+    return this.y;
   }
   
   @Override
@@ -109,7 +111,7 @@ public abstract class AbstractShape implements Shape {
   }
   
   
-  //SETTERS AND OTHER OTHER------------------------------------------------------------------------
+  //SETTERS AND OTHER------------------------------------------------------------------------------
   @Override
   public void setAppears(int appears) {
     if (appears < 0) {
@@ -134,12 +136,15 @@ public abstract class AbstractShape implements Shape {
     this.disappearsFlag = true;
   }
   
+  
+
   @Override
-  public boolean equals(Shape other) {
+  public boolean sameObject(Shape other) {
     Objects.requireNonNull(other);
-    return (this.name.equals(other.getName()) && this.color.equals(other.getColor())
+
+    return (this.name.equals(other.getName()) && this.color.sameObject(other.getColor())
             && this.pointX == other.getPositionX() && this.pointY == other.getPositionY()
-            && this.X == other.getX() && this.Y == other.getY()
+            && this.x == other.getX() && this.y == other.getY()
             && this.appears == other.getAppears() && this.disappears == other.getDisappears()
             && this.type.equals(other.getType()));
   }

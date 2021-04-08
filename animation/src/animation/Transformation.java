@@ -1,4 +1,4 @@
-import java.util.List;
+package animation;
 
 /**
  * Animation interface, represents methods implemented by the {@link AbstractTransformation} class.
@@ -11,6 +11,12 @@ public interface Transformation {
    * @return a transformations
    */
   Transformation getTransformation();
+  
+  /**
+   * Returns the Transformation's ID.
+   * @return (String) Tranformastion's ID
+   */
+  String getID();
   
   /**
    * Returns the type of the {@link Transformation}.
@@ -51,40 +57,11 @@ public interface Transformation {
   
   //OTHER------------------------------------------------------------------------------------------
   /**
-   * Returns a new {@link Shape} with provided x and y positions.
-   * @param toX x-position of the new shape object
-   * @param toY y-position of the new shape object
-   * @param timeStart time transformation starts
-   * @param timeEnd time transformation ends
-   * @return a new shape object
+   * Determines if two Transformation objects are identical.
+   * @param other (Transformation) another Transformation object
+   * @return true if the two objects are identical
    */
-  Shape moveShape(Shape shape, float toX, float toY, int timeStart, int timeEnd);
-  
-  /**
-   * Returns a new {@link Shape} with provided color.
-   * @param toColor {@link Color} of the new shape
-   * @param timeStart time transformation starts
-   * @param timeEnd time transformation ends
-   * @return a new shape object
-   */
-  Shape changeColor(Shape shape, Color toColor, int timeStart, int timeEnd);
-  
-  /**
-   * Returns a new {@link Shape} with provided x and y positions.
-   * @param toX width of the new shape object
-   * @param toY length of the new shape object
-   * @param timeStart time transformation starts
-   * @param timeEnd time transformation ends
-   * @return a new shape object
-   */
-  Shape scaleShape(Shape shape, int toX, int toY, int timeStart, int timeEnd);
-  
-  /**
-   *
-   * @param other
-   * @return
-   */
-  boolean equals(Transformation other);
+  boolean sameObject(Transformation other);
   
   
   /**
