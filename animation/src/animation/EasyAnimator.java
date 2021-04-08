@@ -11,13 +11,14 @@ import animation.code.cs5004.animator.util.AnimationReader;
 public class EasyAnimator {
   
   public static void main(String[] args) throws FileNotFoundException {
-    FileReader demo = new FileReader(
-            "/Users/nzielln/IdeaProjects/animator/animation/src/animation/code/smalldemo.txt");
+    TextView textView = new TextView();
+    String filename = "src/animation/code/smalldemo.txt";
+    File demo = new File(filename);
+    FileReader f = new FileReader(demo);
     Animation m = new AnimationImpl();
-    AnimationBuilder<Animation> b = new AnimationBuilderImpl<Animation>(m);
-    AnimationReader.parseFile(demo, b);
+    AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
+    AnimationReader.parseFile(f, b);
     System.out.println(m.toString());
-  
   
   }
 }

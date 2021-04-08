@@ -19,9 +19,6 @@ public abstract class AbstractShape implements Shape {
   boolean appearsFlag;
   boolean disappearsFlag;
   boolean propertiesSet;
-  Shape startState;
-  Shape endState;
-  
   
   /**
    * Constructor a shape, takes in parameter to create a shape.
@@ -46,8 +43,6 @@ public abstract class AbstractShape implements Shape {
       this.disappears = 0;
       this.appearsFlag = false;
       this.disappearsFlag = false;
-      this.startState = null;
-      this.endState = null;
       this.propertiesSet = false;
     }
   }
@@ -108,16 +103,6 @@ public abstract class AbstractShape implements Shape {
     return this.propertiesSet && this.appearsFlag && this.disappearsFlag;
   }
   
-  @Override
-  public Shape getStartState() {
-    return this.startState;
-  }
-  
-  @Override
-  public Shape getEndState() {
-    return this.endState;
-  }
-  
   //SETTERS AND OTHER------------------------------------------------------------------------------
   @Override
   public void setProperties(int pointX, int pointY, int x, int y, int r, int g, int b) {
@@ -160,20 +145,6 @@ public abstract class AbstractShape implements Shape {
     
     this.disappears = disappears;
     this.disappearsFlag = true;
-  }
-  
-  @Override
-  public void setStartState(Shape s) {
-    if (s.getCreated()) {
-      this.startState = s.copy();
-    }
-  }
-  
-  @Override
-  public void setEndState(Shape s) {
-    if (s.getCreated()) {
-      this.startState = s.copy();
-    }
   }
   
   @Override

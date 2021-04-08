@@ -70,19 +70,6 @@ public interface Shape {
    */
   boolean getCreated();
   
-  /**
-   *
-   * @return
-   */
-  Shape getStartState();
-  
-  /**
-   *
-   * @return
-   */
-  Shape getEndState();
-  
-  
   //SETTERS AND OTHER------------------------------------------------------------------------------
   /**
    *
@@ -111,19 +98,6 @@ public interface Shape {
    *        less than this.appears.
    */
   void setDisappears(int disappears);
-  
-  /**
-   *
-   * @param s
-   */
-  void setStartState(Shape s);
-  
-  /**
-   *
-   * @param s
-   */
-  void setEndState(Shape s);
-  
   
   /**
    * Returns a copy of the Shape object.
