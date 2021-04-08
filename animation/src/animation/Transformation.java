@@ -55,7 +55,32 @@ public interface Transformation {
    */
   Color getToColor();
   
+  /**
+   *
+   * @return
+   */
+  Shape getStartState();
+  
+  /**
+   *
+   * @return
+   */
+  Shape getEndState();
+  
+  
   //OTHER------------------------------------------------------------------------------------------
+  /**
+   *
+   * @param s
+   */
+  void setStartState(Shape s);
+  
+  /**
+   *
+   * @param s
+   */
+  void setEndState(Shape s);
+  
   /**
    * Determines if two Transformation objects are identical.
    * @param other (Transformation) another Transformation object

@@ -94,6 +94,7 @@ public class AnimationReader {
     };
     int[] vals = new int[16];
     String name;
+  
     if (s.hasNext()) {
       name = s.next();
     } else {

@@ -11,12 +11,20 @@ import java.util.Objects;
  */
 public class AnimationImpl implements Animation {
   HashMap<Shape, List<Transformation>> hashmap;
+  int x;
+  int y;
+  int width;
+  int height;
   
   /**
   * Constructor for the AnimationImpl, create a hashmap of Shapes and list of Transformations.
   */
   public AnimationImpl() {
     hashmap = new HashMap<>();
+    this.x = 0;
+    this.y = 0;
+    this.width = 0;
+    this.height = 0;
   }
   
   //GETTERS----------------------------------------------------------------------------------------
@@ -83,6 +91,19 @@ public class AnimationImpl implements Animation {
   
   
   //OTHER------------------------------------------------------------------------------------------
+  @Override
+  public void canvas(int x, int y, int width, int height) {
+    if (x < 0 || y < 0 || width <= 0 || height <= 0) {
+      throw new IllegalArgumentException("Invalid inputs for canvas size.");
+    }
+    
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    
+  }
+  
   @Override
   public void addShape(Shape s, List<Transformation> l) {
     Objects.requireNonNull(s, "Shape can't be null.");

@@ -3,6 +3,8 @@ package animation;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import animation.code.cs5004.animator.util.AnimationBuilder;
+
 /**
  * Animation interface, represents methods implemented by the {@link AnimationImpl} class.
  */
@@ -54,6 +56,15 @@ public interface Animation {
   
   
   //OTHER------------------------------------------------------------------------------------------
+  /**
+   * Specify the bounding box to be used for the animation.
+   * @param x The leftmost x value
+   * @param y The topmost y value
+   * @param width The width of the bounding box
+   * @param height The height of the bounding box
+   */
+  void canvas(int x, int y, int width, int height);
+  
   /**
    * Adds a shape to the list of Shape(s) and a new list of Transformation to the animation.
    * @param s (Shape) shape to add to list

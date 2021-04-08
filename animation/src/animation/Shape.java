@@ -84,38 +84,17 @@ public interface Shape {
   
   
   //SETTERS AND OTHER------------------------------------------------------------------------------
-  
   /**
    *
+   * @param pointX
+   * @param pointY
+   * @param x
+   * @param y
    * @param r
    * @param g
    * @param b
    */
-  void setColor(int r, int g, int b);
-  
-  /**
-   *
-   * @param pointX
-   */
-  void setPositionX(int pointX);
-  
-  /**
-   *
-   * @param pointY
-   */
-  void setPositionY(int pointY);
-  
-  /**
-   *
-   * @param x
-   */
-  void setX(int x);
-  
-  /**
-   *
-   * @param y
-   */
-  void setY(int y);
+  void setProperties(int pointX, int pointY, int x, int y, int r, int g, int b);
   
   /**
    * Set the time the Shape appears in the animation.

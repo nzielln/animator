@@ -22,11 +22,8 @@ public class Oval extends AbstractShape {
     }
     
     Oval o = new Oval(this.name, this.type);
-    o.setColor(this.color.getR(), this.color.getG(), this.color.getB());
-    o.setPositionX(this.pointX);
-    o.setPositionY(this.pointY);
-    o.setX(this.x);
-    o.setY(this.y);
+    o.setProperties(this.pointX, this.pointY, this.x, this.y,
+            this.color.getR(), this.color.getG(), this.color.getB());
     o.setAppears(this.appears);
     o.setDisappears(this.disappears);
     
