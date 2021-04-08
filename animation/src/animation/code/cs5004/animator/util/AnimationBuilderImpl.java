@@ -13,7 +13,7 @@ import animation.Scale;
 import animation.Shape;
 import animation.Transformation;
 
-public class AnimationBuilderImpl<Doc> implements AnimationBuilder<Animation> {
+public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
   private Animation model;
   
   public AnimationBuilderImpl(Animation model) {
@@ -68,36 +68,27 @@ public class AnimationBuilderImpl<Doc> implements AnimationBuilder<Animation> {
           s.setProperties(x1, y1, w1, h1, r1, g1, b1);
           s.setAppears(t1);
           s.setDisappears(t2);
-          s.setStartState(start);
-          s.setEndState(end);
         }
-        s.setEndState(end);
         s.setDisappears(t2);
-        createMotion(name, t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2, start, end);
+        createMotion(name, t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2);
       }
     }
     return null;
   }
   
   private void createMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1,
-                            int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2,
-                            Shape start, Shape end) {
+                            int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2)
+  {
     if ( x1 != x2 || y1 != y2) {
       Transformation move = new Move("+", x2, y2, t1, t2);
-      move.setStartState(start);
-      move.setEndState(end);
       model.addTransformation(name, move);
 
     } else if (w1 != w2 || h1 != h2) {
       Transformation scale = new Scale("+", w2, h2, t1, t2);
-      scale.setStartState(start);
-      scale.setEndState(end);
       model.addTransformation(name, scale);
   
     } else if (!new Color(r1, g1, b1).sameObject(new Color(r2, g2, b2))) {
       Transformation color = new ChangeColor("+", new Color(r2, g2, b2), t1, t2);
-      color.setStartState(start);
-      color.setEndState(end);
       model.addTransformation(name, color);
     }
   }
