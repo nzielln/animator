@@ -40,13 +40,13 @@ public interface Transformation {
    * Returns the x-position/width the new shape should have.
    * @return float, time
    */
-  float getToX();
+  int getToX();
   
   /**
    * Returns the y-position/length the new shape should have.
    * @return float, time
    */
-  float getToY();
+  int getToY();
   
   
   /**

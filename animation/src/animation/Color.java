@@ -6,17 +6,17 @@ import java.util.Objects;
  * Represents a class that stored the RGB values for a color.
  */
 public class Color {
-  private final float r;
-  private final float g;
-  private final float b;
+  private final int r;
+  private final int g;
+  private final int b;
   
   /**
-   * Creates a new Color object, takes in float values for RGB.
+   * Creates a new Color object, takes in int values for RGB.
    * @param r (int) value for red
    * @param g (int) value for green
    * @param b (int) value for blue
    */
-  public Color(float r, float g, float b) {
+  public Color(int r, int g, int b) {
     if (r < 0 || g < 0 || b < 0
             || r > 255 || g > 255 || b > 255) {
       throw new IllegalArgumentException("RGB values must be between 0 - 255");
@@ -32,7 +32,7 @@ public class Color {
    * Returns the R(red) value of the Color object.
    * @return (int) value for r
    */
-  public float getR() {
+  public int getR() {
     return this.r;
   }
   
@@ -40,7 +40,7 @@ public class Color {
    * Returns the G(green) value of the Color object.
    * @return (int) value for g
    */
-  public float getG() {
+  public int getG() {
     return this.g;
   }
   
@@ -48,7 +48,7 @@ public class Color {
    * Returns the B(blue) value of the Color object.
    * @return (int) value for b
    */
-  public float getB() {
+  public int getB() {
     return this.b;
   }
   
