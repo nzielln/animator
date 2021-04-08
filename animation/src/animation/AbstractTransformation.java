@@ -8,6 +8,8 @@ public abstract class AbstractTransformation implements Transformation {
   final int timeStart;
   final int timeEnd;
   final String tID;
+  Shape endState;
+  Shape startState;
   String type;
   
   /**
@@ -28,6 +30,8 @@ public abstract class AbstractTransformation implements Transformation {
     this.tID = tID;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
+    this.endState = null;
+    this.startState = null;
     this.type = null;
   }
   
@@ -72,6 +76,27 @@ public abstract class AbstractTransformation implements Transformation {
     return null;
   }
   
+  @Override
+  public Shape getEndState() {
+    return this.endState;
+    
+  }
   
+  @Override
+  public Shape getStartState() {
+    return this.startState;
+    
+  }
   
+  @Override
+  public void setEndState(Shape s) {
+    this.endState = s;
+  }
+  
+  @Override
+  public void setStartState(Shape s) {
+    this.startState = s;
+    
+  }
+
 }

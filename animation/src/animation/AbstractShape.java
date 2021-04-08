@@ -18,7 +18,7 @@ public abstract class AbstractShape implements Shape {
   int disappears;
   boolean appearsFlag;
   boolean disappearsFlag;
-  int properties;
+  boolean propertiesSet;
   Shape startState;
   Shape endState;
   
@@ -36,7 +36,7 @@ public abstract class AbstractShape implements Shape {
       throw new IllegalArgumentException("Name can't be null or empty string");
     } else {
       this.name = name;
-      this.type = null;
+      this.type = type.toUpperCase();
       this.color = null;
       this.pointX = 0;
       this.pointY = 0;
@@ -48,7 +48,7 @@ public abstract class AbstractShape implements Shape {
       this.disappearsFlag = false;
       this.startState = null;
       this.endState = null;
-      this.properties = 0;
+      this.propertiesSet = false;
     }
   }
   
@@ -60,7 +60,7 @@ public abstract class AbstractShape implements Shape {
   
   @Override
   public String getType() {
-    return this.type.toUpperCase();
+    return this.type;
   }
   
   @Override
@@ -105,7 +105,7 @@ public abstract class AbstractShape implements Shape {
   
   @Override
   public boolean getCreated() {
-    return this.properties == 5 && this.appearsFlag && this.disappearsFlag;
+    return this.propertiesSet && this.appearsFlag && this.disappearsFlag;
   }
   
   @Override
@@ -120,51 +120,22 @@ public abstract class AbstractShape implements Shape {
   
   //SETTERS AND OTHER------------------------------------------------------------------------------
   @Override
-  public void setColor(int r, int g, int b) {
+  public void setProperties(int pointX, int pointY, int x, int y, int r, int g, int b) {
     if (r < 0 || g < 0 || b < 0
             || r > 255 || g > 255 || b > 255) {
       throw new IllegalArgumentException("RGB values must be between 0 - 255");
-    }
-    
-    this.color = new Color(r, g, b);
-    this.properties += 1;
-  }
-  
-  @Override
-  public void setPositionX(int pointX) {
-    if (pointX < 0) {
+    } else if (pointX < 0 || pointY < 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
+    } else if (x <= 0 || y <= 0) {
+      throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
     }
+  
     this.pointX = pointX;
-    this.properties += 1;
-  }
-  
-  @Override
-  public void setPositionY(int pointY) {
-    if (pointY < 0) {
-      throw new IllegalArgumentException("Length must be positive integer or 0.");
-    }
     this.pointY = pointY;
-    this.properties += 1;
-  }
-  
-  @Override
-  public void setX(int x) {
-    if (x <= 0) {
-      throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
-    }
     this.x = x;
-    this.properties += 1;
-  }
-  
-  @Override
-  public void setY(int y) {
-    if ( y <= 0) {
-      throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
-    }
-    
     this.y = y;
-    this.properties += 1;
+    this.color = new Color(r, g, b);
+    this.propertiesSet = true;
   }
   
   @Override
