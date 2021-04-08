@@ -33,25 +33,25 @@ public interface Shape {
    * Returns the x-position of the corner/center of the Shape.
    * @return float, x-position of shape's center/corner
    */
-  float getPositionX();
+  int getPositionX();
   
   /**
    * Returns the y-position of the corner/center of the Shape.
    * @return float, y-position of shape's center/corner
    */
-  float getPositionY();
+  int getPositionY();
   
   /**
    * Returns the x-radius/width of the Shape.
    * @return int, x-radius/width of shape
    */
-  float getX();
+  int getX();
   
   /**
    * Returns the y-radius/length of the Shape.
    * @return int, y-radius/length of shape
    */
-  float getY();
+  int getY();
   
   /**
    * Returns the time the Shape appears in the animation.
@@ -65,8 +65,57 @@ public interface Shape {
    */
   int getDisappears();
   
+  /**
+   *
+   */
+  boolean getCreated();
+  
+  /**
+   *
+   * @return
+   */
+  Shape getStartState();
+  
+  /**
+   *
+   * @return
+   */
+  Shape getEndState();
+  
   
   //SETTERS AND OTHER------------------------------------------------------------------------------
+  
+  /**
+   *
+   * @param r
+   * @param g
+   * @param b
+   */
+  void setColor(int r, int g, int b);
+  
+  /**
+   *
+   * @param pointX
+   */
+  void setPositionX(int pointX);
+  
+  /**
+   *
+   * @param pointY
+   */
+  void setPositionY(int pointY);
+  
+  /**
+   *
+   * @param x
+   */
+  void setX(int x);
+  
+  /**
+   *
+   * @param y
+   */
+  void setY(int y);
   
   /**
    * Set the time the Shape appears in the animation.
@@ -83,6 +132,19 @@ public interface Shape {
    *        less than this.appears.
    */
   void setDisappears(int disappears);
+  
+  /**
+   *
+   * @param s
+   */
+  void setStartState(Shape s);
+  
+  /**
+   *
+   * @param s
+   */
+  void setEndState(Shape s);
+  
   
   /**
    * Returns a copy of the Shape object.

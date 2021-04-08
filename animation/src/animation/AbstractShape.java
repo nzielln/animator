@@ -7,55 +7,48 @@ import java.util.Objects;
  * animation.
  */
 public abstract class AbstractShape implements Shape {
-  final String name;
-  final Color color;
-  final float pointX;
-  final float pointY;
-  final float x;
-  final float y;
+  String name;
+  String type;
+  Color color;
+  int pointX;
+  int pointY;
+  int x;
+  int y;
   int appears;
   int disappears;
   boolean appearsFlag;
   boolean disappearsFlag;
-  String type;
+  int properties;
+  Shape startState;
+  Shape endState;
+  
   
   /**
    * Constructor a shape, takes in parameter to create a shape.
    * @param name unique id/name for the shape
-   * @param pointX (float) the initial X coordinate position of the shape on a positive plane
-   * @param pointY (float)  the initial Y coordinate position of the shape on a positive plane
-   * @param x (float) the initial x-radius or width of the shape
-   * @param y (float) the initial y-radius or length of the shape
-   * @param r (float) the red value of the shape's color
-   * @param g (float) the green value of the shape's color
-   * @param b (float) the blue value of the shape's color
-   * @throws IllegalArgumentException if pointX or pointY are less than 0, X or Y are less than or
-   *      equal to 0, if RGB values provided are less than 0 or greater than 255 and if name
-   *      provided is null or an empty string.
+   * @param type
    */
   public AbstractShape(
-          String name, float pointX, float pointY, float x, float y, float r, float g, float b) {
+          String name, String type) {
     if (name == null || name.equals("")) {
       throw new IllegalArgumentException("Name can't be null or empty string");
-    } else if (pointX < 0 || pointY < 0) {
-      throw new IllegalArgumentException("Length must be positive integer or 0.");
-    } else if (x <= 0 || y <= 0) {
-      throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
-    } else if (r < 0 || g < 0 || b < 0
-            || r > 255 || g > 255 || b > 255) {
-      throw new IllegalArgumentException("RGB values must be between 0 - 255");
+    } else if (type == null || type.equals("")) {
+      throw new IllegalArgumentException("Name can't be null or empty string");
     } else {
       this.name = name;
-      this.color = new Color(r, g, b);
-      this.pointX = pointX;
-      this.pointY = pointY;
-      this.x = x;
-      this.y = y;
+      this.type = null;
+      this.color = null;
+      this.pointX = 0;
+      this.pointY = 0;
+      this.x = 0;
+      this.y = 0;
       this.appears = 0;
       this.disappears = 0;
       this.appearsFlag = false;
       this.disappearsFlag = false;
-      this.type = null;
+      this.startState = null;
+      this.endState = null;
+      this.properties = 0;
     }
   }
   
@@ -67,7 +60,7 @@ public abstract class AbstractShape implements Shape {
   
   @Override
   public String getType() {
-    return this.type;
+    return this.type.toUpperCase();
   }
   
   @Override
@@ -81,22 +74,22 @@ public abstract class AbstractShape implements Shape {
   }
   
   @Override
-  public float getPositionX() {
+  public int getPositionX() {
     return this.pointX;
   }
   
   @Override
-  public float getPositionY() {
+  public int getPositionY() {
     return this.pointY;
   }
   
   @Override
-  public float getX() {
+  public int getX() {
     return this.x;
   }
   
   @Override
-  public float getY() {
+  public int getY() {
     return this.y;
   }
   
@@ -110,8 +103,70 @@ public abstract class AbstractShape implements Shape {
     return this.disappears;
   }
   
+  @Override
+  public boolean getCreated() {
+    return this.properties == 5 && this.appearsFlag && this.disappearsFlag;
+  }
+  
+  @Override
+  public Shape getStartState() {
+    return this.startState;
+  }
+  
+  @Override
+  public Shape getEndState() {
+    return this.endState;
+  }
   
   //SETTERS AND OTHER------------------------------------------------------------------------------
+  @Override
+  public void setColor(int r, int g, int b) {
+    if (r < 0 || g < 0 || b < 0
+            || r > 255 || g > 255 || b > 255) {
+      throw new IllegalArgumentException("RGB values must be between 0 - 255");
+    }
+    
+    this.color = new Color(r, g, b);
+    this.properties += 1;
+  }
+  
+  @Override
+  public void setPositionX(int pointX) {
+    if (pointX < 0) {
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    }
+    this.pointX = pointX;
+    this.properties += 1;
+  }
+  
+  @Override
+  public void setPositionY(int pointY) {
+    if (pointY < 0) {
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    }
+    this.pointY = pointY;
+    this.properties += 1;
+  }
+  
+  @Override
+  public void setX(int x) {
+    if (x <= 0) {
+      throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
+    }
+    this.x = x;
+    this.properties += 1;
+  }
+  
+  @Override
+  public void setY(int y) {
+    if ( y <= 0) {
+      throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
+    }
+    
+    this.y = y;
+    this.properties += 1;
+  }
+  
   @Override
   public void setAppears(int appears) {
     if (appears < 0) {
@@ -136,12 +191,24 @@ public abstract class AbstractShape implements Shape {
     this.disappearsFlag = true;
   }
   
+  @Override
+  public void setStartState(Shape s) {
+    if (s.getCreated()) {
+      this.startState = s.copy();
+    }
+  }
   
-
+  @Override
+  public void setEndState(Shape s) {
+    if (s.getCreated()) {
+      this.startState = s.copy();
+    }
+  }
+  
   @Override
   public boolean sameObject(Shape other) {
     Objects.requireNonNull(other);
-
+    
     return (this.name.equals(other.getName()) && this.color.sameObject(other.getColor())
             && this.pointX == other.getPositionX() && this.pointY == other.getPositionY()
             && this.x == other.getX() && this.y == other.getY()

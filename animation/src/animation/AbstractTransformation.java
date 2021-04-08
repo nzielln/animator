@@ -48,12 +48,12 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
-  public float getToX() {
+  public int getToX() {
     return 0;
   }
   
   @Override
-  public float getToY() {
+  public int getToY() {
     return 0;
   }
   

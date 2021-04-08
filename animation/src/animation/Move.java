@@ -4,8 +4,8 @@ package animation;
  * Represents a Move transformation, extends methods from the AbstractTransformation.
  */
 public class Move extends AbstractTransformation {
-  final float toX;
-  final float toY;
+  final int toX;
+  final int toY;
   
   /**
    * Constructor calls the AbstractTransformation super class, takes in the color to change to.
@@ -14,7 +14,7 @@ public class Move extends AbstractTransformation {
    * @param timeStart (int) start time for the transformation
    * @param timeEnd (int) start time for the transformation
    */
-  public Move(String tid, float toX, float toY, int timeStart, int timeEnd) {
+  public Move(String tid, int toX, int toY, int timeStart, int timeEnd) {
     super(tid, timeStart, timeEnd);
     if (toX < 0 || toY < 0) {
       throw new IllegalArgumentException("Coordinates points must be greater than or equal to 0.");
@@ -27,12 +27,12 @@ public class Move extends AbstractTransformation {
   
   //GETTERS----------------------------------------------------------------------------------------
   @Override
-  public float getToX() {
+  public int getToX() {
     return this.toX;
   }
   
   @Override
-  public float getToY() {
+  public int getToY() {
     return this.toY;
   }
   
