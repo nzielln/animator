@@ -78,3 +78,10 @@ int endHeight, int red, int green, int blue)
              -> create a new transformation
              -> add transformation to animation
 
+View Interface??
+    - readInputs() - filename, type of view, and speed
+            - parse speed to integer
+        - callReader()
+        - callBuilder() - model
+        - animate()
+        - resize()
