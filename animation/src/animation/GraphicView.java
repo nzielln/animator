@@ -1,4 +1,4 @@
 package animation;
 
-public class GraphicView {
+public class GraphicView extends AbstractView {
 }

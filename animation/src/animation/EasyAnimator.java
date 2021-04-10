@@ -16,6 +16,8 @@ public class EasyAnimator {
   
   public static void main(String[] args) throws FileNotFoundException {
     View text = new TextView();
+    View svg = new SVGView();
+    View visual = new GraphicView();
     Animation m = new AnimationImpl(); //Model
     Scanner scan = new Scanner(System.in);
     
@@ -24,6 +26,7 @@ public class EasyAnimator {
             + "you would like to see, and \"-speed\" if applicable.");
     String inputStr = scan.nextLine();
     
+    //Controller for what animation to call
     if (inputStr.contains("text")) {
       text.readInputs(inputStr);
       FileReader f = text.getReadable();
@@ -32,24 +35,28 @@ public class EasyAnimator {
       AnimationReader.parseFile(f, b);
       
       text.animate(m);
-    } else {
-      System.out.println("Nothing to do here\n");
+    } else if (inputStr.contains("svg")) {
+      svg.readInputs(inputStr);
+      FileReader f = svg.getReadable();
+    
+      AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
+      AnimationReader.parseFile(f, b);
+    
+      svg.animate(m);
+    
+    } else if (inputStr.contains("visual")) {
+      visual.readInputs(inputStr);
+      FileReader f = visual.getReadable();
+  
+      AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
+      AnimationReader.parseFile(f, b);
+  
+      visual.animate(m);
+      
     }
     
-
-    /*
-    //---------------------------------------------------------------------------------------------
-    //This is the basic idea of getting file
-    String fileInput = "smalldemo.txt"; //from the CLI - should have a method for this??
-    String filename = "src/animation/code/" + fileInput;
-    File demo = new File(filename);
-    FileReader f = new FileReader(demo);
-    //---------------------------------------------------------------------------------------------
-    
-    AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
-    AnimationReader.parseFile(f, b);
-    //System.out.println(m.toString());
-     */
+    //Will need to deal with what to do with resize/reshape
+    //Would is be better to have custom methods in each view??
     
   }
   

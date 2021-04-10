@@ -1,4 +1,4 @@
 package animation;
 
-public class SVGView {
+public class SVGView extends AbstractView{
 }
