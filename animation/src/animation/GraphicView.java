@@ -1,22 +1,22 @@
 package animation;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.*;
 
 public class GraphicView extends JFrame implements View {
-  @Override
-  public HashMap<String, String> readInputs(Readable readable) {
-    return null;
+  private GraphicsPannel pannel;
+
+  public GraphicView(int x, int y, int width, int height, List<Shape> model) {
+    super("animation");
+    setSize(width, height);
+    setLocation(x, y);
+    this.pannel = new GraphicsPannel(model, x, y, width, height);
   }
 
-  @Override
-  public void readBuild(HashMap<String, String> inputs, Animation model) {
-
-  }
-
-  @Override
-  public void animate(Animation model, HashMap<String, String> inputs) {
-
+  public void updateModel(List<Shape> model) {
+    this.pannel.updateModel(model);
+    this.repaint();
   }
 }
