@@ -7,6 +7,7 @@ import java.util.Objects;
  */
 public class ChangeColor extends AbstractTransformation {
   final Color toColor;
+  Color intialColor;
   
   /**
    * Constructor calls the AbstractTransformation super class, takes in the color to change to.
@@ -19,6 +20,7 @@ public class ChangeColor extends AbstractTransformation {
     Objects.requireNonNull(toColor, "Color object can't be null.");
     
     this.toColor = toColor;
+    this.intialColor = null;
     super.type = "Color";
   }
   
@@ -27,6 +29,17 @@ public class ChangeColor extends AbstractTransformation {
   public Color getToColor() {
     return this.toColor;
   }
+  
+  @Override
+  public Color getInitialColor() {
+    return this.intialColor;
+  }
+  
+  @Override
+  public void setInitialColor(Color c) {
+    this.intialColor = c;
+  }
+  
   
   @Override
   public boolean sameObject(Transformation other) {

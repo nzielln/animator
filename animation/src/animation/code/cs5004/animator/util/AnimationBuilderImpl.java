@@ -81,14 +81,19 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
   {
     if ( x1 != x2 || y1 != y2) {
       Transformation move = new Move("+", x2, y2, t1, t2);
+      move.setInitialX(x1);
+      move.setInitialY(y1);
       model.addTransformation(name, move);
 
     } else if (w1 != w2 || h1 != h2) {
       Transformation scale = new Scale("+", w2, h2, t1, t2);
+      scale.setInitialX(w1);
+      scale.setInitialY(h1);
       model.addTransformation(name, scale);
   
     } else if (!new Color(r1, g1, b1).sameObject(new Color(r2, g2, b2))) {
       Transformation color = new ChangeColor("+", new Color(r2, g2, b2), t1, t2);
+      color.setInitialColor(new Color(r1, g1, b1));
       model.addTransformation(name, color);
     }
   }

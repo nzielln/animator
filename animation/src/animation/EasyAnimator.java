@@ -38,10 +38,10 @@ public class EasyAnimator {
     } else if (inputStr.contains("svg")) {
       svg.readInputs(inputStr);
       FileReader f = svg.getReadable();
-    
+  
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
-    
+  
       svg.animate(m);
     
     } else if (inputStr.contains("visual")) {

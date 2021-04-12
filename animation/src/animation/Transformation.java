@@ -1,5 +1,7 @@
 package animation;
 
+import jdk.jshell.spi.ExecutionControl;
+
 /**
  * Animation interface, represents methods implemented by the {@link AbstractTransformation} class.
  */
@@ -55,32 +57,13 @@ public interface Transformation {
    */
   Color getToColor();
   
-  /**
-   *
-   * @return
-   */
-  Shape getStartState();
+  int getInitialX();
   
-  /**
-   *
-   * @return
-   */
-  Shape getEndState();
+  int getInitialY();
   
+  Color getInitialColor();
   
   //OTHER------------------------------------------------------------------------------------------
-  /**
-   *
-   * @param s
-   */
-  void setStartState(Shape s);
-  
-  /**
-   *
-   * @param s
-   */
-  void setEndState(Shape s);
-  
   /**
    * Determines if two Transformation objects are identical.
    * @param other (Transformation) another Transformation object
@@ -88,6 +71,9 @@ public interface Transformation {
    */
   boolean sameObject(Transformation other);
   
+  void setInitialX(int x);
+  void setInitialY(int y);
+  void setInitialColor(Color c);
   
   /**
    * Returns a string representation of the {@link Transformation} object.

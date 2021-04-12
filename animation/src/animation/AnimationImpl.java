@@ -2,6 +2,7 @@ package animation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -10,7 +11,7 @@ import java.util.Objects;
  * Represents an AnimationImpl class for the animation program, implements Animation interface.
  */
 public class AnimationImpl implements Animation {
-  HashMap<Shape, List<Transformation>> hashmap;
+  LinkedHashMap<Shape, List<Transformation>> hashmap;
   int x;
   int y;
   int width;
@@ -20,7 +21,7 @@ public class AnimationImpl implements Animation {
   * Constructor for the AnimationImpl, create a hashmap of Shapes and list of Transformations.
   */
   public AnimationImpl() {
-    hashmap = new HashMap<>();
+    hashmap = new LinkedHashMap<>();
     this.x = 0;
     this.y = 0;
     this.width = 0;
@@ -31,6 +32,26 @@ public class AnimationImpl implements Animation {
   @Override
   public int getSize() {
     return hashmap.size();
+  }
+  
+  @Override
+  public int getCanvasWidth() {
+    return this.width;
+  }
+  
+  @Override
+  public int getCanvasHeight() {
+    return this.height;
+  }
+  
+  @Override
+  public int getCanvasX() {
+    return this.x;
+  }
+  
+  @Override
+  public int getCanvaY() {
+    return this.y;
   }
   
   @Override
@@ -247,36 +268,45 @@ public class AnimationImpl implements Animation {
     }
     
     for (Shape s : hashmap.keySet()) {
-      for (Transformation t : hashmap.get(s)) {
-        //If change color transformation
-        if (t.getTransformationType().equals("Color")) {
-          String desc = "Shape " + s.getName() + " changes color from "
-                  + s.getColor().toString() + " to " + t.getToColor().toString() + " from t="
-                  + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+      str.append(tranformationString(s));
+    }
+    return "Shapes: \n" + str.toString().trim();
+  }
+  
+  @Override
+  public String tranformationString(Shape s) {
+    StringBuilder str = new StringBuilder();
+    
+    for (Transformation t : hashmap.get(s)) {
+      //If change color transformation
+      if (t.getTransformationType().equals("Color")) {
+        String desc = "Shape " + s.getName() + " changes color from "
+                + s.getColor().toString() + " to " + t.getToColor().toString() + " from t="
+                + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+        str.append(desc).append("\n");
+        //if move transformation
+      } else if (t.getTransformationType().equals("Moves")) {
+        String desc = "Shape " + s.getName() + " moves from (" + s.getPositionX()
+                + "," + s.getPositionY() + ") to (" + t.getToX() + ","
+                + t.getToY() + ") from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+        str.append(desc).append("\n");
+        //if scale tranformation
+      } else {
+        if (s.getType().equals("RECTANGLE")) {
+          String desc =  "Shape " + s.getName() + " scales from Width: " + s.getX()
+                  + ", Height: " + s.getY() + " to Width: " + t.getToX() + ", Height: "
+                  + t.getToY() + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
-          //if move transformation
-        } else if (t.getTransformationType().equals("Moves")) {
-          String desc = "Shape " + s.getName() + " moves from (" + s.getPositionX()
-                  + "," + s.getPositionY() + ") to (" + t.getToX() + ","
-                  + t.getToY() + ") from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
-          str.append(desc).append("\n");
-          //if scale tranformation
         } else {
-          if (s.getType().equals("RECTANGLE")) {
-            String desc =  "Shape " + s.getName() + " scales from Width: " + s.getX()
-                    + ", Height: " + s.getY() + " to Width: " + t.getToX() + ", Height: "
-                    + t.getToY() + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
-            str.append(desc).append("\n");
-          } else {
-            String desc = "Shape" + s.getName() + " scales from X radius: " + s.getX()
-                    + ", Y radius: " + s.getY() + " to X radius: " + t.getToX() + ", Y radius: "
-                    + t.getToY() + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
-            str.append(desc).append("\n");
-          }
+          String desc = "Shape" + s.getName() + " scales from X radius: " + s.getX()
+                  + ", Y radius: " + s.getY() + " to X radius: " + t.getToX() + ", Y radius: "
+                  + t.getToY() + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+          str.append(desc).append("\n");
         }
       }
     }
-    return "Shapes: \n" + str.toString().trim();
+    
+    return str.toString();
   }
   
 }

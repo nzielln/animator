@@ -16,6 +16,16 @@ public interface Animation {
    */
   int getSize();
   
+  
+  int getCanvasWidth();
+  
+  int getCanvasHeight();
+  
+  
+  int getCanvasX();
+  
+  int getCanvaY();
+  
   /**
    * Returns a the numebr of Transformation in the Shape that matches the id providied.
    * @return (int) number of Transformation objects
@@ -127,4 +137,12 @@ public interface Animation {
    *        Description of transformation: Shape, name, changes, times
    */
   String toString();
+  
+  /**
+   * Returns a string representation of a transformation.
+   * @return a string
+   *        //For each transformation
+   *        Description of transformation: Shape, name, changes, times
+   */
+  String tranformationString(Shape s);
 }

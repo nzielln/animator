@@ -1,5 +1,7 @@
 package animation;
 
+import jdk.jshell.spi.ExecutionControl;
+
 /**
  * AbstractTransformation implements the Transformation interface and represents methods that
  * are common to all transformation classes.
@@ -8,8 +10,6 @@ public abstract class AbstractTransformation implements Transformation {
   final int timeStart;
   final int timeEnd;
   final String tID;
-  Shape endState;
-  Shape startState;
   String type;
   
   /**
@@ -30,8 +30,6 @@ public abstract class AbstractTransformation implements Transformation {
     this.tID = tID;
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
-    this.endState = null;
-    this.startState = null;
     this.type = null;
   }
   
@@ -77,26 +75,33 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
-  public Shape getEndState() {
-    return this.endState;
-    
+  public Color getInitialColor() {
+    return null;
   }
   
   @Override
-  public Shape getStartState() {
-    return this.startState;
-    
+  public int getInitialX() {
+    return 0;
   }
   
   @Override
-  public void setEndState(Shape s) {
-    this.endState = s;
+  public int getInitialY() {
+    return 0;
+  }
+  
+  //SETTERS----------------------------------------------------------------------------------------
+  @Override
+  public void setInitialX(int x) {
   }
   
   @Override
-  public void setStartState(Shape s) {
-    this.startState = s;
-    
+  public void setInitialY(int y) {
   }
+  
+  @Override
+  public void setInitialColor(Color c) {
+  }
+  
+  
 
 }
