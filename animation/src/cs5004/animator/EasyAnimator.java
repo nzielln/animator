@@ -1,4 +1,4 @@
-package cs5004.animator.view;
+package cs5004.animator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,6 +9,10 @@ import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
 import cs5004.animator.util.AnimationReader;
+import cs5004.animator.view.GraphicView;
+import cs5004.animator.view.SVGView;
+import cs5004.animator.view.TextView;
+import cs5004.animator.view.View;
 
 public class EasyAnimator {
   
