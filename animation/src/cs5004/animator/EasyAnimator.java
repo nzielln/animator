@@ -1,7 +1,9 @@
 package cs5004.animator;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import cs5004.animator.model.Animation;
@@ -9,6 +11,7 @@ import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
 import cs5004.animator.util.AnimationReader;
+import cs5004.animator.view.Graphic;
 import cs5004.animator.view.GraphicView;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
@@ -20,7 +23,7 @@ public class EasyAnimator {
   public static void main(String[] args) throws FileNotFoundException {
     View text = new TextView();
     View svg = new SVGView();
-    View visual = new GraphicView();
+    //Graphic visual = new GraphicView();
     Animation m = new AnimationImpl(); //Model
     Scanner scan = new Scanner(System.in);
     
@@ -48,13 +51,32 @@ public class EasyAnimator {
       svg.animate(m);
     
     } else if (inputStr.contains("visual")) {
-      visual.readInputs(inputStr);
-      FileReader f = visual.getReadable();
+      HashMap<String, String> inputs = new HashMap<>();
+      Scanner s = new Scanner(inputStr);
+  
+      while (s.hasNext()) {
+        String next = s.next();
+        if (next.equals("-in")) {
+          inputs.put("in", s.next());
+        } else if (next.equals("-out")) {
+          inputs.put("out", s.next());
+        } else if (next.equals("-view")) {
+          inputs.put("view", s.next());
+        } else if (next.equals("-speed")) {
+          inputs.put("speed", s.next());
+      
+        }
+      }
+  
+      String fileInput = inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
+      String filename = "src/cs5004/animator/files/" + fileInput;
+      File demo = new File(filename);
+      FileReader f = new FileReader(demo);
   
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
   
-      visual.animate(m);
+      //visual.animate(m);
       
     }
     

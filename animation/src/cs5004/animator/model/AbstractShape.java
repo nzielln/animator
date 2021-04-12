@@ -147,6 +147,10 @@ public abstract class AbstractShape implements Shape {
     this.disappearsFlag = true;
   }
   
+ private void mergeShape(Shape other) {
+  
+  }
+  
   @Override
   public boolean sameObject(Shape other) {
     Objects.requireNonNull(other);

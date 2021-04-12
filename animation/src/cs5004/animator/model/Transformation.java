@@ -1,5 +1,7 @@
 package cs5004.animator.model;
 
+import java.util.HashMap;
+
 import jdk.jshell.spi.ExecutionControl;
 
 /**
@@ -62,6 +64,7 @@ public interface Transformation {
   int getInitialY();
   
   Color getInitialColor();
+  HashMap<String, Integer> getState();
   
   //OTHER------------------------------------------------------------------------------------------
   /**
@@ -74,6 +77,7 @@ public interface Transformation {
   void setInitialX(int x);
   void setInitialY(int y);
   void setInitialColor(Color c);
+  void populateHashmap(int x, int y, int w, int h, int app, int dis, int r, int g, int b);
   
   /**
    * Returns a string representation of the {@link Transformation} object.

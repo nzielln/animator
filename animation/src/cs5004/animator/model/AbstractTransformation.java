@@ -1,5 +1,7 @@
 package cs5004.animator.model;
 
+import java.util.HashMap;
+
 import jdk.jshell.spi.ExecutionControl;
 
 /**
@@ -11,6 +13,7 @@ public abstract class AbstractTransformation implements Transformation {
   final int timeEnd;
   final String tID;
   String type;
+  HashMap<String, Integer> currentState;
   
   /**
    * The constructor takes the start and end time for the transformation, initializes type to null.
@@ -31,6 +34,7 @@ public abstract class AbstractTransformation implements Transformation {
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
     this.type = null;
+    this.currentState = new HashMap<>();
   }
   
   //GETTER-----------------------------------------------------------------------------------------
@@ -102,6 +106,24 @@ public abstract class AbstractTransformation implements Transformation {
   public void setInitialColor(Color c) {
   }
   
+  @Override
+  public void populateHashmap(int x, int y, int w, int h, int app, int dis, int r, int g, int b) {
+    this.currentState.put("x", x);
+    this.currentState.put("y", y);
+    this.currentState.put("w", w);
+    this.currentState.put("h", h);
+    this.currentState.put("appears", app);
+    this.currentState.put("disappears", dis);
+    this.currentState.put("r", r);
+    this.currentState.put("g", g);
+    this.currentState.put("b", b);
+  
+  }
+  
+  @Override
+  public HashMap<String, Integer> getState() {
+    return this.currentState;
+  }
   
 
 }
