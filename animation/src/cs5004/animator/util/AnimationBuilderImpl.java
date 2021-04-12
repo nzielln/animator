@@ -1,17 +1,17 @@
-package animation.code.cs5004.animator.util;
+package cs5004.animator.util;
 
 import java.util.ArrayList;
 
-import animation.Animation;
-import animation.AnimationImpl;
-import animation.ChangeColor;
-import animation.Color;
-import animation.Move;
-import animation.Oval;
-import animation.Rectangle;
-import animation.Scale;
-import animation.Shape;
-import animation.Transformation;
+import cs5004.animator.model.Animation;
+import cs5004.animator.model.AnimationImpl;
+import cs5004.animator.model.ChangeColor;
+import cs5004.animator.model.Color;
+import cs5004.animator.model.Move;
+import cs5004.animator.model.Oval;
+import cs5004.animator.model.Rectangle;
+import cs5004.animator.model.Scale;
+import cs5004.animator.model.Shape;
+import cs5004.animator.model.Transformation;
 
 public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
   private Animation model;
