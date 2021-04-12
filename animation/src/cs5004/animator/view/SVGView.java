@@ -15,14 +15,14 @@ public class SVGView extends AbstractView {
     /*int interval = 0;
     if (this.inputs.get("speed") != null) {
       int time = Integer.parseInt(this.inputs.get("speed"));
-      interval = 500 / time;
+      interval = 100 / time;
       
      */
     
     // -in "smalldemo.txt" -out "out.svg" -view "svg"
     try {
       
-      FileWriter f = new FileWriter("out.svg");
+      FileWriter f = new FileWriter(this.inputs.get("out"));
       String canvas = "<svg width=\"" + m.getCanvasWidth() + "\" height=\"" + m.getCanvasHeight()
               + "\" version=\"1.1\" \n\t xmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
@@ -51,25 +51,25 @@ public class SVGView extends AbstractView {
           if (t.getTransformationType().equals("Moves")) {
             if (s.getType().equals("RECTANGLE")) {
               if (t.getInitialX() != t.getToX()) {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 500
-                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 500
+                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 100
+                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 100
                         + "ms\" attributeName=\"x" + "\" from=\"" + t.getInitialX() + "\" to=\""
                         + t.getToX() + "\" fill=\"freeze\" />\n";
               } else {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 500
-                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 500
+                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 100
+                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 100
                         + "ms\" attributeName=\"y" + "\" from=\"" + t.getInitialY() + "\" to=\""
                         + t.getToY() + "\" fill=\"freeze\" />\n";
               }
             } else {
               if (t.getInitialX() != t.getToX()) {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 500
-                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 500
+                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 100
+                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 100
                         + "ms\" attributeName=\"cx" + "\" from=\"" + t.getInitialX() + "\" to=\""
                         + t.getToX() + "\" fill=\"freeze\" />\n";
               } else {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 500
-                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 500
+                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 100
+                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 100
                         + "ms\" attributeName=\"cy" + "\" from=\"" + t.getInitialY() + "\" to=\""
                         + t.getToY() + "\" fill=\"freeze\" />\n";
               }
@@ -78,34 +78,34 @@ public class SVGView extends AbstractView {
           } else if (t.getTransformationType().equals("Scales")) {
             if (s.getType().equals("ELLIPSE")) {
               if (t.getInitialX() != t.getToX()) {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 500
-                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 500
+                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 100
+                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 100
                         + "ms\" attributeName=\"rx" + "\" from=\"" + t.getInitialX() + "\" to=\""
                         + t.getToX() + "\" fill=\"freeze\" />\n";
               } else {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 500
-                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 500
+                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 100
+                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 100
                         + "ms\" attributeName=\"ry" + "\" from=\"" + t.getInitialY() + "\" to=\""
                         + t.getToY() + "\" fill=\"freeze\" />\n";
               }
     
             } else {
               if (t.getInitialX() != t.getToX()) {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 500
-                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 500
+                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 100
+                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 100
                         + "ms\" attributeName=\"width" + "\" from=\"" + t.getInitialX() + "\" to=\""
                         + t.getToX() + "\" fill=\"freeze\" />\n";
               } else {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 500
-                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 500
+                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 100
+                        + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 100
                         + "ms\" attributeName=\"height" + "\" from=\"" + t.getInitialY() + "\" to=\""
                         + t.getToY() + "\" fill=\"freeze\" />\n";
               }
             }
   
           } else if (t.getTransformationType().equals("Color")) {
-            tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 500
-                    + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 500
+            tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() * 100
+                    + "ms\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) * 100
                     + "ms\" attributeName=\"fill" + "\" from=\"rgb(" + t.getInitialColor().getR()
                     + "," + t.getInitialColor().getG() + "," + t.getInitialColor().getB()
                     + ")\" to=\"rgb(" + t.getToColor().getR()

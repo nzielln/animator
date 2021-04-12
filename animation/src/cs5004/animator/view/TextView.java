@@ -48,7 +48,7 @@ public class TextView extends AbstractView {
     str.append("\n");
   
     for (Shape s : m.getShapes()) {
-      str.append(m.tranformationString(s));
+      str.append(m.tranformationString(s).replace("Shape ", ""));
     }
     
     

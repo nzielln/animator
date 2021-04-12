@@ -38,7 +38,7 @@ public class AbstractView implements View {
   @Override
   public FileReader getReadable() throws FileNotFoundException {
     String fileInput = this.inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
-    String filename = "src/animation/code/" + fileInput;
+    String filename = "src/cs5004/animator/files/" + fileInput;
     File demo = new File(filename);
     FileReader f = new FileReader(demo);
     
