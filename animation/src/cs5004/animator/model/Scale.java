@@ -1,4 +1,4 @@
-package animation;
+package cs5004.animator.model;
 
 /**
  * Represents a Scale transformation, extends methods from the AbstractTransformation.

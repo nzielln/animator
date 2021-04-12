@@ -3,7 +3,7 @@ More Methods to Implement in Model
     - getEndState
     - getAtTime
 
-Text animation.View
+Text cs5004.animator.view.View
     - Pretty much like our output from the model, shoudln't take too much work
 
 Visual Animation
@@ -78,7 +78,7 @@ int endHeight, int red, int green, int blue)
              -> create a new transformation
              -> add transformation to animation
 
-animation.View Interface??
+cs5004.animator.view.View Interface??
     - readInputs() - filename, type of view, and speed
             - parse speed to integer
         - callReader()

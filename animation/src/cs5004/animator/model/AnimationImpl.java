@@ -1,4 +1,4 @@
-package animation;
+package cs5004.animator.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

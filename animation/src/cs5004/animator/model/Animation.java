@@ -1,9 +1,7 @@
-package animation;
+package cs5004.animator.model;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import animation.code.cs5004.animator.util.AnimationBuilder;
 
 /**
  * Animation interface, represents methods implemented by the {@link AnimationImpl} class.

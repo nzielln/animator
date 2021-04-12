@@ -1,4 +1,4 @@
-package animation;
+package cs5004.animator.model;
 
 /**
  * Animation interface, represents methods implemented by the {@link AbstractTransformation} class.

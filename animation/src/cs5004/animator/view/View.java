@@ -1,8 +1,8 @@
-package animation;
+package cs5004.animator.view;
 
 import java.util.HashMap;
 
-import animation.Animation;
+import cs5004.animator.model.Animation;
 
 public interface View {
 

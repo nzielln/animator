@@ -1,4 +1,4 @@
-package animation;
+package cs5004.animator.model;
 
 /**
  * Shape interface, represents methods implemented by the {@link AbstractShape} class.
