@@ -63,9 +63,32 @@ public class AnimationImpl implements Animation {
     }
     throw new NoSuchElementException("Shape not found");
   }
-  
+
+  //Should apply all the transformations on the corresponding shapes and return a list of Shapes
   @Override
-  public Shape getByTime(int t) {
+  public List<Shape> getByTime(int t) {
+    List<Shape> currentShapesAtTick = new ArrayList<>();
+    List<Shape> shapes = new ArrayList<>();
+    List<List<Transformation>> trans = new ArrayList<>();
+
+    for (Shape s: hashmap.keySet()) {
+      if (t >= s.getAppears()) {
+        shapes.add(s);
+      }
+    }
+
+    for (Shape s: shapes) {
+      trans.add(hashmap.get(s));
+    }
+
+    for (List<Transformation> tList: trans) {
+      for (Transformation transformation: tList) {
+        if (t >= transformation.getTimeStart()) {
+        }
+      }
+    }
+
+    for
     return null;
   }
   

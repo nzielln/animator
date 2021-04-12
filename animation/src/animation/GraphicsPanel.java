@@ -7,10 +7,10 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-public class GraphicsPannel extends JPanel {
+public class GraphicsPanel extends JPanel {
   private List<Shape> model;
 
-  public GraphicsPannel(List<Shape> model, int x, int y, int width, int height) {
+  public GraphicsPanel(List<Shape> model, int x, int y, int width, int height) {
     super(true);
     setSize(width, height);
     setLocation(x, y);
@@ -21,7 +21,7 @@ public class GraphicsPannel extends JPanel {
   }
 
   //Do we need this second constructor??
-  public GraphicsPannel(List<Shape> model) {
+  public GraphicsPanel(List<Shape> model) {
     super(true);
     this.model = model;
     setBackground(Color.WHITE);

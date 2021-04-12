@@ -3,6 +3,7 @@ package animation;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.List;
 
 import animation.code.cs5004.animator.util.AnimationBuilder;
 import animation.code.cs5004.animator.util.AnimationBuilderImpl;

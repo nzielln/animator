@@ -38,7 +38,7 @@ public interface Animation {
    * @param t (int) time of the shape to return
    * @return a Shape at time t
    */
-  Shape getByTime(int t);
+  List<Shape> getByTime(int t);
   
   /**
    * Returns a list of all the Transformation(s) in the animation for a shape that matches the id.
