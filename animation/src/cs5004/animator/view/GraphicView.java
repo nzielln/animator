@@ -3,6 +3,7 @@ package cs5004.animator.view;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -16,20 +17,20 @@ public class GraphicView extends JFrame implements Graphic {
   private GraphicsPanel panel;
   private HashMap<String, String> inputs;
   
-  public GraphicView(int x, int y, int width, int height, Animation model) {
+  public GraphicView(int x, int y, int width, int height, List<Shape> model) {
     super("Animation");
     setSize(width, height);
     setLocation(x, y);
     this.panel = new GraphicsPanel(model, x, y, width, height);
   }
   
-  public void updateModel(Animation model) {
+  public void updateModel(List<Shape> model) {
     this.panel.updateModel(model);
     this.repaint();
   }
-  
+
   @Override
   public void animate(Animation model) {
-  
+
   }
 }

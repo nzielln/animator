@@ -3,11 +3,14 @@ package cs5004.animator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
+import cs5004.animator.model.Shape;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
 import cs5004.animator.util.AnimationReader;
@@ -77,7 +80,23 @@ public class EasyAnimator {
       AnimationReader.parseFile(f, b);
   
       //visual.animate(m);
-      
+
+      //Model initialization?
+      List<Shape> model = new ArrayList<>();
+      for (Shape shape: m.getShapes()) {
+        model.add(shape);
+      }
+
+      //Frame initialization
+      GraphicView newAnimation = new GraphicView(0, 0, 500, 500, model); //how do we get the canvas information?
+      newAnimation.updateModel(model);
+      double tick = 1/Integer.parseInt(inputs.get("speed"));
+      double count = 0;
+
+      while(count < 100) {
+        List<Shape> newModel = new ArrayList<>();
+
+      }
     }
     
     //Will need to deal with what to do with resize/reshape
