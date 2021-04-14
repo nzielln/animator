@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
+import cs5004.animator.model.Color;
 import cs5004.animator.model.Shape;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
@@ -90,18 +91,66 @@ public class EasyAnimator {
       //Frame initialization
       GraphicView newAnimation = new GraphicView(0, 0, 500, 500, model); //how do we get the canvas information?
       newAnimation.updateModel(model);
-      double tick = 1/Integer.parseInt(inputs.get("speed"));
-      double count = 0;
+      int tick = Integer.parseInt(inputs.get("speed")); //not sure if this is how to correctly rep speed
+      if (tick <= 0) {
+        throw new IllegalArgumentException("Speed needs to be positive integer");
+      }
 
-      while(count < 100) {
+      int count = 0;
+      int lengthAnimation = 0;
+
+      //get the total length of the animation
+      for(Shape shape: model) {
+        if (shape.getDisappears() > lengthAnimation) {
+          lengthAnimation = shape.getDisappears();
+        }
+      }
+
+      //do we get how long the animation is from the user at all? Does this need to be <= or <?
+      while(count < lengthAnimation) {
         List<Shape> newModel = new ArrayList<>();
+        List<Shape> shapesAtTick = m.getByTime(count);
+
+        for (Shape shape: shapesAtTick) {
+          // if the new model list is empty, just add the shape
+          if (newModel.size() == 0) {
+            newModel.add(shape);
+          }
+
+          else {
+            for (Shape sh: newModel) {
+              for (Shape origShape: model) {
+                if ((shape.getName().equals(sh.getName()))
+                  && (shape.getPositionX() != origShape.getPositionX()
+                        || shape.getPositionY() != origShape.getPositionY())) {
+                    sh.updatePositionX(shape.getPositionX());
+                    sh.updatePositionY(shape.getPositionY());
+                  } else if ((shape.getName().equals(sh.getName())
+                        && (shape.getX() != origShape.getX() || shape.getY() != origShape.getY()))) {
+                    sh.updateX(shape.getX());
+                    sh.updateY(shape.getY());
+                  } else if ((shape.getName().equals(sh.getName()))
+                        && (!shape.getColor().sameObject(origShape.getColor())) {
+                    sh.updateColor(new Color(shape.getColor().getR(), shape.getColor().getG(),
+                            shape.getColor().getB()));
+                  }
+                }
+
+              // if the shape isn't in the new model, add it
+              newModel.add(shape);
+
+              }
+            }
+          }
+
+        newAnimation.updateModel(shapesAtTick);
+        model = newModel;
+        count += tick;
 
       }
     }
+  }
+}
     
     //Will need to deal with what to do with resize/reshape
     //Would is be better to have custom methods in each view??
-    
-  }
-  
-}

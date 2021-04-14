@@ -147,9 +147,30 @@ public abstract class AbstractShape implements Shape {
     this.disappearsFlag = true;
   }
   
- private void mergeShape(Shape other) {
-  
-  }
+ @Override
+ public void updatePositionX(int positionX) {
+    this.pointX = positionX;
+ }
+
+ @Override
+ public void updatePositionY(int positionY) {
+    this.pointY = positionY;
+ }
+
+ @Override
+ public void updateX(int x) {
+    this.x = x;
+ }
+
+ @Override
+ public void updateY(int y) {
+    this.y = y;
+ }
+
+ @Override
+ public void updateColor(Color color) {
+    this.color = color;
+ }
   
   @Override
   public boolean sameObject(Shape other) {
