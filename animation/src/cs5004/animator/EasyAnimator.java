@@ -130,7 +130,7 @@ public class EasyAnimator {
                     sh.updateX(shape.getX());
                     sh.updateY(shape.getY());
                   } else if ((shape.getName().equals(sh.getName()))
-                        && (!shape.getColor().sameObject(origShape.getColor())) {
+                        && (!shape.getColor().sameObject(origShape.getColor()))) {
                     sh.updateColor(new Color(shape.getColor().getR(), shape.getColor().getG(),
                             shape.getColor().getB()));
                   }
