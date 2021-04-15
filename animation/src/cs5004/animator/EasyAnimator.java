@@ -1,9 +1,7 @@
 package cs5004.animator;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import cs5004.animator.model.Animation;
@@ -11,10 +9,6 @@ import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
 import cs5004.animator.util.AnimationReader;
-import cs5004.animator.view.Graphic;
-import cs5004.animator.view.GraphicView;
-import cs5004.animator.view.SVGView;
-import cs5004.animator.view.TextView;
 import cs5004.animator.view.View;
 import cs5004.animator.view.ViewFactory;
 
