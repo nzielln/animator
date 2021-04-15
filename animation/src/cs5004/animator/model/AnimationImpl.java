@@ -104,6 +104,14 @@ public class AnimationImpl implements Animation {
   
     for (Shape s: shapes) {
       //HashMap<String, Shape> transformedShapes = new HashMap<>();
+      String name = s.getName();
+      String type = s.getType();
+      int positionX = s.getPositionX();
+      int positionY = s.getPositionY();
+      int width = s.getX();
+      int height = s.getY();
+      cs5004.animator.model.Color color = s.getColor();
+
       for (Transformation tr : hashmap.get(s)) {
         HashMap<String, Integer> l = tr.getState();
         if (t >= tr.getTimeStart() && t >= tr.getTimeEnd()) { // t doesn't have to be greater than end time?
@@ -119,14 +127,18 @@ public class AnimationImpl implements Animation {
             int newY = y * ((tr.getTimeEnd() - t) / (tr.getTimeEnd() - tr.getTimeStart()))
                     + finalY * ((t - tr.getTimeStart()) / (tr.getTimeEnd() - tr.getTimeStart()));
 
-            for (Shape shape: currentShapesAtTick) {
+            /*for (Shape shape: currentShapesAtTick) {
               if (s.getName().equals(shape.getName())) {
                 shape.updatePositionX(newX);
                 shape.updatePositionY(newY);
               } else {
                 setTransformedShapeMove(currentShapesAtTick, newX, newY, tr.getState(), s);
               }
-            }
+            }*/
+
+            positionX = newX;
+            positionY = newY;
+
 
           } else if (tr.getTransformationType().equals("Scales")) {
   
@@ -141,14 +153,17 @@ public class AnimationImpl implements Animation {
             int newY = y * ((tr.getTimeEnd() - t) / (tr.getTimeEnd() - tr.getTimeStart()))
                     + finalY * ((t - tr.getTimeStart()) / (tr.getTimeEnd() - tr.getTimeStart()));
 
-            for (Shape shape: currentShapesAtTick) {
+            /*for (Shape shape: currentShapesAtTick) {
               if (s.getName().equals(shape.getName())) {
                 shape.updateX(newX);
                 shape.updateY(newY);
               } else {
                 setTransformedShapeMove(currentShapesAtTick, newX, newY, tr.getState(), s);
               }
-            }
+            }*/
+
+            width = newX;
+            height = newY;
 
           } else if (tr.getTransformationType().equals("Color")) {
             Color initialColor = new Color(tr.getInitialColor().getR(), tr.getInitialColor().getG(),
@@ -163,7 +178,7 @@ public class AnimationImpl implements Animation {
 
             Color nc = new Color(newColor);
 
-            for (Shape shape: currentShapesAtTick) {
+            /*for (Shape shape: currentShapesAtTick) {
               if (s.getName().equals(shape.getName())) {
                 shape.updateColor(new cs5004.animator.model.Color(nc.getRed(),
                         nc.getGreen(), nc.getBlue()));
@@ -176,9 +191,21 @@ public class AnimationImpl implements Animation {
                   setTransformedShapeColor(currentShapesAtTick, l, nc, sh);
                 }
               }
-            }
+            }*/
+
+            color = new cs5004.animator.model.Color(nc.getRed(),
+                    nc.getGreen(), nc.getBlue());
           }
         }
+      }
+      if (type.equals("RECTANGLE")) {
+        Shape newRect = new Rectangle(name, type);
+        newRect.setProperties(positionX, positionY, x, y, color.getR(), color.getG(), color.getB());
+        currentShapesAtTick.add(newRect);
+      } else if (type.equals("OVAL")) {
+        Shape newOval = new Oval(name, type);
+        newOval.setProperties(positionX, positionY, x, y, color.getR(), color.getG(), color.getB());
+        currentShapesAtTick.add(newOval);
       }
     }
     return currentShapesAtTick;
