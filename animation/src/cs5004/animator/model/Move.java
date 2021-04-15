@@ -48,11 +48,20 @@ public class Move extends AbstractTransformation {
     return this.initialY;
   }
   
+  @Override
   public void setInitialX(int x) {
+    if (x < 0) {
+      throw new IllegalArgumentException("Coordinates points must be greater than or equal to 0.");
+    }
+    
     this.initialX = x;
   }
   
+  @Override
   public void setInitialY(int y) {
+    if (y < 0) {
+      throw new IllegalArgumentException("Coordinates points must be greater than or equal to 0.");
+    }
     this.initialY = y;
   }
   

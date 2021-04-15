@@ -2,16 +2,16 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import animation.Animation;
-import animation.AnimationImpl;
-import animation.ChangeColor;
-import animation.Color;
-import animation.Move;
-import animation.Oval;
-import animation.Rectangle;
-import animation.Scale;
-import animation.Shape;
-import animation.Transformation;
+import cs5004.animator.model.Animation;
+import cs5004.animator.model.AnimationImpl;
+import cs5004.animator.model.ChangeColor;
+import cs5004.animator.model.Color;
+import cs5004.animator.model.Move;
+import cs5004.animator.model.Oval;
+import cs5004.animator.model.Rectangle;
+import cs5004.animator.model.Scale;
+import cs5004.animator.model.Shape;
+import cs5004.animator.model.Transformation;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,10 +26,12 @@ public class AnimationFullTest {
     //Create a new animation
     Animation animation = new AnimationImpl();
     
-    Shape ovalOne = new Oval("ovalOne",5, 23, 4, 4, 24, 45, 57);
-    Shape ovalTwo = new Oval("ovalTwo",5, 3, 4, 5, 2, 5, 7);
-    Shape rectangleOne = new Rectangle("rectOne",5, 23, 4, 7, 244,
-            145, 7);
+    Shape ovalOne = new Oval("ovalOne","ELLIPSE");
+    ovalOne.setProperties(5, 23, 4, 4, 24, 45, 57);
+    Shape ovalTwo = new Oval("ovalTwo","ELLIPSE");
+    ovalTwo.setProperties(5, 3, 4, 5, 2, 5, 7);
+    Shape rectangleOne = new Rectangle("rectOne","RECTANGLE");
+    rectangleOne.setProperties(5, 23, 4, 7, 244,145, 7);
   
     ovalOne.setAppears(0);
     ovalOne.setDisappears(10);
@@ -57,12 +59,12 @@ public class AnimationFullTest {
     assertEquals(2, animation.getSizeTransformations("ovalOne") );
     assertEquals("Shapes: \n"
             + "Name: ovalOne\n"
-            + "Type: OVAL\n"
+            + "Type: ELLIPSE\n"
             + "Center: (5.0,23.0), X radius: 4.0, Y radius: 4.0, Color: (24.0, 45.0, 57.0)\n"
             + "Appears at t=0\n"
             + "Disappears at t=10\n\n"
             + "Name: ovalTwo\n"
-            + "Type: OVAL\n"
+            + "Type: ELLIPSE\n"
             + "Center: (5.0,3.0), X radius: 4.0, Y radius: 5.0, Color: (2.0, 5.0, 7.0)\n"
             + "Appears at t=0\n"
             + "Disappears at t=0\n\n"

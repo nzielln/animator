@@ -48,11 +48,19 @@ public class Scale extends AbstractTransformation {
     return this.initialY;
   }
   
+  @Override
   public void setInitialX(int x) {
+    if (x <= 0) {
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    }
     this.initialX = x;
   }
   
+  @Override
   public void setInitialY(int y) {
+    if (y <= 0) {
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    }
     this.initialY = y;
   }
   

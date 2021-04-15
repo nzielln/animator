@@ -1,11 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import animation.ChangeColor;
-import animation.Color;
-import animation.Move;
-import animation.Scale;
-import animation.Transformation;
+import cs5004.animator.model.ChangeColor;
+import cs5004.animator.model.Color;
+import cs5004.animator.model.Move;
+import cs5004.animator.model.Scale;
+import cs5004.animator.model.Transformation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -29,14 +29,14 @@ public class TransformationTest {
     }
     
     try {
-      move = new Move("move", 23.4f, 34, 0, 0);
+      move = new Move("move", 23, 34, 0, 0);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     //**
     try {
-      move = new Move("move", 23.4f, 34, 3, 11);
+      move = new Move("move", 23, 34, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
@@ -154,7 +154,7 @@ public class TransformationTest {
   
   @Test
   public void getXY() {
-    assertEquals(23.4, move.getToX(), 0.001);
+    assertEquals(23, move.getToX(), 0.001);
     assertEquals(34, move.getToY(), 0.001);
     
     assertEquals(8, scale.getToX(), 0.001);
@@ -170,16 +170,16 @@ public class TransformationTest {
   
   @Test
   public void testSame() {
-    Transformation n = new Move("move", 23.4f, 34, 3, 11);
+    Transformation n = new Move("move", 23, 34, 3, 11);
     assertTrue(move.sameObject(n));
   
     Transformation sa = new Scale("scale",8, 12, 2, 7);
     assertTrue(scale.sameObject(sa));
   
-    Transformation nn = new Move("moves", 23.4f, 34, 3, 11);
+    Transformation nn = new Move("moves", 23, 34, 3, 11);
     assertFalse(move.sameObject(nn));
   
-    Transformation diffp = new Move("move", 23, 34, 3, 11);
+    Transformation diffp = new Move("move", 22, 34, 3, 11);
     assertFalse(move.sameObject(diffp));
   
     Transformation s = new Scale("scale", 23, 34, 3, 11);

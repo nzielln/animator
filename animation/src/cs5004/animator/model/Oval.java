@@ -1,5 +1,7 @@
 package cs5004.animator.model;
 
+import java.text.DecimalFormat;
+
 /**
  * Represents a Oval shape, extends methods from the AbstractShape.
  */
@@ -34,10 +36,13 @@ public class Oval extends AbstractShape {
   
   @Override
   public String toString() {
+    DecimalFormat f = new DecimalFormat("0.0");
+  
     return "Name: " + this.name + "\n"
             + "Type: " + this.type + "\n"
-            + "Center: (" + this.pointX + "," + this.pointY + "), X radius: " + this.x
-            + ", Y radius: " + this.y + ", Color: " + this.color.toString() + "\n"
+            + "Center: (" + f.format(this.pointX) + "," + f.format(this.pointY) + "), X radius: "
+            + f.format(this.x) + ", Y radius: " + f.format(this.y) + ", Color: "
+            + this.color.toString() + "\n"
             + "Appears at t=" + this.appears + "\n"
             + "Disappears at t=" + this.disappears + "\n";
   }

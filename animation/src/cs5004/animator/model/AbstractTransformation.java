@@ -1,6 +1,7 @@
 package cs5004.animator.model;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import jdk.jshell.spi.ExecutionControl;
 
@@ -108,6 +109,17 @@ public abstract class AbstractTransformation implements Transformation {
   
   @Override
   public void populateHashmap(int x, int y, int w, int h, int app, int dis, int r, int g, int b) {
+    if (w <= 0 || h <= 0) {
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    } else if (x < 0 || y < 0) {
+      throw new IllegalArgumentException("Coordinates points must be greater than or equal to 0.");
+    } else if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
+      throw new IllegalArgumentException("Color values must be withing the range of 0 and 255.");
+    } else if (app < 0 || dis < 0 || app > dis) {
+      throw new IllegalArgumentException("Time values must be greater than 0, "
+              + "disappear can't be less than appear.");
+    }
+    
     this.currentState.put("x", x);
     this.currentState.put("y", y);
     this.currentState.put("w", w);
