@@ -124,15 +124,4 @@ public interface Shape {
    *        Disappears: "
    */
   String toString();
-
-
-  void updatePositionX(int positionX);
-
-  void updatePositionY(int positionY);
-
-  void updateX(int x);
-
-  void updateY(int y);
-
-  void updateColor(Color color);
 }
