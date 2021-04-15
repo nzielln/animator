@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Timer;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
@@ -20,6 +21,7 @@ import cs5004.animator.view.GraphicView;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.View;
+
 
 public class EasyAnimator {
   
@@ -87,9 +89,10 @@ public class EasyAnimator {
       model.addAll(m.getShapes());
 
       //Frame initialization
-      GraphicView newAnimation = new GraphicView(0, 0, 500, 500, model); //how do we get the canvas information?
+      GraphicView newAnimation = new GraphicView(m.getCanvasX(), m.getCanvaY(),
+              m.getCanvasWidth(), m.getCanvasHeight(), model);
       newAnimation.updateModel(model);
-      int tick = Integer.parseInt(inputs.get("speed")); //not sure if this is how to correctly rep speed
+      int tick = Integer.parseInt(inputs.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
       if (tick <= 0) {
         throw new IllegalArgumentException("Speed needs to be positive integer");
       }
@@ -106,47 +109,7 @@ public class EasyAnimator {
 
       //do we get how long the animation is from the user at all? Does this need to be <= or <?
       while(count < lengthAnimation) {
-        List<Shape> newModel = new ArrayList<>();
-        List<Shape> transformationsAtTick = m.getByTime(count);
-
-        for (Shape shape: transformationsAtTick) {
-          // if the new model list is empty, just add the shape
-          if (newModel.size() == 0) {
-            newModel.add(shape);
-          }
-
-          else {
-            for (Shape sh: newModel) {
-              for (Shape origShape: model) {
-
-                // check if positionX and/or positionY is different
-                if ((shape.getName().equals(sh.getName()))
-                  && (shape.getPositionX() != origShape.getPositionX()
-                        || shape.getPositionY() != origShape.getPositionY())) {
-                    sh.updatePositionX(shape.getPositionX());
-                    sh.updatePositionY(shape.getPositionY());
-                  }
-
-                // check if length and/or width is different
-                else if ((shape.getName().equals(sh.getName())
-                        && (shape.getX() != origShape.getX() || shape.getY() != origShape.getY()))) {
-                    sh.updateX(shape.getX());
-                    sh.updateY(shape.getY());
-                  }
-                // check if the colors are different
-                else if ((shape.getName().equals(sh.getName()))
-                        && (!shape.getColor().sameObject(origShape.getColor()))) {
-                    sh.updateColor(new Color(shape.getColor().getR(), shape.getColor().getG(),
-                            shape.getColor().getB()));
-                  }
-                }
-
-                // if the shape isn't in the new model, add it
-                newModel.add(shape);
-
-              }
-            }
-          }
+        List<Shape> newModel =  m.getByTime(count);
 
         //update the animation and model to newModel
         //update count
