@@ -1,5 +1,7 @@
 package cs5004.animator.model;
 
+import java.text.DecimalFormat;
+
 /**
  * Represents a Rectangle shape, extends methods from the AbstractShape.
  */
@@ -34,10 +36,12 @@ public class Rectangle extends AbstractShape {
   
   @Override
   public String toString() {
+    DecimalFormat f = new DecimalFormat("0.0");
     return "Name: " + this.name + "\n"
             + "Type: " + this.type + "\n"
-            + "Min corner: (" + this.pointX + "," + this.pointY + "), Width: " + this.x
-            + ", Length: " + this.y + ", Color: " + this.color.toString() + "\n"
+            + "Min corner: (" + f.format(this.pointX) + "," + f.format(this.pointY) + "), Width: "
+            + f.format(this.x) + ", Length: " + f.format(this.y) + ", Color: "
+            + this.color.toString() + "\n"
             + "Appears at t=" + this.appears + "\n"
             + "Disappears at t=" + this.disappears + "\n";
   }

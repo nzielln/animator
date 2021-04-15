@@ -1,9 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import animation.Oval;
-import animation.Rectangle;
-import animation.Shape;
+import cs5004.animator.model.Oval;
+import cs5004.animator.model.Rectangle;
+import cs5004.animator.model.Shape;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -16,24 +16,27 @@ import static org.junit.Assert.fail;
 public class ShapeTest {
   private Shape oval;
   private Shape rect;
-  
+  //TODO: Merge Shape
   @Before
   public void setUp() throws Exception {
     //Valid shape inputs
     try {
-      oval = new Oval("oval", 23, 45, 4, 5, 24, 35, 123);
+      oval = new Oval("oval", "ELLIPSE");
+      oval.setProperties(23, 45, 4, 5, 24, 35, 123);
     } catch (Exception e) {
       fail("Exception should not have been thrown.");
     }
     
     try {
-      rect = new Rectangle("rect", 17.5f, 9.12f, 8, 8, 122, 122, 122);
+      rect = new Rectangle("rect", "RECTANGLE");
+      rect.setProperties(17, 9, 8, 8, 122, 122, 122);
     } catch (Exception e) {
       fail("Exception should not have been thrown.");
     }
     
     try {
-      rect = new Rectangle("rect", 67, 89, 8, 8, 122, 122, 122);
+      rect = new Rectangle("rect", "RECTANGLE");
+      rect.setProperties(67, 89, 8, 8, 122, 122, 122);
     } catch (Exception e) {
       fail("Exception should not have been thrown.");
     }
@@ -42,63 +45,73 @@ public class ShapeTest {
     //Invalid Points
     Shape bad;
     try {
-      bad = new Oval("oval", -34, 45, 4, 5, 24, 35, 123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(-34, 45, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", 34, -23, 4, 5, 24, 35, 123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(34, -23, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", -34, -23, 4, 5, 24, 35, 123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(-34, -23, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     //Invalid Length/Width
     try {
-      bad = new Oval("oval", 34, 23, 0, 5, 24, 35, 123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(34, 23, 0, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", 34, 23, 0, 0, 24, 35, 123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(34, 23, 0, 0, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", 34, 23, -4, 5, 24, 35, 123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(34, 23, -4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", 34, 23, -4, -5, 24, 35, 123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(34, 23, -4, -5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     //Invalid RGB values
     try {
-      bad = new Oval("oval", 34, 23, -4, 5, 256, 35, 123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(34, 23, -4, 5, 256, 35, 12);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", 34, 23, -4, 5, 24, 35, -123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(34, 23, -4, 5, 24, 35, -123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", 34, 23, -4, 5, 263, -35, 123);
+      bad = new Oval("oval", "ELLIPSE");
+      bad.setProperties(34, 23, -4, 5, 263, -35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
@@ -107,7 +120,7 @@ public class ShapeTest {
   @Test
   public void getShape() {
     assertEquals("oval", oval.getShape().getName());
-    assertEquals("OVAL", oval.getShape().getType());
+    assertEquals("ELLIPSE", oval.getShape().getType());
     
     assertEquals("rect", rect.getShape().getName());
     assertEquals("RECTANGLE", rect.getShape().getType());
@@ -116,7 +129,7 @@ public class ShapeTest {
   
   @Test
   public void getType() {
-    assertEquals("OVAL", oval.getType());
+    assertEquals("ELLIPSE", oval.getType());
     assertEquals("RECTANGLE", rect.getType());
   }
   
@@ -209,7 +222,7 @@ public class ShapeTest {
     Shape ovalCp = oval.copy();
     
     assertEquals("oval", ovalCp.getName());
-    assertEquals("OVAL", ovalCp.getType());
+    assertEquals("ELLIPSE", ovalCp.getType());
     assertEquals(24, ovalCp.getColor().getR(), 0.001 );
     assertEquals(35, ovalCp.getColor().getG(), 0.001);
     assertEquals(123, ovalCp.getColor().getB(), 0.001);
@@ -239,10 +252,12 @@ public class ShapeTest {
             + "Disappears at t=11\n";
     
     String ov = "Name: oval\n"
-            + "Type: OVAL\n"
+            + "Type: ELLIPSE\n"
             + "Center: (23.0,45.0), X radius: 4.0, Y radius: 5.0, Color: (24.0, 35.0, 123.0)\n"
             + "Appears at t=1\n"
             + "Disappears at t=10\n";
+    System.out.println(rect.toString());
+    System.out.println(oval.toString());
     
     assertEquals(re, rect.toString());
     assertEquals(ov, oval.toString());
@@ -252,7 +267,8 @@ public class ShapeTest {
   @Test
   public void testSame() {
     try {
-      Shape rect2 = new Rectangle("rect", 67, 89, 8,
+      Shape rect2 = new Rectangle("rect", "RECTANGLE");
+      rect2.setProperties(67, 89, 8,
               8, 122, 122, 122);
       assertTrue(rect.sameObject(rect2));
     } catch (Exception e) {
@@ -261,7 +277,8 @@ public class ShapeTest {
     
     //Different name
     try {
-      Shape rect2 = new Rectangle("rect2", 67, 89, 8,
+      Shape rect2 = new Rectangle("rect2", "RECTANGLE");
+      rect2.setProperties(67, 89, 8,
               8, 122, 122, 122);
       assertFalse(rect.sameObject(rect2));
     } catch (Exception e) {
@@ -270,7 +287,8 @@ public class ShapeTest {
     
     //Different point
     try {
-      Shape rect2 = new Rectangle("rect", 50, 75, 8,
+      Shape rect2 = new Rectangle("rect", "RECTANGLE");
+      rect2.setProperties(50, 75, 8,
               8, 122, 122, 122);
       assertFalse(rect.sameObject(rect2));
     } catch (Exception e) {
@@ -279,7 +297,8 @@ public class ShapeTest {
     
     //Different XY
     try {
-      Shape rect2 = new Rectangle("rect", 67, 89, 5,
+      Shape rect2 = new Rectangle("rect", "RECTANGLE");
+      rect2.setProperties(67, 89, 5,
               5, 122, 122, 122);
       assertFalse(rect.sameObject(rect2));
     } catch (Exception e) {
@@ -288,7 +307,8 @@ public class ShapeTest {
     
     //Different RBG
     try {
-      Shape rect2 = new Rectangle("rect", 67, 89, 8,
+      Shape rect2 = new Rectangle("rect", "RECTANGLE");
+      rect2.setProperties(67, 89, 8,
               8, 255, 0, 255);
       assertFalse(rect.sameObject(rect2));
     } catch (Exception e) {

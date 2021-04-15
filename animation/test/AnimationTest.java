@@ -3,16 +3,16 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import animation.Animation;
-import animation.AnimationImpl;
-import animation.ChangeColor;
-import animation.Color;
-import animation.Move;
-import animation.Oval;
-import animation.Rectangle;
-import animation.Scale;
-import animation.Shape;
-import animation.Transformation;
+import cs5004.animator.model.Animation;
+import cs5004.animator.model.AnimationImpl;
+import cs5004.animator.model.ChangeColor;
+import cs5004.animator.model.Color;
+import cs5004.animator.model.Move;
+import cs5004.animator.model.Oval;
+import cs5004.animator.model.Rectangle;
+import cs5004.animator.model.Scale;
+import cs5004.animator.model.Shape;
+import cs5004.animator.model.Transformation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -36,10 +36,16 @@ public class AnimationTest {
   @Before
   public void setUp() throws Exception {
     ani = new AnimationImpl();
-    oval = new Oval("oval", 34, 34, 4, 5, 122, 122, 122);
-    Shape rect = new Rectangle("rect", 12, 34, 8, 11, 1, 22, 89);
-    rect2 = new Rectangle("rect 2", 45, 50.5f,
-            12, 12, 0, 125, 255);
+    
+    oval = new Oval("oval", "ELLIPSE");
+    oval.setProperties(34, 34, 4, 5, 122, 122, 122);
+    
+    Shape rect = new Rectangle("rect", "RECTANGLE");
+    rect.setProperties(12, 34, 8, 11, 1, 22, 89);
+    
+    rect2 = new Rectangle("rect 2", "RECTANGLE");
+    rect2.setProperties(45, 50, 12, 12, 0, 125, 255);
+    
     oval.setAppears(1);
     oval.setDisappears(15);
     
@@ -101,7 +107,7 @@ public class AnimationTest {
   @Test
   public void getById() {
     //Get oval
-    assertEquals("OVAL", ani.getById("oval").getType());
+    assertEquals("ELLIPSE", ani.getById("oval").getType());
     assertEquals(122, ani.getById("oval").getColor().getR(), 0.001);
     
     //Get rectangle
@@ -183,12 +189,15 @@ public class AnimationTest {
     Animation ani2 = new AnimationImpl();
     
     //Add rectangle
-    Shape rect4 = new Rectangle("rect4", 3, 3,
+    Shape rect4 = new Rectangle("rect4", "RECTANGLE");
+    rect4.setProperties(3, 3,
             5, 10, 255, 0, 255);
     ani2.addShape(rect4, new ArrayList<>());
     
     //add oval
-    Shape oval4 = new Oval("oval4", 5, 5, 2, 4, 0, 0, 0);
+    Shape oval4 = new Oval("oval4", "ELLIPSE");
+    oval4.setProperties(5, 5, 2, 4, 0, 0, 0);
+    
     ani2.addShape(oval4, new ArrayList<>());
     
     //Check that shapes were correctly added
@@ -199,7 +208,7 @@ public class AnimationTest {
             + "Appears at t=0\n"
             + "Disappears at t=0\n"
             + ", Name: oval4\n"
-            + "Type: OVAL\n"
+            + "Type: ELLIPSE\n"
             + "Center: (5.0,5.0), X radius: 2.0, Y radius: 4.0, Color: (0.0, 0.0, 0.0)\n"
             + "Appears at t=0\n"
             + "Disappears at t=0\n]", ani2.getShapes().toString());
@@ -221,8 +230,9 @@ public class AnimationTest {
     
     //add identical shape
     try {
-      Shape rect5 = new Rectangle("rect4", 3, 3,
-              5, 10, 255, 0, 255);
+      Shape rect5 = new Rectangle("rect4", "RECTANGLE");
+      rect5.setProperties(3, 3, 5, 10, 255, 0, 255);
+      
       ani2.addShape(rect5, new ArrayList<>());
       fail("Exception should be thrown");
     } catch (Exception ignored) {
@@ -288,9 +298,11 @@ public class AnimationTest {
     }
     
     try {
-      Shape oval2 = new Oval("oval 2", 3, 3, 6, 10, 0, 255, 0);
+      Shape oval2 = new Oval("oval 2", "ELLIPSE");
+      oval2.setProperties(3, 3, 6, 10, 0, 255, 0);
       oval2.setAppears(1);
       oval2.setDisappears(15);
+      
       ani.addShape(oval2, new ArrayList<>());
       ani.addTransformation("oval 2", scale);
       assertEquals("Scales",
@@ -414,8 +426,9 @@ public class AnimationTest {
     //remove from empty transformation list
     try {
       Animation ani2 = new AnimationImpl();
-      Shape rect3 = new Rectangle("rect3", 3, 3, 4, 5,
-              0, 255, 0);
+      
+      Shape rect3 = new Rectangle("rect3", "RECTANGLE");
+      rect3.setProperties(3, 3, 4, 5,0, 255, 0);
       rect3.setAppears(1);
       rect3.setDisappears(15);
       
@@ -439,9 +452,11 @@ public class AnimationTest {
     //No transformations
     try {
       AnimationImpl ani2 = new AnimationImpl();
-      Shape rect3 = new Rectangle("rect3", 3, 3, 50,
-              25, 255, 255, 255);
+      
+      Shape rect3 = new Rectangle("rect3", "RECTANGLE");
+      rect3.setProperties(3, 3, 50, 25, 255, 255, 255);
       ani2.addShape(rect3, new ArrayList<>());
+      
       assertEquals("Shapes: \n"
               + "Name: rect3\n"
               + "Type: RECTANGLE\n"
@@ -455,8 +470,9 @@ public class AnimationTest {
     //With transformations
     try {
       AnimationImpl ani2 = new AnimationImpl();
-      Shape rect3 = new Rectangle("rect3", 3, 3, 50,
-              25, 255, 255, 255);
+      
+      Shape rect3 = new Rectangle("rect3", "RECTANGLE");
+      rect3.setProperties(3, 3, 50,   25, 255, 255, 255);
       rect3.setAppears(1);
       rect3.setDisappears(200);
       ani2.addShape(rect3, new ArrayList<>());

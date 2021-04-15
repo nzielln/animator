@@ -46,7 +46,7 @@ public class GraphicsPanel extends JPanel {
       return;
     }
     
-    for (Shape s: model.getByTime()) {
+    for (Shape s: model.getByTime(5)) {
       if (s.getType().equals("RECTANGLE")) {
         graphics.setColor(new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB()));
         graphics.drawRect(s.getPositionX(), s.getPositionX(), s.getX(), s.getY());

@@ -1,5 +1,6 @@
 package cs5004.animator.model;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 /**
@@ -78,6 +79,8 @@ public class Color {
    */
   @Override
   public String toString() {
-    return "(" + this.r + ", " + this.g + ", " + this.b + ")";
+    DecimalFormat f = new DecimalFormat("0.0");
+  
+    return "(" + f.format(this.r) + ", " + f.format(this.g) + ", " + f.format(this.b) + ")";
   }
 }

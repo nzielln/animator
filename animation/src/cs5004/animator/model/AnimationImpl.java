@@ -1,6 +1,7 @@
 package cs5004.animator.model;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,6 +104,7 @@ public class AnimationImpl implements Animation {
    
     List<Shape> currentShapesAtTick = new ArrayList<>();
     List<Shape> shapes = new ArrayList<>();
+    List<Shape> transformedShapes = new ArrayList<>();
     
   
     for (Shape s: hashmap.keySet()) {
@@ -112,7 +114,6 @@ public class AnimationImpl implements Animation {
     }
   
     for (Shape s: shapes) {
-      HashMap<String, Shape> transformedShapes = new HashMap<>();
       for (Transformation tr : hashmap.get(s)) {
         HashMap<String, Integer> l = tr.getState();
         if (t >= tr.getTimeStart() && t >= tr.getTimeEnd()) {
@@ -166,7 +167,7 @@ public class AnimationImpl implements Animation {
           }
         }
       }
-
+      /*
       for (String str: transformedShapes.keySet()) {
         int x = 0;
         int y = 0;
@@ -188,6 +189,10 @@ public class AnimationImpl implements Animation {
         }
         
       }
+      
+       */
+      
+
     }
   
     
@@ -196,48 +201,48 @@ public class AnimationImpl implements Animation {
     return null;
   }
   
-  private void setTransformedShapeColor(HashMap<String, Shape> transformedShapes, HashMap<String, Integer> l, Color nc, Shape sh) {
+  private void setTransformedShapeColor(List<Shape> transformedShapes, HashMap<String, Integer> l, Color nc, Shape sh) {
     sh.setProperties(l.get("x"), l.get("y"), l.get("w"), l.get("h"),
             nc.getRed(), nc.getGreen(), nc.getBlue());
     sh.setAppears(l.get("appears"));
     sh.setDisappears(l.get("disappears"));
-    transformedShapes.put("color", sh);
+    transformedShapes.add(sh);
   }
   
-  private void setTransformedShapeMove(HashMap<String, Shape> transformedShapes, int x, int y, HashMap<String, Integer> l, Shape s) {
+  private void setTransformedShapeMove(List<Shape> transformedShapes, int x, int y, HashMap<String, Integer> l, Shape s) {
     if (s.getType().equals("RECTANGLE")) {
       Shape sh = new Rectangle(s.getName(), s.getType());
       sh.setProperties(x, y, l.get("w"), l.get("h"),
               l.get("r"), l.get("g"), l.get("b"));
       sh.setAppears(l.get("appears"));
       sh.setDisappears(l.get("disappears"));
-      transformedShapes.put("move", sh);
+      transformedShapes.add(sh);
     } else {
       Shape sh = new Oval(s.getName(), s.getType());
       sh.setProperties(x, y, l.get("w"), l.get("h"),
               l.get("r"), l.get("g"), l.get("b"));
       sh.setAppears(l.get("appears"));
       sh.setDisappears(l.get("disappears"));
-      transformedShapes.put("move", sh);
+      transformedShapes.add(sh);
     }
 
   }
   
-  private void setTransformedShapeScale(HashMap<String, Shape> transformedShapes, int x, int y, HashMap<String, Integer> l, Shape s) {
+  private void setTransformedShapeScale(List<Shape> transformedShapes, int x, int y, HashMap<String, Integer> l, Shape s) {
     if (s.getType().equals("RECTANGLE")) {
       Shape sh = new Rectangle(s.getName(), s.getType());
       sh.setProperties(l.get("x"), l.get("y"), x, y,
               l.get("r"), l.get("g"), l.get("b"));
       sh.setAppears(l.get("appears"));
       sh.setDisappears(l.get("disappears"));
-      transformedShapes.put("scale", sh);
+      transformedShapes.add(sh);
     } else {
       Shape sh = new Oval(s.getName(), s.getType());
       sh.setProperties(l.get("x"), l.get("y"), x, y,
               l.get("r"), l.get("g"), l.get("b"));
       sh.setAppears(l.get("appears"));
       sh.setDisappears(l.get("disappears"));
-      transformedShapes.put("scale", sh);
+      transformedShapes.add(sh);
     }
     
   }
@@ -450,7 +455,8 @@ public class AnimationImpl implements Animation {
   @Override
   public String tranformationString(Shape s) {
     StringBuilder str = new StringBuilder();
-    
+    DecimalFormat f = new DecimalFormat("0.0");
+  
     for (Transformation t : hashmap.get(s)) {
       //If change color transformation
       if (t.getTransformationType().equals("Color")) {
@@ -460,21 +466,21 @@ public class AnimationImpl implements Animation {
         str.append(desc).append("\n");
         //if move transformation
       } else if (t.getTransformationType().equals("Moves")) {
-        String desc = "Shape " + s.getName() + " moves from (" + s.getPositionX()
-                + "," + s.getPositionY() + ") to (" + t.getToX() + ","
-                + t.getToY() + ") from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+        String desc = "Shape " + s.getName() + " moves from (" + f.format(s.getPositionX())
+                + "," + f.format(s.getPositionY()) + ") to (" + f.format(t.getToX()) + ","
+                + f.format(t.getToY()) + ") from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
         str.append(desc).append("\n");
         //if scale tranformation
       } else {
         if (s.getType().equals("RECTANGLE")) {
-          String desc =  "Shape " + s.getName() + " scales from Width: " + s.getX()
-                  + ", Height: " + s.getY() + " to Width: " + t.getToX() + ", Height: "
-                  + t.getToY() + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+          String desc =  "Shape " + s.getName() + " scales from Width: " + f.format(s.getX())
+                  + ", Height: " + f.format(s.getY()) + " to Width: " + f.format(t.getToX()) + ", Height: "
+                  + f.format(t.getToY()) + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
         } else {
-          String desc = "Shape" + s.getName() + " scales from X radius: " + s.getX()
-                  + ", Y radius: " + s.getY() + " to X radius: " + t.getToX() + ", Y radius: "
-                  + t.getToY() + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+          String desc = "Shape" + s.getName() + " scales from X radius: " + f.format(s.getX())
+                  + ", Y radius: " + f.format(s.getY()) + " to X radius: " + f.format(t.getToX()) + ", Y radius: "
+                  + f.format(t.getToY()) + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
         }
       }

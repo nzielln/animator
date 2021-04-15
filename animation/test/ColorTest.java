@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import animation.Color;
+import cs5004.animator.model.Color;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
