@@ -35,37 +35,6 @@ public class EasyAnimator {
   
     view.animate(m);
     
-    //Controller for what animation to call
-    /*
-    if (inputStr.contains("text")) {
-      text.readInputs(inputStr);
-      FileReader f = text.getReadable();
-      
-      AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
-      AnimationReader.parseFile(f, b);
-      
-      text.animate(m);
-    } else if (inputStr.contains("svg")) {
-      svg.readInputs(inputStr);
-      FileReader f = svg.getReadable();
-  
-      AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
-      AnimationReader.parseFile(f, b);
-  
-      svg.animate(m);
-    
-    } else if (inputStr.contains("visual")) {
-      visual.readInputs(inputStr);
-      FileReader f = visual.getReadable();
-  
-      AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
-      AnimationReader.parseFile(f, b);
-  
-      //visual.animate(m);
-      
-    }
-    
-     */
     
     //Will need to deal with what to do with resize/reshape
     //Would is be better to have custom methods in each view??
