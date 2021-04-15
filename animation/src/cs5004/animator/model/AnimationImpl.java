@@ -114,7 +114,7 @@ public class AnimationImpl implements Animation {
 
       for (Transformation tr : hashmap.get(s)) {
         HashMap<String, Integer> l = tr.getState();
-        if (t >= tr.getTimeStart() && t >= tr.getTimeEnd()) { // t doesn't have to be greater than end time?
+        if (t >= tr.getTimeStart() && t <= tr.getTimeEnd()) {
           if (tr.getTransformationType().equals("Moves")) {
             int x = tr.getInitialX();
             int y = tr.getInitialY();
