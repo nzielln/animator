@@ -22,7 +22,7 @@ public interface Animation {
   
   int getCanvasX();
   
-  int getCanvaY();
+  int getCanvasY();
   
   /**
    * Returns a the numebr of Transformation in the Shape that matches the id providied.

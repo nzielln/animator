@@ -64,7 +64,7 @@ public class AnimationImpl implements Animation {
   }
   
   @Override
-  public int getCanvaY() {
+  public int getCanvasY() {
     return this.y;
   }
   

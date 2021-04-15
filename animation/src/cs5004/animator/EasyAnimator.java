@@ -16,14 +16,14 @@ import cs5004.animator.view.GraphicView;
 import cs5004.animator.view.SVGView;
 import cs5004.animator.view.TextView;
 import cs5004.animator.view.View;
+import cs5004.animator.view.ViewFactory;
 
 public class EasyAnimator {
   
   
   public static void main(String[] args) throws FileNotFoundException {
-    View text = new TextView();
-    View svg = new SVGView();
-    //Graphic visual = new GraphicView();
+    ViewFactory factory = new ViewFactory();
+
     Animation m = new AnimationImpl(); //Model
     Scanner scan = new Scanner(System.in);
     
@@ -32,7 +32,17 @@ public class EasyAnimator {
             + "you would like to see, and \"-speed\" if applicable.");
     String inputStr = scan.nextLine();
     
+    View view = factory.create(inputStr, m);
+    view.readInputs(inputStr);
+    FileReader f = view.getReadable();
+  
+    AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
+    AnimationReader.parseFile(f, b);
+  
+    view.animate(m);
+    
     //Controller for what animation to call
+    /*
     if (inputStr.contains("text")) {
       text.readInputs(inputStr);
       FileReader f = text.getReadable();
@@ -51,27 +61,8 @@ public class EasyAnimator {
       svg.animate(m);
     
     } else if (inputStr.contains("visual")) {
-      HashMap<String, String> inputs = new HashMap<>();
-      Scanner s = new Scanner(inputStr);
-  
-      while (s.hasNext()) {
-        String next = s.next();
-        if (next.equals("-in")) {
-          inputs.put("in", s.next());
-        } else if (next.equals("-out")) {
-          inputs.put("out", s.next());
-        } else if (next.equals("-view")) {
-          inputs.put("view", s.next());
-        } else if (next.equals("-speed")) {
-          inputs.put("speed", s.next());
-      
-        }
-      }
-  
-      String fileInput = inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
-      String filename = "src/cs5004/animator/files/" + fileInput;
-      File demo = new File(filename);
-      FileReader f = new FileReader(demo);
+      visual.readInputs(inputStr);
+      FileReader f = visual.getReadable();
   
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
@@ -79,6 +70,8 @@ public class EasyAnimator {
       //visual.animate(m);
       
     }
+    
+     */
     
     //Will need to deal with what to do with resize/reshape
     //Would is be better to have custom methods in each view??

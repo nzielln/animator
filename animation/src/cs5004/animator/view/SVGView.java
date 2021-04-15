@@ -119,7 +119,6 @@ public class SVGView extends AbstractView {
       
       f.write("\n\n</svg>");
       f.close();
-      System.out.println("SVG Done.\n");
       
     } catch (Exception e) {
       e.printStackTrace();
