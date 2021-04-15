@@ -16,9 +16,7 @@ public interface View {
   "speed" :
    */
   HashMap<String, String> readInputs(String inputs);
-  
-  
-  
+
   FileReader getReadable() throws FileNotFoundException;
   
   void animate(Animation model);
