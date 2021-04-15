@@ -66,6 +66,7 @@ public interface Transformation {
   Color getInitialColor();
   HashMap<String, Integer> getState();
   
+  
   //OTHER------------------------------------------------------------------------------------------
   /**
    * Determines if two Transformation objects are identical.
