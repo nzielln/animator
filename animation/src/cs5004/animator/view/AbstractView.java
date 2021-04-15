@@ -5,8 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import cs5004.animator.model.Animation;
+import cs5004.animator.model.Shape;
 
 public class AbstractView implements View {
   HashMap<String, String> inputs;
@@ -18,5 +20,9 @@ public class AbstractView implements View {
   @Override
   public void animate(Animation model) {
   
+  }
+  
+  @Override
+  public void updateModel(List<Shape> shapes) {
   }
 }

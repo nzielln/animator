@@ -36,7 +36,7 @@ public class EasyAnimator {
     //ReadInputs
     Scanner s = new Scanner(inputStr);
     
-    while (scan.hasNext()) {
+    while (s.hasNext()) {
       String next = s.next();
       if (next.equals("-in")) {
         inputs.put("in", s.next());
