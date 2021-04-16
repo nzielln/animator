@@ -3,7 +3,7 @@
 ## Model Design
 ### Animation
 
-Our [Animation](/src/cs5004/animator/model/Animation.java) interface represents an animation program. 
+Our [Animation](animation/src/cs5004/animator/model/Animation.java) interface represents an animation program. 
 It's implemented in the AnimationImpl class as `HashMap<Shape, List<Transformation>>`. 
 We chose to use a hashmap so that we had a clear connection between our shapes and the different 
 transformation that would be applied to the them in during the program. Our implementation of the 
