@@ -1,8 +1,8 @@
 package cs5004.animator.view;
 
 
-import java.io.File;
 import java.util.HashMap;
+import java.util.Objects;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
@@ -15,9 +15,8 @@ public class TextView extends AbstractView {
   */
   @Override
   public void animate(Animation m, HashMap<String, String> in) {
-    if (in.get("view") == null || in.get("view").equals(" ") || in.get("in") == null || in.get("in").equals(" ")) {
-      throw new IllegalArgumentException("You must provide an in file and a view name to play animation.");
-    }
+    Objects.requireNonNull(m, "Animation can't be null");
+    Objects.requireNonNull(in, "Inputs can't be null");
     
     //determine when to make a new animation???
     int interval = 0;
