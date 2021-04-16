@@ -23,6 +23,6 @@ public class AbstractView implements View {
   }
   
   @Override
-  public void updateModel(List<Shape> shapes) {
+  public void currentView(List<Shape> shapes) {
   }
 }

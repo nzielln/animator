@@ -73,11 +73,12 @@ public class EasyAnimator {
     
     if (inputs.get("view").equals("visual")) {
       List<Shape> model = new ArrayList<>(m.getShapes());
-      int tick = Integer.parseInt(inputs.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
-      if (tick <= 0) {
-        throw new IllegalArgumentException("Speed needs to be positive integer");
-      }
-  
+      //double tick = Double.parseDouble(inputs.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
+      //if (tick <= 0) {
+        //throw new IllegalArgumentException("Speed needs to be positive integer");
+      //}
+    
+      double tick = 1 / 4;
       int count = 0;
       int lengthAnimation = 0;
   
@@ -90,13 +91,12 @@ public class EasyAnimator {
   
       //do we get how long the animation is from the user at all? Does this need to be <= or <?
       while (count < lengthAnimation) {
-        List<Shape> newModel = m.getByTime(count);
+        List<Shape> modified = m.getByTime(count);
     
         //update the animation and model to newModel
         //update count
-        view.updateModel(newModel);
-        model = newModel;
-        count += tick;
+        view.currentView(modified);
+        count ++;
     
         //Timer to let user see changes
         try {

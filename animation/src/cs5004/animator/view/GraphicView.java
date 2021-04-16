@@ -21,12 +21,15 @@ public class GraphicView extends JFrame implements View {
     super("Animation");
     setSize(width, height);
     setLocation(x, y);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLayout(null);
     this.panel = new GraphicsPanel(model, width, height, x, y);
     setVisible(true);
-    //pack();
+    add(panel);
+    panel.setVisible(true);
   }
   
-  public void updateModel(List<Shape> model) {
+  public void currentView(List<Shape> model) {
     this.panel.updateModel(model);
     this.repaint();
   }

@@ -12,7 +12,7 @@ public interface View {
   
   void animate(Animation model);
   
-  void updateModel(List<Shape> shapes);
+  void currentView(List<Shape> shapes);
   
 
   

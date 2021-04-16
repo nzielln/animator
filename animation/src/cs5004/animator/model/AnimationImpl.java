@@ -141,7 +141,6 @@ public class AnimationImpl implements Animation {
         shape.changeColor(r, g, b);
         
       }
-    
     }
     
     if (shape.getColor() == null) {
