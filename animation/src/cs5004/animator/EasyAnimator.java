@@ -19,14 +19,12 @@ import cs5004.animator.view.ViewFactory;
 
 public class EasyAnimator {
   
-  
   public static void main(String[] args) throws FileNotFoundException {
     ViewFactory factory = new ViewFactory();
     
     Animation m = new AnimationImpl(); //Model
     Scanner scan = new Scanner(System.in);
     
-    System.out.println("What kind of animaton would you like to see?\n");
     System.out.println("Provide an \"-in\" file, \"-out\" the type of \"-view\" "
             + "you would like to see, and \"-speed\" if applicable.");
     String inputStr = scan.nextLine();
@@ -46,9 +44,9 @@ public class EasyAnimator {
         inputs.put("view", s.next());
       } else if (next.equals("-speed")) {
         inputs.put("speed", s.next());
-        
       }
     }
+    s.close();
     
     //GetReadable
     String fileInput = inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
@@ -59,8 +57,8 @@ public class EasyAnimator {
     //Build Model
     AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
     AnimationReader.parseFile(f, b);
-    List<Shape> h = new ArrayList<>(m.getByTime(20));
-    System.out.println(h);
+    //List<Shape> h = new ArrayList<>(m.getByTime(20));
+    //System.out.println(h);
     int width = m.getCanvasWidth();
     int height = m.getCanvasHeight();
     int x = m.getCanvasX();
@@ -68,9 +66,8 @@ public class EasyAnimator {
     
     //Factory depending on "view"
     View view = factory.create(inputs, m.getByTime(0), width, height, x, y);
-    
+    System.out.println(m.toString());
     view.animate(m, inputs);
-    
     
     if (inputs.get("view").equals("visual")) {
       List<Shape> model = new ArrayList<>(m.getShapes());
@@ -78,42 +75,40 @@ public class EasyAnimator {
       if (tick <= 0) {
         throw new IllegalArgumentException("Speed needs to be positive integer");
       }
-    
+      
       int count = 0;
       int lengthAnimation = 0;
-  
+      
       //get the total length of the animation
       for (Shape shape : model) {
         if (shape.getDisappears() > lengthAnimation) {
           lengthAnimation = shape.getDisappears();
         }
       }
-  
+      
       //do we get how long the animation is from the user at all? Does this need to be <= or <?
       while (count < lengthAnimation) {
         List<Shape> modified = m.getByTime(count);
-    
+        
         //update the animation and model to newModel
         //update count
         view.currentView(modified);
         count += 1;
-    
+        
         //Timer to let user see changes
         try {
           Thread.sleep(50);
         } catch (InterruptedException e) {
           Thread.currentThread().interrupt();
         }
-    
+        
       }
     }
-    
-    
   }
-  
 }
-    
-    //Will need to deal with what to do with resize/reshape
-    //Would is be better to have custom methods in each view??
+
+//test text: -in smalldemo.txt -view text -speed 2
+//test svg: -in smalldemo.txt -view svg -speed 2
+//test visual: -in smalldemo.txt -view visual -speed 2
     
 

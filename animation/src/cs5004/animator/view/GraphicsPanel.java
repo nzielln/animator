@@ -53,16 +53,15 @@ public class GraphicsPanel extends JPanel {
         graphics.setColor(c);
         graphics.drawRect(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
         graphics.fillRect(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
-        System.out.println("Shape: " + count);
+        System.out.println(s.getName());
       } else if (s.getType().equals("ELLIPSE")) {
         Color c = new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB());
         graphics.setColor(c);
         graphics.drawOval(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
         graphics.fillOval(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
         
-        System.out.println("Shape: " + count);
+        System.out.println(s.getName());
       }
-      count++;
     }
   }
 }
