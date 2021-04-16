@@ -2,6 +2,7 @@ package cs5004.animator.view;
 
 import java.io.FileWriter;
 import java.util.HashMap;
+import java.util.Objects;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
@@ -13,6 +14,9 @@ public class SVGView extends AbstractView {
   
   @Override
   public void animate(Animation m, HashMap<String, String> in) {
+    Objects.requireNonNull(m, "Animation can't be null");
+    Objects.requireNonNull(in, "Inputs can't be null");
+
     int speed = 1;
     if (in.get("speed") != null) {
       speed = Integer.parseInt(in.get("speed").replace("\"",""));
