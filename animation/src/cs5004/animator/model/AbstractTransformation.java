@@ -147,13 +147,13 @@ public abstract class AbstractTransformation implements Transformation {
       Shape sh = new Oval(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
       sh.setAppears(this.timeStart);
-      sh.setAppears(this.timeEnd);
+      sh.setDisappears(this.timeEnd);
       this.shape = sh;
     } else {
       Shape sh = new Rectangle(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
       sh.setAppears(this.timeStart);
-      sh.setAppears(this.timeEnd);
+      sh.setDisappears(this.timeEnd);
       this.shape = sh;
       
     }

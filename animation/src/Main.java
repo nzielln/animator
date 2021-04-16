@@ -69,9 +69,9 @@ public class Main {
     scale.setInitialX(50);
     scale.setInitialY(50);
     
-    Color n = new Color(122, 122, 122);
+    Color n = new Color(3, 125, 32);
     Transformation color = new ChangeColor("c", n, 3, 34);
-    color.setInitialColor(new Color(100, 100, 100));
+    color.setInitialColor(new Color(52, 12, 65));
   
     Transformation move2 = new Move("mo", 20, 53, 17, 40);
     move2.setInitialX(50);
@@ -81,9 +81,9 @@ public class Main {
     scale2.setInitialX(50);
     scale2.setInitialY(50);
     
-    Color l = new Color(22, 122, 22);
+    Color l = new Color(56, 22, 123);
     Transformation color2 = new ChangeColor("co", l, 20, 40);
-    color2.setInitialColor(new Color(100, 100, 100));
+    color2.setInitialColor(new Color(23, 45, 134));
     
     
     m.addShape(a, new ArrayList<>());
@@ -97,26 +97,47 @@ public class Main {
     m.addShape(i, new ArrayList<>());
     m.addShape(j, new ArrayList<>());
     
+    move.setShape(a.getName(), a.getType(), 1,2, 3, 4, 5, 6, 7);
     m.addTransformation("a", move);
+    
+    scale.setShape(a.getName(), a.getType(), 50,50, 3, 4, 5, 6, 7);
     m.addTransformation("a", scale);
+  
+    color.setShape(a.getName(), a.getType(), 50,50, 10, 5, 5, 6, 7);
     m.addTransformation("a", color);
+    
+    move2.setShape(b.getName(), b.getType(), 11,12, 13, 14, 15, 16, 17);
     m.addTransformation("b", move2);
+    
+    color2.setShape(b.getName(), b.getType(), 20,53, 13, 14, 22, 122, 22);
     m.addTransformation("b", color2);
+    
+    color.setShape(c.getName(), c.getType(), 31,32, 33, 34, 35, 36, 37);
     m.addTransformation("c", color);
+    
+    move.setShape(c.getName(), c.getType(), 31,32, 33, 34, 122, 122, 122);
     m.addTransformation("c", move);
+    
+    move.setShape(f.getName(), f.getType(), 101,201, 301, 41, 51, 151, 71);
     m.addTransformation("f", move);
+    
+    color2.setShape(f.getName(), f.getType(), 50,50, 301, 41, 51, 151, 71);
     m.addTransformation("f", color2);
+    
     //m.addTransformation("g", scale2);
+    scale2.setShape(h.getName(), h.getType(), 11,211, 321, 31, 41, 61, 41);
     m.addTransformation("h", scale2);
+    
+    scale.setShape(i.getName(), i.getType(), 101,201, 301, 41, 51, 151, 71);
     m.addTransformation("i", scale);
   
     System.out.println(m.toString());
-    System.out.println(m.getByTime(5));
+    System.out.println(m.getByTime(6));
   
-    java.awt.Color cc = new java.awt.Color(122, 122, 122);
-    java.awt.Color ccs = new java.awt.Color(22, 122, 22);
-    System.out.println(cc.getRGB());
-    System.out.println(ccs.getRGB());
+    //java.awt.Color cc = new java.awt.Color(122, 122, 122);
+    //java.awt.Color ccs = new java.awt.Color(22, 122, 22);
+    //System.out.println(cc.getRGB());
+    //System.out.println(ccs.getRGB());
     
     /*scale
     ta=5

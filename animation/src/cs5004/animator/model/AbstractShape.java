@@ -142,13 +142,34 @@ public abstract class AbstractShape implements Shape {
     } else if (this.appearsFlag && disappears < this.appears) {
       throw new IllegalArgumentException("Must be within acceptable range.");
     }
-    
+  
     this.disappears = disappears;
     this.disappearsFlag = true;
   }
   
- private void mergeShape(Shape other) {
+  public void changePosition(int x, int y) {
+    if (x < 0 || y < 0) {
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    }
+    this.pointX = x;
+    this.pointY = y;
+  }
   
+  public void changeSize(int w, int h) {
+    if (w <= 0 || h <= 0) {
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
+    }
+    this.x = w;
+    this.y = h;
+  }
+  
+  public void changeColor(int r,int g, int b) {
+    if (r < 0 || g < 0 || b < 0
+            || r > 255 || g > 255 || b > 255) {
+      throw new IllegalArgumentException("RGB values must be between 0 - 255");
+    }
+    
+    this.color = new Color(r,g,b);
   }
   
   @Override

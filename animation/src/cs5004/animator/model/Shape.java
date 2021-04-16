@@ -70,6 +70,12 @@ public interface Shape {
    */
   boolean getCreated();
   
+  void changePosition(int x, int y);
+  
+  void changeSize(int w, int h);
+  
+  void changeColor(int r,int g, int b);
+  
   //SETTERS AND OTHER------------------------------------------------------------------------------
   /**
    *
