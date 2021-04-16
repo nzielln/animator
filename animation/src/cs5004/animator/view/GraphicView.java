@@ -19,7 +19,7 @@ public class GraphicView extends JFrame implements View {
   
   public GraphicView(List<Shape> model, int width, int height, int x, int y) {
     super("Animation");
-    setSize(width, height);
+    setSize(500, 500);
     setLocation(x, y);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(null);

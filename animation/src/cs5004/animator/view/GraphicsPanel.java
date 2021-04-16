@@ -15,10 +15,10 @@ public class GraphicsPanel extends JPanel {
   public GraphicsPanel(List<Shape> model, int x, int y, int width, int height) {
     super(true);
     this.model = model;
-    setSize(width, height);
+    setSize(width +200, height + 200);
     setLocation(0, 0);
     setBackground(Color.WHITE);
-    setBounds(x, y, width, height);
+    setBounds(x, y, width + 200, height + 200);
     setBorder(new LineBorder(Color.BLACK, 3));
   }
   
@@ -54,7 +54,7 @@ public class GraphicsPanel extends JPanel {
         graphics.drawRect(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
         graphics.fillRect(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
         System.out.println(s.getName());
-      } else if (s.getType().equals("Ellipse")) {
+      } else if (s.getType().equals("ELLIPSE")) {
         Color c = new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB());
         graphics.setColor(c);
         graphics.drawOval(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
