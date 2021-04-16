@@ -90,27 +90,27 @@ public abstract class AbstractTransformation implements Transformation {
   
   @Override
   public Color getInitialColor() {
-    return null;
+    return this.initialshape.getColor();
   }
   
   @Override
   public int getInitialX() {
-    return 0;
+    return this.initialshape.getPositionX();
   }
   
   @Override
   public int getInitialY() {
-    return 0;
+    return this.initialshape.getPositionY();
   }
   
   @Override
   public int getInitialWidth() {
-    return 0;
+    return this.initialshape.getWidth();
   }
   
   @Override
   public int getInitialHeight() {
-    return 0;
+    return this.initialshape.getHeight();
   }
   
   @Override
@@ -125,25 +125,6 @@ public abstract class AbstractTransformation implements Transformation {
   
   
   //SETTERS----------------------------------------------------------------------------------------
-  @Override
-  public void setInitialX(int x) {
-  }
-  
-  @Override
-  public void setInitialY(int y) {
-  }
-  
-  @Override
-  public void setInitialWidth(int w) {
-  }
-  
-  @Override
-  public void setInitialHeight(int h) {
-  }
-  
-  @Override
-  public void setInitialColor(Color c) {
-  }
   
   @Override
   public void setFinal(String name, String type, int x, int y, int w, int h, int r, int g, int b) {

@@ -111,7 +111,7 @@ public class AnimationImpl implements Animation {
         Shape n = getOneShape(s.copy(), atTime, t);
         shapesAtTick.add(n);
         lastest.put(n.getName(), n);
-      } else {
+      } else if (s.getAppears() <= t && t <= s.getDisappears()) {
         shapesAtTick.add(lastest.get(s.getName()));
       }
   

@@ -22,10 +22,10 @@ public class GraphicsPanel extends JPanel {
     }
 
     this.model = model;
-    setSize(width, height);
+    setSize(width +200, height + 200);
     setLocation(0, 0);
     setBackground(Color.WHITE);
-    setBounds(x, y, width, height);
+    setBounds(x, y, width + 200, height + 200);
     setBorder(new LineBorder(Color.BLACK, 3));
   }
   

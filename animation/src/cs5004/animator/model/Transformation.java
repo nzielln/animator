@@ -93,13 +93,13 @@ public interface Transformation {
    */
   boolean sameObject(Transformation other);
   
-  void setInitialX(int x);
-  void setInitialY(int y);
+  //void setInitialX(int x);
+  //void setInitialY(int y);
   
-  void setInitialWidth(int w);
-  void setInitialHeight(int h);
+ // void setInitialWidth(int w);
+  //void setInitialHeight(int h);
   
-  void setInitialColor(Color c);
+  //void setInitialColor(Color c);
   
   
   /**

@@ -20,7 +20,6 @@ public class ChangeColor extends AbstractTransformation {
     Objects.requireNonNull(toColor, "Color object can't be null.");
     
     this.toColor = toColor;
-    this.intialColor = null;
     super.type = "Color";
   }
   
@@ -29,17 +28,6 @@ public class ChangeColor extends AbstractTransformation {
   public Color getToColor() {
     return this.toColor;
   }
-  
-  @Override
-  public Color getInitialColor() {
-    return this.intialColor;
-  }
-  
-  @Override
-  public void setInitialColor(Color c) {
-    this.intialColor = c;
-  }
-  
   
   @Override
   public boolean sameObject(Transformation other) {

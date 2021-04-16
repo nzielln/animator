@@ -16,7 +16,7 @@ public class SVGView extends AbstractView {
   public void animate(Animation m, HashMap<String, String> in) {
     Objects.requireNonNull(m, "Animation can't be null");
     Objects.requireNonNull(in, "Inputs can't be null");
-
+    
     int speed = 1;
     if (in.get("speed") != null) {
       speed = Integer.parseInt(in.get("speed").replace("\"",""));
@@ -34,7 +34,7 @@ public class SVGView extends AbstractView {
       for (Shape s : m.getShapes()) {
         StringBuilder str = new StringBuilder();
         String tag = "";
-        if (s.getType().equals("Ellipse")) {
+        if (s.getType().equals("ELLIPSE")) {
           String sh = "<ellipse id=\"" + s.getName() + "\" cx=\"" + s.getPositionX() + "\" cy=\""
                   + s.getPositionY() + "\" rx=\"" + s.getWidth() + "\" ry=\"" + s.getHeight()
                   + "\" fill=\"rgb(" + s.getColor().getR() + "," + s.getColor().getG() + ","
@@ -53,59 +53,59 @@ public class SVGView extends AbstractView {
           String tr = "";
           if (t.getTransformationType().equals("Moves")) {
             if (s.getType().equals("RECTANGLE")) {
-              if (t.getInitialX() != t.getToX()) {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
-                        + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                        + "s\" attributeName=\"x" + "\" from=\"" + t.getInitialX() + "\" to=\""
-                        + t.getToX() + "\" fill=\"freeze\" />\n";
-              } else {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
-                        + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                        + "s\" attributeName=\"y" + "\" from=\"" + t.getInitialY() + "\" to=\""
-                        + t.getToY() + "\" fill=\"freeze\" />\n";
-              }
+              
+              tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
+                      + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
+                      + "s\" attributeName=\"x" + "\" from=\"" + t.getInitialX() + "\" to=\""
+                      + t.getToX() + "\" fill=\"freeze\" />\n";
+              str.append(tr);
+              
+              tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
+                      + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
+                      + "s\" attributeName=\"y" + "\" from=\"" + t.getInitialY() + "\" to=\""
+                      + t.getToY() + "\" fill=\"freeze\" />\n";
+              str.append(tr);
+              
             } else {
-              if (t.getInitialX() != t.getToX()) {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
-                        + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                        + "s\" attributeName=\"cx" + "\" from=\"" + t.getInitialX() + "\" to=\""
-                        + t.getToX() + "\" fill=\"freeze\" />\n";
-              } else {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
-                        + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                        + "s\" attributeName=\"cy" + "\" from=\"" + t.getInitialY() + "\" to=\""
-                        + t.getToY() + "\" fill=\"freeze\" />\n";
-              }
+              tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
+                      + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
+                      + "s\" attributeName=\"cx" + "\" from=\"" + t.getInitialX() + "\" to=\""
+                      + t.getToX() + "\" fill=\"freeze\" />\n";
+              str.append(tr);
+              tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
+                      + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
+                      + "s\" attributeName=\"cy" + "\" from=\"" + t.getInitialY() + "\" to=\""
+                      + t.getToY() + "\" fill=\"freeze\" />\n";
+              str.append(tr);
             }
-  
+            
           } else if (t.getTransformationType().equals("Scales")) {
-            if (s.getType().equals("Ellipse")) {
-              if (t.getInitialWidth() != t.getToWidth()) {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
-                        + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                        + "s\" attributeName=\"rx" + "\" from=\"" + t.getInitialWidth() + "\" to=\""
-                        + t.getToWidth() + "\" fill=\"freeze\" />\n";
-              } else {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
-                        + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                        + "s\" attributeName=\"ry" + "\" from=\"" + t.getInitialHeight() + "\" to=\""
-                        + t.getToHeight() + "\" fill=\"freeze\" />\n";
-              }
-    
+            if (s.getType().equals("ELLIPSE")) {
+              tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
+                      + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
+                      + "s\" attributeName=\"rx" + "\" from=\"" + t.getInitialWidth() + "\" to=\""
+                      + t.getToWidth() + "\" fill=\"freeze\" />\n";
+              str.append(tr);
+              tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
+                      + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
+                      + "s\" attributeName=\"ry" + "\" from=\"" + t.getInitialHeight() + "\" to=\""
+                      + t.getToHeight() + "\" fill=\"freeze\" />\n";
+              str.append(tr);
+              
             } else {
-              if (t.getInitialWidth() != t.getToWidth()) {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
-                        + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                        + "s\" attributeName=\"width" + "\" from=\"" + t.getInitialWidth() + "\" to=\""
-                        + t.getToWidth() + "\" fill=\"freeze\" />\n";
-              } else {
-                tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
-                        + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                        + "s\" attributeName=\"height" + "\" from=\"" + t.getInitialHeight() + "\" to=\""
-                        + t.getToHeight() + "\" fill=\"freeze\" />\n";
-              }
+              tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
+                      + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
+                      + "s\" attributeName=\"width" + "\" from=\"" + t.getInitialWidth() + "\" to=\""
+                      + t.getToWidth() + "\" fill=\"freeze\" />\n";
+              str.append(tr);
+              tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
+                      + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
+                      + "s\" attributeName=\"height" + "\" from=\"" + t.getInitialHeight() + "\" to=\""
+                      + t.getToHeight() + "\" fill=\"freeze\" />\n";
+              str.append(tr);
+              
+              
             }
-  
           } else if (t.getTransformationType().equals("Color")) {
             tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
                     + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed

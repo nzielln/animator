@@ -6,8 +6,6 @@ package cs5004.animator.model;
 public class Move extends AbstractTransformation {
   final int toX;
   final int toY;
-  int initialX;
-  int initialY;
   
   /**
    * Constructor calls the AbstractTransformation super class, takes in the color to change to.
@@ -24,8 +22,6 @@ public class Move extends AbstractTransformation {
     
     this.toX = toX;
     this.toY = toY;
-    this.initialX = 0;
-    this.initialY = 0;
     super.type = "Moves";
   }
   
@@ -38,31 +34,6 @@ public class Move extends AbstractTransformation {
   @Override
   public int getToY() {
     return this.toY;
-  }
-  
-  public int getInitialX() {
-    return this.initialX;
-  }
-  
-  public int getInitialY() {
-    return this.initialY;
-  }
-  
-  @Override
-  public void setInitialX(int x) {
-    if (x < 0) {
-      throw new IllegalArgumentException("Coordinates points must be greater than or equal to 0.");
-    }
-    
-    this.initialX = x;
-  }
-  
-  @Override
-  public void setInitialY(int y) {
-    if (y < 0) {
-      throw new IllegalArgumentException("Coordinates points must be greater than or equal to 0.");
-    }
-    this.initialY = y;
   }
   
   //OTHER------------------------------------------------------------------------------------------

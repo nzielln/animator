@@ -6,8 +6,7 @@ package cs5004.animator.model;
 public class Scale extends AbstractTransformation {
   final int toWidth;
   final int toHeight;
-  int initialWidth;
-  int initialHeight;
+
   
   /**
    * Constructor calls the AbstractTransformation super class, takes in the color to change to.
@@ -24,8 +23,6 @@ public class Scale extends AbstractTransformation {
     
     this.toWidth = toX;
     this.toHeight = toY;
-    this.initialWidth = 0;
-    this.initialHeight = 0;
     super.type = "Scales";
   }
   
@@ -39,32 +36,7 @@ public class Scale extends AbstractTransformation {
   public int getToHeight() {
     return this.toHeight;
   }
-  
-  @Override
-  public int getInitialWidth() {
-    return this.initialWidth;
-  }
-  
-  @Override
-  public int getInitialHeight() {
-    return this.initialHeight;
-  }
-  
-  @Override
-  public void setInitialWidth(int w) {
-    if (w <= 0) {
-      throw new IllegalArgumentException("Length must be positive integer or 0.");
-    }
-    this.initialWidth = w;
-  }
-  
-  @Override
-  public void setInitialHeight(int h) {
-    if (h <= 0) {
-      throw new IllegalArgumentException("Length must be positive integer or 0.");
-    }
-    this.initialHeight = h;
-  }
+
   
   
   //OTHER------------------------------------------------------------------------------------------
