@@ -1,14 +1,53 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.ELLIPSE;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.*;
+import cs5004.animator.util.AnimationBuilder;
+import cs5004.animator.util.AnimationBuilderImpl;
+import cs5004.animator.util.AnimationReader;
 
 public class Main {
   
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
+    Animation m = new AnimationImpl();
+    String filename = "src/cs5004/animator/files/smalldemo.txt";
+    File demo = new File(filename);
+    FileReader f = new FileReader(demo);
+  
+    //Build Model
+    AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
+    AnimationReader.parseFile(f, b);
+    for (int i = 10; i < 50; i++ ) {
+      List<Shape> l = m.getByTime(i);
+      System.out.println(l);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
     Animation m = new AnimationImpl();
     Shape a = new ELLIPSE("a", "ELLIPSE");
     a.setProperties(1,2, 3, 4, 5, 6, 7);
@@ -129,27 +168,7 @@ public class Main {
     
     scale.setShape(i.getName(), i.getType(), 101,201, 301, 41, 51, 151, 71);
     m.addTransformation("i", scale);
-  
-    System.out.println(m.toString());
-    System.out.println(m.getByTime(6));
-  
-    //java.awt.Color cc = new java.awt.Color(122, 122, 122);
-    //java.awt.Color ccs = new java.awt.Color(22, 122, 22);
-    //System.out.println(cc.getRGB());
-    //System.out.println(ccs.getRGB());
-    
-    /*scale
-    ta=5
-    tb=10
-    tox = 10, toy=5
-    
-    /color
-    ta=3
-    tb=34
-    toc=122, 122, 122
-    -8750470
-     */
-    
+  */
     
   }
 }

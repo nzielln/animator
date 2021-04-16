@@ -127,11 +127,15 @@ public class AnimationImpl implements Animation {
         int cx = tween(time, t.getInitialX(), t.getToX(), t.getTimeStart(), t.getTimeEnd());
         int cy = tween(time, t.getInitialY(), t.getToY(), t.getTimeStart(), t.getTimeEnd());
         shape.changePosition(cx, cy);
+        shape.setAppears(time);
+        shape.setDisappears(time + 1);
       } else if (t.getTransformationType().equals("Scales")) {
         shape.changeSize(t.getShape().getWidth(), t.getShape().getHeight());
         int w = tween(time, t.getInitialWidth(), t.getToWidth(), t.getTimeStart(), t.getTimeEnd());
         int h = tween(time, t.getInitialHeight(), t.getToHeight(), t.getTimeStart(), t.getTimeEnd());
         shape.changePosition(w, h);
+        shape.setAppears(time);
+        shape.setDisappears(time + 1);
       } else if (t.getTransformationType().equals("Color")) {
         Color i = t.getInitialColor();
         Color f = t.getToColor();
@@ -139,6 +143,8 @@ public class AnimationImpl implements Animation {
         int g = tween(time, i.getG(), f.getG(), t.getTimeStart(), t.getTimeEnd());
         int b = tween(time, i.getB(), f.getB(), t.getTimeStart(), t.getTimeEnd());
         shape.changeColor(r, g, b);
+        shape.setAppears(time);
+        shape.setDisappears(time + 1);
         
       }
     }
