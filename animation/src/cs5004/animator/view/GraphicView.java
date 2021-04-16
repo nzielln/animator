@@ -19,20 +19,23 @@ public class GraphicView extends JFrame implements View {
   
   public GraphicView(List<Shape> model, int width, int height, int x, int y) {
     super("Animation");
-    setSize(width, height);
+    setSize(500, 500);
     setLocation(x, y);
-    this.panel = new GraphicsPanel(model, width, height, x, y);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLayout(null);
+    this.panel = new GraphicsPanel(model, x, y, width, height);
     setVisible(true);
-    //pack();
+    add(panel);
+    panel.setVisible(true);
   }
   
-  public void updateModel(List<Shape> model) {
+  public void currentView(List<Shape> model) {
     this.panel.updateModel(model);
     this.repaint();
   }
   
   @Override
-  public void animate(Animation model) {
+  public void animate(Animation model, HashMap<String, String> in) {
   
   }
 }

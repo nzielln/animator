@@ -10,9 +10,9 @@ import cs5004.animator.model.Shape;
 
 public interface View {
   
-  void animate(Animation model);
+  void animate(Animation model, HashMap<String, String> in);
   
-  void updateModel(List<Shape> shapes);
+  void currentView(List<Shape> shapes);
   
 
   

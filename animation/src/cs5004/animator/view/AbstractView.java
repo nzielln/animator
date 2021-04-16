@@ -18,11 +18,11 @@ public class AbstractView implements View {
   }
   
   @Override
-  public void animate(Animation model) {
+  public void animate(Animation model, HashMap<String, String> in) {
   
   }
   
   @Override
-  public void updateModel(List<Shape> shapes) {
+  public void currentView(List<Shape> shapes) {
   }
 }

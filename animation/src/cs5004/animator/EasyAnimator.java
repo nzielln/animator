@@ -59,7 +59,8 @@ public class EasyAnimator {
     //Build Model
     AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
     AnimationReader.parseFile(f, b);
-    
+    List<Shape> h = new ArrayList<>(m.getByTime(20));
+    System.out.println(h);
     int width = m.getCanvasWidth();
     int height = m.getCanvasHeight();
     int x = m.getCanvasX();
@@ -68,7 +69,7 @@ public class EasyAnimator {
     //Factory depending on "view"
     View view = factory.create(inputs, m.getByTime(0), width, height, x, y);
     
-    view.animate(m);
+    view.animate(m, inputs);
     
     
     if (inputs.get("view").equals("visual")) {
@@ -77,7 +78,7 @@ public class EasyAnimator {
       if (tick <= 0) {
         throw new IllegalArgumentException("Speed needs to be positive integer");
       }
-  
+    
       int count = 0;
       int lengthAnimation = 0;
   
@@ -90,13 +91,12 @@ public class EasyAnimator {
   
       //do we get how long the animation is from the user at all? Does this need to be <= or <?
       while (count < lengthAnimation) {
-        List<Shape> newModel = m.getByTime(count);
+        List<Shape> modified = m.getByTime(count);
     
         //update the animation and model to newModel
         //update count
-        view.updateModel(newModel);
-        model = newModel;
-        count += tick;
+        view.currentView(modified);
+        count += 1;
     
         //Timer to let user see changes
         try {

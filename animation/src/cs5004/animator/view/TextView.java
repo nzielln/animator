@@ -1,6 +1,8 @@
 package cs5004.animator.view;
 
 
+import java.util.HashMap;
+
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
@@ -11,12 +13,12 @@ public class TextView extends AbstractView {
   For testing: -in "smalldemo.txt" -view "text"
   */
   @Override
-  public void animate(Animation m) {
+  public void animate(Animation m, HashMap<String, String> in) {
     
     //determine when to make a new animation???
     int interval = 0;
-    if (this.inputs.get("speed") != null) {
-      int time = Integer.parseInt(this.inputs.get("speed"));
+    if (in.get("speed") != null) {
+      int time = Integer.parseInt(in.get("speed"));
       interval = 1000 / time;
     }
     
