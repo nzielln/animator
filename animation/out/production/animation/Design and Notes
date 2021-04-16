@@ -1,0 +1,97 @@
+
+Notes
+Other things to check for:
+- Can't use an ID that already exists in the animation (ie. shouldn't add an object whose ID already exists in the animation shapes list
+    - Should we do this with transformation too, as a way to avoid duplicates??
+- No negatives for position, positive only plane
+
+
+Testing:
+- Edge Case:
+- Nulls - should not be able to add nulls as parameter or create null objects
+- Invalid Inputs (nulls, negative integers, non-integer/integer value when not allowed)
+- Multiple shapes in animation
+- Limit ID length??
+- Test every single constructor for every situation (valid + invalid inputs)
+- Test every transformation for each shape
+-
+
+
+Design
+
+Color (class to hold RGB values): // should this be package private?
+    Constructor(int r, int g, int b):
+        - r
+        - g
+        - b
+
+    Methods:
+        - getR
+        - getG
+        - getB
+        - getColor
+        - toString
+
+--------------------------------------------------
+
+Animation (Interface):
+    AnimationImpl
+        Field: List<initial.ShapeNode> as ArrayList<>
+        Methods:
+            - addShape (initial.ShapeNode)
+            - removeShape (initial.ShapeNode)
+            - getById (String)
+            - getByTime (int)
+            - getShapeAtTick?? //implemented in later HW
+            - filter - (Predicate)
+            - sort - (Comparator)
+
+Transformation (Interface):
+    AbstractTransformation
+    Constructor:
+        - shape (initial.ShapeNode)
+    Subclasses
+        - Move
+            Constructor: (initial.ShapeNode, toX, toY, timeStart, timeEnd)
+            Methods:
+                - moveShape
+        - Scale
+            Constructor: (initial.ShapeNode, toX, toY, timeStart, timeEnd)
+            Methods:
+                - scaleShape
+        - ChangeColor
+            Constructor: (initial.ShapeNode, toX, toY, timeStart, timeEnd)
+            Methods:
+                - changeColor(toColor, timeStart, timeEnd)
+
+--------------------------------------------------
+
+Shape (Interface):
+   - getType
+   - getName
+   - getColor //what should this return? Should it return a String or Color object?
+   - getAppears //
+   - getDisappears //
+   - getPositionX
+   - getPositionY
+   - getX
+   - getY
+   - toString()
+   AbstractShape
+        - Constructor: (String name, float pointX, float pointY, float X, float Y, int r, int g, int b)
+    Subclasses
+        - Oval
+            Field: type
+        - Rectangle
+            Field: type
+
+initial.ShapeNode (Interface)
+    initial.ShapeNodeImpl
+        - Field: initial.ShapeNode, appears, disappears, List<Transformation> as ArrayList
+        - Constructor: (Shape shape, float appears, float disappears)
+    Methods:
+        - getShape()
+        - getAppears()
+        - getDisappears()
+        - getTransformations()
+        - toString()
