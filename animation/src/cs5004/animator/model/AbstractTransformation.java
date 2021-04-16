@@ -11,8 +11,8 @@ public abstract class AbstractTransformation implements Transformation {
   final int timeEnd;
   final String tID;
   String type;
-  HashMap<String, Integer> currentState;
-  Shape shape;
+  Shape initialshape;
+  Shape finalshape;
   
   /**
    * The constructor takes the start and end time for the transformation, initializes type to null.
@@ -33,8 +33,8 @@ public abstract class AbstractTransformation implements Transformation {
     this.timeStart = timeStart;
     this.timeEnd = timeEnd;
     this.type = null;
-    this.currentState = new HashMap<>();
-    this.shape = null;
+    this.initialshape = null;
+    this.finalshape = null;
   }
   
   //GETTER-----------------------------------------------------------------------------------------
@@ -114,9 +114,15 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
-  public Shape getShape() {
-    return this.shape;
+  public Shape getInitialshape() {
+    return this.initialshape;
   }
+  
+  @Override
+  public Shape getFinalshape() {
+    return this.finalshape;
+  }
+  
   
   //SETTERS----------------------------------------------------------------------------------------
   @Override
@@ -140,53 +146,41 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
-  public void populateHashmap(int x, int y, int w, int h, int app, int dis, int r, int g, int b) {
-    if (w <= 0 || h <= 0) {
-      throw new IllegalArgumentException("Length must be positive integer or 0.");
-    } else if (x < 0 || y < 0) {
-      throw new IllegalArgumentException("Coordinates points must be greater than or equal to 0.");
-    } else if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
-      throw new IllegalArgumentException("Color values must be withing the range of 0 and 255.");
-    } else if (app < 0 || dis < 0 || app > dis) {
-      throw new IllegalArgumentException("Time values must be greater than 0, "
-              + "disappear can't be less than appear.");
-    }
-    
-    this.currentState.put("x", x);
-    this.currentState.put("y", y);
-    this.currentState.put("w", w);
-    this.currentState.put("h", h);
-    this.currentState.put("appears", app);
-    this.currentState.put("disappears", dis);
-    this.currentState.put("r", r);
-    this.currentState.put("g", g);
-    this.currentState.put("b", b);
-  
-  }
-  
-  @Override
-  public void setShape(String name, String type, int x, int y, int w, int h, int r, int g, int b) {
+  public void setFinal(String name, String type, int x, int y, int w, int h, int r, int g, int b) {
     if (type.equals("Ellipse")) {
       Shape sh = new Ellipse(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
       sh.setAppears(this.timeStart);
       sh.setDisappears(this.timeEnd);
-      this.shape = sh;
+      this.finalshape = sh;
     } else {
       Shape sh = new Rectangle(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
       sh.setAppears(this.timeStart);
       sh.setDisappears(this.timeEnd);
-      this.shape = sh;
+      this.finalshape = sh;
       
     }
     
   }
   
   @Override
-  public HashMap<String, Integer> getState() {
-    return this.currentState;
+  public void setInitial(String name, String type, int x, int y, int w, int h, int r, int g, int b) {
+    if (type.equalsIgnoreCase("Ellipse")) {
+      Shape sh = new Ellipse(name, type.toUpperCase());
+      sh.setProperties(x, y, w, h, r, g, b);
+      sh.setAppears(this.timeStart);
+      sh.setDisappears(this.timeEnd);
+      this.initialshape = sh;
+    } else {
+      Shape sh = new Rectangle(name, type.toUpperCase());
+      sh.setProperties(x, y, w, h, r, g, b);
+      sh.setAppears(this.timeStart);
+      sh.setDisappears(this.timeEnd);
+      this.initialshape = sh;
+      
+    }
+    
   }
-  
 
 }

@@ -16,6 +16,7 @@ import java.util.function.Predicate;
  */
 public class AnimationImpl implements Animation {
   LinkedHashMap<Shape, List<Transformation>> hashmap;
+  LinkedHashMap<String, Shape> lastest;
   int x;
   int y;
   int width;
@@ -26,6 +27,7 @@ public class AnimationImpl implements Animation {
    */
   public AnimationImpl() {
     hashmap = new LinkedHashMap<>();
+    lastest = new LinkedHashMap<>();
     this.x = 0;
     this.y = 0;
     this.width = 0;
@@ -93,7 +95,6 @@ public class AnimationImpl implements Animation {
   public List<Shape> getByTime(int t) {
     
     List<Shape> shapesAtTick = new LinkedList<>();
-    List<Shape> shapes = new ArrayList<>();
     
     for (Shape s : hashmap.keySet()) {
       //System.out.println("Name: " + s.getName() + " Size: " + hashmap.get(s).size());
@@ -109,6 +110,9 @@ public class AnimationImpl implements Animation {
       if (atTime.size() > 0) {
         Shape n = getOneShape(s.copy(), atTime, t);
         shapesAtTick.add(n);
+        lastest.put(n.getName(), n);
+      } else {
+        shapesAtTick.add(lastest.get(s.getName()));
       }
   
     }
@@ -130,10 +134,9 @@ public class AnimationImpl implements Animation {
         shape.setAppears(time);
         shape.setDisappears(time + 1);
       } else if (t.getTransformationType().equals("Scales")) {
-        shape.changeSize(t.getShape().getWidth(), t.getShape().getHeight());
         int w = tween(time, t.getInitialWidth(), t.getToWidth(), t.getTimeStart(), t.getTimeEnd());
         int h = tween(time, t.getInitialHeight(), t.getToHeight(), t.getTimeStart(), t.getTimeEnd());
-        shape.changePosition(w, h);
+        shape.changeSize(w, h);
         shape.setAppears(time);
         shape.setDisappears(time + 1);
       } else if (t.getTransformationType().equals("Color")) {
@@ -150,8 +153,8 @@ public class AnimationImpl implements Animation {
     }
     
     if (shape.getColor() == null) {
-      shape.changeColor(l.get(0).getShape().getColor().getR(), l.get(0).getShape().getColor().getG(),
-              l.get(0).getShape().getColor().getB());
+      shape.changeColor(l.get(0).getFinalshape().getColor().getR(), l.get(0).getFinalshape().getColor().getG(),
+              l.get(0).getFinalshape().getColor().getB());
     }
     
     return shape;
@@ -208,6 +211,7 @@ public class AnimationImpl implements Animation {
     } else {
       
       hashmap.put(s, l);
+      lastest.put(s.getName(), s);
     }
   }
   
@@ -249,7 +253,7 @@ public class AnimationImpl implements Animation {
     }
     
     for (Transformation ts : tlist) {
-      if (ts.equals(t)) {
+      if (ts.sameObject(t)) {
         return false;
       } else if (ts.getTransformationType().equals(t.getTransformationType())
               && t.getTimeStart() < ts.getTimeEnd()) {
@@ -270,7 +274,7 @@ public class AnimationImpl implements Animation {
     }
     
     if (!validTransformation(id, t)) {
-      throw new IllegalArgumentException("Transformation not vaid.");
+      throw new IllegalArgumentException("Transformation not valid.");
     }
     
     for (Shape s : hashmap.keySet()) {
@@ -368,25 +372,25 @@ public class AnimationImpl implements Animation {
       //If change color transformation
       if (t.getTransformationType().equals("Color")) {
         String desc = "Shape " + s.getName() + " changes color from "
-                + s.getColor().toString() + " to " + t.getToColor().toString() + " from t="
+                + t.getInitialColor().toString() + " to " + t.getToColor().toString() + " from t="
                 + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
         str.append(desc).append("\n");
         //if move transformation
       } else if (t.getTransformationType().equals("Moves")) {
-        String desc = "Shape " + s.getName() + " moves from (" + f.format(s.getPositionX())
-                + "," + f.format(s.getPositionY()) + ") to (" + f.format(t.getToX()) + ","
+        String desc = "Shape " + s.getName() + " moves from (" + f.format(t.getInitialX())
+                + "," + f.format(t.getInitialY()) + ") to (" + f.format(t.getToX()) + ","
                 + f.format(t.getToY()) + ") from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
         str.append(desc).append("\n");
         //if scale tranformation
       } else {
         if (s.getType().equals("RECTANGLE")) {
-          String desc =  "Shape " + s.getName() + " scales from Width: " + f.format(s.getWidth())
-                  + ", Height: " + f.format(s.getHeight()) + " to Width: " + f.format(t.getToWidth()) + ", Height: "
+          String desc =  "Shape " + s.getName() + " scales from Width: " + f.format(t.getInitialWidth())
+                  + ", Height: " + f.format(t.getInitialHeight()) + " to Width: " + f.format(t.getToWidth()) + ", Height: "
                   + f.format(t.getToHeight()) + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
         } else {
-          String desc = "Shape" + s.getName() + " scales from X radius: " + f.format(s.getWidth())
-                  + ", Y radius: " + f.format(s.getHeight()) + " to X radius: " + f.format(t.getToWidth()) + ", Y radius: "
+          String desc = "Shape" + s.getName() + " scales from X radius: " + f.format(t.getInitialWidth())
+                  + ", Y radius: " + f.format(t.getInitialHeight()) + " to X radius: " + f.format(t.getToWidth()) + ", Y radius: "
                   + f.format(t.getToHeight()) + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
         }

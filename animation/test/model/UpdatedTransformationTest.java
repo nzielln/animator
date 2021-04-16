@@ -99,29 +99,5 @@ public class UpdatedTransformationTest {
     }
   }
   
-  @Test
-  public void testPropertyHashmap() {
-    try {
-      move.populateHashmap(23, 32, 6, 7, 2, 12, 123, 234,245);
-      HashMap<String, Integer> h = move.getState();
-      assertEquals(12, h.get("disappears").intValue());
-      assertEquals(23, h.get("x").intValue());
-      assertEquals(7, h.get("h").intValue());
-      
-    } catch (Exception e) {
-      fail("Exception should not be thrown");
-    }
-  
-    try {
-      scale.populateHashmap(3, 12, 3, 3, -2, 12, 0, 234,245);
-      HashMap<String, Integer> h = move.getState();
-      assertEquals(12, h.get("disappears").intValue());
-      assertEquals(23, h.get("x").intValue());
-      assertEquals(7, h.get("h").intValue());
-      fail("Exception should be thrown");
-    
-    } catch (Exception ignored) {
-    }
-  }
   
 }

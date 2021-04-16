@@ -66,7 +66,7 @@ public class EasyAnimator {
     
     //Factory depending on "view"
     View view = factory.create(inputs, m.getByTime(0), width, height, x, y);
-    System.out.println(m.toString());
+    //System.out.println(m.toString());
     view.animate(m, inputs);
     
     if (inputs.get("view").equals("visual")) {

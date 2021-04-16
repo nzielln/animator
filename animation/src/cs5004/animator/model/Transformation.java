@@ -80,11 +80,12 @@ public interface Transformation {
   int getInitialHeight();
   
   Color getInitialColor();
-  HashMap<String, Integer> getState();
-  Shape getShape();
-  
+  Shape getInitialshape();
+  Shape getFinalshape();
   //OTHER------------------------------------------------------------------------------------------
-  void setShape(String name, String type, int x, int y, int w, int h, int r, int g, int b);
+  void setFinal(String name, String type, int x, int y, int w, int h, int r, int g, int b);
+  void setInitial(String name, String type, int x, int y, int w, int h, int r, int g, int b);
+  
   /**
    * Determines if two Transformation objects are identical.
    * @param other (Transformation) another Transformation object
@@ -99,7 +100,7 @@ public interface Transformation {
   void setInitialHeight(int h);
   
   void setInitialColor(Color c);
-  void populateHashmap(int x, int y, int w, int h, int app, int dis, int r, int g, int b);
+  
   
   /**
    * Returns a string representation of the {@link Transformation} object.
