@@ -9,7 +9,7 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.ChangeColor;
 import cs5004.animator.model.Color;
-import cs5004.animator.model.ELLIPSE;
+import cs5004.animator.model.Ellipse;
 import cs5004.animator.model.Move;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.Scale;
@@ -39,7 +39,7 @@ public class AnimationTest {
   public void setUp() throws Exception {
     ani = new AnimationImpl();
     
-    oval = new ELLIPSE("oval", "ELLIPSE");
+    oval = new Ellipse("oval", "Ellipse");
     oval.setProperties(34, 34, 4, 5, 122, 122, 122);
     
     Shape rect = new Rectangle("rect", "RECTANGLE");
@@ -109,7 +109,7 @@ public class AnimationTest {
   @Test
   public void getById() {
     //Get oval
-    assertEquals("ELLIPSE", ani.getById("oval").getType());
+    assertEquals("Ellipse", ani.getById("oval").getType());
     assertEquals(122, ani.getById("oval").getColor().getR(), 0.001);
     
     //Get rectangle
@@ -197,7 +197,7 @@ public class AnimationTest {
     ani2.addShape(rect4, new ArrayList<>());
     
     //add oval
-    Shape oval4 = new ELLIPSE("oval4", "ELLIPSE");
+    Shape oval4 = new Ellipse("oval4", "Ellipse");
     oval4.setProperties(5, 5, 2, 4, 0, 0, 0);
     
     ani2.addShape(oval4, new ArrayList<>());
@@ -210,7 +210,7 @@ public class AnimationTest {
             + "Appears at t=0\n"
             + "Disappears at t=0\n"
             + ", Name: oval4\n"
-            + "Type: ELLIPSE\n"
+            + "Type: Ellipse\n"
             + "Center: (5.0,5.0), X radius: 2.0, Y radius: 4.0, Color: (0.0, 0.0, 0.0)\n"
             + "Appears at t=0\n"
             + "Disappears at t=0\n]", ani2.getShapes().toString());
@@ -300,7 +300,7 @@ public class AnimationTest {
     }
     
     try {
-      Shape oval2 = new ELLIPSE("oval 2", "ELLIPSE");
+      Shape oval2 = new Ellipse("oval 2", "Ellipse");
       oval2.setProperties(3, 3, 6, 10, 0, 255, 0);
       oval2.setAppears(1);
       oval2.setDisappears(15);

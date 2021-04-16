@@ -3,7 +3,7 @@ package model;
 import org.junit.Before;
 import org.junit.Test;
 
-import cs5004.animator.model.ELLIPSE;
+import cs5004.animator.model.Ellipse;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.Shape;
 
@@ -23,7 +23,7 @@ public class ShapeTest {
   public void setUp() throws Exception {
     //Valid shape inputs
     try {
-      oval = new ELLIPSE("oval", "ELLIPSE");
+      oval = new Ellipse("oval", "Ellipse");
       oval.setProperties(23, 45, 4, 5, 24, 35, 123);
     } catch (Exception e) {
       fail("Exception should not have been thrown.");
@@ -47,21 +47,21 @@ public class ShapeTest {
     //Invalid Points
     Shape bad;
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(-34, 45, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(34, -23, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(-34, -23, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
@@ -69,28 +69,28 @@ public class ShapeTest {
     
     //Invalid Length/Width
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(34, 23, 0, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(34, 23, 0, 0, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(34, 23, -4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(34, 23, -4, -5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
@@ -98,21 +98,21 @@ public class ShapeTest {
     
     //Invalid RGB values
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(34, 23, -4, 5, 256, 35, 12);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(34, 23, -4, 5, 24, 35, -123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new ELLIPSE("oval", "ELLIPSE");
+      bad = new Ellipse("oval", "Ellipse");
       bad.setProperties(34, 23, -4, 5, 263, -35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
@@ -122,7 +122,7 @@ public class ShapeTest {
   @Test
   public void getShape() {
     assertEquals("oval", oval.getShape().getName());
-    assertEquals("ELLIPSE", oval.getShape().getType());
+    assertEquals("Ellipse", oval.getShape().getType());
     
     assertEquals("rect", rect.getShape().getName());
     assertEquals("RECTANGLE", rect.getShape().getType());
@@ -131,7 +131,7 @@ public class ShapeTest {
   
   @Test
   public void getType() {
-    assertEquals("ELLIPSE", oval.getType());
+    assertEquals("Ellipse", oval.getType());
     assertEquals("RECTANGLE", rect.getType());
   }
   
@@ -224,7 +224,7 @@ public class ShapeTest {
     Shape ovalCp = oval.copy();
     
     assertEquals("oval", ovalCp.getName());
-    assertEquals("ELLIPSE", ovalCp.getType());
+    assertEquals("Ellipse", ovalCp.getType());
     assertEquals(24, ovalCp.getColor().getR(), 0.001 );
     assertEquals(35, ovalCp.getColor().getG(), 0.001);
     assertEquals(123, ovalCp.getColor().getB(), 0.001);
@@ -254,7 +254,7 @@ public class ShapeTest {
             + "Disappears at t=11\n";
     
     String ov = "Name: oval\n"
-            + "Type: ELLIPSE\n"
+            + "Type: Ellipse\n"
             + "Center: (23.0,45.0), X radius: 4.0, Y radius: 5.0, Color: (24.0, 35.0, 123.0)\n"
             + "Appears at t=1\n"
             + "Disappears at t=10\n";

@@ -30,7 +30,7 @@ public class SVGView extends AbstractView {
       for (Shape s : m.getShapes()) {
         StringBuilder str = new StringBuilder();
         String tag = "";
-        if (s.getType().equals("ELLIPSE")) {
+        if (s.getType().equals("Ellipse")) {
           String sh = "<ellipse id=\"" + s.getName() + "\" cx=\"" + s.getPositionX() + "\" cy=\""
                   + s.getPositionY() + "\" rx=\"" + s.getWidth() + "\" ry=\"" + s.getHeight()
                   + "\" fill=\"rgb(" + s.getColor().getR() + "," + s.getColor().getG() + ","
@@ -75,7 +75,7 @@ public class SVGView extends AbstractView {
             }
   
           } else if (t.getTransformationType().equals("Scales")) {
-            if (s.getType().equals("ELLIPSE")) {
+            if (s.getType().equals("Ellipse")) {
               if (t.getInitialWidth() != t.getToWidth()) {
                 tr = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
                         + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed

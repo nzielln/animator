@@ -1,14 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
-import cs5004.animator.model.ELLIPSE;
 import cs5004.animator.model.Shape;
-import cs5004.animator.model.*;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
 import cs5004.animator.util.AnimationReader;
@@ -49,27 +46,27 @@ public class Main {
     
     /*
     Animation m = new AnimationImpl();
-    Shape a = new ELLIPSE("a", "ELLIPSE");
+    Shape a = new Ellipse("a", "Ellipse");
     a.setProperties(1,2, 3, 4, 5, 6, 7);
     a.setAppears(1);
     a.setDisappears(50);
     
-    Shape b = new ELLIPSE("b", "ELLIPSE");
+    Shape b = new Ellipse("b", "Ellipse");
     b.setProperties(11,12, 13, 14, 15, 16, 17);
     b.setAppears(11);
     b.setDisappears(45);
     
-    Shape c = new ELLIPSE("c", "ELLIPSE");
+    Shape c = new Ellipse("c", "Ellipse");
     c.setProperties(31,32, 33, 34, 35, 36, 37);
     c.setAppears(2);
     c.setDisappears(49);
     
-    Shape d = new ELLIPSE("d", "ELLIPSE");
+    Shape d = new Ellipse("d", "Ellipse");
     d.setProperties(11,21, 31, 41, 51, 61, 71);
     d.setAppears(21);
     d.setDisappears(40);
     
-    Shape e = new ELLIPSE("e", "ELLIPSE");
+    Shape e = new Ellipse("e", "Ellipse");
     e.setProperties(111,211, 311, 141, 151, 161, 171);
     e.setAppears(10);
     e.setDisappears(20);

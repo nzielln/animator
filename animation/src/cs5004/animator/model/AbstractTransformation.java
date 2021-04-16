@@ -166,8 +166,8 @@ public abstract class AbstractTransformation implements Transformation {
   
   @Override
   public void setShape(String name, String type, int x, int y, int w, int h, int r, int g, int b) {
-    if (type.equals("ELLIPSE")) {
-      Shape sh = new ELLIPSE(name, type.toUpperCase());
+    if (type.equals("Ellipse")) {
+      Shape sh = new Ellipse(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
       sh.setAppears(this.timeStart);
       sh.setDisappears(this.timeEnd);
