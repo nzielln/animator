@@ -3,8 +3,6 @@ package cs5004.animator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,11 +50,10 @@ public class EasyAnimator {
     
     //GetReadable
     String fileInput = inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
-    Path p = Paths.get("src/cs5004/animator/files/" + fileInput);
-    String filename = p.toAbsolutePath().toString();
+    String filename = "./files/" + fileInput;
     File demo = new File(filename);
     FileReader f = new FileReader(demo);
-    
+
     //Build Model
     AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
     AnimationReader.parseFile(f, b);
