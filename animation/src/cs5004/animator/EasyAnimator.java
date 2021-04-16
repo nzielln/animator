@@ -50,7 +50,7 @@ public class EasyAnimator {
     
     //GetReadable
     String fileInput = inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
-    String filename = "./files/" + fileInput;
+    String filename = "resources/files/" + fileInput;
     File demo = new File(filename);
     FileReader f = new FileReader(demo);
 
