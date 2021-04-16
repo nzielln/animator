@@ -3,11 +3,10 @@ package cs5004.animator.util;
 import java.util.ArrayList;
 
 import cs5004.animator.model.Animation;
-import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.ChangeColor;
 import cs5004.animator.model.Color;
+import cs5004.animator.model.ELLIPSE;
 import cs5004.animator.model.Move;
-import cs5004.animator.model.Oval;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.Scale;
 import cs5004.animator.model.Shape;
@@ -36,8 +35,8 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
   @Override
   public AnimationBuilder<Animation> declareShape(String name, String type) {
     Shape s;
-    if (type.equals("OVAL")) {
-      s = new Oval(name, type);
+    if (type.equalsIgnoreCase("ELLIPSE")) {
+      s = new ELLIPSE(name, type);
     } else {
       s = new Rectangle(name, type);
     }
@@ -55,9 +54,9 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
       if (s.getName().equals(name)) {
         Shape start;
         Shape end;
-        if (s.getType().equals("OVAL")) {
-          start = new Oval(s.getName(), s.getType());
-          end = new Oval(s.getName(), s.getType());
+        if (s.getType().equals("ELLIPSE")) {
+          start = new ELLIPSE(s.getName(), s.getType());
+          end = new ELLIPSE(s.getName(), s.getType());
           
         } else {
           start = new Rectangle(s.getName(), s.getType());

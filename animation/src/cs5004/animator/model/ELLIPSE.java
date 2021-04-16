@@ -3,16 +3,16 @@ package cs5004.animator.model;
 import java.text.DecimalFormat;
 
 /**
- * Represents a Oval shape, extends methods from the AbstractShape.
+ * Represents a ELLIPSE shape, extends methods from the AbstractShape.
  */
-public class Oval extends AbstractShape {
+public class ELLIPSE extends AbstractShape {
   
   /**
    * Constructor a shape, calls AbstractShape super that takes in parameter to create a shape.
    * @param name unique id/name for the shape
    * @param type
    */
-  public Oval(String name, String type) {
+  public ELLIPSE(String name, String type) {
     super(name, type);
   }
   
@@ -23,7 +23,7 @@ public class Oval extends AbstractShape {
       return null;
     }
     
-    Oval o = new Oval(this.name, this.type);
+    ELLIPSE o = new ELLIPSE(this.name, this.type);
     o.setProperties(this.x, this.y, this.w, this.h,
             this.color.getR(), this.color.getG(), this.color.getB());
     o.setAppears(this.appears);

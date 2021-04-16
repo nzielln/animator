@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import cs5004.animator.model.Oval;
+import cs5004.animator.model.ELLIPSE;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.Shape;
 
@@ -21,7 +21,7 @@ public class ShapeTest {
   public void setUp() throws Exception {
     //Valid shape inputs
     try {
-      oval = new Oval("oval", "ELLIPSE");
+      oval = new ELLIPSE("oval", "ELLIPSE");
       oval.setProperties(23, 45, 4, 5, 24, 35, 123);
     } catch (Exception e) {
       fail("Exception should not have been thrown.");
@@ -45,21 +45,21 @@ public class ShapeTest {
     //Invalid Points
     Shape bad;
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(-34, 45, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(34, -23, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(-34, -23, 4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
@@ -67,28 +67,28 @@ public class ShapeTest {
     
     //Invalid Length/Width
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(34, 23, 0, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(34, 23, 0, 0, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(34, 23, -4, 5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(34, 23, -4, -5, 24, 35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
@@ -96,21 +96,21 @@ public class ShapeTest {
     
     //Invalid RGB values
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(34, 23, -4, 5, 256, 35, 12);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(34, 23, -4, 5, 24, 35, -123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {
     }
     
     try {
-      bad = new Oval("oval", "ELLIPSE");
+      bad = new ELLIPSE("oval", "ELLIPSE");
       bad.setProperties(34, 23, -4, 5, 263, -35, 123);
       fail("Exception should have been thrown.");
     } catch (Exception ignored) {

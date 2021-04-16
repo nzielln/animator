@@ -6,8 +6,8 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.ChangeColor;
 import cs5004.animator.model.Color;
+import cs5004.animator.model.ELLIPSE;
 import cs5004.animator.model.Move;
-import cs5004.animator.model.Oval;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.Scale;
 import cs5004.animator.model.Shape;
@@ -26,9 +26,9 @@ public class AnimationFullTest {
     //Create a new animation
     Animation animation = new AnimationImpl();
     
-    Shape ovalOne = new Oval("ovalOne","ELLIPSE");
+    Shape ovalOne = new ELLIPSE("ovalOne","ELLIPSE");
     ovalOne.setProperties(5, 23, 4, 4, 24, 45, 57);
-    Shape ovalTwo = new Oval("ovalTwo","ELLIPSE");
+    Shape ovalTwo = new ELLIPSE("ovalTwo","ELLIPSE");
     ovalTwo.setProperties(5, 3, 4, 5, 2, 5, 7);
     Shape rectangleOne = new Rectangle("rectOne","RECTANGLE");
     rectangleOne.setProperties(5, 23, 4, 7, 244,145, 7);

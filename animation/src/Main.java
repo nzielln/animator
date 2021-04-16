@@ -1,9 +1,8 @@
 import java.util.ArrayList;
-import java.util.List;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
-import cs5004.animator.model.Oval;
+import cs5004.animator.model.ELLIPSE;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.*;
 
@@ -11,27 +10,27 @@ public class Main {
   
   public static void main(String[] args) {
     Animation m = new AnimationImpl();
-    Shape a = new Oval("a", "ELLIPSE");
+    Shape a = new ELLIPSE("a", "ELLIPSE");
     a.setProperties(1,2, 3, 4, 5, 6, 7);
     a.setAppears(1);
     a.setDisappears(50);
     
-    Shape b = new Oval("b", "ELLIPSE");
+    Shape b = new ELLIPSE("b", "ELLIPSE");
     b.setProperties(11,12, 13, 14, 15, 16, 17);
     b.setAppears(11);
     b.setDisappears(45);
     
-    Shape c = new Oval("c", "ELLIPSE");
+    Shape c = new ELLIPSE("c", "ELLIPSE");
     c.setProperties(31,32, 33, 34, 35, 36, 37);
     c.setAppears(2);
     c.setDisappears(49);
     
-    Shape d = new Oval("d", "ELLIPSE");
+    Shape d = new ELLIPSE("d", "ELLIPSE");
     d.setProperties(11,21, 31, 41, 51, 61, 71);
     d.setAppears(21);
     d.setDisappears(40);
     
-    Shape e = new Oval("e", "ELLIPSE");
+    Shape e = new ELLIPSE("e", "ELLIPSE");
     e.setProperties(111,211, 311, 141, 151, 161, 171);
     e.setAppears(10);
     e.setDisappears(20);

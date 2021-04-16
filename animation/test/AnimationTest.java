@@ -7,8 +7,8 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.ChangeColor;
 import cs5004.animator.model.Color;
+import cs5004.animator.model.ELLIPSE;
 import cs5004.animator.model.Move;
-import cs5004.animator.model.Oval;
 import cs5004.animator.model.Rectangle;
 import cs5004.animator.model.Scale;
 import cs5004.animator.model.Shape;
@@ -37,7 +37,7 @@ public class AnimationTest {
   public void setUp() throws Exception {
     ani = new AnimationImpl();
     
-    oval = new Oval("oval", "ELLIPSE");
+    oval = new ELLIPSE("oval", "ELLIPSE");
     oval.setProperties(34, 34, 4, 5, 122, 122, 122);
     
     Shape rect = new Rectangle("rect", "RECTANGLE");
@@ -195,7 +195,7 @@ public class AnimationTest {
     ani2.addShape(rect4, new ArrayList<>());
     
     //add oval
-    Shape oval4 = new Oval("oval4", "ELLIPSE");
+    Shape oval4 = new ELLIPSE("oval4", "ELLIPSE");
     oval4.setProperties(5, 5, 2, 4, 0, 0, 0);
     
     ani2.addShape(oval4, new ArrayList<>());
@@ -298,7 +298,7 @@ public class AnimationTest {
     }
     
     try {
-      Shape oval2 = new Oval("oval 2", "ELLIPSE");
+      Shape oval2 = new ELLIPSE("oval 2", "ELLIPSE");
       oval2.setProperties(3, 3, 6, 10, 0, 255, 0);
       oval2.setAppears(1);
       oval2.setDisappears(15);

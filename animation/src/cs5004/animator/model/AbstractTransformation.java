@@ -1,11 +1,6 @@
 package cs5004.animator.model;
 
-import com.sun.source.tree.BreakTree;
-
 import java.util.HashMap;
-import java.util.Objects;
-
-import jdk.jshell.spi.ExecutionControl;
 
 /**
  * AbstractTransformation implements the Transformation interface and represents methods that
@@ -172,7 +167,7 @@ public abstract class AbstractTransformation implements Transformation {
   @Override
   public void setShape(String name, String type, int x, int y, int w, int h, int r, int g, int b) {
     if (type.equals("ELLIPSE")) {
-      Shape sh = new Oval(name, type.toUpperCase());
+      Shape sh = new ELLIPSE(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
       sh.setAppears(this.timeStart);
       sh.setDisappears(this.timeEnd);
