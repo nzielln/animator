@@ -1,3 +1,5 @@
+package model;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +23,7 @@ public class UpdatedTransformationTest {
   private Transformation move;
   private Transformation scale;
   private Transformation color;
-  //Other transformation methods have been tested in TransformationTest.java
+  //Other transformation methods have been tested in model.TransformationTest.java
   //This file test new methods added to the Trasnformation interface
   @Before
   public void setUp() throws Exception {
