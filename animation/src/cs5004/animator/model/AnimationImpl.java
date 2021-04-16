@@ -105,7 +105,6 @@ public class AnimationImpl implements Animation {
     List<Shape> currentShapesAtTick = new ArrayList<>();
     List<Shape> shapes = new ArrayList<>();
     
-    
     for (Shape s: hashmap.keySet()) {
       if (t >= s.getAppears() && t <= s.getDisappears()) {
         shapes.add(s);
@@ -138,7 +137,6 @@ public class AnimationImpl implements Animation {
             positionX = newX;
             positionY = newY;
             
-            
           } else if (tr.getTransformationType().equals("Scales")) {
             
             int x = tr.getInitialX();
@@ -155,7 +153,7 @@ public class AnimationImpl implements Animation {
             width = newX;
             height = newY;
             
-          } else if (tr.getTransformationType().equals("Color")) {
+          } else {
             Color initialColor = new Color(tr.getInitialColor().getR(), tr.getInitialColor().getG(),
                     tr.getInitialColor().getB());
             Color finalColor = new Color(tr.getToColor().getR(), tr.getToColor().getG(),
@@ -173,16 +171,19 @@ public class AnimationImpl implements Animation {
           }
         }
       }
+      
       if (type.equals("RECTANGLE")) {
         Shape newRect = new Rectangle(name, type);
-        newRect.setProperties(positionX, positionY, x, y, color.getR(), color.getG(), color.getB());
+        newRect.setProperties(positionX, positionY, width, height, color.getR(), color.getG(), color.getB());
         currentShapesAtTick.add(newRect);
       } else if (type.equals("OVAL")) {
         Shape newOval = new Oval(name, type);
-        newOval.setProperties(positionX, positionY, x, y, color.getR(), color.getG(), color.getB());
+        newOval.setProperties(positionX, positionY, width, height, color.getR(), color.getG(), color.getB());
         currentShapesAtTick.add(newOval);
       }
+      
     }
+    
     return currentShapesAtTick;
   }
   

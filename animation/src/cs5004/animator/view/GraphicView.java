@@ -22,6 +22,8 @@ public class GraphicView extends JFrame implements View {
     setSize(width, height);
     setLocation(x, y);
     this.panel = new GraphicsPanel(model, width, height, x, y);
+    setVisible(true);
+    //pack();
   }
   
   public void updateModel(List<Shape> model) {

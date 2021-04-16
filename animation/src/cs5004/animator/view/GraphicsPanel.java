@@ -31,6 +31,7 @@ public class GraphicsPanel extends JPanel {
     setLocation(0, 0);
     setBounds(20, 20, 500, 500);
     setBorder(new LineBorder(Color.BLACK, 3));
+    
   }
   
   public void updateModel(List<Shape> model) {

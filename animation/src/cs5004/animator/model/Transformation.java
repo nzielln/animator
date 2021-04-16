@@ -65,9 +65,10 @@ public interface Transformation {
   
   Color getInitialColor();
   HashMap<String, Integer> getState();
-  
+  Shape getShape();
   
   //OTHER------------------------------------------------------------------------------------------
+  void setShape(String name, String type, int x, int y, int w, int h, int r, int g, int b);
   /**
    * Determines if two Transformation objects are identical.
    * @param other (Transformation) another Transformation object

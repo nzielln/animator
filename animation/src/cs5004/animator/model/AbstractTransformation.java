@@ -1,5 +1,7 @@
 package cs5004.animator.model;
 
+import com.sun.source.tree.BreakTree;
+
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -15,6 +17,7 @@ public abstract class AbstractTransformation implements Transformation {
   final String tID;
   String type;
   HashMap<String, Integer> currentState;
+  Shape shape;
   
   /**
    * The constructor takes the start and end time for the transformation, initializes type to null.
@@ -36,6 +39,7 @@ public abstract class AbstractTransformation implements Transformation {
     this.timeEnd = timeEnd;
     this.type = null;
     this.currentState = new HashMap<>();
+    this.shape = null;
   }
   
   //GETTER-----------------------------------------------------------------------------------------
@@ -94,6 +98,11 @@ public abstract class AbstractTransformation implements Transformation {
     return 0;
   }
   
+  @Override
+  public Shape getShape() {
+    return this.shape;
+  }
+  
   //SETTERS----------------------------------------------------------------------------------------
   @Override
   public void setInitialX(int x) {
@@ -130,6 +139,25 @@ public abstract class AbstractTransformation implements Transformation {
     this.currentState.put("g", g);
     this.currentState.put("b", b);
   
+  }
+  
+  @Override
+  public void setShape(String name, String type, int x, int y, int w, int h, int r, int g, int b) {
+    if (type.equals("ELLIPSE")) {
+      Shape sh = new Oval(name, type.toUpperCase());
+      sh.setProperties(x, y, w, h, r, g, b);
+      sh.setAppears(this.timeStart);
+      sh.setAppears(this.timeEnd);
+      this.shape = sh;
+    } else {
+      Shape sh = new Rectangle(name, type.toUpperCase());
+      sh.setProperties(x, y, w, h, r, g, b);
+      sh.setAppears(this.timeStart);
+      sh.setAppears(this.timeEnd);
+      this.shape = sh;
+      
+    }
+    
   }
   
   @Override

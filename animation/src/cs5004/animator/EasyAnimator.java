@@ -70,6 +70,7 @@ public class EasyAnimator {
     
     view.animate(m);
     
+    
     if (inputs.get("view").equals("visual")) {
       List<Shape> model = new ArrayList<>(m.getShapes());
       int tick = Integer.parseInt(inputs.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
@@ -106,6 +107,7 @@ public class EasyAnimator {
     
       }
     }
+    
     
   }
   
