@@ -7,7 +7,6 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
 public class GraphicsPanel extends JPanel {
@@ -52,14 +51,14 @@ public class GraphicsPanel extends JPanel {
       if (s.getType().equals("RECTANGLE")) {
         Color c = new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB());
         graphics.setColor(c);
-        graphics.drawRect(s.getPositionX(), s.getPositionX(), s.getX(), s.getY());
-        graphics.fillRect(s.getPositionX(), s.getPositionX(), s.getX(), s.getY());
+        graphics.drawRect(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
+        graphics.fillRect(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
         System.out.println("Shape: " + count);
       } else if (s.getType().equals("ELLIPSE")) {
         Color c = new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB());
         graphics.setColor(c);
-        graphics.drawOval(s.getPositionX(), s.getPositionX(), s.getX(), s.getY());
-        graphics.fillOval(s.getPositionX(), s.getPositionX(), s.getX(), s.getY());
+        graphics.drawOval(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
+        graphics.fillOval(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
         
         System.out.println("Shape: " + count);
       }

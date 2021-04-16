@@ -10,10 +10,10 @@ public abstract class AbstractShape implements Shape {
   String name;
   String type;
   Color color;
-  int pointX;
-  int pointY;
   int x;
   int y;
+  int w;
+  int h;
   int appears;
   int disappears;
   boolean appearsFlag;
@@ -35,10 +35,10 @@ public abstract class AbstractShape implements Shape {
       this.name = name;
       this.type = type.toUpperCase();
       this.color = null;
-      this.pointX = 0;
-      this.pointY = 0;
       this.x = 0;
       this.y = 0;
+      this.w = 0;
+      this.h = 0;
       this.appears = 0;
       this.disappears = 0;
       this.appearsFlag = false;
@@ -70,22 +70,22 @@ public abstract class AbstractShape implements Shape {
   
   @Override
   public int getPositionX() {
-    return this.pointX;
-  }
-  
-  @Override
-  public int getPositionY() {
-    return this.pointY;
-  }
-  
-  @Override
-  public int getX() {
     return this.x;
   }
   
   @Override
-  public int getY() {
+  public int getPositionY() {
     return this.y;
+  }
+  
+  @Override
+  public int getWidth() {
+    return this.w;
+  }
+  
+  @Override
+  public int getHeight() {
+    return this.h;
   }
   
   @Override
@@ -105,20 +105,20 @@ public abstract class AbstractShape implements Shape {
   
   //SETTERS AND OTHER------------------------------------------------------------------------------
   @Override
-  public void setProperties(int pointX, int pointY, int x, int y, int r, int g, int b) {
+  public void setProperties(int x, int y, int w, int h, int r, int g, int b) {
     if (r < 0 || g < 0 || b < 0
             || r > 255 || g > 255 || b > 255) {
       throw new IllegalArgumentException("RGB values must be between 0 - 255");
-    } else if (pointX < 0 || pointY < 0) {
+    } else if (x < 0 || y < 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
-    } else if (x <= 0 || y <= 0) {
+    } else if (w <= 0 || h <= 0) {
       throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
     }
   
-    this.pointX = pointX;
-    this.pointY = pointY;
     this.x = x;
     this.y = y;
+    this.w = w;
+    this.h = h;
     this.color = new Color(r, g, b);
     this.propertiesSet = true;
   }
@@ -147,22 +147,25 @@ public abstract class AbstractShape implements Shape {
     this.disappearsFlag = true;
   }
   
+  @Override
   public void changePosition(int x, int y) {
     if (x < 0 || y < 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
     }
-    this.pointX = x;
-    this.pointY = y;
+    this.x = x;
+    this.y = y;
   }
   
+  @Override
   public void changeSize(int w, int h) {
     if (w <= 0 || h <= 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
     }
-    this.x = w;
-    this.y = h;
+    this.w = w;
+    this.h = h;
   }
   
+  @Override
   public void changeColor(int r,int g, int b) {
     if (r < 0 || g < 0 || b < 0
             || r > 255 || g > 255 || b > 255) {
@@ -177,8 +180,8 @@ public abstract class AbstractShape implements Shape {
     Objects.requireNonNull(other);
     
     return (this.name.equals(other.getName()) && this.color.sameObject(other.getColor())
-            && this.pointX == other.getPositionX() && this.pointY == other.getPositionY()
-            && this.x == other.getX() && this.y == other.getY()
+            && this.x == other.getPositionX() && this.y == other.getPositionY()
+            && this.w == other.getWidth() && this.h == other.getHeight()
             && this.appears == other.getAppears() && this.disappears == other.getDisappears()
             && this.type.equals(other.getType()));
   }

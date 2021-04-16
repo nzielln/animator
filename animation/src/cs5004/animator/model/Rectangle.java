@@ -24,7 +24,7 @@ public class Rectangle extends AbstractShape {
     }
     
     Rectangle r = new Rectangle(this.name, this.type);
-    r.setProperties(this.pointX, this.pointY, this.x, this.y,
+    r.setProperties(this.x, this.y, this.w, this.h,
             this.color.getR(), this.color.getG(), this.color.getB());
     r.setAppears(this.appears);
     r.setDisappears(this.disappears);
@@ -39,8 +39,8 @@ public class Rectangle extends AbstractShape {
     DecimalFormat f = new DecimalFormat("0.0");
     return "Name: " + this.name + "\n"
             + "Type: " + this.type + "\n"
-            + "Min corner: (" + f.format(this.pointX) + "," + f.format(this.pointY) + "), Width: "
-            + f.format(this.x) + ", Length: " + f.format(this.y) + ", Color: "
+            + "Min corner: (" + f.format(this.x) + "," + f.format(this.y) + "), Width: "
+            + f.format(this.w) + ", Length: " + f.format(this.h) + ", Color: "
             + this.color.toString() + "\n"
             + "Appears at t=" + this.appears + "\n"
             + "Disappears at t=" + this.disappears + "\n";

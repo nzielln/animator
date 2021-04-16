@@ -96,8 +96,8 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
       
     } else if (w1 != w2 || h1 != h2) {
       Transformation scale = new Scale("+", w2, h2, t1, t2);
-      scale.setInitialX(w1);
-      scale.setInitialY(h1);
+      scale.setInitialWidth(w1);
+      scale.setInitialHeight(h1);
       scale.populateHashmap(x1, y1, w2, h2, t1, t2, r1, g1, b1);
       scale.setShape(name, type, x2, y2, w2, h2, r2, g2, b2);
       model.addTransformation(name, scale);

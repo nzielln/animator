@@ -160,11 +160,11 @@ public class ShapeTest {
   
   @Test
   public void getLengthWidth() {
-    assertEquals(4, oval.getX(), 0.001);
-    assertEquals(8, rect.getX(), 0.001);
+    assertEquals(4, oval.getWidth(), 0.001);
+    assertEquals(8, rect.getWidth(), 0.001);
     
-    assertEquals(5, oval.getY(), 0.001);
-    assertEquals(8, rect.getY(), 0.001);
+    assertEquals(5, oval.getHeight(), 0.001);
+    assertEquals(8, rect.getHeight(), 0.001);
   }
   
   @Test

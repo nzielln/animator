@@ -45,13 +45,13 @@ public interface Shape {
    * Returns the x-radius/width of the Shape.
    * @return int, x-radius/width of shape
    */
-  int getX();
+  int getWidth();
   
   /**
    * Returns the y-radius/length of the Shape.
    * @return int, y-radius/length of shape
    */
-  int getY();
+  int getHeight();
   
   /**
    * Returns the time the Shape appears in the animation.
@@ -78,16 +78,15 @@ public interface Shape {
   
   //SETTERS AND OTHER------------------------------------------------------------------------------
   /**
-   *
-   * @param pointX
-   * @param pointY
    * @param x
    * @param y
+   * @param w
+   * @param h
    * @param r
    * @param g
    * @param b
    */
-  void setProperties(int pointX, int pointY, int x, int y, int r, int g, int b);
+  void setProperties(int x, int y, int w, int h, int r, int g, int b);
   
   /**
    * Set the time the Shape appears in the animation.

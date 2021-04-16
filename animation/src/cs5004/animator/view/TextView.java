@@ -29,12 +29,12 @@ public class TextView extends AbstractView {
       if (s.getType().equals("RECTANGLE")) {
         String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
                 + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
-                + "), width " + s.getX() + " height " + s.getY() + ".";
+                + "), width " + s.getWidth() + " height " + s.getHeight() + ".";
         str.append(desc).append("\n");
       } else if (s.getType().equals("ELLIPSE")) {
         String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
                 + s.getColor() + " with center at (" + s.getPositionX() + "," + s.getPositionY()
-                + "), radius " + s.getX() + " and " + s.getY() + ".";
+                + "), radius " + s.getWidth() + " and " + s.getHeight() + ".";
         str.append(desc).append("\n");
       }
     }

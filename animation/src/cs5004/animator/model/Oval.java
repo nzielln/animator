@@ -24,7 +24,7 @@ public class Oval extends AbstractShape {
     }
     
     Oval o = new Oval(this.name, this.type);
-    o.setProperties(this.pointX, this.pointY, this.x, this.y,
+    o.setProperties(this.x, this.y, this.w, this.h,
             this.color.getR(), this.color.getG(), this.color.getB());
     o.setAppears(this.appears);
     o.setDisappears(this.disappears);
@@ -40,8 +40,8 @@ public class Oval extends AbstractShape {
   
     return "Name: " + this.name + "\n"
             + "Type: " + this.type + "\n"
-            + "Center: (" + f.format(this.pointX) + "," + f.format(this.pointY) + "), X radius: "
-            + f.format(this.x) + ", Y radius: " + f.format(this.y) + ", Color: "
+            + "Center: (" + f.format(this.x) + "," + f.format(this.y) + "), X radius: "
+            + f.format(this.w) + ", Y radius: " + f.format(this.h) + ", Color: "
             + this.color.toString() + "\n"
             + "Appears at t=" + this.appears + "\n"
             + "Disappears at t=" + this.disappears + "\n";

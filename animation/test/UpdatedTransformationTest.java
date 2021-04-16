@@ -55,11 +55,11 @@ public class UpdatedTransformationTest {
     }
     
     try {
-      scale.setInitialX(22);
-      scale.setInitialY(45);
+      scale.setInitialWidth(22);
+      scale.setInitialHeight(45);
   
-      assertEquals(22, scale.getInitialX());
-      assertEquals(45, scale.getInitialY());
+      assertEquals(22, scale.getInitialWidth());
+      assertEquals(45, scale.getInitialHeight());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
     }
@@ -79,13 +79,13 @@ public class UpdatedTransformationTest {
     //BAD Inputs
   
     try {
-      scale.setInitialX(-22);
+      scale.setInitialWidth(-22);
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
     }
   
     try {
-      scale.setInitialX(0);
+      scale.setInitialWidth(0);
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
     }

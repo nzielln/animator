@@ -157,8 +157,8 @@ public class TransformationTest {
     assertEquals(23, move.getToX(), 0.001);
     assertEquals(34, move.getToY(), 0.001);
     
-    assertEquals(8, scale.getToX(), 0.001);
-    assertEquals(12, scale.getToY(), 0.001);
+    assertEquals(8, scale.getToWidth(), 0.001);
+    assertEquals(12, scale.getToHeight(), 0.001);
   }
   
   @Test

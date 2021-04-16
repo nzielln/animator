@@ -69,6 +69,16 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
+  public int getToWidth() {
+    return 0;
+  }
+  
+  @Override
+  public int getToHeight() {
+    return 0;
+  }
+  
+  @Override
   public int getTimeStart() {
     return this.timeStart;
   }
@@ -99,6 +109,16 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
+  public int getInitialWidth() {
+    return 0;
+  }
+  
+  @Override
+  public int getInitialHeight() {
+    return 0;
+  }
+  
+  @Override
   public Shape getShape() {
     return this.shape;
   }
@@ -110,6 +130,14 @@ public abstract class AbstractTransformation implements Transformation {
   
   @Override
   public void setInitialY(int y) {
+  }
+  
+  @Override
+  public void setInitialWidth(int w) {
+  }
+  
+  @Override
+  public void setInitialHeight(int h) {
   }
   
   @Override

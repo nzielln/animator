@@ -52,6 +52,18 @@ public interface Transformation {
    */
   int getToY();
   
+  /**
+   * Returns the x-position/width the new shape should have.
+   * @return float, time
+   */
+  int getToWidth();
+  
+  /**
+   * Returns the y-position/length the new shape should have.
+   * @return float, time
+   */
+  int getToHeight();
+  
   
   /**
    * Returns the color the new shape should have.
@@ -62,6 +74,10 @@ public interface Transformation {
   int getInitialX();
   
   int getInitialY();
+  
+  int getInitialWidth();
+  
+  int getInitialHeight();
   
   Color getInitialColor();
   HashMap<String, Integer> getState();
@@ -78,6 +94,10 @@ public interface Transformation {
   
   void setInitialX(int x);
   void setInitialY(int y);
+  
+  void setInitialWidth(int w);
+  void setInitialHeight(int h);
+  
   void setInitialColor(Color c);
   void populateHashmap(int x, int y, int w, int h, int app, int dis, int r, int g, int b);
   

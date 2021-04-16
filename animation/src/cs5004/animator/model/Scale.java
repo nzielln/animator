@@ -4,10 +4,10 @@ package cs5004.animator.model;
  * Represents a Scale transformation, extends methods from the AbstractTransformation.
  */
 public class Scale extends AbstractTransformation {
-  final int toX;
-  final int toY;
-  int initialX;
-  int initialY;
+  final int toWidth;
+  final int toHeight;
+  int initialWidth;
+  int initialHeight;
   
   /**
    * Constructor calls the AbstractTransformation super class, takes in the color to change to.
@@ -22,46 +22,48 @@ public class Scale extends AbstractTransformation {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
     }
     
-    this.toX = toX;
-    this.toY = toY;
-    this.initialX = 0;
-    this.initialY = 0;
+    this.toWidth = toX;
+    this.toHeight = toY;
+    this.initialWidth = 0;
+    this.initialHeight = 0;
     super.type = "Scales";
   }
   
   //GETTERS----------------------------------------------------------------------------------------
   @Override
-  public int getToX() {
-    return this.toX;
+  public int getToWidth() {
+    return this.toWidth;
   }
   
   @Override
-  public int getToY() {
-    return this.toY;
-  }
-  
-  public int getInitialX() {
-    return this.initialX;
-  }
-  
-  public int getInitialY() {
-    return this.initialY;
+  public int getToHeight() {
+    return this.toHeight;
   }
   
   @Override
-  public void setInitialX(int x) {
-    if (x <= 0) {
+  public int getInitialWidth() {
+    return this.initialWidth;
+  }
+  
+  @Override
+  public int getInitialHeight() {
+    return this.initialHeight;
+  }
+  
+  @Override
+  public void setInitialWidth(int w) {
+    if (w <= 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
     }
-    this.initialX = x;
+    this.initialWidth = w;
   }
   
   @Override
-  public void setInitialY(int y) {
-    if (y <= 0) {
+  public void setInitialHeight(int h) {
+    if (h <= 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
     }
-    this.initialY = y;
+    this.initialHeight = h;
   }
   
   
@@ -70,7 +72,7 @@ public class Scale extends AbstractTransformation {
   public boolean sameObject(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())
             && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
-            && this.toX == other.getToX() && this.toY == other.getToY()
+            && this.toWidth == other.getToWidth() && this.toHeight == other.getToHeight()
             && this.tID.equals(other.getID()));
   }
   
