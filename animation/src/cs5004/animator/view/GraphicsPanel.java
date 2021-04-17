@@ -22,10 +22,10 @@ public class GraphicsPanel extends JPanel {
     }
 
     this.model = model;
-    setSize(width +200, height + 200);
+    setSize(560, 560);
     setLocation(0, 0);
     setBackground(Color.WHITE);
-    setBounds(x, y, width + 200, height + 200);
+    setBounds(0, 0, 560, 560);
     setBorder(new LineBorder(Color.BLACK, 3));
   }
   
@@ -65,17 +65,14 @@ public class GraphicsPanel extends JPanel {
       if (s.getType().equals("RECTANGLE")) {
         Color c = new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB());
         graphics.setColor(c);
-        graphics.drawRect(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
-        graphics.fillRect(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
-        System.out.println(s.getName());
+        graphics.drawRect(s.getPositionX(), s.getPositionY(), s.getWidth(), s.getHeight());
+        graphics.fillRect(s.getPositionX(), s.getPositionY(), s.getWidth(), s.getHeight());
       } else if (s.getType().equals("ELLIPSE")) {
         Color c = new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB());
         graphics.setColor(c);
-        graphics.drawOval(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
-        graphics.fillOval(s.getPositionX(), s.getPositionX(), s.getWidth(), s.getHeight());
-        
-        System.out.println(s.getName());
-      }
+        graphics.drawOval(s.getPositionX(), s.getPositionY(), s.getWidth(), s.getHeight());
+        graphics.fillOval(s.getPositionX(), s.getPositionY(), s.getWidth(), s.getHeight());
+              }
     }
   }
 }

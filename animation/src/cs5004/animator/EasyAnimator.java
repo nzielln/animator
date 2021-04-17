@@ -53,7 +53,7 @@ public class EasyAnimator {
     String filename = "./src/cs5004/animator/files/" + fileInput;
     File demo = new File(filename);
     FileReader f = new FileReader(demo);
-
+    
     //Build Model
     AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
     AnimationReader.parseFile(f, b);
@@ -104,6 +104,7 @@ public class EasyAnimator {
         
       }
     }
+    
   }
 }
 

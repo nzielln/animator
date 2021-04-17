@@ -108,7 +108,7 @@ public class AnimationImpl implements Animation {
       }
   
       if (atTime.size() > 0) {
-        Shape n = getOneShape(s.copy(), atTime, t);
+        Shape n = getOneShape(lastest.get(s.getName()).copy(), atTime, t);
         shapesAtTick.add(n);
         lastest.put(n.getName(), n);
       } else if (s.getAppears() <= t && t <= s.getDisappears()) {
@@ -151,12 +151,7 @@ public class AnimationImpl implements Animation {
         
       }
     }
-    
-    if (shape.getColor() == null) {
-      shape.changeColor(l.get(0).getFinalshape().getColor().getR(), l.get(0).getFinalshape().getColor().getG(),
-              l.get(0).getFinalshape().getColor().getB());
-    }
-    
+   
     return shape;
   }
   

@@ -29,11 +29,11 @@ public class GraphicView extends JFrame implements View {
       throw new IllegalArgumentException("X and Y must be positive");
     }
 
-    setSize(width, height);
-    setLocation(x, y);
+    setSize(560, 560);
+    setLocation(0, 0);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(null);
-    this.panel = new GraphicsPanel(model, x, y, width, height);
+    this.panel = new GraphicsPanel(model, 0, 0, 560, 560);
     setVisible(true);
     add(panel);
     panel.setVisible(true);
