@@ -34,7 +34,7 @@ public class TextView extends AbstractView {
                 + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
                 + "), width " + s.getWidth() + " height " + s.getHeight() + ".";
         str.append(desc).append("\n");
-      } else if (s.getType().equals("Ellipse")) {
+      } else if (s.getType().equals("ELLIPSE")) {
         String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
                 + s.getColor() + " with center at (" + s.getPositionX() + "," + s.getPositionY()
                 + "), radius " + s.getWidth() + " and " + s.getHeight() + ".";
