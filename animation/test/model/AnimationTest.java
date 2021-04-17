@@ -110,7 +110,7 @@ public class AnimationTest {
   @Test
   public void getById() {
     //Get oval
-    assertEquals("Ellipse", ani.getById("oval").getType());
+    assertEquals("ELLIPSE", ani.getById("oval").getType());
     assertEquals(122, ani.getById("oval").getColor().getR(), 0.001);
     
     //Get rectangle
@@ -159,7 +159,50 @@ public class AnimationTest {
       fail("Exception should not have been thrown");
     }
 
+    //no transformations
+    try {
+      Animation ani2 = new AnimationImpl();
 
+      Rectangle rect4 = new Rectangle("rect4", "RECTANGLE");
+      rect4.setProperties(10, 10, 12, 12, 0, 0 ,0);
+      rect4.setAppears(1);
+      rect4.setDisappears(10);
+
+      Ellipse o = new Ellipse("O", "Ellipse");
+      o.setProperties(5, 5, 15, 15, 255, 255, 255);
+      o.setAppears(3);
+      o.setDisappears(10);
+
+      ani2.addShape(rect4, new ArrayList<>());
+      ani2.addShape(o, new ArrayList<>());
+
+      List<Shape> result = ani2.getByTime(4);
+      assertEquals("[Name: rect4\n"
+              + "Type: RECTANGLE\n"
+              + "Min corner: (10.0,10.0), Width: 12.0, Length: 12.0, Color: (0.0, 0.0, 0.0)\n"
+              + "Appears at t=1\n"
+              + "Disappears at t=10\n"
+              + ", Name: O\n"
+              + "Type: ELLIPSE\n"
+              + "Center: (5.0,5.0), X radius: 15.0, Y radius: 15.0, Color: (255.0, 255.0, 255.0)\n"
+              + "Appears at t=3\n"
+              + "Disappears at t=10\n"
+              + "]", result.toString());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    //with transformations
+    try {
+      ani.addTransformation("oval", scale);
+      ani.addTransformation("rect", move2);
+      ani.addTransformation("rect 2", color);
+
+      List<Shape> result = ani.getByTime(8);
+      assertEquals("", result.toString());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
 
     // negative time
     try {
@@ -232,7 +275,7 @@ public class AnimationTest {
             + "Appears at t=0\n"
             + "Disappears at t=0\n"
             + ", Name: oval4\n"
-            + "Type: Ellipse\n"
+            + "Type: ELLIPSE\n"
             + "Center: (5.0,5.0), X radius: 2.0, Y radius: 4.0, Color: (0.0, 0.0, 0.0)\n"
             + "Appears at t=0\n"
             + "Disappears at t=0\n]", ani2.getShapes().toString());
