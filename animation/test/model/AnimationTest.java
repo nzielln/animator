@@ -98,6 +98,38 @@ public class AnimationTest {
     assertEquals(0, ani2.getSize());
     assertEquals(3, ani.getSize());
   }
+
+  @Test
+  public void testGetCanvasWidth() {
+    Animation ani2 = new AnimationImpl();
+
+    assertEquals(0, ani2.getCanvasWidth());
+    assertEquals(0, ani.getCanvasWidth());
+  }
+
+  @Test
+  public void testGetCanvasHeight() {
+    Animation ani2 = new AnimationImpl();
+
+    assertEquals(0, ani2.getCanvasHeight());
+    assertEquals(0, ani.getCanvasHeight());
+  }
+
+  @Test
+  public void testGetCanvasX() {
+    Animation ani2 = new AnimationImpl();
+
+    assertEquals(0, ani2.getCanvasX());
+    assertEquals(0, ani.getCanvasX());
+  }
+
+  @Test
+  public void testGetCanvasY() {
+    Animation ani2 = new AnimationImpl();
+
+    assertEquals(0, ani2.getCanvasY());
+    assertEquals(0, ani.getCanvasY());
+  }
   
   @Test
   public void getSizeTransformations() {
