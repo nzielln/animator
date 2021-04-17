@@ -20,7 +20,7 @@ public class ShapeTest {
   private Shape rect;
   //TODO: Merge Shape
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     //Valid shape inputs
     try {
       oval = new Ellipse("oval", "Ellipse");
@@ -214,6 +214,186 @@ public class ShapeTest {
     } catch (Exception ignored) {
     }
     
+  }
+
+  @Test
+  public void testChangePosition() {
+
+    // valid oval
+    try {
+      assertEquals(23, oval.getPositionX());
+      assertEquals(45, oval.getPositionY());
+      oval.changePosition(43, 12);
+      assertEquals(43, oval.getPositionX());
+      assertEquals(12, oval.getPositionY());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    //valid rectangle
+    try {
+      assertEquals(17, rect.getPositionX());
+      assertEquals(9, rect.getPositionY());
+      rect.changePosition(5, 10);
+      assertEquals(5, rect.getPositionX());
+      assertEquals(10, rect.getPositionY());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    //valid negative
+    try {
+      assertEquals(17, rect.getPositionX());
+      assertEquals(9, rect.getPositionY());
+      rect.changePosition(-5, -10);
+      assertEquals(-5, rect.getPositionX());
+      assertEquals(-10, rect.getPositionY());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    //valid zero
+    try {
+      assertEquals(0, oval.getPositionX());
+      assertEquals(0, oval.getPositionY());
+      oval.changePosition(0, 0);
+      assertEquals(0, oval.getPositionX());
+      assertEquals(0, oval.getPositionY());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+  }
+
+  @Test
+  public void testChangeSize() {
+
+    // valid
+    try {
+      assertEquals(4 ,oval.getWidth());
+      assertEquals(5, oval.getHeight());
+      oval.changeSize(3, 3);
+      assertEquals(3 ,oval.getWidth());
+      assertEquals(3, oval.getHeight());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    try {
+      assertEquals(8, rect.getWidth());
+      assertEquals(8, rect.getHeight());
+      rect.changeSize(10, 12);
+      assertEquals(10, rect.getWidth());
+      assertEquals(12, rect.getHeight());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    // width 0
+    try {
+      assertEquals(4 ,oval.getWidth());
+      assertEquals(5, oval.getHeight());
+      oval.changeSize(0, 4);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    // height 0
+    try {
+      assertEquals(8, rect.getWidth());
+      assertEquals(8, rect.getHeight());
+      rect.changeSize(8, 0);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    // width negative
+    try {
+      assertEquals(8, rect.getWidth());
+      assertEquals(8, rect.getHeight());
+      rect.changeSize(-8, 8);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //height negative
+    try {
+      assertEquals(4 ,oval.getWidth());
+      assertEquals(5, oval.getHeight());
+      oval.changeSize(5, -10);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  }
+
+  @Test
+  public void testChangeColor() {
+    // Valid RGB
+    try {
+      assertEquals(24, oval.getColor().getR());
+      assertEquals(35, oval.getColor().getG());
+      assertEquals(123, oval.getColor().getB());
+
+      oval.changeColor(26, 26, 26);
+
+      assertEquals(26, oval.getColor().getR());
+      assertEquals(26, oval.getColor().getG());
+      assertEquals(26, oval.getColor().getB());
+
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    try {
+      assertEquals(122, rect.getColor().getR());
+      assertEquals(122, rect.getColor().getG());
+      assertEquals(122, rect.getColor().getB());
+
+      rect.changeColor(100, 100, 100);
+
+      assertEquals(100, rect.getColor().getR());
+      assertEquals(100, rect.getColor().getG());
+      assertEquals(100, rect.getColor().getB());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    // negative RGB
+    try {
+      assertEquals(24, oval.getColor().getR());
+      assertEquals(35, oval.getColor().getG());
+      assertEquals(123, oval.getColor().getB());
+      oval.changeColor(-122, -122, -122);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    try {
+      assertEquals(122, rect.getColor().getR());
+      assertEquals(122, rect.getColor().getG());
+      assertEquals(122, rect.getColor().getB());
+      rect.changeColor(255, -100, 255);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    // Greater than 255 RGB
+    try {
+      assertEquals(24, oval.getColor().getR());
+      assertEquals(35, oval.getColor().getG());
+      assertEquals(123, oval.getColor().getB());
+      oval.changeColor(256, 0, 256);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    try {
+      assertEquals(122, rect.getColor().getR());
+      assertEquals(122, rect.getColor().getG());
+      assertEquals(122, rect.getColor().getB());
+      rect.changeColor(255, 300, 255);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
   }
   
   
