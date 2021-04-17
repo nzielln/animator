@@ -226,9 +226,13 @@ public class AnimationTest {
 
     //with transformations
     try {
-      ani.addTransformation("oval", scale);
-      ani.addTransformation("rect", move2);
-      ani.addTransformation("rect 2", color);
+      Transformation move4 = new Move("move4", 12, 12, 7, 12);
+      Transformation scale4 = new Scale("scale4", 25, 25, 7, 10);
+      Transformation color2 = new ChangeColor("color2",
+              new Color(255, 255, 255), 8, 10);
+      ani.addTransformation("oval", scale4);
+      ani.addTransformation("rect", move4);
+      ani.addTransformation("rect 2", color2);
 
       List<Shape> result = ani.getByTime(8);
       assertEquals("", result.toString());
@@ -596,7 +600,36 @@ public class AnimationTest {
   @Test
   public void testTransformationString() {
 
-    //
+    //no transformations
+    try {
+      assertEquals("", ani.tranformationString(oval));
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    //added transformation: move
+    try {
+      ani.addTransformation("oval", move);
+      assertEquals("", ani.tranformationString(oval));
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    //added transformation: scale
+    try {
+      ani.addTransformation("rect 2", scale3);
+      assertEquals("", ani.tranformationString(rect2));
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+    //added transformation: change color
+    try {
+      ani.addTransformation("rect 2", color);
+      assertEquals("", ani.tranformationString(rect2));
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
 
     //empty animation
     try {
