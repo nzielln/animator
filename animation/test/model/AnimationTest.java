@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
@@ -142,6 +143,27 @@ public class AnimationTest {
     //Id not found
     try {
       ani.getById("rect 4");
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  }
+
+  @Test
+  public void testGetByTime() {
+    // empty animation
+    try {
+      Animation ani2 = new AnimationImpl();
+      List<Shape> result = ani2.getByTime(1);
+      assertEquals("[]", result.toString());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+
+
+
+    // negative time
+    try {
+      List<Shape> result = ani.getByTime(-3);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }

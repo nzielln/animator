@@ -93,7 +93,10 @@ public class AnimationImpl implements Animation {
   
   @Override
   public List<Shape> getByTime(int t) {
-    
+    if (t < 0) {
+      throw new IllegalArgumentException("Time must be positive");
+    }
+
     List<Shape> shapesAtTick = new LinkedList<>();
     
     for (Shape s : hashmap.keySet()) {
@@ -125,7 +128,6 @@ public class AnimationImpl implements Animation {
   }
   
   private Shape getOneShape(Shape shape, List<Transformation> l, int time) {
-    
     for (Transformation t: l) {
       if (t.getTransformationType().equals("Moves")) {
         int cx = tween(time, t.getInitialX(), t.getToX(), t.getTimeStart(), t.getTimeEnd());
