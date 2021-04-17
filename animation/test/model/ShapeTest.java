@@ -24,10 +24,18 @@ public class ShapeTest {
     //Valid shape inputs
     try {
       oval = new Ellipse("oval", "Ellipse");
+      oval.setProperties(-34, 45, 4, 5, 24, 35, 123);
+    } catch (Exception e) {
+      fail("Exception should not be thrown.");
+    }
+    
+    try {
+      oval = new Ellipse("oval", "Ellipse");
       oval.setProperties(23, 45, 4, 5, 24, 35, 123);
     } catch (Exception e) {
       fail("Exception should not have been thrown.");
     }
+    
     
     try {
       rect = new Rectangle("rect", "RECTANGLE");
@@ -44,29 +52,7 @@ public class ShapeTest {
     }
     
     
-    //Invalid Points
     Shape bad;
-    try {
-      bad = new Ellipse("oval", "Ellipse");
-      bad.setProperties(-34, 45, 4, 5, 24, 35, 123);
-      fail("Exception should have been thrown.");
-    } catch (Exception ignored) {
-    }
-    
-    try {
-      bad = new Ellipse("oval", "Ellipse");
-      bad.setProperties(34, -23, 4, 5, 24, 35, 123);
-      fail("Exception should have been thrown.");
-    } catch (Exception ignored) {
-    }
-    
-    try {
-      bad = new Ellipse("oval", "Ellipse");
-      bad.setProperties(-34, -23, 4, 5, 24, 35, 123);
-      fail("Exception should have been thrown.");
-    } catch (Exception ignored) {
-    }
-    
     //Invalid Length/Width
     try {
       bad = new Ellipse("oval", "Ellipse");
@@ -122,7 +108,7 @@ public class ShapeTest {
   @Test
   public void getShape() {
     assertEquals("oval", oval.getShape().getName());
-    assertEquals("Ellipse", oval.getShape().getType());
+    assertEquals("ELLIPSE", oval.getShape().getType());
     
     assertEquals("rect", rect.getShape().getName());
     assertEquals("RECTANGLE", rect.getShape().getType());
@@ -131,7 +117,7 @@ public class ShapeTest {
   
   @Test
   public void getType() {
-    assertEquals("Ellipse", oval.getType());
+    assertEquals("ELLIPSE", oval.getType());
     assertEquals("RECTANGLE", rect.getType());
   }
   
@@ -232,8 +218,8 @@ public class ShapeTest {
 
     //valid rectangle
     try {
-      assertEquals(17, rect.getPositionX());
-      assertEquals(9, rect.getPositionY());
+      assertEquals(67, rect.getPositionX());
+      assertEquals(89, rect.getPositionY());
       rect.changePosition(5, 10);
       assertEquals(5, rect.getPositionX());
       assertEquals(10, rect.getPositionY());
@@ -243,8 +229,8 @@ public class ShapeTest {
 
     //valid negative
     try {
-      assertEquals(17, rect.getPositionX());
-      assertEquals(9, rect.getPositionY());
+      assertEquals(5, rect.getPositionX());
+      assertEquals(10, rect.getPositionY());
       rect.changePosition(-5, -10);
       assertEquals(-5, rect.getPositionX());
       assertEquals(-10, rect.getPositionY());
@@ -254,8 +240,8 @@ public class ShapeTest {
 
     //valid zero
     try {
-      assertEquals(0, oval.getPositionX());
-      assertEquals(0, oval.getPositionY());
+      assertEquals(43, oval.getPositionX());
+      assertEquals(12, oval.getPositionY());
       oval.changePosition(0, 0);
       assertEquals(0, oval.getPositionX());
       assertEquals(0, oval.getPositionY());
@@ -290,8 +276,8 @@ public class ShapeTest {
 
     // width 0
     try {
-      assertEquals(4 ,oval.getWidth());
-      assertEquals(5, oval.getHeight());
+      assertEquals(3 ,oval.getWidth());
+      assertEquals(3, oval.getHeight());
       oval.changeSize(0, 4);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
@@ -299,8 +285,8 @@ public class ShapeTest {
 
     // height 0
     try {
-      assertEquals(8, rect.getWidth());
-      assertEquals(8, rect.getHeight());
+      assertEquals(10, rect.getWidth());
+      assertEquals(12, rect.getHeight());
       rect.changeSize(8, 0);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
@@ -308,8 +294,8 @@ public class ShapeTest {
 
     // width negative
     try {
-      assertEquals(8, rect.getWidth());
-      assertEquals(8, rect.getHeight());
+      assertEquals(10, rect.getWidth());
+      assertEquals(12, rect.getHeight());
       rect.changeSize(-8, 8);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
@@ -317,8 +303,8 @@ public class ShapeTest {
 
     //height negative
     try {
-      assertEquals(4 ,oval.getWidth());
-      assertEquals(5, oval.getHeight());
+      assertEquals(3 ,oval.getWidth());
+      assertEquals(3, oval.getHeight());
       oval.changeSize(5, -10);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
@@ -359,18 +345,18 @@ public class ShapeTest {
 
     // negative RGB
     try {
-      assertEquals(24, oval.getColor().getR());
-      assertEquals(35, oval.getColor().getG());
-      assertEquals(123, oval.getColor().getB());
+      assertEquals(26, oval.getColor().getR());
+      assertEquals(26, oval.getColor().getG());
+      assertEquals(26, oval.getColor().getB());
       oval.changeColor(-122, -122, -122);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
 
     try {
-      assertEquals(122, rect.getColor().getR());
-      assertEquals(122, rect.getColor().getG());
-      assertEquals(122, rect.getColor().getB());
+      assertEquals(100, rect.getColor().getR());
+      assertEquals(100, rect.getColor().getG());
+      assertEquals(100, rect.getColor().getB());
       rect.changeColor(255, -100, 255);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
@@ -378,18 +364,18 @@ public class ShapeTest {
 
     // Greater than 255 RGB
     try {
-      assertEquals(24, oval.getColor().getR());
-      assertEquals(35, oval.getColor().getG());
-      assertEquals(123, oval.getColor().getB());
+      assertEquals(26, oval.getColor().getR());
+      assertEquals(26, oval.getColor().getG());
+      assertEquals(26, oval.getColor().getB());
       oval.changeColor(256, 0, 256);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
 
     try {
-      assertEquals(122, rect.getColor().getR());
-      assertEquals(122, rect.getColor().getG());
-      assertEquals(122, rect.getColor().getB());
+      assertEquals(100  , rect.getColor().getR());
+      assertEquals(100, rect.getColor().getG());
+      assertEquals(100, rect.getColor().getB());
       rect.changeColor(255, 300, 255);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
@@ -404,7 +390,7 @@ public class ShapeTest {
     Shape ovalCp = oval.copy();
     
     assertEquals("oval", ovalCp.getName());
-    assertEquals("Ellipse", ovalCp.getType());
+    assertEquals("ELLIPSE", ovalCp.getType());
     assertEquals(24, ovalCp.getColor().getR(), 0.001 );
     assertEquals(35, ovalCp.getColor().getG(), 0.001);
     assertEquals(123, ovalCp.getColor().getB(), 0.001);
@@ -434,7 +420,7 @@ public class ShapeTest {
             + "Disappears at t=11\n";
     
     String ov = "Name: oval\n"
-            + "Type: Ellipse\n"
+            + "Type: ELLIPSE\n"
             + "Center: (23.0,45.0), X radius: 4.0, Y radius: 5.0, Color: (24.0, 35.0, 123.0)\n"
             + "Appears at t=1\n"
             + "Disappears at t=10\n";

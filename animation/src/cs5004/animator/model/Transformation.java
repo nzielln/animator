@@ -1,9 +1,5 @@
 package cs5004.animator.model;
 
-import java.util.HashMap;
-
-import jdk.jshell.spi.ExecutionControl;
-
 /**
  * Animation interface, represents methods implemented by the {@link AbstractTransformation} class.
  */
@@ -92,15 +88,6 @@ public interface Transformation {
    * @return true if the two objects are identical
    */
   boolean sameObject(Transformation other);
-  
-  //void setInitialX(int x);
-  //void setInitialY(int y);
-  
- // void setInitialWidth(int w);
-  //void setInitialHeight(int h);
-  
-  //void setInitialColor(Color c);
-  
   
   /**
    * Returns a string representation of the {@link Transformation} object.

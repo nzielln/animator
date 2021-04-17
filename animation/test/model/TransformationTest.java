@@ -30,13 +30,25 @@ public class TransformationTest {
       fail("Exception should not be thrown");
     }
     
+    //**
     try {
-      move = new Move("move", 23, 34, 0, 0);
+      move = new Move("move", -23, 34, 3, 11);
+    } catch (Exception ignored) {
+      fail("Exception should not be thrown");
+    }
+  
+    try {
+      move = new Move("move", 23, -34, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
-    //**
+    try {
+      move = new Move("move", -23, -34, 3, 11);
+    } catch (Exception ignored) {
+      fail("Exception should not be thrown");
+    }
+    
     try {
       move = new Move("move", 23, 34, 3, 11);
     } catch (Exception ignored) {
@@ -77,25 +89,7 @@ public class TransformationTest {
     //Invalid inputs
     Transformation bad;
     try {
-      bad = new Move("move",-23, 33, 2, 7); //negative position
-      fail("Exception should be thrown");
-    } catch (Exception ignored) {
-    }
-    
-    try {
       bad = new Move("move",23, 33, -2, 7); //negative time
-      fail("Exception should be thrown");
-    } catch (Exception ignored) {
-    }
-    
-    try {
-      bad = new Move("move",-2, -4, 2, 7); //both positions negative
-      fail("Exception should be thrown");
-    } catch (Exception ignored) {
-    }
-    
-    try {
-      scale = new Scale("scale",-4, 1, 2, 7); //negative length/width
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }

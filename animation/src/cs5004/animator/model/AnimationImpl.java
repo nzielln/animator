@@ -117,7 +117,6 @@ public class AnimationImpl implements Animation {
       } else if (s.getAppears() <= t && t <= s.getDisappears()) {
         shapesAtTick.add(lastest.get(s.getName()));
       }
-  
     }
   
     return shapesAtTick;
