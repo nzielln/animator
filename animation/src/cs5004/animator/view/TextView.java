@@ -14,21 +14,19 @@ public class TextView extends AbstractView {
   For testing: -in "smalldemo.txt" -view "text"
   */
   @Override
-  public void animate(Animation m, HashMap<String, String> in) {
-    Objects.requireNonNull(m, "Animation can't be null");
-    Objects.requireNonNull(in, "Inputs can't be null");
+  public void animate() {
     
     //determine when to make a new animation???
     int interval = 0;
-    if (in.get("speed") != null) {
-      int time = Integer.parseInt(in.get("speed"));
+    if (this.inputs.get("speed") != null) {
+      int time = Integer.parseInt(this.inputs.get("speed"));
       interval = 1000 / time;
     }
     
     StringBuilder str = new StringBuilder();
     System.out.println("Text View of the Animation:________________________________________________"
            + "\n");
-    for (Shape s : m.getShapes()) {
+    for (Shape s : this.model.getShapes()) {
       if (s.getType().equals("RECTANGLE")) {
         String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
                 + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
@@ -44,7 +42,7 @@ public class TextView extends AbstractView {
     
     str.append("\n");
     
-    for (Shape s : m.getShapes()) {
+    for (Shape s : this.model.getShapes()) {
       String timeDesc = s.getName() + " appears at t=" + s.getAppears() + " and disappears at t="
               + s.getDisappears();
       str.append(timeDesc).append("\n");
@@ -52,8 +50,8 @@ public class TextView extends AbstractView {
     
     str.append("\n");
   
-    for (Shape s : m.getShapes()) {
-      str.append(m.tranformationString(s).replace("Shape ", ""));
+    for (Shape s : this.model.getShapes()) {
+      str.append(this.model.tranformationString(s).replace("Shape ", ""));
     }
     
     

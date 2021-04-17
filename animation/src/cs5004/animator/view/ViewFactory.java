@@ -10,23 +10,16 @@ import cs5004.animator.util.AnimationReader;
 
 public class ViewFactory {
   
-  public View create(HashMap<String, String> in, Animation m) {
+  public View create(String in) {
 
     Objects.requireNonNull(in, "Inputs can't be null");
-    Objects.requireNonNull(m, "Shapes list can't be null");
 
-    int width = m.getCanvasWidth();
-    int height = m.getCanvasHeight();
-  
-    int x = m.getCanvasX();
-    int y = m.getCanvasY();
-    
-    if (in.get("view").equals("text")) {
+    if (in.contains("-view text")) {
       return new TextView();
-    } else if (in.get("view").equals("svg")) {
+    } else if (in.contains("-view svg")) {
       return new SVGView();
-    } else if (in.get("view").equals("visual")) {
-      return new GraphicView(m.getByTime(0), width, height, x, y);
+    } else if (in.contains("-view visual")) {
+      return new GraphicView();
     }
     
     return null;

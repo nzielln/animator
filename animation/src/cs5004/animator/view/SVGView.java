@@ -13,25 +13,24 @@ import cs5004.animator.model.Transformation;
 public class SVGView extends AbstractView {
   
   @Override
-  public void animate(Animation m, HashMap<String, String> in) {
-    Objects.requireNonNull(m, "Animation can't be null");
-    Objects.requireNonNull(in, "Inputs can't be null");
+  public void animate() {
+    Objects.requireNonNull(this.model, "Animation can't be null");
+    Objects.requireNonNull(this.inputs, "Inputs can't be null");
     
     int speed = 1;
-    if (in.get("speed") != null) {
-      speed = Integer.parseInt(in.get("speed").replace("\"",""));
+    if (this.inputs.get("speed") != null) {
+      speed = Integer.parseInt(this.inputs.get("speed").replace("\"",""));
     }
     
-    // -in "smalldemo.txt" -out "out.svg" -view "svg"
     try {
       
-      FileWriter f = new FileWriter(in.get("out").replace("\"", ""));
-      String canvas = "<svg width=\"" + m.getCanvasWidth() + "\" height=\"" + m.getCanvasHeight()
+      FileWriter f = new FileWriter(this.inputs.get("out").replace("\"", ""));
+      String canvas = "<svg width=\"" + this.model.getCanvasWidth() + "\" height=\"" + this.model.getCanvasHeight()
               + "\" version=\"1.1\" \n\t xmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
       
       
-      for (Shape s : m.getShapes()) {
+      for (Shape s : this.model.getShapes()) {
         StringBuilder str = new StringBuilder();
         String tag = "";
         if (s.getType().equals("ELLIPSE")) {
@@ -49,7 +48,7 @@ public class SVGView extends AbstractView {
         }
         
         
-        for (Transformation t : m.getTransformations(s.getName())) {
+        for (Transformation t : this.model.getTransformations(s.getName())) {
           String tr = "";
           if (t.getTransformationType().equals("Moves")) {
             if (s.getType().equals("RECTANGLE")) {

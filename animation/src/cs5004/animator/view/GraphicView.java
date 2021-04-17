@@ -9,31 +9,24 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.Animation;
+import cs5004.animator.util.AnimationBuilder;
+import cs5004.animator.util.AnimationBuilderImpl;
+import cs5004.animator.util.AnimationReader;
 
 import javax.swing.*;
 
 public class GraphicView extends JFrame implements View {
+  private HashMap<String, String> inputs;
   private GraphicsPanel panel;
+  private Animation model;
   
-  public GraphicView(List<Shape> model, int width, int height, int x, int y) {
+  public GraphicView() {
     super("Animation");
-
-    Objects.requireNonNull(model, "Model can't be null");
-
-    if (width <= 0 || height <= 0) {
-      throw new IllegalArgumentException("Width and height must be positive integer");
-    }
-
-    setSize(560, 560);
-    setLocation(0, 0);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLayout(null);
-    this.panel = new GraphicsPanel(model, 0, 0, 560, 560);
-    setVisible(true);
-    add(panel);
-    panel.setVisible(true);
+    this.inputs = new HashMap<>();
+    this.model = new AnimationImpl();
   }
   
   public void currentView(List<Shape> model) {
@@ -44,15 +37,15 @@ public class GraphicView extends JFrame implements View {
   }
   
   @Override
-  public void animate(Animation m, HashMap<String, String> in) {
+  public void animate() {
   
-    List<Shape> model = new ArrayList<>(m.getShapes());
-    int tick = Integer.parseInt(in.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
+    List<Shape> model = new ArrayList<>(this.model.getShapes());
+    int tick = Integer.parseInt(this.inputs.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
     if (tick <= 0) {
       throw new IllegalArgumentException("Speed needs to be positive integer");
     }
     
-    if (in.get("speed") == null) {
+    if (this.inputs.get("speed") == null) {
       tick = 1;
     }
   
@@ -68,7 +61,7 @@ public class GraphicView extends JFrame implements View {
   
     //do we get how long the animation is from the user at all? Does this need to be <= or <?
     while (count < lengthAnimation) {
-      List<Shape> modified = m.getByTime(count);
+      List<Shape> modified = this.model.getByTime(count);
     
       //update the animation and model to newModel
       //update count
@@ -81,9 +74,51 @@ public class GraphicView extends JFrame implements View {
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
-    
     }
-  
   }
- 
+  
+  @Override
+  public void readInputs(String in) {
+    Scanner s = new Scanner(in);
+    while (s.hasNext()) {
+      String next = s.next();
+      if (next.equals("-in")) {
+        this.inputs.put("in", s.next());
+      } else if (next.equals("-out")) {
+        this.inputs.put("out", s.next());
+      } else if (next.equals("-view")) {
+        this.inputs.put("view", s.next());
+      } else if (next.equals("-speed")) {
+        this.inputs.put("speed", s.next());
+      }
+    }
+    
+  }
+  
+  @Override
+  public void buildModel(FileReader f) {
+    AnimationBuilder<Animation> b = new AnimationBuilderImpl(model);
+    AnimationReader.parseFile(f, b);
+  
+    setSize(560, 560);
+    setLocation(0, 0);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLayout(null);
+    this.panel = new GraphicsPanel(model.getByTime(0), 0, 0, 560, 560);
+    setVisible(true);
+    add(panel);
+    panel.setVisible(true);
+    
+  }
+  
+  @Override
+  public void getReadable() throws FileNotFoundException {
+    String fileInput = this.inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
+    String filename = "./src/cs5004/animator/files/" + fileInput;
+    File demo = new File(filename);
+    FileReader f = new FileReader(demo);
+    
+    buildModel(f);
+  }
+  
 }

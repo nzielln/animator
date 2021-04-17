@@ -8,12 +8,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import cs5004.animator.model.Animation;
+import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.Shape;
+import cs5004.animator.util.AnimationBuilder;
+import cs5004.animator.util.AnimationBuilderImpl;
+import cs5004.animator.util.AnimationReader;
 
 public abstract class AbstractView implements View {
+  HashMap<String, String> inputs;
+  Animation model;
+  
+  public AbstractView() {
+    this.inputs = new HashMap<>();
+    this.model = new AnimationImpl();
+  }
   
   @Override
-  public void animate(Animation model, HashMap<String, String> in) {
+  public void animate() {
   
   }
   
@@ -21,5 +32,38 @@ public abstract class AbstractView implements View {
   public void currentView(List<Shape> shapes) {
   }
   
-
+  @Override
+  public void readInputs(String in) {
+    Scanner s = new Scanner(in);
+    while (s.hasNext()) {
+      String next = s.next();
+      if (next.equals("-in")) {
+        this.inputs.put("in", s.next());
+      } else if (next.equals("-out")) {
+        this.inputs.put("out", s.next());
+      } else if (next.equals("-view")) {
+        this.inputs.put("view", s.next());
+      } else if (next.equals("-speed")) {
+        this.inputs.put("speed", s.next());
+      }
+    }
+  
+  }
+  
+  @Override
+  public void buildModel(FileReader f)  {
+    AnimationBuilder<Animation> b = new AnimationBuilderImpl(model);
+    AnimationReader.parseFile(f, b);
+  }
+  
+  @Override
+  public void getReadable() throws FileNotFoundException {
+    String fileInput = this.inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
+    String filename = "./src/cs5004/animator/files/" + fileInput;
+    File demo = new File(filename);
+    FileReader f = new FileReader(demo);
+  
+    buildModel(f);
+    
+  }
 }

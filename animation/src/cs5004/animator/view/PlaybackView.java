@@ -15,7 +15,7 @@ public class PlaybackView extends JFrame implements Playback {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(null);
     
-    this.view = new GraphicView(m, w, h, x, y);
+    this.view = new GraphicView();
     setVisible(true);
     add(view);
     view.setVisible(true);
