@@ -362,6 +362,13 @@ public class AnimationImpl implements Animation {
   
   @Override
   public String tranformationString(Shape s) {
+
+    Objects.requireNonNull(s, "Shape can't be null");
+
+    if (hashmap.size() == 0) {
+      throw new IllegalStateException("Animation can't be empty");
+    }
+
     StringBuilder str = new StringBuilder();
     DecimalFormat f = new DecimalFormat("0.0");
     
