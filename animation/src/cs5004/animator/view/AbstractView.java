@@ -10,12 +10,7 @@ import java.util.Scanner;
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
-public class AbstractView implements View {
-  HashMap<String, String> inputs;
-  
-  public AbstractView() {
-    this.inputs = new HashMap<>();
-  }
+public abstract class AbstractView implements View {
   
   @Override
   public void animate(Animation model, HashMap<String, String> in) {
@@ -25,4 +20,6 @@ public class AbstractView implements View {
   @Override
   public void currentView(List<Shape> shapes) {
   }
+  
+
 }

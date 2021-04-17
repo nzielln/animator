@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;

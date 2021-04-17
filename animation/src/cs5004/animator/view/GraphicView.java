@@ -16,7 +16,6 @@ import javax.swing.*;
 
 public class GraphicView extends JFrame implements View {
   private GraphicsPanel panel;
-  private HashMap<String, String> inputs;
   
   public GraphicView(List<Shape> model, int width, int height, int x, int y) {
     super("Animation");
@@ -45,7 +44,46 @@ public class GraphicView extends JFrame implements View {
   }
   
   @Override
-  public void animate(Animation model, HashMap<String, String> in) {
+  public void animate(Animation m, HashMap<String, String> in) {
+  
+    List<Shape> model = new ArrayList<>(m.getShapes());
+    int tick = Integer.parseInt(in.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
+    if (tick <= 0) {
+      throw new IllegalArgumentException("Speed needs to be positive integer");
+    }
+    
+    if (in.get("speed") == null) {
+      tick = 1;
+    }
+  
+    int count = 0;
+    int lengthAnimation = 0;
+  
+    //get the total length of the animation
+    for (Shape shape : model) {
+      if (shape.getDisappears() > lengthAnimation) {
+        lengthAnimation = shape.getDisappears();
+      }
+    }
+  
+    //do we get how long the animation is from the user at all? Does this need to be <= or <?
+    while (count < lengthAnimation) {
+      List<Shape> modified = m.getByTime(count);
+    
+      //update the animation and model to newModel
+      //update count
+      this.currentView(modified);
+      count += 1;
+    
+      //Timer to let user see changes
+      try {
+        Thread.sleep(1000 / tick);
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
+    
+    }
   
   }
+ 
 }
