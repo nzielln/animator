@@ -64,10 +64,9 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
         createShape(t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2, start, end);
         if (!s.getCreated()) {
           s.setProperties(x1, y1, w1, h1, r1, g1, b1);
-          s.setAppears(t1);
-          s.setDisappears(t2);
+          s.setAppearsDisappears(t1, t2);
         }
-        s.setDisappears(t2);
+        //s.setDisappears(t2);
         createMotion(name, t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2);
       }
     }
@@ -119,11 +118,9 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
                            int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2,
                            Shape start, Shape end) {
     start.setProperties(x1, y1, w1, h1, r1, g1, b1);
-    start.setAppears(t1);
-    start.setDisappears(t2);
-    
+    start.setAppearsDisappears(t1, t2);
+   
     end.setProperties(x2, y2, w2, h2, r2, g2, b2);
-    end.setAppears(t1);
-    end.setDisappears(t2);
+    end.setAppearsDisappears(t1, t2);
   }
 }

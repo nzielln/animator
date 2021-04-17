@@ -16,8 +16,6 @@ public abstract class AbstractShape implements Shape {
   int h;
   int appears;
   int disappears;
-  boolean appearsFlag;
-  boolean disappearsFlag;
   boolean propertiesSet;
   
   /**
@@ -41,8 +39,6 @@ public abstract class AbstractShape implements Shape {
       this.h = 0;
       this.appears = 0;
       this.disappears = 0;
-      this.appearsFlag = false;
-      this.disappearsFlag = false;
       this.propertiesSet = false;
     }
   }
@@ -100,7 +96,7 @@ public abstract class AbstractShape implements Shape {
   
   @Override
   public boolean getCreated() {
-    return this.propertiesSet && this.appearsFlag && this.disappearsFlag;
+    return this.propertiesSet;
   }
   
   //SETTERS AND OTHER------------------------------------------------------------------------------
@@ -122,23 +118,17 @@ public abstract class AbstractShape implements Shape {
   }
   
   @Override
-  public void setAppears(int appears) {
+  public void setAppearsDisappears(int appears, int disappears) {
     if (appears < 0) {
-      throw new IllegalArgumentException("Must be positive integer.");
+      throw new IllegalArgumentException("Time must be positive integer.");
+    } else if (disappears < 0) {
+      throw new IllegalArgumentException("Time must be positive integer.");
+    } else if (appears > disappears) {
+      throw new IllegalArgumentException("Appear must be less than disappear");
     }
     
     this.appears = appears;
-    this.appearsFlag = true;
-  }
-  
-  @Override
-  public void setDisappears(int disappears) {
-    if (disappears < 0) {
-      throw new IllegalArgumentException("Must be positive integer.");
-    }
-  
     this.disappears = disappears;
-    this.disappearsFlag = true;
   }
   
   @Override

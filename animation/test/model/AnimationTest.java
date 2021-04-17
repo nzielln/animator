@@ -50,14 +50,11 @@ public class AnimationTest {
     rect2 = new Rectangle("rect 2", "RECTANGLE");
     rect2.setProperties(45, 50, 12, 12, 0, 125, 255);
     
-    oval.setAppears(1);
-    oval.setDisappears(15);
+    oval.setAppearsDisappears(1, 15);
     
-    rect.setAppears(1);
-    rect.setDisappears(10);
+    rect.setAppearsDisappears(1, 10);
     
-    rect2.setAppears(7);
-    rect2.setDisappears(15);
+    rect2.setAppearsDisappears(7, 15);
     
     //for oval
     move = new Move("move", 45, 45, 3, 7);
@@ -198,13 +195,11 @@ public class AnimationTest {
 
       Rectangle rect4 = new Rectangle("rect4", "RECTANGLE");
       rect4.setProperties(10, 10, 12, 12, 0, 0 ,0);
-      rect4.setAppears(1);
-      rect4.setDisappears(10);
+      rect4.setAppearsDisappears(1, 10);
 
       Ellipse o = new Ellipse("O", "Ellipse");
       o.setProperties(5, 5, 15, 15, 255, 255, 255);
-      o.setAppears(3);
-      o.setDisappears(10);
+      o.setAppearsDisappears(3,10);
 
       ani2.addShape(rect4, new ArrayList<>());
       ani2.addShape(o, new ArrayList<>());
@@ -421,8 +416,7 @@ public class AnimationTest {
     try {
       Shape oval2 = new Ellipse("oval 2", "Ellipse");
       oval2.setProperties(3, 3, 6, 10, 0, 255, 0);
-      oval2.setAppears(1);
-      oval2.setDisappears(15);
+      oval2.setAppearsDisappears(1, 15);
       
       ani.addShape(oval2, new ArrayList<>());
       ani.addTransformation("oval 2", scale);
@@ -550,8 +544,7 @@ public class AnimationTest {
       
       Shape rect3 = new Rectangle("rect3", "RECTANGLE");
       rect3.setProperties(3, 3, 4, 5,0, 255, 0);
-      rect3.setAppears(1);
-      rect3.setDisappears(15);
+      rect3.setAppearsDisappears(1, 15);
       
       ani2.addShape(rect3, new ArrayList<>());
       ani2.removeTransformation("rect3", move);
@@ -594,8 +587,7 @@ public class AnimationTest {
       
       Shape rect3 = new Rectangle("rect3", "RECTANGLE");
       rect3.setProperties(3, 3, 50,   25, 255, 255, 255);
-      rect3.setAppears(1);
-      rect3.setDisappears(200);
+      rect3.setAppearsDisappears(1,200);
       ani2.addShape(rect3, new ArrayList<>());
       
       Transformation move4 = new Move("move4", 9, 9, 10, 100);

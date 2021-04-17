@@ -158,44 +158,34 @@ public class ShapeTest {
   @Test
   public void AppearsDisappears() {
     try {
-      oval.setAppears(1);
+      oval.setAppearsDisappears(1, 10);
     } catch (Exception ignored) {
       fail("No exception should be thrown.");
     }
     
     try {
-      oval.setAppears(0);
-    } catch (Exception ignored) {
-      fail("No exception should be thrown.");
-    }
-    
-    try {
-      oval.setDisappears(10);
+      oval.setAppearsDisappears(0, 5);
     } catch (Exception ignored) {
       fail("No exception should be thrown.");
     }
     
     //Invalid inputs - negative time
     try {
-      rect.setAppears(-2);
+      rect.setAppearsDisappears(-2, 4);
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
     }
-    
-    rect.setAppears(2);
     
     //Invalid - disappears less than appears
     try {
-      rect.setDisappears(1);
+      rect.setAppearsDisappears(2, 1);
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
     }
     
-    rect.setDisappears(13);
-    
     //Invalid - appears more than appears
     try {
-      rect.setAppears(24);
+      rect.setAppearsDisappears(24, 13);
       fail("Exception should be thrown.");
     } catch (Exception ignored) {
     }
@@ -385,8 +375,7 @@ public class ShapeTest {
   
   @Test
   public void copy() {
-    oval.setAppears(2);
-    oval.setDisappears(12);
+    oval.setAppearsDisappears(2, 12);
     Shape ovalCp = oval.copy();
     
     assertEquals("oval", ovalCp.getName());
@@ -399,7 +388,7 @@ public class ShapeTest {
     assertEquals(45, ovalCp.getPositionY(), 0.001);
     
     //original shape not mutated
-    ovalCp.setDisappears(24);
+    ovalCp.setAppearsDisappears(2, 24);
     assertEquals(12, oval.getDisappears());
     assertEquals(24, ovalCp.getDisappears());
     
@@ -407,11 +396,9 @@ public class ShapeTest {
   
   @Test
   public void testToString() {
-    rect.setAppears(2);
-    rect.setDisappears(11);
+    rect.setAppearsDisappears(2, 11);
     
-    oval.setAppears(1);
-    oval.setDisappears(10);
+    oval.setAppearsDisappears(1, 10);
     
     String re = "Name: rect\n"
             + "Type: RECTANGLE\n"

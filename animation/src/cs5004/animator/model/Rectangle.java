@@ -26,8 +26,7 @@ public class Rectangle extends AbstractShape {
     Rectangle r = new Rectangle(this.name, this.type);
     r.setProperties(this.x, this.y, this.w, this.h,
             this.color.getR(), this.color.getG(), this.color.getB());
-    r.setAppears(this.appears);
-    r.setDisappears(this.disappears);
+    r.setAppearsDisappears(this.appears, this.disappears);
     
     return r;
     

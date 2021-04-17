@@ -94,15 +94,8 @@ public interface Shape {
    * @throws IllegalArgumentException if time object appears in less than 0 or if appears is greater
    *        than this.disappears.
    */
-  void setAppears(int appears);
-  
-  /**
-   * Set the time the Shape disappears in the animation.
-   * @param disappears time in int, when shape disappears
-   * @throws IllegalArgumentException if time object disappears in less than 0 or if disappears is
-   *        less than this.appears.
-   */
-  void setDisappears(int disappears);
+  void setAppearsDisappears(int appears, int disappears);
+
   
   /**
    * Returns a copy of the Shape object.

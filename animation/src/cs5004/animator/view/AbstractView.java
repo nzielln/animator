@@ -7,6 +7,9 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.swing.*;
+
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.Shape;
@@ -48,6 +51,19 @@ public abstract class AbstractView implements View {
       }
     }
   
+    if (this.inputs.get("in") == null || this.inputs.get("in").equals("")) {
+      throw new IllegalArgumentException("You must provide an \"-in\" file.");
+    
+    } else if (this.inputs.get("view") == null || this.inputs.get("view").equals("")) {
+      throw new IllegalArgumentException("You must provide an \"-view\" type.");
+    
+    } else if (this.inputs.get("view").equalsIgnoreCase("SVG")) {
+      if (this.inputs.get("out") == null || this.inputs.get("out").equals("")) {
+        throw new IllegalArgumentException("You must provide an \"-out\" file.");
+      }
+      
+    }
+  
   }
   
   @Override
@@ -60,10 +76,14 @@ public abstract class AbstractView implements View {
   public void getReadable() throws FileNotFoundException {
     String fileInput = this.inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
     String filename = "./src/cs5004/animator/files/" + fileInput;
-    File demo = new File(filename);
-    FileReader f = new FileReader(demo);
+    try {
+      File demo = new File(filename);
+      FileReader f = new FileReader(demo);
+      buildModel(f);
+    } catch (Exception e) {
+      throw new FileNotFoundException("File not found.");
+    }
   
-    buildModel(f);
-    
+  
   }
 }

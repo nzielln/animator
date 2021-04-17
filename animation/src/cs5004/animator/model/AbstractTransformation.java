@@ -131,14 +131,12 @@ public abstract class AbstractTransformation implements Transformation {
     if (type.equals("Ellipse")) {
       Shape sh = new Ellipse(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
-      sh.setAppears(this.timeStart);
-      sh.setDisappears(this.timeEnd);
+      sh.setAppearsDisappears(this.timeStart, this.timeEnd);
       this.finalshape = sh;
     } else {
       Shape sh = new Rectangle(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
-      sh.setAppears(this.timeStart);
-      sh.setDisappears(this.timeEnd);
+      sh.setAppearsDisappears(this.timeStart, this.timeEnd);
       this.finalshape = sh;
       
     }
@@ -150,14 +148,12 @@ public abstract class AbstractTransformation implements Transformation {
     if (type.equalsIgnoreCase("Ellipse")) {
       Shape sh = new Ellipse(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
-      sh.setAppears(this.timeStart);
-      sh.setDisappears(this.timeEnd);
+      sh.setAppearsDisappears(this.timeStart, this.timeEnd);
       this.initialshape = sh;
     } else {
       Shape sh = new Rectangle(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
-      sh.setAppears(this.timeStart);
-      sh.setDisappears(this.timeEnd);
+      sh.setAppearsDisappears(this.timeStart, this.timeEnd);
       this.initialshape = sh;
       
     }

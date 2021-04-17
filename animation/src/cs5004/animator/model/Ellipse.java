@@ -26,8 +26,8 @@ public class Ellipse extends AbstractShape {
     Ellipse o = new Ellipse(this.name, this.type);
     o.setProperties(this.x, this.y, this.w, this.h,
             this.color.getR(), this.color.getG(), this.color.getB());
-    o.setAppears(this.appears);
-    o.setDisappears(this.disappears);
+    o.setAppearsDisappears(this.appears, this.disappears);
+    
     
     return o;
     

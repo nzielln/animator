@@ -28,18 +28,15 @@ public class AnimationFullTest {
     //Create a new animation
     Animation animation = new AnimationImpl();
     
-    Shape ovalOne = new Ellipse("ovalOne","Ellipse");
+    Shape ovalOne = new Ellipse("ovalOne","ELLIPSE");
     ovalOne.setProperties(5, 23, 4, 4, 24, 45, 57);
-    Shape ovalTwo = new Ellipse("ovalTwo","Ellipse");
+    Shape ovalTwo = new Ellipse("ovalTwo","ELLIPSE");
     ovalTwo.setProperties(5, 3, 4, 5, 2, 5, 7);
     Shape rectangleOne = new Rectangle("rectOne","RECTANGLE");
     rectangleOne.setProperties(5, 23, 4, 7, 244,145, 7);
   
-    ovalOne.setAppears(0);
-    ovalOne.setDisappears(10);
-  
-    rectangleOne.setAppears(2);
-    rectangleOne.setDisappears(10);
+    ovalOne.setAppearsDisappears(0, 10);
+    rectangleOne.setAppearsDisappears(2, 10);
   
     //add shapes
     animation.addShape(ovalOne, new ArrayList<>());
@@ -49,8 +46,11 @@ public class AnimationFullTest {
     //create new transformation
     Transformation colorOne = new ChangeColor("change_color", new Color(35, 45, 56),
             3, 7);
+    colorOne.setInitial("ovalOne",ovalOne.getType(), 5, 23, 4, 4, 24, 45, 57 );
     Transformation scaleOne = new Scale("scaleOne", 12, 7, 2, 7);
+    scaleOne.setInitial("rectOne", rectangleOne.getType(), 5, 23, 4, 7, 244,145, 7);
     Transformation moveOne = new Move("moveOne", 0, 0, 3, 10);
+    moveOne.setInitial("ovalOne",ovalOne.getType(), 5, 23, 4, 4, 35, 45, 56 );
   
     //add transformation
     animation.addTransformation("ovalOne", colorOne);
@@ -61,12 +61,12 @@ public class AnimationFullTest {
     assertEquals(2, animation.getSizeTransformations("ovalOne") );
     assertEquals("Shapes: \n"
             + "Name: ovalOne\n"
-            + "Type: Ellipse\n"
+            + "Type: ELLIPSE\n"
             + "Center: (5.0,23.0), X radius: 4.0, Y radius: 4.0, Color: (24.0, 45.0, 57.0)\n"
             + "Appears at t=0\n"
             + "Disappears at t=10\n\n"
             + "Name: ovalTwo\n"
-            + "Type: Ellipse\n"
+            + "Type: ELLIPSE\n"
             + "Center: (5.0,3.0), X radius: 4.0, Y radius: 5.0, Color: (2.0, 5.0, 7.0)\n"
             + "Appears at t=0\n"
             + "Disappears at t=0\n\n"

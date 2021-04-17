@@ -92,6 +92,10 @@ public class GraphicView extends JFrame implements View {
         this.inputs.put("speed", s.next());
       }
     }
+    if (this.inputs.get("in") == null || this.inputs.get("in").equals("")) {
+      JOptionPane.showMessageDialog(this, "You must provide an \"-in\" file.",
+              "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
     
   }
   
@@ -115,10 +119,17 @@ public class GraphicView extends JFrame implements View {
   public void getReadable() throws FileNotFoundException {
     String fileInput = this.inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
     String filename = "./src/cs5004/animator/files/" + fileInput;
-    File demo = new File(filename);
-    FileReader f = new FileReader(demo);
+    try {
+      File demo = new File(filename);
+      FileReader f = new FileReader(demo);
+      buildModel(f);
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(this, "File not found.",
+              "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
     
-    buildModel(f);
+    
+    
   }
   
 }
