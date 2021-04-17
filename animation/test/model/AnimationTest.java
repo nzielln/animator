@@ -560,4 +560,25 @@ public class AnimationTest {
       fail("Exception should not be thrown");
     }
   }
+
+  @Test
+  public void testTransformationString() {
+
+    //
+
+    //empty animation
+    try {
+      Animation ani2 = new AnimationImpl();
+      assertEquals("", ani2.tranformationString(oval));
+      fail("Exception should have been thrown");
+    } catch (Exception ignored) {
+    }
+
+    // null shape
+    try {
+      ani.tranformationString(null);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  }
 }
