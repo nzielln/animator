@@ -66,7 +66,7 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
           s.setProperties(x1, y1, w1, h1, r1, g1, b1);
           s.setAppearsDisappears(t1, t2);
         }
-        //s.setDisappears(t2);
+        s.setAppearsDisappears(s.getAppears(), t2);
         createMotion(name, t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2);
       }
     }

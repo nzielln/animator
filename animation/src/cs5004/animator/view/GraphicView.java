@@ -123,7 +123,7 @@ public class GraphicView extends JFrame implements View {
       File demo = new File(filename);
       FileReader f = new FileReader(demo);
       buildModel(f);
-    } catch (Exception e) {
+    } catch (FileNotFoundException e) {
       JOptionPane.showMessageDialog(this, "File not found.",
               "ERROR", JOptionPane.ERROR_MESSAGE);
     }
