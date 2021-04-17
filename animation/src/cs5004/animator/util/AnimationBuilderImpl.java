@@ -61,7 +61,7 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
           start = new Rectangle(s.getName(), s.getType());
           end = new Rectangle(s.getName(), s.getType());
         }
-        createShape(t1, x1, y1, w1, r1, g1, b1, t2, x2, y2, w2, r2, g2, b2, start, end);
+        createShape(t1, x1, y1, w1, h1, r1, g1, b1, t2, x2, y2, w2, h2, r2, g2, b2, start, end);
         if (!s.getCreated()) {
           s.setProperties(x1, y1, w1, h1, r1, g1, b1);
           s.setAppears(t1);
@@ -115,14 +115,14 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
   }
   
   
-  private void createShape(int t1, int x1, int y1, int w1, int r1, int g1, int b1,
-                           int t2, int x2, int y2, int w2, int r2, int g2, int b2,
+  private void createShape(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1,
+                           int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2,
                            Shape start, Shape end) {
-    start.setProperties(x1, y1, w1, y1, r1, g1, b1);
+    start.setProperties(x1, y1, w1, h1, r1, g1, b1);
     start.setAppears(t1);
     start.setDisappears(t2);
     
-    end.setProperties(x2, y2, w2, y2, r2, g2, b2);
+    end.setProperties(x2, y2, w2, h2, r2, g2, b2);
     end.setAppears(t1);
     end.setDisappears(t2);
   }

@@ -179,7 +179,7 @@ public class AnimationImpl implements Animation {
   //OTHER------------------------------------------------------------------------------------------
   @Override
   public void canvas(int x, int y, int width, int height) {
-    if (x < 0 || y < 0 || width <= 0 || height <= 0) {
+    if (width <= 0 || height <= 0) {
       throw new IllegalArgumentException("Invalid inputs for canvas size.");
     }
     

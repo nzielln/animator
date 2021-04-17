@@ -25,8 +25,6 @@ public class GraphicView extends JFrame implements View {
 
     if (width <= 0 || height <= 0) {
       throw new IllegalArgumentException("Width and height must be positive integer");
-    } else if (x < 0 || y < 0) {
-      throw new IllegalArgumentException("X and Y must be positive");
     }
 
     setSize(560, 560);

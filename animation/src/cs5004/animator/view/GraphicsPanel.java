@@ -17,8 +17,8 @@ public class GraphicsPanel extends JPanel {
     super(true);
 
     Objects.requireNonNull(model, "Model can't be null");
-    if (x < 0 || y < 0 || width < 0 || height < 0) {
-      throw new IllegalArgumentException("X, Y, Width, and Height must be positive");
+    if (width < 0 || height < 0) {
+      throw new IllegalArgumentException("Width and Height must be positive");
     }
 
     this.model = model;

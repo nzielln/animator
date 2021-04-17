@@ -109,10 +109,8 @@ public abstract class AbstractShape implements Shape {
     if (r < 0 || g < 0 || b < 0
             || r > 255 || g > 255 || b > 255) {
       throw new IllegalArgumentException("RGB values must be between 0 - 255");
-    } else if (x < 0 || y < 0) {
-      throw new IllegalArgumentException("Length must be positive integer or 0.");
     } else if (w <= 0 || h <= 0) {
-      throw new IllegalArgumentException("Coordinate points must both be positive integers or 0.");
+      throw new IllegalArgumentException("Length must be positive integer or 0.");
     }
   
     this.x = x;
@@ -127,8 +125,6 @@ public abstract class AbstractShape implements Shape {
   public void setAppears(int appears) {
     if (appears < 0) {
       throw new IllegalArgumentException("Must be positive integer.");
-    } else if (this.disappearsFlag && appears > this.disappears) {
-      throw new IllegalArgumentException("Must be within acceptable range.");
     }
     
     this.appears = appears;
@@ -139,8 +135,6 @@ public abstract class AbstractShape implements Shape {
   public void setDisappears(int disappears) {
     if (disappears < 0) {
       throw new IllegalArgumentException("Must be positive integer.");
-    } else if (this.appearsFlag && disappears < this.appears) {
-      throw new IllegalArgumentException("Must be within acceptable range.");
     }
   
     this.disappears = disappears;
@@ -149,9 +143,7 @@ public abstract class AbstractShape implements Shape {
   
   @Override
   public void changePosition(int x, int y) {
-    if (x < 0 || y < 0) {
-      throw new IllegalArgumentException("Length must be positive integer or 0.");
-    }
+    
     this.x = x;
     this.y = y;
   }

@@ -16,9 +16,6 @@ public class Move extends AbstractTransformation {
    */
   public Move(String tid, int toX, int toY, int timeStart, int timeEnd) {
     super(tid, timeStart, timeEnd);
-    if (toX < 0 || toY < 0) {
-      throw new IllegalArgumentException("Coordinates points must be greater than or equal to 0.");
-    }
     
     this.toX = toX;
     this.toY = toY;
