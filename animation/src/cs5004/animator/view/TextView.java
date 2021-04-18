@@ -1,18 +1,26 @@
 package cs5004.animator.view;
 
 
-import java.util.HashMap;
-import java.util.Objects;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
-import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
 public class TextView extends AbstractView {
+  String view;
   
-  
+  public TextView() {
+    this.view = "Text";
+  }
   /*
   For testing: -in "smalldemo.txt" -view "text"
   */
+  @Override
+  public String getView() {
+    return this.view;
+  }
+  
   @Override
   public void animate() {
     
@@ -53,11 +61,31 @@ public class TextView extends AbstractView {
     for (Shape s : this.model.getShapes()) {
       str.append(this.model.tranformationString(s).replace("Shape ", ""));
     }
-    
-    
+  
+    if (this.inputs.get("out") != null) {
+      writeFile(str.toString());
+    }
     System.out.println(str);
-    
+    System.out.println(str.toString().split("\n").length);
+  
   }
   
-
+  private void writeFile(String str) {
+    try {
+      FileWriter f = new FileWriter(this.inputs.get("out").replace("\"", ""));
+      Scanner s = new Scanner(str).useDelimiter("\n");
+      while (s.hasNext()) {
+        String line = s.next();
+        if (s.hasNext()) {
+          f.write(line + "\n");
+        } else {
+          f.write(line);
+        }
+      }
+      f.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    
+  }
 }

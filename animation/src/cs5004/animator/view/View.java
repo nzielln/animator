@@ -11,6 +11,7 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
 public interface View {
+  String getView();
   
   void animate();
   

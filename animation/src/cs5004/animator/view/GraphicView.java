@@ -22,11 +22,13 @@ public class GraphicView extends JFrame implements View {
   private HashMap<String, String> inputs;
   private GraphicsPanel panel;
   private Animation model;
+  private String view;
   
   public GraphicView() {
     super("Animation");
     this.inputs = new HashMap<>();
     this.model = new AnimationImpl();
+    this.view = "Visual";
   }
   
   public void currentView(List<Shape> model) {
@@ -34,6 +36,11 @@ public class GraphicView extends JFrame implements View {
 
     this.panel.updateModel(model);
     this.repaint();
+  }
+  
+  @Override
+  public String getView() {
+    return this.view;
   }
   
   @Override
@@ -112,7 +119,9 @@ public class GraphicView extends JFrame implements View {
     setVisible(true);
     add(panel);
     panel.setVisible(true);
-    
+    setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+  
+  
   }
   
   @Override
