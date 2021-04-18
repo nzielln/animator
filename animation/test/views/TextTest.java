@@ -13,9 +13,42 @@ import cs5004.animator.view.ViewFactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+/**
+ * Junit test class for TextView. Tests all the methods and functionality that the
+ * TextView is supposed to support.
+ */
 public class TextTest {
+
   ViewFactory factory = new ViewFactory();
 
+  /**
+   * Tests that the TextView has the correct output when given an empty file.
+   */
+  @Test
+  public void testEmptyFile() {
+    try {
+      String in = "-in empty.txt -view text";
+      ByteArrayOutputStream by = new ByteArrayOutputStream();
+      PrintStream out = new PrintStream(by);
+      PrintStream sys = System.out;
+      System.setOut(out);
+      View view = factory.create(in);
+      view.readInputs(in);
+      view.getReadable();
+      view.animate();
+      System.out.flush();
+      System.setOut(sys);
+      assertEquals("Text View of the Animation:______________________________________" +
+              "__________\n\n\n\n\n", by.toString());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+  }
+
+  /**
+   * Tests that the TextView correctly prints out the the information from the smalldemo.txt
+   * in the correct format when given the file and type of view.
+   */
   @Test
   public void testSmallDemo() {
     try {
@@ -52,6 +85,10 @@ public class TextTest {
     }
   }
 
+  /**
+   * Tests the Text view prints the correct information in the correct format when given toh-3.txt
+   * as the in file and text as the view type.
+   */
   @Test
   public void testToh3() {
     try {
@@ -109,6 +146,10 @@ public class TextTest {
     }
   }
 
+  /**
+   * Tests the TextView correctly outputs the correct information when given smalldemo.txt as the
+   * in file, text as the view type, and 2 as the speed.
+   */
   @Test
   public void testTextWithSpeed() {
     try {
@@ -147,6 +188,10 @@ public class TextTest {
     }
   }
 
+  /**
+   * Tests the correct information is written to a text file (small.txt) when given smalldemo.txt
+   * as the in file, small.txt as the out, and view as text.
+   */
   @Test
   public void testTextWithOut() {
     try {
@@ -183,6 +228,10 @@ public class TextTest {
     }
   }
 
+  /**
+   * Tests that the TextView still correctly prints out the information when the order of the in,
+   * view, and speed are different.
+   */
   @Test
   public void testDifferentOrder() {
     try {
@@ -219,6 +268,9 @@ public class TextTest {
     }
   }
 
+  /**
+   * Tests that the TextView correctly throws an exception when the file isn't found.
+   */
   @Test
   public void testNoFileFound() {
     try {
@@ -238,6 +290,9 @@ public class TextTest {
     }
   }
 
+  /**
+   * Tests that the TextView correctly throws and exception when there is no view type specified.
+   */
   @Test
   public void testNoViewSpecified() {
     try {
@@ -257,6 +312,9 @@ public class TextTest {
     }
   }
 
+  /**
+   * Tests that the TextView correctly throws an exception when the view type is misspelled.
+   */
   @Test
   public void testWithViewMisspelled() {
     try {
@@ -276,29 +334,14 @@ public class TextTest {
     }
   }
 
+  /**
+   * Tests that the TextView correctly throws and exception when no in file or view type is
+   * specified.
+   */
   @Test
   public void testNoFileOrView() {
     try {
       String in = "-out text-test.txt -speed 3";
-      ByteArrayOutputStream by = new ByteArrayOutputStream();
-      PrintStream out = new PrintStream(by);
-      PrintStream sys = System.out;
-      System.setOut(out);
-      View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
-      System.out.flush();
-      System.setOut(sys);
-      fail("Exception should be thrown");
-    } catch (Exception ignored) {
-    }
-  }
-
-  @Test
-  public void testEmptyFile() {
-    try {
-      String in = "-in empty.txt";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
