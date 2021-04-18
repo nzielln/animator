@@ -7,13 +7,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
-import cs5004.animator.model.Animation;
 import cs5004.animator.view.View;
 import cs5004.animator.view.ViewFactory;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 public class SVGTest {
@@ -25,7 +22,6 @@ public class SVGTest {
     try {
       String in = "-in smalldemo.txt -view visual -speed 2";
       View v = factory.create(in);
-    
       assertEquals("Visual", v.getView());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -35,7 +31,6 @@ public class SVGTest {
     try {
       String in = "-speed 2 -view visual -in smalldemo.txt";
       View v = factory.create(in);
-    
       assertEquals("Visual", v.getView());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -62,12 +57,34 @@ public class SVGTest {
   
   @Test
   public void testViewBadInputs() {
+    //in not provided
+    try {
+      String in = "-view text -speed 3";
+      View v = factory.create(in);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  
+    //in and view not provided
+    try {
+      String in = "-out text.txt -speed 3";
+      View v = factory.create(in);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  
+    //view not provided
+    try {
+      String in = "-in smalldemo.txt -out text.txt -speed 3";
+      View v = factory.create(in);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
     
     //File not found - text
     try {
       String in = "-in smalldmo.txt -view text";
       View v = factory.create(in);
-  
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -76,7 +93,6 @@ public class SVGTest {
     try {
       String in = "-in smalldmo.txt -view svg -speed 2";
       View v = factory.create(in);
-    
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -85,7 +101,6 @@ public class SVGTest {
     try {
       String in = "-in smalldmo.txt -view visual -speed 2";
       View v = factory.create(in);
-    
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -94,7 +109,6 @@ public class SVGTest {
     try {
       String in = "-speed 2 -view text";
       View v = factory.create(in);
-    
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -103,11 +117,9 @@ public class SVGTest {
     try {
       String in = "-in smalldemo.txt -view svg";
       View v = factory.create(in);
-    
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
-    
     
   }
   
