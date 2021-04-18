@@ -14,23 +14,18 @@ public class GraphicsPanel extends JPanel {
   private List<Shape> model;
   private JScrollPane scroll;
   
-  public GraphicsPanel(List<Shape> model, int x, int y, int width, int height) {
+  public GraphicsPanel(List<Shape> model) {
     super(true);
 
     Objects.requireNonNull(model, "Model can't be null");
-    if (width < 0 || height < 0) {
-      throw new IllegalArgumentException("Width and Height must be positive");
-    }
-
-    this.model = model;
-    setSize(width, height);
-    setLocation(x, y);
-    setBackground(Color.WHITE);
-    setBounds(x, y, width, height);
-    setBorder(new LineBorder(Color.BLACK, 3));
-    
-  }
   
+  
+    this.model = model;
+    setBackground(Color.WHITE);
+    setBorder(new LineBorder(Color.BLACK, 3));
+  
+  }
+  /*
   //Do we need this second constructor??
   public GraphicsPanel(List<Shape> model) {
     super(true);
@@ -45,6 +40,8 @@ public class GraphicsPanel extends JPanel {
     
   }
   
+  */
+  
   public void updateModel(List<Shape> model) {
     Objects.requireNonNull(model, "Model can't be null");
     this.model = model;
@@ -53,15 +50,15 @@ public class GraphicsPanel extends JPanel {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-
+  
     Objects.requireNonNull(g, "Graphics object can't be null");
-
+  
     Graphics2D graphics = (Graphics2D) g;
-    
+  
     if (this.model == null) {
       return; // should we return here or should we throw an exception?
     }
-    
+  
     int count = 0;
     for (Shape s: model) {
       if (s.getType().equals("RECTANGLE")) {
@@ -74,7 +71,7 @@ public class GraphicsPanel extends JPanel {
         graphics.setColor(c);
         graphics.drawOval(s.getPositionX(), s.getPositionY(), s.getWidth(), s.getHeight());
         graphics.fillOval(s.getPositionX(), s.getPositionY(), s.getWidth(), s.getHeight());
-              }
+      }
     }
   }
 }

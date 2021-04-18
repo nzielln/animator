@@ -115,33 +115,34 @@ public class GraphicView extends JFrame implements View {
   
     setSize(model.getCanvasWidth(),
             model.getCanvasHeight());
+    
     setLocation(model.getCanvasX(),
             model.getCanvasY());
+    
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLayout(null);
-    this.panel = new GraphicsPanel(model.getByTime(0),
-            model.getCanvasX(),
-            model.getCanvasY(),
-            model.getCanvasWidth() + 300,
-            model.getCanvasHeight() + 300);
+    setLayout(new BorderLayout());
+    setVisible(true);
+    
+    this.panel = new GraphicsPanel(model.getByTime(0));
+    this.panel.setPreferredSize(new Dimension(model.getCanvasWidth(),
+            model.getCanvasHeight()));
     /*this.scroll = new JScrollPane(this.panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
             JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS
             );
     this.scroll.setPreferredSize(new Dimension(800, 800));
     add(this.scroll);
      */
+    add(panel, BorderLayout.CENTER);
     setVisible(true);
-    add(panel);
     panel.setVisible(true);
     //setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-  
   
   }
   
   @Override
   public void getReadable() throws FileNotFoundException {
     String fileInput = this.inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
-    String filename = "./src/cs5004/animator/files/" + fileInput;
+    String filename = "./resources/files/" + fileInput;
     try {
       File demo = new File(filename);
       FileReader f = new FileReader(demo);
@@ -150,9 +151,6 @@ public class GraphicView extends JFrame implements View {
       JOptionPane.showMessageDialog(this, "File not found.",
               "ERROR", JOptionPane.ERROR_MESSAGE);
     }
-    
-    
-    
   }
   
 }

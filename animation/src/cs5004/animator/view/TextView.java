@@ -65,14 +65,15 @@ public class TextView extends AbstractView {
     if (this.inputs.get("out") != null) {
       writeFile(str.toString());
     }
+  
     System.out.println(str);
-    System.out.println(str.toString().split("\n").length);
+  
   
   }
   
   private void writeFile(String str) {
     try {
-      FileWriter f = new FileWriter(this.inputs.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter("./resources/outputs/" + this.inputs.get("out").replace("\"", ""));
       Scanner s = new Scanner(str).useDelimiter("\n");
       while (s.hasNext()) {
         String line = s.next();

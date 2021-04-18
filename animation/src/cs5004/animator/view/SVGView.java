@@ -36,7 +36,7 @@ public class SVGView extends AbstractView {
     
     try {
       
-      FileWriter f = new FileWriter("./src/cs5004/animator/outfiles/" + this.inputs.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter("./resources/outputs/" + this.inputs.get("out").replace("\"", ""));
       String canvas = "<svg width=\"" + this.model.getCanvasWidth() + "\" height=\"" + this.model.getCanvasHeight()
               + "\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
