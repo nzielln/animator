@@ -126,16 +126,10 @@ public class GraphicView extends JFrame implements View {
     this.panel = new GraphicsPanel(model.getByTime(0));
     this.panel.setPreferredSize(new Dimension(model.getCanvasWidth(),
             model.getCanvasHeight()));
-    /*this.scroll = new JScrollPane(this.panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS
-            );
-    this.scroll.setPreferredSize(new Dimension(800, 800));
-    add(this.scroll);
-     */
+  
     add(panel, BorderLayout.CENTER);
     setVisible(true);
     panel.setVisible(true);
-    //setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
   
   }
   
