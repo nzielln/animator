@@ -3,7 +3,6 @@ package views;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -185,9 +184,45 @@ public class TextTest {
   }
 
   @Test
+  public void testDifferentOrder() {
+    try {
+      String in = "-speed 3 -in smalldemo.txt -view text";
+      ByteArrayOutputStream by = new ByteArrayOutputStream();
+      PrintStream out = new PrintStream(by);
+      PrintStream sys = System.out;
+      System.setOut(out);
+      View view = factory.create(in);
+      view.readInputs(in);
+      view.getReadable();
+      view.animate();
+      System.out.flush();
+      System.setOut(sys);
+      assertEquals("Text View of the Animation:__________________________________________"
+                      + "______\n\n"
+                      + "Create rectangle R of color (255.0, 0.0, 0.0) with corner at (200,200), width 50 "
+                      + "height 100.\n" +
+                      "Create ellipse C of color (0.0, 0.0, 255.0) with center at (440,70), radius 120 "
+                      + "and 60.\n\n"
+                      + "R appears at t=1 and disappears at t=100\n"
+                      + "C appears at t=6 and disappears at t=100\n\n"
+                      + "R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50.\n"
+                      + "R scales from Width: 50.0, Height: 100.0 to Width: 25.0, Height: 100.0 from t=51 "
+                      + "to t=70.\n"
+                      + "R moves from (300.0,300.0) to (200.0,200.0) from t=70 to t=100.\n"
+                      + "C moves from (440.0,70.0) to (440.0,250.0) from t=20 to t=50.\n"
+                      + "C moves from (440.0,250.0) to (440.0,370.0) from t=50 to t=70.\n"
+                      + "C changes color from (0.0, 0.0, 255.0) to (0.0, 170.0, 85.0) from t=50 to t=70.\n"
+                      + "C changes color from (0.0, 170.0, 85.0) to (0.0, 255.0, 0.0) from t=70 to t=80.\n\n",
+              by.toString());
+    } catch (Exception e) {
+      fail("Exception should not have been thrown");
+    }
+  }
+
+  @Test
   public void testNoFileFound() {
     try {
-      String in = "in smalldeo.txt -view text";
+      String in = "-in smalldeo.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -206,7 +241,7 @@ public class TextTest {
   @Test
   public void testNoViewSpecified() {
     try {
-      String in = "in smalldemo.txt";
+      String in = "-in smalldemo.txt";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -225,7 +260,7 @@ public class TextTest {
   @Test
   public void testWithViewMisspelled() {
     try {
-      String in = "in smalldemo.txt -view txt";
+      String in = "-in smalldemo.txt -view txt";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -241,5 +276,42 @@ public class TextTest {
     }
   }
 
+  @Test
+  public void testNoFileOrView() {
+    try {
+      String in = "-out text-test.txt -speed 3";
+      ByteArrayOutputStream by = new ByteArrayOutputStream();
+      PrintStream out = new PrintStream(by);
+      PrintStream sys = System.out;
+      System.setOut(out);
+      View view = factory.create(in);
+      view.readInputs(in);
+      view.getReadable();
+      view.animate();
+      System.out.flush();
+      System.setOut(sys);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  }
+
+  @Test
+  public void testEmptyFile() {
+    try {
+      String in = "-in empty.txt";
+      ByteArrayOutputStream by = new ByteArrayOutputStream();
+      PrintStream out = new PrintStream(by);
+      PrintStream sys = System.out;
+      System.setOut(out);
+      View view = factory.create(in);
+      view.readInputs(in);
+      view.getReadable();
+      view.animate();
+      System.out.flush();
+      System.setOut(sys);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  }
 
 }
