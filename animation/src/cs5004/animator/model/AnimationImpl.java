@@ -121,11 +121,27 @@ public class AnimationImpl implements Animation {
   
     return shapesAtTick;
   }
-  
+
+  /**
+   *
+   * @param t
+   * @param a
+   * @param b
+   * @param ta
+   * @param tb
+   * @return
+   */
   private int tween(double t, double a, double b, double ta, double tb) {
     return (int) ((a * ((tb - t) / (tb - ta))) + (b * ((t - ta) / (tb - ta))));
   }
-  
+
+  /**
+   *
+   * @param shape
+   * @param l
+   * @param time
+   * @return
+   */
   private Shape getOneShape(Shape shape, List<Transformation> l, int time) {
     for (Transformation t: l) {
       if (t.getTransformationType().equals("Moves")) {
@@ -319,25 +335,6 @@ public class AnimationImpl implements Animation {
         hashmap.get(s).remove(t);
       }
     }
-  }
-  
-  private  HashMap<String, Shape> filterTransformations(Predicate<Shape> p, HashMap<String, Shape> l) {
-    Objects.requireNonNull(p, "Predicate can't be null.");
-    
-    HashMap<String, Shape> filtered = new HashMap<>();
-    
-    for (Shape s : l.values()) {
-      if (p.test(s)) {
-        for (Map.Entry<String, Shape> e : l.entrySet()) {
-          if (e.getValue().equals(s)) {
-            filtered.put(e.getKey(), s);
-          }
-        }
-      }
-      
-    }
-    
-    return filtered;
   }
   
   @Override

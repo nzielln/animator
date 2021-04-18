@@ -69,11 +69,27 @@ public interface Shape {
    *
    */
   boolean getCreated();
-  
+
+  /**
+   *
+   * @param x
+   * @param y
+   */
   void changePosition(int x, int y);
-  
+
+  /**
+   *
+   * @param w
+   * @param h
+   */
   void changeSize(int w, int h);
-  
+
+  /**
+   *
+   * @param r
+   * @param g
+   * @param b
+   */
   void changeColor(int r,int g, int b);
   
   //SETTERS AND OTHER------------------------------------------------------------------------------

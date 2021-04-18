@@ -13,15 +13,29 @@ public interface Animation {
    * @return (int) number of items in the hashmap
    */
   int getSize();
-  
-  
+
+  /**
+   * Gets the width of the canvas and return it.
+   * @return (int) the width of the canvas
+   */
   int getCanvasWidth();
-  
+
+  /**
+   * Gets and returns the height of the canvas.
+   * @return (int) the height of the canvas
+   */
   int getCanvasHeight();
-  
-  
+
+  /**
+   * Gets and returns the upper left corner x-coordinate of the canvas.
+   * @return (int) the x-coordinate of upper left corner of the canvas
+   */
   int getCanvasX();
-  
+
+  /**
+   * Gets and returns the upper left corner y-coordinate of the canvas.
+   * @return (int) the y-coordinate of the upper left corner of the canvas.
+   */
   int getCanvasY();
   
   /**
@@ -96,7 +110,7 @@ public interface Animation {
    * @param t (Transformation) to add to list
    * @return true if transformation is valid and can be added to hashmap
    */
-  public boolean validTransformation(String id, Transformation t);
+  boolean validTransformation(String id, Transformation t);
   
   /**
    * Adds a transformation to the list of Transforms of Shape that matches the id provided.

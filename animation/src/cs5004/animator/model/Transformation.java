@@ -66,20 +66,77 @@ public interface Transformation {
    * @return {@link Color}, color of new shape
    */
   Color getToColor();
-  
+
+  /**
+   *
+   * @return
+   */
   int getInitialX();
-  
+
+  /**
+   *
+   * @return
+   */
   int getInitialY();
-  
+
+  /**
+   *
+   * @return
+   */
   int getInitialWidth();
-  
+
+  /**
+   *
+   * @return
+   */
   int getInitialHeight();
-  
+
+  /**
+   *
+   * @return
+   */
   Color getInitialColor();
+
+  /**
+   *
+   * @return
+   */
   Shape getInitialshape();
+
+  /**
+   *
+   * @return
+   */
   Shape getFinalshape();
+
   //OTHER------------------------------------------------------------------------------------------
+
+  /**
+   *
+   * @param name
+   * @param type
+   * @param x
+   * @param y
+   * @param w
+   * @param h
+   * @param r
+   * @param g
+   * @param b
+   */
   void setFinal(String name, String type, int x, int y, int w, int h, int r, int g, int b);
+
+  /**
+   *
+   * @param name
+   * @param type
+   * @param x
+   * @param y
+   * @param w
+   * @param h
+   * @param r
+   * @param g
+   * @param b
+   */
   void setInitial(String name, String type, int x, int y, int w, int h, int r, int g, int b);
   
   /**
