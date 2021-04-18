@@ -1,5 +1,6 @@
 package cs5004.animator.view;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,6 +22,7 @@ import javax.swing.*;
 public class GraphicView extends JFrame implements View {
   private HashMap<String, String> inputs;
   private GraphicsPanel panel;
+  private JScrollPane scroll;
   private Animation model;
   private String view;
   
@@ -111,15 +113,27 @@ public class GraphicView extends JFrame implements View {
     AnimationBuilder<Animation> b = new AnimationBuilderImpl(model);
     AnimationReader.parseFile(f, b);
   
-    setSize(560, 560);
-    setLocation(0, 0);
+    setSize(model.getCanvasWidth(),
+            model.getCanvasHeight());
+    setLocation(model.getCanvasX(),
+            model.getCanvasY());
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(null);
-    this.panel = new GraphicsPanel(model.getByTime(0), 0, 0, 560, 560);
+    this.panel = new GraphicsPanel(model.getByTime(0),
+            model.getCanvasX(),
+            model.getCanvasY(),
+            model.getCanvasWidth() + 300,
+            model.getCanvasHeight() + 300);
+    /*this.scroll = new JScrollPane(this.panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS
+            );
+    this.scroll.setPreferredSize(new Dimension(800, 800));
+    add(this.scroll);
+     */
     setVisible(true);
     add(panel);
     panel.setVisible(true);
-    setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+    //setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
   
   
   }

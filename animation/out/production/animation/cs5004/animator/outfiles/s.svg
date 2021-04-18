@@ -1,5 +1,5 @@
-<svg width="360" height="360" version="1.1" 
-	 xmlns="http://www.w3.org/2000/svg">
+<svg width="560" height="560" version="1.1" 
+	xmlns="http://www.w3.org/2000/svg">
 
 <rect id="R" x="200" y="200" width="50" height="100" fill="rgb(255,0,0)" visibility="visible" >
 	<animate attributeType="xml" begin="5s" dur="20s" attributeName="x" from="200" to="300" fill="freeze" />

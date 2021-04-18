@@ -184,9 +184,6 @@ public class SVGTest {
             + "</ellipse>\n\n"
             + "\n\n</svg>", s.toString().trim());
   
-  
-  
-  
   }
   
 }

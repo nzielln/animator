@@ -53,7 +53,7 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
       if (s.getName().equals(name)) {
         Shape start;
         Shape end;
-        if (s.getType().equals("Ellipse")) {
+        if (s.getType().equalsIgnoreCase("ELLIPSE")) {
           start = new Ellipse(s.getName(), s.getType());
           end = new Ellipse(s.getName(), s.getType());
           

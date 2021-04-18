@@ -12,6 +12,7 @@ import cs5004.animator.model.Shape;
 
 public class GraphicsPanel extends JPanel {
   private List<Shape> model;
+  private JScrollPane scroll;
   
   public GraphicsPanel(List<Shape> model, int x, int y, int width, int height) {
     super(true);
@@ -22,11 +23,12 @@ public class GraphicsPanel extends JPanel {
     }
 
     this.model = model;
-    setSize(560, 560);
-    setLocation(0, 0);
+    setSize(width, height);
+    setLocation(x, y);
     setBackground(Color.WHITE);
-    setBounds(0, 0, 560, 560);
+    setBounds(x, y, width, height);
     setBorder(new LineBorder(Color.BLACK, 3));
+    
   }
   
   //Do we need this second constructor??
