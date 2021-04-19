@@ -4,20 +4,26 @@ package cs5004.animator.view;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
-public class TextView extends AbstractView {
+
+/**
+ * Represents a class for a TestView, implements the View interface.
+ */
+public class TextView implements View {
   String view;
   
+  /**
+   * TextView constructor that takes in no argument, define the type of view.
+   */
   public TextView() {
     this.view = "Text";
   }
-  /*
-  For testing: -in "smalldemo.txt" -view "text"
-  */
+  
   @Override
   public String getViewType() {
     return this.view;
@@ -25,13 +31,6 @@ public class TextView extends AbstractView {
   
   @Override
   public void animate(Animation m, HashMap<String, String> inputs) {
-    
-    //determine when to make a new animation???
-    int interval = 0;
-    if (inputs.get("speed") != null) {
-      int time = Integer.parseInt(inputs.get("speed"));
-      interval = 1000 / time;
-    }
     
     StringBuilder str = new StringBuilder();
     System.out.println("Text View of the Animation:________________________________________________"
@@ -73,17 +72,6 @@ public class TextView extends AbstractView {
   
   }
   
-  @Override
-  public void buildModel(Animation f) {
-    throw new UnsupportedOperationException("This method is not supported by the Text view.");
-    
-  }
-  
-  @Override
-  public View getView() {
-    throw new UnsupportedOperationException("This operation isn't supported by this class.");
-  }
-  
   private void writeFile(String str, HashMap<String, String> inputs) {
     try {
       FileWriter f = new FileWriter("./resources/outputs/" + inputs.get("out").replace("\"", ""));
@@ -101,5 +89,22 @@ public class TextView extends AbstractView {
       e.printStackTrace();
     }
     
+  }
+  
+  @Override
+  public void buildModel(Animation f) {
+    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+    
+  }
+  
+  @Override
+  public void currentView(List<Shape> shapes) {
+    throw new UnsupportedOperationException("This operation is not supported by this class.");
+    
+  }
+  
+  @Override
+  public View getView() {
+    return this;
   }
 }

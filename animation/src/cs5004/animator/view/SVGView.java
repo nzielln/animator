@@ -1,8 +1,8 @@
 package cs5004.animator.view;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import cs5004.animator.model.Animation;
@@ -10,10 +10,15 @@ import cs5004.animator.model.Shape;
 import cs5004.animator.model.Transformation;
 
 
-
-public class SVGView extends AbstractView {
+/**
+ * Represents a class for an SVGView, implements the View interface.
+ */
+public class SVGView implements View {
   private String view;
   
+  /**
+   * SVGView constructor that takes in no argument, define the type of view.
+   */
   public SVGView() {
     this.view = "SVG";
   }
@@ -149,8 +154,14 @@ public class SVGView extends AbstractView {
   }
   
   @Override
+  public void currentView(List<Shape> shapes) {
+    throw new UnsupportedOperationException("This operation is not supported by this class.");
+    
+  }
+  
+  @Override
   public View getView() {
-    throw new UnsupportedOperationException("This operation isn't supported by this class.");
+    return this;
   }
   
 }

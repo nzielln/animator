@@ -2,14 +2,11 @@ package cs5004.animator.model;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 /**
  * Represents an AnimationImpl class for the animation program, implements Animation interface.
@@ -100,7 +97,6 @@ public class AnimationImpl implements Animation {
     List<Shape> shapesAtTick = new LinkedList<>();
     
     for (Shape s : hashmap.keySet()) {
-      //System.out.println("Name: " + s.getName() + " Size: " + hashmap.get(s).size());
   
       List<Transformation> atTime = new LinkedList<>();
       for (Transformation tr : hashmap.get(s)) {
@@ -123,24 +119,24 @@ public class AnimationImpl implements Animation {
   }
 
   /**
-   *
-   * @param t
-   * @param a
-   * @param b
-   * @param ta
-   * @param tb
-   * @return
+   * Applys tweening formula to provided property at provided time.
+   * @param t, time to tween for
+   * @param a, the starting property (position, size ro color)
+   * @param b, the ending property
+   * @param ta, the starting time for the property
+   * @param tb, the ending time for the property
+   * @return int, the result of the tweening
    */
   private int tween(double t, double a, double b, double ta, double tb) {
     return (int) ((a * ((tb - t) / (tb - ta))) + (b * ((t - ta) / (tb - ta))));
   }
 
   /**
-   *
-   * @param shape
-   * @param l
-   * @param time
-   * @return
+   * Generates one shape from tweening results, returns shape to getByTime.
+   * @param shape, a shape to apply transformation to
+   * @param l, a list of transformation for a shape
+   * @param time, the time to tween for
+   * @return a shape
    */
   private Shape getOneShape(Shape shape, List<Transformation> l, int time) {
     for (Transformation t: l) {

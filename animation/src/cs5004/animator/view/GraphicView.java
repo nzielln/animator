@@ -1,34 +1,30 @@
 package cs5004.animator.view;
 
-import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
-import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.Animation;
-import cs5004.animator.util.AnimationBuilder;
-import cs5004.animator.util.AnimationBuilderImpl;
-import cs5004.animator.util.AnimationReader;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
+/**
+ * A JFrame for our animations, implements the View interface.
+ */
 public class GraphicView extends JFrame implements View {
-  //private HashMap<String, String> inputs;
   private GraphicsPanel panel;
-  //private Animation model;
   private String view;
   
+  /**
+   * Constructor for a GraphicView, takes in no arguments.
+   */
   public GraphicView() {
     super("Animation");
-    //inputs = new HashMap<>();
-    //m = new AnimationImpl();
     this.view = "Visual";
   }
   
@@ -91,32 +87,7 @@ public class GraphicView extends JFrame implements View {
       }
     }
   }
-  
-  /*
-  @Override
-  public void readInputs(String in) {
-    Scanner s = new Scanner(in);
-    while (s.hasNext()) {
-      String next = s.next();
-      if (next.equals("-in")) {
-        inputs.put("in", s.next());
-      } else if (next.equals("-out")) {
-        inputs.put("out", s.next());
-      } else if (next.equals("-view")) {
-        inputs.put("view", s.next());
-      } else if (next.equals("-speed")) {
-        inputs.put("speed", s.next());
-      }
-    }
-    if (inputs.get("in") == null || inputs.get("in").equals("")) {
-      JOptionPane.showMessageDialog(this, "You must provide an \"-in\" file.",
-              "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
-    
-  }
-  
-   */
-  
+
   @Override
   public void buildModel(Animation m) {
     setSize(m.getCanvasWidth(),
@@ -144,24 +115,5 @@ public class GraphicView extends JFrame implements View {
     scroll.setVisible(true);
   
   }
-  
-  
-  
-  /*
-  @Override
-  public void getReadable() throws FileNotFoundException {
-    String fileInput = inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
-    String filename = "./resources/files/" + fileInput;
-    try {
-      File demo = new File(filename);
-      FileReader f = new FileReader(demo);
-      buildModel(f);
-    } catch (FileNotFoundException e) {
-      JOptionPane.showMessageDialog(this, "File not found.",
-              "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
-  }
-  
-   */
-  
+
 }

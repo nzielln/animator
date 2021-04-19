@@ -1,6 +1,5 @@
 package cs5004.animator.model;
 
-import java.util.HashMap;
 
 /**
  * AbstractTransformation implements the Transformation interface and represents methods that

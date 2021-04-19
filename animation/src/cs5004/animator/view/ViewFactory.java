@@ -1,12 +1,7 @@
 package cs5004.animator.view;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
-import cs5004.animator.model.Animation;
-import cs5004.animator.model.Shape;
-import cs5004.animator.util.AnimationReader;
 
 public class ViewFactory {
   

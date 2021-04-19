@@ -1,20 +1,30 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Color;
 import java.util.List;
 import java.util.Objects;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+
 import javax.swing.border.LineBorder;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
+/**
+ * A JFrame components that extends JPanel, used to render animation in the JFrame.
+ */
 public class GraphicsPanel extends JPanel {
   private List<Shape> shapes;
-  private Animation model;
   
+  /**
+   * Graphic Panel constructor that takes in a list of shapes passed from GraphicView and the model.
+   * @param shapes, list, a list of shapes passed from the GraphicView
+   * @param model, Animation, the animation model.
+   */
   public GraphicsPanel(List<Shape> shapes, Animation model) {
     super(true);
 
@@ -27,6 +37,10 @@ public class GraphicsPanel extends JPanel {
   
   }
   
+  /**
+   * Updates the model to list of shapes received from the model's getByTime method.
+   * @param shapes, list, a list of shape objects.
+   */
   public void updateModel(List<Shape> shapes) {
     Objects.requireNonNull(shapes, "Model can't be null");
     this.shapes = shapes;

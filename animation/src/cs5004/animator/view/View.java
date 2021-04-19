@@ -1,29 +1,46 @@
 package cs5004.animator.view;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
+/**
+ * View interface, represents model implemented by each view.
+ */
 public interface View {
+  
+  /**
+   * Returns the type of view.
+   * @return String, type of view.
+   */
   String getViewType();
   
+  /**
+   * Returns the view object, where applicable.
+   * @return View, the view object.
+   */
   View getView();
   
+  /**
+   * Starts the animation using information from the HashMap of inputs and generated mdoel.
+   * @param m, Animation, the model for the animation
+   * @param inputs, HashMap, input read from CLI
+   */
   void animate(Animation m, HashMap<String, String> inputs);
-  /*
-  void readInputs(String in);
-  void getReadable() throws FileNotFoundException;
-  */
-  void buildModel(Animation f);
   
+  /**
+   * Builds a JFrame model using information from the model.
+   * @param m, Animation, the model for the animation
+   */
+  void buildModel(Animation m) throws UnsupportedOperationException;
   
-  void currentView(List<Shape> shapes);
+  /**
+   * Updates the view for the GraphicView, takes in a list of shapes.
+   * @param shapes, list, a list of shapes for update the current frame of the JFrame.
+   */
+  void currentView(List<Shape> shapes) throws UnsupportedOperationException;
   
 
   

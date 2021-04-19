@@ -1,13 +1,13 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+import java.awt.Component;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
@@ -15,15 +15,27 @@ import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
 import cs5004.animator.util.AnimationReader;
 
+/**
+ * A class for reading and parsing CLI arguments, and build model for the animation.
+ */
 public class Reader {
   HashMap<String, String> inputs;
   Animation model;
   
+  /**
+   * A Reader constructor, takes in no arguments, sets HashMap for storing input information and
+   * our model.
+   */
   public Reader() {
     this.inputs = new HashMap<>();
     this.model = new AnimationImpl();
   }
   
+  /**
+   * Parses input string and populate the input HashMap with in, out, view and speed inputs where
+   * applicable.
+   * @param in, String, input from CLI
+   */
   public void readIn(String in) {
     Scanner s = new Scanner(in);
     while (s.hasNext()) {
@@ -60,11 +72,20 @@ public class Reader {
     
   }
   
+  /**
+   * Returns the HashMap of inputs.
+   * @return HashMap, inputs for the animation
+   */
   public HashMap<String, String> getInputs() {
     return this.inputs;
   
   }
   
+  /**
+   * Uses AnimationReader and AnimationBuilder to read a text file and populate the model.
+   * @param inputs, HashMap, a hash map of the animation inputs
+   * @param view, Animation, the model for the animation
+   */
   public void makeModel(HashMap<String, String> inputs, View view) {
     String fileInput = inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
     String filename = "./resources/files/" + fileInput;
@@ -86,6 +107,10 @@ public class Reader {
     }
   }
   
+  /**
+   * Returns the model with shapes and motions from a text file.
+   * @return Animation, a populated model
+   */
   public Animation getModel() {
     return this.model;
   }

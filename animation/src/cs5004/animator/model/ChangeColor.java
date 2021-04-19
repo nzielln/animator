@@ -7,7 +7,6 @@ import java.util.Objects;
  */
 public class ChangeColor extends AbstractTransformation {
   final Color toColor;
-  Color intialColor;
   
   /**
    * Constructor calls the AbstractTransformation super class, takes in the color to change to.
