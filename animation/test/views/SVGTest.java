@@ -21,7 +21,7 @@ public class SVGTest {
   private final ViewFactory factory = new ViewFactory();
   
   @Test
-  public void testView() {
+  public void testViewReader() {
     try {
       String in = "-in smalldemo.txt -view visual -speed 2";
       View v = factory.create(in);
