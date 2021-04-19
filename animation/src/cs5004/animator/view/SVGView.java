@@ -38,13 +38,23 @@ public class SVGView implements View {
     if (inputs.get("speed") != null) {
       speed = Integer.parseInt(inputs.get("speed").replace("\"",""));
     }
-    
+  
+    /**
+     * The dimensions provided in each .txt file were too small to display the full animation
+     * For example, for the smalledemo.txt, the dimensions are 360by 360, but, the ellipse is
+     * drawn at positions between (440, 70) and (440, 370), making it unviewable in the space
+     * allocated for the animation. To solve this problem, we decided to set a default dimensions
+     * to make sure everything is seen.
+     * Width: 100%
+     * Height: 100%
+     */
     try {
+      
       
       FileWriter f = new FileWriter("./resources/outputs/"
               + inputs.get("out").replace("\"", ""));
-      String canvas = "<svg width=\"" + m.getCanvasWidth() + "\" height=\"" + m.getCanvasHeight()
-              + "\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
+      String canvas = "<svg width=\"" + 100 + "%\" height=\"" + 100
+              + "%\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
       
       
