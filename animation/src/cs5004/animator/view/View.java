@@ -25,20 +25,20 @@ public interface View {
   
   /**
    * Starts the animation using information from the HashMap of inputs and generated mdoel.
-   * @param m, Animation, the model for the animation
-   * @param inputs, HashMap, input read from CLI
+   * @param m Animation, the model for the animation
+   * @param inputs HashMap, input read from CLI
    */
   void animate(Animation m, HashMap<String, String> inputs);
   
   /**
    * Builds a JFrame model using information from the model.
-   * @param m, Animation, the model for the animation
+   * @param m Animation, the model for the animation
    */
   void buildModel(Animation m) throws UnsupportedOperationException;
   
   /**
    * Updates the view for the GraphicView, takes in a list of shapes.
-   * @param shapes, list, a list of shapes for update the current frame of the JFrame.
+   * @param shapes list, a list of shapes for update the current frame of the JFrame.
    */
   void currentView(List<Shape> shapes) throws UnsupportedOperationException;
   

@@ -6,8 +6,15 @@ import cs5004.animator.view.Reader;
 import cs5004.animator.view.View;
 import cs5004.animator.view.ViewFactory;
 
+/**
+ * Entry class for the animation program, parse CLI argument and renders appropriate view.
+ */
 public class EasyAnimator {
   
+  /**
+   * Main class that renders CLI argument and renders view based on inputs.
+   * @param args, CLI arguments.
+   */
   public static void main(String[] args) {
     ViewFactory factory = new ViewFactory();
     Reader r = new Reader();

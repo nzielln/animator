@@ -14,6 +14,9 @@ import cs5004.animator.view.ViewFactory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+/**
+ * Test class for the SVGView.
+ */
 public class SVGTest {
   private final ViewFactory factory = new ViewFactory();
   
@@ -214,21 +217,37 @@ public class SVGTest {
     
     assertEquals("<svg width=\"360\" height=\"360\" version=\"1.1\" \n\t"
             + "xmlns=\"http://www.w3.org/2000/svg\">\n\n"
-            + "<rect id=\"R\" x=\"200\" y=\"200\" width=\"50\" height=\"100\" fill=\"rgb(255,0,0)\" visibility=\"visible\" >\n"
-            + "\t<animate attributeType=\"xml\" begin=\"5s\" dur=\"20s\" attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
-            + "\t<animate attributeType=\"xml\" begin=\"5s\" dur=\"20s\" attributeName=\"y\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
-            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"9s\" attributeName=\"width\" from=\"50\" to=\"25\" fill=\"freeze\" />\n"
-            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"9s\" attributeName=\"height\" from=\"100\" to=\"100\" fill=\"freeze\" />\n"
-            + "\t<animate attributeType=\"xml\" begin=\"35s\" dur=\"15s\" attributeName=\"x\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
-            + "\t<animate attributeType=\"xml\" begin=\"35s\" dur=\"15s\" attributeName=\"y\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
+            + "<rect id=\"R\" x=\"200\" y=\"200\" width=\"50\" height=\"100\" "
+            + "fill=\"rgb(255,0,0)\" visibility=\"visible\" >\n"
+            + "\t<animate attributeType=\"xml\" begin=\"5s\" dur=\"20s\" "
+            + "attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
+            + "\t<animate attributeType=\"xml\" begin=\"5s\" dur=\"20s\" "
+            + "attributeName=\"y\" from=\"200\" to=\"300\" fill=\"freeze\" />\n"
+            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"9s\" "
+            + "attributeName=\"width\" from=\"50\" to=\"25\" fill=\"freeze\" />\n"
+            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"9s\" "
+            + "attributeName=\"height\" from=\"100\" to=\"100\" fill=\"freeze\" />\n"
+            + "\t<animate attributeType=\"xml\" begin=\"35s\" dur=\"15s\" "
+            + "attributeName=\"x\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
+            + "\t<animate attributeType=\"xml\" begin=\"35s\" dur=\"15s\" "
+            + "attributeName=\"y\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
             + "</rect>\n\n"
-            + "<ellipse id=\"C\" cx=\"440\" cy=\"70\" rx=\"60\" ry=\"30\" fill=\"rgb(0,0,255)\" visibility=\"visible\" >\n"
-            + "\t<animate attributeType=\"xml\" begin=\"10s\" dur=\"15s\" attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
-            +  "\t<animate attributeType=\"xml\" begin=\"10s\" dur=\"15s\" attributeName=\"cy\" from=\"70\" to=\"250\" fill=\"freeze\" />\n"
-            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"10s\" attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
-            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"10s\" attributeName=\"cy\" from=\"250\" to=\"370\" fill=\"freeze\" />\n"
-            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"10s\" attributeName=\"fill\" from=\"rgb(0,0,255)\" to=\"rgb(0,170,85)\" fill=\"freeze\" />\n"
-            + "\t<animate attributeType=\"xml\" begin=\"35s\" dur=\"5s\" attributeName=\"fill\" from=\"rgb(0,170,85)\" to=\"rgb(0,255,0)\" fill=\"freeze\" />\n"
+            + "<ellipse id=\"C\" cx=\"440\" cy=\"70\" rx=\"60\" ry=\"30\" "
+            + "fill=\"rgb(0,0,255)\" visibility=\"visible\" >\n"
+            + "\t<animate attributeType=\"xml\" begin=\"10s\" dur=\"15s\" "
+            + "attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
+            +  "\t<animate attributeType=\"xml\" begin=\"10s\" dur=\"15s\" "
+            + "attributeName=\"cy\" from=\"70\" to=\"250\" fill=\"freeze\" />\n"
+            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"10s\" "
+            + "attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"
+            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"10s\" "
+            + "attributeName=\"cy\" from=\"250\" to=\"370\" fill=\"freeze\" />\n"
+            + "\t<animate attributeType=\"xml\" begin=\"25s\" dur=\"10s\" "
+            + "attributeName=\"fill\" from=\"rgb(0,0,255)\" to=\"rgb(0,170,85)\" "
+            + "fill=\"freeze\" />\n"
+            + "\t<animate attributeType=\"xml\" begin=\"35s\" dur=\"5s\" "
+            + "attributeName=\"fill\" from=\"rgb(0,170,85)\" to=\"rgb(0,255,0)\" "
+            + "fill=\"freeze\" />\n"
             + "</ellipse>\n\n"
             + "\n\n</svg>", s.toString().trim());
     

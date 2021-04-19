@@ -22,8 +22,8 @@ public class GraphicsPanel extends JPanel {
   
   /**
    * Graphic Panel constructor that takes in a list of shapes passed from GraphicView and the model.
-   * @param shapes, list, a list of shapes passed from the GraphicView
-   * @param model, Animation, the animation model.
+   * @param shapes list, a list of shapes passed from the GraphicView
+   * @param model Animation, the animation model.
    */
   public GraphicsPanel(List<Shape> shapes, Animation model) {
     super(true);
@@ -39,7 +39,7 @@ public class GraphicsPanel extends JPanel {
   
   /**
    * Updates the model to list of shapes received from the model's getByTime method.
-   * @param shapes, list, a list of shape objects.
+   * @param shapes list, a list of shape objects.
    */
   public void updateModel(List<Shape> shapes) {
     Objects.requireNonNull(shapes, "Model can't be null");

@@ -12,9 +12,16 @@ import cs5004.animator.model.Scale;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.Transformation;
 
+/**
+ * AnimationBuilder class that implements the AnimationBuilder<Doc> interface.
+ */
 public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
   private Animation model;
   
+  /**
+   * AnimationBuilderImpl constructor that takes in a model.
+   * @param model Animation, model to build
+   */
   public AnimationBuilderImpl(Animation model) {
     this.model = model;
   }

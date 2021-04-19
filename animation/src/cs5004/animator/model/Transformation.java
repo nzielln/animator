@@ -108,30 +108,30 @@ public interface Transformation {
   /**
    * Creates and sets the properties for the initial shape as read from the -in file in
    * AnimationBuilder.
-   * @param name, String, the name of the shape
-   * @param type, String, the type of shape
-   * @param x, int, initial x position
-   * @param y, int, initial y position
-   * @param w, int, initial width
-   * @param h, int, initial height
-   * @param r, int, initial red value
-   * @param g, int, initial green value
-   * @param b, int, initial blue value
+   * @param name String, the name of the shape
+   * @param type String, the type of shape
+   * @param x int, initial x position
+   * @param y int, initial y position
+   * @param w int, initial width
+   * @param h int, initial height
+   * @param r int, initial red value
+   * @param g int, initial green value
+   * @param b int, initial blue value
    */
   void setInitial(String name, String type, int x, int y, int w, int h, int r, int g, int b);
   
   /**
    * Creates and sets the properties for the final shape as read from the -in file in
    * AnimationBuilder.
-   * @param name, String, the name of the shape
-   * @param type, String, the type of shape
-   * @param x, int, final x position
-   * @param y, int, final y position
-   * @param w, int, final width
-   * @param h, int, final height
-   * @param r, int, final red value
-   * @param g, int, final green value
-   * @param b, int, final blue value
+   * @param name String, the name of the shape
+   * @param type String, the type of shape
+   * @param x int, final x position
+   * @param y int, final y position
+   * @param w int, final width
+   * @param h int, final height
+   * @param r int, final red value
+   * @param g int, final green value
+   * @param b int, final blue value
    */
   void setFinal(String name, String type, int x, int y, int w, int h, int r, int g, int b);
   

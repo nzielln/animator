@@ -115,7 +115,8 @@ public abstract class AbstractTransformation implements Transformation {
   //SETTERS----------------------------------------------------------------------------------------
   
   @Override
-  public void setFinal(String name, String type, int x, int y, int w, int h, int r, int g, int b) {
+  public void setFinal(String name, String type, int x, int y, int w,
+                       int h, int r, int g, int b) {
     if (type.equals("Ellipse")) {
       Shape sh = new Ellipse(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);
@@ -132,7 +133,8 @@ public abstract class AbstractTransformation implements Transformation {
   }
   
   @Override
-  public void setInitial(String name, String type, int x, int y, int w, int h, int r, int g, int b) {
+  public void setInitial(String name, String type, int x, int y, int w,
+                         int h, int r, int g, int b) {
     if (type.equalsIgnoreCase("Ellipse")) {
       Shape sh = new Ellipse(name, type.toUpperCase());
       sh.setProperties(x, y, w, h, r, g, b);

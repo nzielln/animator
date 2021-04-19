@@ -34,7 +34,7 @@ public class Reader {
   /**
    * Parses input string and populate the input HashMap with in, out, view and speed inputs where
    * applicable.
-   * @param in, String, input from CLI
+   * @param in String, input from CLI
    */
   public void readIn(String in) {
     Scanner s = new Scanner(in);
@@ -83,11 +83,11 @@ public class Reader {
   
   /**
    * Uses AnimationReader and AnimationBuilder to read a text file and populate the model.
-   * @param inputs, HashMap, a hash map of the animation inputs
-   * @param view, Animation, the model for the animation
+   * @param inputs HashMap, a hash map of the animation inputs
+   * @param view Animation, the model for the animation
    */
   public void makeModel(HashMap<String, String> inputs, View view) {
-    String fileInput = inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
+    String fileInput = inputs.get("in").replace("\"", "");
     String filename = "./resources/files/" + fileInput;
     try {
       File demo = new File(filename);

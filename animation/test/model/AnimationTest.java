@@ -96,35 +96,35 @@ public class AnimationTest {
     assertEquals(0, ani2.getSize());
     assertEquals(3, ani.getSize());
   }
-
+  
   @Test
   public void testGetCanvasWidth() {
     Animation ani2 = new AnimationImpl();
-
+    
     assertEquals(0, ani2.getCanvasWidth());
     assertEquals(0, ani.getCanvasWidth());
   }
-
+  
   @Test
   public void testGetCanvasHeight() {
     Animation ani2 = new AnimationImpl();
-
+    
     assertEquals(0, ani2.getCanvasHeight());
     assertEquals(0, ani.getCanvasHeight());
   }
-
+  
   @Test
   public void testGetCanvasX() {
     Animation ani2 = new AnimationImpl();
-
+    
     assertEquals(0, ani2.getCanvasX());
     assertEquals(0, ani.getCanvasX());
   }
-
+  
   @Test
   public void testGetCanvasY() {
     Animation ani2 = new AnimationImpl();
-
+    
     assertEquals(0, ani2.getCanvasY());
     assertEquals(0, ani.getCanvasY());
   }
@@ -177,7 +177,7 @@ public class AnimationTest {
     } catch (Exception ignored) {
     }
   }
-
+  
   @Test
   public void testGetByTime() {
     // empty animation
@@ -188,22 +188,22 @@ public class AnimationTest {
     } catch (Exception e) {
       fail("Exception should not have been thrown");
     }
-
+    
     //no transformations
     try {
       Animation ani2 = new AnimationImpl();
-
+      
       Rectangle rect4 = new Rectangle("rect4", "RECTANGLE");
       rect4.setProperties(10, 10, 12, 12, 0, 0 ,0);
       rect4.setAppearsDisappears(1, 10);
-
+      
       Ellipse o = new Ellipse("O", "Ellipse");
       o.setProperties(5, 5, 15, 15, 255, 255, 255);
       o.setAppearsDisappears(3,10);
-
+      
       ani2.addShape(rect4, new ArrayList<>());
       ani2.addShape(o, new ArrayList<>());
-
+      
       List<Shape> result = ani2.getByTime(4);
       assertEquals("[Name: rect4\n"
               + "Type: RECTANGLE\n"
@@ -219,39 +219,43 @@ public class AnimationTest {
     } catch (Exception e) {
       fail("Exception should not have been thrown");
     }
-
+    
     //with transformations
     
-      Transformation move4 = new Move(12, 12, 7, 10);
-      move4.setInitial("rect", rect.getType(), 12, 34, 8, 11, 1, 22, 89);
-      Transformation scale4 = new Scale(25, 25, 7, 10);
-      scale4.setInitial("oval", oval.getType(), 34, 34, 4, 5, 122, 122, 122);
-      Transformation color2 = new ChangeColor(new Color(255, 255, 255), 8, 10);
-      color2.setInitial("rect 2", rect2.getType(), 45, 50, 12, 12, 0, 125, 255);
-      
-      ani.addTransformation("oval", scale4);
-      ani.addTransformation("rect", move4);
-      ani.addTransformation("rect 2", color2);
-
-      List<Shape> result = ani.getByTime(8);
-      assertEquals("[Name: oval\n"
-              + "Type: ELLIPSE\n"
-              + "Center: (34.0,34.0), X radius: 10.0, Y radius: 11.0, Color: (122.0, 122.0, 122.0)\n"
-              + "Appears at t=8\n"
-              + "Disappears at t=9\n"
-              + ", Name: rect\n"
-              + "Type: RECTANGLE\n"
-              + "Min corner: (12.0,26.0), Width: 8.0, Length: 11.0, Color: (1.0, 22.0, 89.0)\n"
-              + "Appears at t=8\n"
-              + "Disappears at t=9\n"
-              + ", Name: rect 2\n"
-              + "Type: RECTANGLE\n"
-              + "Min corner: (45.0,50.0), Width: 12.0, Length: 12.0, Color: (0.0, 125.0, 255.0)\n"
-              + "Appears at t=8\n"
-              + "Disappears at t=9\n"
-              + "]", result.toString());
+    Transformation move4 = new Move(12, 12, 7, 10);
+    move4.setInitial("rect", rect.getType(), 12, 34, 8, 11,
+            1, 22, 89);
+    Transformation scale4 = new Scale(25, 25, 7, 10);
+    scale4.setInitial("oval", oval.getType(), 34, 34, 4, 5,
+            122, 122, 122);
+    Transformation color2 = new ChangeColor(new Color(255, 255, 255),
+            8, 10);
+    color2.setInitial("rect 2", rect2.getType(), 45, 50, 12, 12,
+            0, 125, 255);
     
-
+    ani.addTransformation("oval", scale4);
+    ani.addTransformation("rect", move4);
+    ani.addTransformation("rect 2", color2);
+    
+    List<Shape> result = ani.getByTime(8);
+    assertEquals("[Name: oval\n"
+            + "Type: ELLIPSE\n"
+            + "Center: (34.0,34.0), X radius: 10.0, Y radius: 11.0, Color: (122.0, 122.0, 122.0)\n"
+            + "Appears at t=8\n"
+            + "Disappears at t=9\n"
+            + ", Name: rect\n"
+            + "Type: RECTANGLE\n"
+            + "Min corner: (12.0,26.0), Width: 8.0, Length: 11.0, Color: (1.0, 22.0, 89.0)\n"
+            + "Appears at t=8\n"
+            + "Disappears at t=9\n"
+            + ", Name: rect 2\n"
+            + "Type: RECTANGLE\n"
+            + "Min corner: (45.0,50.0), Width: 12.0, Length: 12.0, Color: (0.0, 125.0, 255.0)\n"
+            + "Appears at t=8\n"
+            + "Disappears at t=9\n"
+            + "]", result.toString());
+    
+    
     // negative time
     try {
       List<Shape> res = ani.getByTime(-3);
@@ -590,62 +594,71 @@ public class AnimationTest {
       ani2.addShape(rect3, new ArrayList<>());
       
       Transformation move4 = new Move(9, 9, 10, 100);
-      move4.setInitial("rect3",  rect3.getType(),3, 3, 50, 25, 255, 255, 255);
+      move4.setInitial("rect3",  rect3.getType(),3, 3, 50, 25,
+              255, 255, 255);
       ani2.addTransformation("rect3", move4);
       
       assertEquals("Shapes: \n"
-              + "Name: rect3\n"
-              + "Type: RECTANGLE\n"
-              + "Min corner: (3.0,3.0), Width: 50.0, Length: 25.0, Color: (255.0, 255.0, 255.0)\n"
-              + "Appears at t=1\n"
-              + "Disappears at t=200\n"
-              + "\n"
-              + "Shape rect3 moves from (3.0,3.0) to (9.0,9.0) from t=10 to t=100.",
+                      + "Name: rect3\n"
+                      + "Type: RECTANGLE\n"
+                      + "Min corner: (3.0,3.0), Width: 50.0, "
+                      + "Length: 25.0, Color: (255.0, 255.0, 255.0)\n"
+                      + "Appears at t=1\n"
+                      + "Disappears at t=200\n"
+                      + "\n"
+                      + "Shape rect3 moves from (3.0,3.0) to (9.0,9.0) from t=10 to t=100.",
               ani2.toString());
     } catch (Exception e) {
       fail("Exception should not be thrown");
     }
   }
-
+  
   @Test
   public void testTransformationString() {
-
+    
     //no transformations
     try {
       assertEquals("", ani.tranformationString(oval));
     } catch (Exception e) {
       fail("Exception should not have been thrown");
     }
-
+    
     //added transformation: move
     try {
-      move.setInitial("oval", oval.getType(), 34, 34, 4, 5, 122, 122, 122);
+      move.setInitial("oval", oval.getType(), 34, 34, 4, 5,
+              122, 122, 122);
       ani.addTransformation("oval", move);
       
-      assertEquals("Shape oval moves from (34.0,34.0) to (45.0,45.0) from t=3 to t=7.\n", ani.tranformationString(oval));
+      assertEquals("Shape oval moves from (34.0,34.0) to (45.0,45.0) from t=3 to t=7.\n",
+              ani.tranformationString(oval));
     } catch (Exception e) {
       fail("Exception should not have been thrown");
     }
-
+    
     //added transformation: scale
     try {
       ani.addTransformation("rect 2", scale3);
-      scale3.setInitial("rect 2", rect2.getType(),45, 50, 12, 12, 0, 125, 255 );
-      assertEquals("Shape rect 2 scales from Width: 12.0, Height: 12.0 to Width: 24.0, Height: 24.0 from t=8 to t=14.\n", ani.tranformationString(rect2));
+      scale3.setInitial("rect 2", rect2.getType(),45, 50, 12, 12,
+              0, 125, 255 );
+      assertEquals("Shape rect 2 scales from Width: 12.0, Height: 12.0 to Width: 24.0, "
+              + "Height: 24.0 from t=8 to t=14.\n", ani.tranformationString(rect2));
     } catch (Exception e) {
       fail("Exception should not have been thrown");
     }
-
+    
     //added transformation: change color
     try {
       ani.addTransformation("rect 2", color);
-      color.setInitial("rect 2", rect2.getType(),45, 50, 12, 12, 0, 125, 255);
-      assertEquals("Shape rect 2 scales from Width: 12.0, Height: 12.0 to Width: 24.0, Height: 24.0 from t=8 to t=14.\n"
-              + "Shape rect 2 changes color from (0.0, 125.0, 255.0) to (1.0, 12.0, 122.0) from t=7 to t=10.\n", ani.tranformationString(rect2));
+      color.setInitial("rect 2", rect2.getType(),45, 50, 12, 12,
+              0, 125, 255);
+      assertEquals("Shape rect 2 scales from Width: 12.0, Height: 12.0 to Width: 24.0, "
+              + "Height: 24.0 from t=8 to t=14.\n"
+              + "Shape rect 2 changes color from (0.0, 125.0, 255.0) to (1.0, 12.0, 122.0) "
+              + "from t=7 to t=10.\n", ani.tranformationString(rect2));
     } catch (Exception e) {
       fail("Exception should not have been thrown");
     }
-
+    
     //empty animation
     try {
       Animation ani2 = new AnimationImpl();
@@ -653,7 +666,7 @@ public class AnimationTest {
       fail("Exception should have been thrown");
     } catch (Exception ignored) {
     }
-
+    
     // null shape
     try {
       ani.tranformationString(null);

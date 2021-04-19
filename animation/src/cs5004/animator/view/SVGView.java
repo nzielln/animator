@@ -41,7 +41,8 @@ public class SVGView implements View {
     
     try {
       
-      FileWriter f = new FileWriter("./resources/outputs/" + inputs.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter("./resources/outputs/"
+              + inputs.get("out").replace("\"", ""));
       String canvas = "<svg width=\"" + m.getCanvasWidth() + "\" height=\"" + m.getCanvasHeight()
               + "\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
@@ -112,11 +113,13 @@ public class SVGView implements View {
             } else {
               tx = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
                       + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                      + "s\" attributeName=\"width" + "\" from=\"" + t.getInitialWidth() + "\" to=\""
+                      + "s\" attributeName=\"width" + "\" from=\"" + t.getInitialWidth()
+                      + "\" to=\""
                       + t.getToWidth() + "\" fill=\"freeze\" />\n";
               ty = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
                       + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
-                      + "s\" attributeName=\"height" + "\" from=\"" + t.getInitialHeight() + "\" to=\""
+                      + "s\" attributeName=\"height" + "\" from=\"" + t.getInitialHeight()
+                      + "\" to=\""
                       + t.getToHeight() + "\" fill=\"freeze\" />\n";
               str.append(tx);
               str.append(ty);

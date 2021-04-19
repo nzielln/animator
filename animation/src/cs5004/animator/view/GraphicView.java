@@ -54,7 +54,7 @@ public class GraphicView extends JFrame implements View {
     int tick = 1;
 
     if (in.get("speed") != null) {
-      tick = Integer.parseInt(in.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
+      tick = Integer.parseInt(in.get("speed"));
       if (tick <= 0) {
         throw new IllegalArgumentException("Speed needs to be positive integer");
       }

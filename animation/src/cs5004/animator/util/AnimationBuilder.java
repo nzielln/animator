@@ -1,5 +1,9 @@
 package cs5004.animator.util;
 
+/**
+ * An interface representing an AnimationBuilder.
+ * @param <Doc>
+ */
 public interface AnimationBuilder<Doc> {
   /**
    * Constructs a final document.

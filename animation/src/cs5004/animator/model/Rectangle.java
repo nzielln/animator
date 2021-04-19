@@ -10,7 +10,7 @@ public class Rectangle extends AbstractShape {
   /**
    * Constructor a shape, calls AbstractShape super that takes in parameter tr create a shape.
    * @param name unique id/name for the shape
-   * @param type
+   * @param type string, the type of the shape
    */
   public Rectangle(String name, String type) {
     super(name, type);

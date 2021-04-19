@@ -74,13 +74,13 @@ public interface Shape {
   //SETTERS AND OTHER------------------------------------------------------------------------------
   /**
    * Sets the properties for a new shape.
-   * @param x, int, x position for the shape
-   * @param y, int, y position for the shape
-   * @param w, int, width for the shape
-   * @param h, int, height for the shape
-   * @param r, int, red value for the shape
-   * @param g, int, green value for the shape
-   * @param b, int, blue value for the shape
+   * @param x int, x position for the shape
+   * @param y int, y position for the shape
+   * @param w int, width for the shape
+   * @param h int, height for the shape
+   * @param r int, red value for the shape
+   * @param g int, green value for the shape
+   * @param b int, blue value for the shape
    */
   void setProperties(int x, int y, int w, int h, int r, int g, int b);
 
@@ -103,16 +103,16 @@ public interface Shape {
   
   /**
    * Changes the width and height of a shape.
-   * @param w, int, new width for the shape
-   * @param h, int, new height for the shape
+   * @param w int, new width for the shape
+   * @param h int, new height for the shape
    */
   void changeSize(int w, int h);
   
   /**
    * Changes the red, green and blue values for a shape.
-   * @param r, int, new red value
-   * @param g, int, new green value
-   * @param b, int, new blue value.
+   * @param r int, new red value
+   * @param g int, new green value
+   * @param b int, new blue value.
    */
   void changeColor(int r,int g, int b);
   

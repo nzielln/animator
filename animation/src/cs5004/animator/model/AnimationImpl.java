@@ -93,19 +93,19 @@ public class AnimationImpl implements Animation {
     if (t < 0) {
       throw new IllegalArgumentException("Time must be positive");
     }
-
+    
     List<Shape> shapesAtTick = new LinkedList<>();
     
     for (Shape s : hashmap.keySet()) {
-  
+      
       List<Transformation> atTime = new LinkedList<>();
       for (Transformation tr : hashmap.get(s)) {
         if (tr.getTimeStart() <= t && t <= tr.getTimeEnd() ) {
           atTime.add(tr);
-    
+          
         }
       }
-  
+      
       if (atTime.size() > 0) {
         Shape n = getOneShape(lastest.get(s.getName()).copy(), atTime, t);
         shapesAtTick.add(n);
@@ -114,40 +114,48 @@ public class AnimationImpl implements Animation {
         shapesAtTick.add(lastest.get(s.getName()));
       }
     }
-  
+    
     return shapesAtTick;
   }
-
+  
   /**
    * Applys tweening formula to provided property at provided time.
-   * @param t, time to tween for
-   * @param a, the starting property (position, size ro color)
-   * @param b, the ending property
-   * @param ta, the starting time for the property
-   * @param tb, the ending time for the property
+   * @param t time to tween for
+   * @param a the starting property (position, size ro color)
+   * @param b the ending property
+   * @param ta the starting time for the property
+   * @param tb the ending time for the property
    * @return int, the result of the tweening
    */
   private int tween(double t, double a, double b, double ta, double tb) {
     return (int) ((a * ((tb - t) / (tb - ta))) + (b * ((t - ta) / (tb - ta))));
   }
-
+  
   /**
    * Generates one shape from tweening results, returns shape to getByTime.
-   * @param shape, a shape to apply transformation to
-   * @param l, a list of transformation for a shape
-   * @param time, the time to tween for
+   * @param shape a shape to apply transformation to
+   * @param l a list of transformation for a shape
+   * @param time the time to tween for
    * @return a shape
    */
   private Shape getOneShape(Shape shape, List<Transformation> l, int time) {
     for (Transformation t: l) {
       if (t.getTransformationType().equals("Moves")) {
-        int cx = tween(time, t.getInitialX(), t.getToX(), t.getTimeStart(), t.getTimeEnd());
-        int cy = tween(time, t.getInitialY(), t.getToY(), t.getTimeStart(), t.getTimeEnd());
+        int cx = tween(time, t.getInitialX(), t.getToX(),
+                t.getTimeStart(), t.getTimeEnd());
+        
+        int cy = tween(time, t.getInitialY(), t.getToY(),
+                t.getTimeStart(), t.getTimeEnd());
+        
         shape.changePosition(cx, cy);
         shape.setAppearsDisappears(time, time + 1);
       } else if (t.getTransformationType().equals("Scales")) {
-        int w = tween(time, t.getInitialWidth(), t.getToWidth(), t.getTimeStart(), t.getTimeEnd());
-        int h = tween(time, t.getInitialHeight(), t.getToHeight(), t.getTimeStart(), t.getTimeEnd());
+        int w = tween(time, t.getInitialWidth(), t.getToWidth(),
+                t.getTimeStart(), t.getTimeEnd());
+        
+        int h = tween(time, t.getInitialHeight(), t.getToHeight(),
+                t.getTimeStart(), t.getTimeEnd());
+        
         shape.changeSize(w, h);
         shape.setAppearsDisappears(time, time + 1);
       } else if (t.getTransformationType().equals("Color")) {
@@ -158,10 +166,10 @@ public class AnimationImpl implements Animation {
         int b = tween(time, i.getB(), f.getB(), t.getTimeStart(), t.getTimeEnd());
         shape.changeColor(r, g, b);
         shape.setAppearsDisappears(time, time + 1);
-  
+        
       }
     }
-   
+    
     return shape;
   }
   
@@ -346,13 +354,13 @@ public class AnimationImpl implements Animation {
   
   @Override
   public String tranformationString(Shape s) {
-
+    
     Objects.requireNonNull(s, "Shape can't be null");
-
+    
     if (hashmap.size() == 0) {
       throw new IllegalStateException("Animation can't be empty");
     }
-
+    
     StringBuilder str = new StringBuilder();
     DecimalFormat f = new DecimalFormat("0.0");
     
@@ -360,26 +368,34 @@ public class AnimationImpl implements Animation {
       //If change color transformation
       if (t.getTransformationType().equals("Color")) {
         String desc = "Shape " + s.getName() + " changes color from "
-                + t.getInitialColor().toString() + " to " + t.getToColor().toString() + " from t="
+                + t.getInitialColor().toString() + " to "
+                + t.getToColor().toString() + " from t="
                 + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
         str.append(desc).append("\n");
         //if move transformation
       } else if (t.getTransformationType().equals("Moves")) {
         String desc = "Shape " + s.getName() + " moves from (" + f.format(t.getInitialX())
                 + "," + f.format(t.getInitialY()) + ") to (" + f.format(t.getToX()) + ","
-                + f.format(t.getToY()) + ") from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+                + f.format(t.getToY()) + ") from t=" + t.getTimeStart()
+                + " to t=" + t.getTimeEnd() + ".";
         str.append(desc).append("\n");
         //if scale tranformation
       } else {
         if (s.getType().equals("RECTANGLE")) {
-          String desc =  "Shape " + s.getName() + " scales from Width: " + f.format(t.getInitialWidth())
-                  + ", Height: " + f.format(t.getInitialHeight()) + " to Width: " + f.format(t.getToWidth()) + ", Height: "
-                  + f.format(t.getToHeight()) + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+          String desc =  "Shape " + s.getName() + " scales from Width: "
+                  + f.format(t.getInitialWidth())
+                  + ", Height: " + f.format(t.getInitialHeight()) + " to Width: "
+                  + f.format(t.getToWidth()) + ", Height: "
+                  + f.format(t.getToHeight()) + " from t=" + t.getTimeStart()
+                  + " to t=" + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
         } else {
-          String desc = "Shape" + s.getName() + " scales from X radius: " + f.format(t.getInitialWidth())
-                  + ", Y radius: " + f.format(t.getInitialHeight()) + " to X radius: " + f.format(t.getToWidth()) + ", Y radius: "
-                  + f.format(t.getToHeight()) + " from t=" + t.getTimeStart() + " to t=" + t.getTimeEnd() + ".";
+          String desc = "Shape" + s.getName() + " scales from X radius: "
+                  + f.format(t.getInitialWidth())
+                  + ", Y radius: " + f.format(t.getInitialHeight()) + " to X radius: "
+                  + f.format(t.getToWidth()) + ", Y radius: "
+                  + f.format(t.getToHeight()) + " from t=" + t.getTimeStart()
+                  + " to t=" + t.getTimeEnd() + ".";
           str.append(desc).append("\n");
         }
       }

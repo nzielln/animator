@@ -1,7 +1,10 @@
 package cs5004.animator.controller;
 
+/**
+ * Controller for the Animation program.
+ */
 public interface Controller {
-  
+  //ASSIGNMENT 8
   /*
   Methods we'll need
   Start
