@@ -29,77 +29,17 @@ public class UpdatedTransformationTest {
   public void setUp() throws Exception {
     //**
     try {
-      move = new Move("move", 23, 34, 3, 11);
+      move = new Move(23, 34, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
-    
+  
     //**
     try {
-      scale = new Scale("scale",8, 12, 2, 7);
+      scale = new Scale(8, 12, 2, 7);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
-    
   }
-  
-  /*
-  @Test
-  public void testSetGetInitials() {
-    
-    try {
-      move.setInitialX(23);
-      move.setInitialY(0);
-  
-      assertEquals(23, move.getInitialX());
-      assertEquals(0, move.getInitialY());
-    } catch (Exception e) {
-      fail("Exception should not be thrown.");
-    }
-    
-    try {
-      scale.setInitialWidth(22);
-      scale.setInitialHeight(45);
-  
-      assertEquals(22, scale.getInitialWidth());
-      assertEquals(45, scale.getInitialHeight());
-    } catch (Exception e) {
-      fail("Exception should not be thrown.");
-    }
-    /*
-    try {
-      color.setInitialColor(new Color(12, 46, 9));
-  
-      assertEquals(12, move.getInitialColor().getR());
-      assertEquals(46, move.getInitialColor().getG());
-      assertEquals(9, move.getInitialColor().getB());
-    } catch (Exception e) {
-      fail("Exception should not be thrown.");
-    }
-    
-    
-  
-    //BAD Inputs
-  
-    try {
-      scale.setInitialWidth(-22);
-      fail("Exception should be thrown.");
-    } catch (Exception ignored) {
-    }
-  
-    try {
-      scale.setInitialWidth(0);
-      fail("Exception should be thrown.");
-    } catch (Exception ignored) {
-    }
-  
-    try {
-      move.setInitialX(-22);
-      fail("Exception should be thrown.");
-    } catch (Exception ignored) {
-    }
-  }
-  */
-  
   
 }

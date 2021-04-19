@@ -15,8 +15,8 @@ public class ChangeColor extends AbstractTransformation {
    * @param timeStart (int) start time for the transformation
    * @param timeEnd (int) start time for the transformation
    */
-  public ChangeColor(String tid, Color toColor, int timeStart, int timeEnd) {
-    super(tid, timeStart, timeEnd);
+  public ChangeColor(Color toColor, int timeStart, int timeEnd) {
+    super(timeStart, timeEnd);
     Objects.requireNonNull(toColor, "Color object can't be null.");
     
     this.toColor = toColor;
@@ -33,7 +33,7 @@ public class ChangeColor extends AbstractTransformation {
   public boolean sameObject(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())
             && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
-            && this.toColor == other.getToColor() && this.tID.equals(other.getID()));
+            && this.toColor == other.getToColor());
   }
   
 }

@@ -13,12 +13,6 @@ public interface Transformation {
   Transformation getTransformation();
   
   /**
-   * Returns the Transformation's ID.
-   * @return (String) Tranformastion's ID
-   */
-  String getID();
-  
-  /**
    * Returns the type of the {@link Transformation}.
    * @return a string, type of transformation
    */

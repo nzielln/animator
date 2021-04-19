@@ -25,63 +25,63 @@ public class TransformationTest {
   @Before
   public void setUp() throws Exception {
     try {
-      move = new Move("move", 0, 0, 3, 11);
+      move = new Move(0, 0, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     //**
     try {
-      move = new Move("move", -23, 34, 3, 11);
+      move = new Move(-23, 34, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
   
     try {
-      move = new Move("move", 23, -34, 3, 11);
+      move = new Move(23, -34, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     try {
-      move = new Move("move", -23, -34, 3, 11);
+      move = new Move(-23, -34, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     try {
-      move = new Move("move", 23, 34, 3, 11);
+      move = new Move(23, 34, 3, 11);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     try {
-      scale = new Scale("scale", 1, 1, 2, 7);
+      scale = new Scale( 1, 1, 2, 7);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     try {
-      scale = new Scale("scale",1, 1, 0, 0);
+      scale = new Scale(1, 1, 0, 0);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     //**
     try {
-      scale = new Scale("scale",8, 12, 2, 7);
+      scale = new Scale(8, 12, 2, 7);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     try {
-      color = new ChangeColor("color", new Color(122, 122, 122), 2, 7);
+      color = new ChangeColor(new Color(122, 122, 122), 2, 7);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
     
     try {
-      color = new ChangeColor("color", new Color(122, 122, 122), 0, 7);
+      color = new ChangeColor(new Color(122, 122, 122), 0, 7);
     } catch (Exception ignored) {
       fail("Exception should not be thrown");
     }
@@ -89,25 +89,13 @@ public class TransformationTest {
     //Invalid inputs
     Transformation bad;
     try {
-      bad = new Move("move",23, 33, -2, 7); //negative time
+      bad = new Move(23, 33, -2, 7); //negative time
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
     
     try {
-      scale = new Scale("scale",0, 1, 2, 7); //length of 0
-      fail("Exception should be thrown");
-    } catch (Exception ignored) {
-    }
-    
-    try {
-      move = new Move("", 0, 1, 5, 10);
-      fail("Exception should be thrown");
-    } catch (Exception ignored) {
-    }
-    
-    try {
-      scale = new Scale(null, 10, 20, 1, 5);
+      scale = new Scale(0, 1, 2, 7); //length of 0
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -123,12 +111,7 @@ public class TransformationTest {
     assertEquals(122, color.getTransformation().getToColor().getB(), 0.001);
   }
   
-  @Test
-  public void testGetTID() {
-    assertEquals("move", move.getID());
-    assertEquals("scale", scale.getID());
-    assertEquals("color", color.getID());
-  }
+  
   
   @Test
   public void getTransformationType() {
@@ -166,19 +149,16 @@ public class TransformationTest {
   
   @Test
   public void testSame() {
-    Transformation n = new Move("move", 23, 34, 3, 11);
+    Transformation n = new Move(23, 34, 3, 11);
     assertTrue(move.sameObject(n));
   
-    Transformation sa = new Scale("scale",8, 12, 2, 7);
+    Transformation sa = new Scale(8, 12, 2, 7);
     assertTrue(scale.sameObject(sa));
   
-    Transformation nn = new Move("moves", 23, 34, 3, 11);
-    assertFalse(move.sameObject(nn));
-  
-    Transformation diffp = new Move("move", 22, 34, 3, 11);
+    Transformation diffp = new Move(22, 34, 3, 11);
     assertFalse(move.sameObject(diffp));
   
-    Transformation s = new Scale("scale", 23, 34, 3, 11);
+    Transformation s = new Scale(23, 34, 3, 11);
     assertFalse(move.sameObject(s));
   }
   

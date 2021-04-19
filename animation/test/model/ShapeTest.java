@@ -18,7 +18,7 @@ import static org.junit.Assert.fail;
 public class ShapeTest {
   private Shape oval;
   private Shape rect;
-  //TODO: Merge Shape
+
   @Before
   public void setUp() {
     //Valid shape inputs
@@ -411,8 +411,6 @@ public class ShapeTest {
             + "Center: (23.0,45.0), X radius: 4.0, Y radius: 5.0, Color: (24.0, 35.0, 123.0)\n"
             + "Appears at t=1\n"
             + "Disappears at t=10\n";
-    System.out.println(rect.toString());
-    System.out.println(oval.toString());
     
     assertEquals(re, rect.toString());
     assertEquals(ov, oval.toString());

@@ -323,12 +323,7 @@ public class AnimationImpl implements Animation {
           throw new IllegalArgumentException("Can't remove transformation from empty list");
         }
         
-        ArrayList<String>  tids = new ArrayList<>();
-        for (Transformation tr: hashmap.get(s)) {
-          tids.add(tr.getID());
-        }
-        
-        if (!tids.contains(t.getID())) {
+        if (!hashmap.get(s).contains(t)) {
           throw new NoSuchElementException("Transformation not found");
         }
         

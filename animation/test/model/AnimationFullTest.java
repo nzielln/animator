@@ -44,12 +44,12 @@ public class AnimationFullTest {
     animation.addShape(rectangleOne, new ArrayList<>());
     
     //create new transformation
-    Transformation colorOne = new ChangeColor("change_color", new Color(35, 45, 56),
+    Transformation colorOne = new ChangeColor(new Color(35, 45, 56),
             3, 7);
     colorOne.setInitial("ovalOne",ovalOne.getType(), 5, 23, 4, 4, 24, 45, 57 );
-    Transformation scaleOne = new Scale("scaleOne", 12, 7, 2, 7);
+    Transformation scaleOne = new Scale(12, 7, 2, 7);
     scaleOne.setInitial("rectOne", rectangleOne.getType(), 5, 23, 4, 7, 244,145, 7);
-    Transformation moveOne = new Move("moveOne", 0, 0, 3, 10);
+    Transformation moveOne = new Move(0, 0, 3, 10);
     moveOne.setInitial("ovalOne",ovalOne.getType(), 5, 23, 4, 4, 35, 45, 56 );
   
     //add transformation

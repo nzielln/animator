@@ -15,8 +15,8 @@ public class Scale extends AbstractTransformation {
    * @param timeStart (int) start time for the transformation
    * @param timeEnd (int) start time for the transformation
    */
-  public Scale(String tid, int toX, int toY, int timeStart, int timeEnd) {
-    super(tid, timeStart, timeEnd);
+  public Scale(int toX, int toY, int timeStart, int timeEnd) {
+    super(timeStart, timeEnd);
     if (toX <= 0 || toY <= 0) {
       throw new IllegalArgumentException("Length must be positive integer or 0.");
     }
@@ -44,8 +44,8 @@ public class Scale extends AbstractTransformation {
   public boolean sameObject(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())
             && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
-            && this.toWidth == other.getToWidth() && this.toHeight == other.getToHeight()
-            && this.tID.equals(other.getID()));
+            && this.toWidth == other.getToWidth() && this.toHeight == other.getToHeight());
+           
   }
   
 }

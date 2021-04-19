@@ -20,8 +20,8 @@ public abstract class AbstractShape implements Shape {
   
   /**
    * Constructor a shape, takes in parameter to create a shape.
-   * @param name unique id/name for the shape
-   * @param type
+   * @param name, String, unique id/name for the shape
+   * @param type, String, the type of the shape
    */
   public AbstractShape(
           String name, String type) {

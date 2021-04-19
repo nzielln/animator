@@ -14,8 +14,8 @@ public class Move extends AbstractTransformation {
    * @param timeStart (int) start time for the transformation
    * @param timeEnd (int) start time for the transformation
    */
-  public Move(String tid, int toX, int toY, int timeStart, int timeEnd) {
-    super(tid, timeStart, timeEnd);
+  public Move(int toX, int toY, int timeStart, int timeEnd) {
+    super(timeStart, timeEnd);
     
     this.toX = toX;
     this.toY = toY;
@@ -38,7 +38,6 @@ public class Move extends AbstractTransformation {
   public boolean sameObject(Transformation other) {
     return (this.getTransformationType().equals(other.getTransformationType())
             && this.timeStart == other.getTimeStart() && this.timeEnd == other.getTimeEnd()
-            && this.toX == other.getToX() && this.toY == other.getToY()
-            && this.tID.equals(other.getID()));
+            && this.toX == other.getToX() && this.toY == other.getToY());
   }
 }

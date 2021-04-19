@@ -89,21 +89,21 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
     
     while (transformation > 0) {
       if (!m && (x1 != x2 || y1 != y2)) {
-        Transformation move = new Move("+", x2, y2, t1, t2);
+        Transformation move = new Move( x2, y2, t1, t2);
         move.setInitial(name, type, x1, y1, w1, h1, r1, g1, b1);
         move.setFinal(name, type, x2, y2, w2, h2, r2, g2, b2);
         model.addTransformation(name, move);
         m = true;
     
       } else if (!sc && (w1 != w2 || h1 != h2)) {
-        Transformation scale = new Scale("+", w2, h2, t1, t2);
+        Transformation scale = new Scale( w2, h2, t1, t2);
         scale.setInitial(name, type, x1, y1, w1, h1, r1, g1, b1);
         scale.setFinal(name, type, x2, y2, w2, h2, r2, g2, b2);
         model.addTransformation(name, scale);
         sc = true;
     
       } else if (!c && (!new Color(r1, g1, b1).sameObject(new Color(r2, g2, b2)))) {
-        Transformation color = new ChangeColor("+", new Color(r2, g2, b2), t1, t2);
+        Transformation color = new ChangeColor( new Color(r2, g2, b2), t1, t2);
         color.setInitial(name, type, x1, y1, w1, h1, r1, g1, b1);
         color.setFinal(name, type, x2, y2, w2, h2, r2, g2, b2);
         model.addTransformation(name, color);

@@ -57,18 +57,18 @@ public class AnimationTest {
     rect2.setAppearsDisappears(7, 15);
     
     //for oval
-    move = new Move("move", 45, 45, 3, 7);
-    scale = new Scale("scale", 8, 5, 7, 15);
+    move = new Move(45, 45, 3, 7);
+    scale = new Scale(8, 5, 7, 15);
     
     //for rect
-    move2 = new Move("move2", 45, 70, 2, 7);
-    scale2 = new Scale("scale2",11, 11, 4, 7);
+    move2 = new Move(45, 70, 2, 7);
+    scale2 = new Scale(11, 11, 4, 7);
     
     //for rect2
-    Transformation move3 = new Move("move3", 45, 70, 2, 7);
-    scale3 = new Scale("scale3",24, 24, 8, 14);
+    Transformation move3 = new Move( 45, 70, 2, 7);
+    scale3 = new Scale(24, 24, 8, 14);
     
-    color = new ChangeColor("color", new Color(1, 12, 122), 7, 10);
+    color = new ChangeColor(new Color(1, 12, 122), 7, 10);
     
     try {
       ani.addShape(oval, new ArrayList<>());
@@ -222,12 +222,11 @@ public class AnimationTest {
 
     //with transformations
     
-      Transformation move4 = new Move("move4", 12, 12, 7, 10);
+      Transformation move4 = new Move(12, 12, 7, 10);
       move4.setInitial("rect", rect.getType(), 12, 34, 8, 11, 1, 22, 89);
-      Transformation scale4 = new Scale("scale4", 25, 25, 7, 10);
+      Transformation scale4 = new Scale(25, 25, 7, 10);
       scale4.setInitial("oval", oval.getType(), 34, 34, 4, 5, 122, 122, 122);
-      Transformation color2 = new ChangeColor("color2",
-              new Color(255, 255, 255), 8, 10);
+      Transformation color2 = new ChangeColor(new Color(255, 255, 255), 8, 10);
       color2.setInitial("rect 2", rect2.getType(), 45, 50, 12, 12, 0, 125, 255);
       
       ani.addTransformation("oval", scale4);
@@ -427,7 +426,7 @@ public class AnimationTest {
     }
     
     //should not add if start time and end time are not within range
-    Transformation bad = new Move("bad", 3, 4, 15, 19);
+    Transformation bad = new Move(3, 4, 15, 19);
     try {
       ani.addTransformation("oval", bad);
       fail("Exception should be thrown.");
@@ -524,7 +523,7 @@ public class AnimationTest {
     
     //remove transformation not found
     try {
-      Transformation color2 = new ChangeColor("color2", new Color(255, 255, 255),
+      Transformation color2 = new ChangeColor(new Color(255, 255, 255),
               2, 6);
       ani.removeTransformation("rect", color2);
       fail("Exception should be thrown");
@@ -590,7 +589,7 @@ public class AnimationTest {
       rect3.setAppearsDisappears(1,200);
       ani2.addShape(rect3, new ArrayList<>());
       
-      Transformation move4 = new Move("move4", 9, 9, 10, 100);
+      Transformation move4 = new Move(9, 9, 10, 100);
       move4.setInitial("rect3",  rect3.getType(),3, 3, 50, 25, 255, 255, 255);
       ani2.addTransformation("rect3", move4);
       
