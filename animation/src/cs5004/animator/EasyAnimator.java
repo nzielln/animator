@@ -21,14 +21,9 @@ public class EasyAnimator {
     View view = factory.create(in);
     view.readInputs(in);
     view.getReadable();
-    //ByteArrayOutputStream b = new ByteArrayOutputStream();
-    //PrintStream out = new PrintStream(b);
-    //PrintStream sys = System.out;
-    //System.setOut(out);
+   
     view.animate();
-    //System.out.flush();
-    //System.setOut(sys);
-    //System.out.println("Hey: " + b.toString());
+   
  
   }
 }

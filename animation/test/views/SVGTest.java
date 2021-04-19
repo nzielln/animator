@@ -97,6 +97,14 @@ public class SVGTest {
     } catch (Exception ignored) {
     }
   
+    //svg mispelled
+    try {
+      String in = "-in smalldemo.txt -view swg -speed 2";
+      View v = factory.create(in);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  
     //File not found - visual
     try {
       String in = "-in smalldmo.txt -view visual -speed 2";
@@ -132,7 +140,7 @@ public class SVGTest {
     v.getReadable();
     v.animate();
     StringBuilder s = new StringBuilder();
-    File demo = new File("./src/cs5004/animator/outfiles/out.svg");
+    File demo = new File("./resources/outputs/out.svg");
     FileReader f = new FileReader(demo);
     Scanner scan = new Scanner(f).useDelimiter("\n");
     
@@ -156,7 +164,7 @@ public class SVGTest {
     v.getReadable();
     v.animate();
     StringBuilder s = new StringBuilder();
-    File demo = new File("./src/cs5004/animator/outfiles/out.svg");
+    File demo = new File("./resources/outputs/out.svg");
     FileReader f = new FileReader(demo);
     Scanner scan = new Scanner(f).useDelimiter("\n");
   
