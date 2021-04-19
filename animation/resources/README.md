@@ -12,7 +12,7 @@ same shape object.
 
 ![Animation Class](images/Animation.jpeg)
 
-Our [AnimationImpl](/src/cs5004/animator/model/AnimationImpl.java) has methods to handle tasks such 
+Our [AnimationImpl](/animation/src/cs5004/animator/model/AnimationImpl.java) has methods to handle tasks such 
 as adding new shapes/transformation to the animation or removing shapes/transformation from the the 
 animation. 
 
@@ -48,14 +48,21 @@ constructor and creates a new Color object.
 ![UML Diagram](images/Animator.jpeg)
 
 ### Modified UML Class Diagram
-These are some of the changes we made to our model design as we worked through our views. 
+These are the changes we made to our model design as we worked through our views. 
 
 ### Shape
 #### Shape Constructors
 Because the properties for particular shape and its name and type are set at different times in the
 [AnimationBuilder](/src/cs5004/animator/util/AnimationBuilder.java), we had to change our
 constructor for our shapes. Our constructor now takes in two argument, name and type. A seperate
-methods was added to set the other properties for the shape.
+methods was added to set the other properties for the shape. We also encountered a problem with how 
+we were initially checking our appears and disappears time to make sure they made sense. To solve this 
+problem, we combined our setter method for these time so that we're compairing both times as they are
+added at the same time. 
+
+We also added a new method that would indicate if a shape is created so a new shape of the same properties
+is not created. Additionally, we added three new methods for changing the position, size and color
+of the a copy of the Shape object when a new transformation is created. 
 
 #### Shape Arguments
 We also changed our shapes to accept arguments of type int instead of float, again, to adhere to the
@@ -67,11 +74,11 @@ DecimalFomart class is used.
 
 ### Transformation
 
-We felt the need to know a shape's state before applying a new transformation, so a new HashMap 
-field was created to store this information. Additionaly, new methods were added to set and get the
-initial property for each transformation, with this informatio being read from the files. To make 
-these changes, we added 8 new methods to our [Transformation](/src/cs5004/animator/model/Transformation.java) 
-interface and three new fields to each sub-class as shown below.
+We felt the need to know a shape's state before and after applying a new transformation, so new fields
+to store these shapes was added to out Transformation objects. Additionaly, new methods were added to get 
+these initial properties, with this information being read from the files when each shape/transformation
+is created. To make these changes, we added 9 new methods to our [Transformation](/src/cs5004/animator/model/Transformation.java) 
+interface and two new fields to each sub-class as shown below.
 
 ![Updated Transformatoin UML Diagram](images/Transformation2.jpeg)
 
@@ -83,6 +90,9 @@ We made changes to some of our method signatures (as indicated below in the UML 
 everything work well with the [AnimationBuilder](/src/cs5004/animator/util/AnimationBuilder.java) and
 files being read in.
 
+Two private methods were added to aid with our ```getByTime(int t)``` method, a method to perform the 
+tweening and another to generate the shape from the tweening results. 
+
 ![Updated Animation UML Diagram](images/Animation2.jpeg)
 
 ### Updated UML Diagram
@@ -91,17 +101,32 @@ files being read in.
 
 ## View Design
 We implemented three views, a [Text](/src/cs5004/animator/view/TextView.java), [SVG](/src/cs5004/animator/view/SVGView.java), 
-and [Visual](/src/cs5004/animator/view/GraphicView.java) views. We first by defining and implementing
+and [Visual](/src/cs5004/animator/view/GraphicView.java) views. We first started by defining and implementing
 a [View](/src/cs5004/animator/view/View.java) interface that has methods for reading inputs from the
 CLI, extracting useful information (in file, out file, view and speed) and passing that information
-to our ```animate()``` method that then displays the output of the veiw. From our main class,
+to our ```animate()``` method that then displays the output of the each veiw. From our main class,
 [EasyAnimator](/src/cs5004/animator/EasyAnimator.java), we call each respectful view based on what
-is read from the CLI. To store our view, we uses an abstract [ViewFactory](/src/cs5004/animator/view/ViewFactory.java)
-the creates the view from this input. 
+is read from the CLI. To store our view, we uses an abstract factory, [ViewFactory](/src/cs5004/animator/view/ViewFactory.java)
+that creates the view from this input. 
 
 Our ```animate()``` is implemented in each view. Additional private methods were created to aid in 
 the implementation of the views. 
 
+In the [Text](/src/cs5004/animator/view/TextView.java) view, if a ```-out``` argument is provided, 
+a .txt file will be generated to store the information. 
+
 ### Graphic View
+
+Our [Visual](/src/cs5004/animator/view/GraphicView.java) uses a JFrame with our animation taking 
+place in a JPanel, [GraphicPanel](/src/cs5004/animator/view/GraphicPanel.java), component. The [GraphicView](/src/cs5004/animator/view/GraphicView.java) frame passes infromation from our file to the panel as 
+a list of shapes at time 0 to start of the animation, as well as our whole model for further updates. 
+To ensure that the full animation is shown at each time, our GraphicPanel inherits the dimensions of 
+the frame (which uses a BorderLayout). This ensures that the dimension of the canvas and preserved when
+the window is minimized, maximized, or when it's resized. Additionally a JScrollPane was added to the 
+frame to allow for scrolling if the animation is able to be fully displayed on the canvas.
+
+Our GraphicPanel updates the canvas at every increment of time, with a thread added to set a delay 
+before each new display of shapes on the canvas. The shape to be displayed is a list of shapes generated
+from our ```getByTime(int t)``` method.
 
 ## Controller Design (Assignment 8)
