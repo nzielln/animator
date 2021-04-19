@@ -187,7 +187,7 @@ public class SVGTest {
     FileReader f = new FileReader(demo);
     Scanner scan = new Scanner(f).useDelimiter("\n");
     
-    while(scan.hasNext()) {
+    while (scan.hasNext()) {
       s.append(scan.next()).append("\n");
     }
     
@@ -211,7 +211,7 @@ public class SVGTest {
     FileReader f = new FileReader(demo);
     Scanner scan = new Scanner(f).useDelimiter("\n");
     
-    while(scan.hasNext()) {
+    while (scan.hasNext()) {
       s.append(scan.next()).append("\n");
     }
     
