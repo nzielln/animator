@@ -48,13 +48,14 @@ public class GraphicView extends JFrame implements View {
   public void animate() {
   
     List<Shape> model = new ArrayList<>(this.model.getShapes());
-    int tick = Integer.parseInt(this.inputs.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
-    if (tick <= 0) {
-      throw new IllegalArgumentException("Speed needs to be positive integer");
-    }
-    
-    if (this.inputs.get("speed") == null) {
-      tick = 1;
+
+    int tick = 1;
+
+    if (this.inputs.get("speed") != null) {
+      tick = Integer.parseInt(this.inputs.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
+      if (tick <= 0) {
+        throw new IllegalArgumentException("Speed needs to be positive integer");
+      }
     }
   
     int count = 0;

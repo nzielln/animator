@@ -6,7 +6,7 @@
 Our [Animation](../src/cs5004/animator/model/Animation.java) interface represents an animation program. 
 It's implemented in the AnimationImpl class as `HashMap<Shape, List<Transformation>>`. 
 We chose to use a hashmap so that we had a clear connection between our shapes and the different 
-transformation that would be applied to the them in during the program. Our implementation of the 
+transformation that would be applied to them in during the program. Our implementation of the 
 list ensures that we don't have overlapping transformations of the same type being applied to the 
 same shape object. 
 
@@ -20,14 +20,14 @@ animation.
 
 Our [Transformation](../src/cs5004/animator/model/Transformation.java) interface represents the methods 
 implemented by our different transformations. Our interface is implemented in an abstract class to 
-minimiz code repetiotion in each other the subclasses. We created a [Move](../src/cs5004/animator/model/Move.java) 
+minimize code repetition in each other the subclasses. We created a [Move](../src/cs5004/animator/model/Move.java) 
 class that stores the information to change the shape's position on the screen, a [Scale](../src/cs5004/animator/model/Scale.java) 
 class that stores the information to change the width/length (or X-radius and Y-radius) of our 
 shapes, and a [ChangeColor](../src/cs5004/animator/model/ChangeColor.java) class that stores the 
 information to change the shape's color. Each of these classes take in a start and end time for 
 each transformation. 
 
-![Transformaton Class](images/Transformation.jpeg)
+![Transformation Class](images/Transformation.jpeg)
 
 ### Shape
 
@@ -57,12 +57,12 @@ Because the properties for particular shape and its name and type are set at dif
 constructor for our shapes. Our constructor now takes in two argument, name and type. A seperate
 methods was added to set the other properties for the shape. We also encountered a problem with how 
 we were initially checking our appears and disappears time to make sure they made sense. To solve this 
-problem, we combined our setter method for these time so that we're compairing both times as they are
+problem, we combined our setter method for these time so that we're comparing both times as they are
 added at the same time. 
 
 We also added a new method that would indicate if a shape is created so a new shape of the same properties
 is not created. Additionally, we added three new methods for changing the position, size and color
-of the a copy of the Shape object when a new transformation is created. 
+of a copy of the Shape object when a new transformation is created. 
 
 #### Shape Arguments
 We also changed our shapes to accept arguments of type int instead of float, again, to adhere to the
@@ -75,7 +75,7 @@ DecimalFomart class is used.
 ### Transformation
 
 We felt the need to know a shape's state before and after applying a new transformation, so new fields
-to store these shapes was added to out Transformation objects. Additionaly, new methods were added to get 
+to store these shapes was added to out Transformation objects. Additionally, new methods were added to get 
 these initial properties, with this information being read from the files when each shape/transformation
 is created. To make these changes, we added 9 new methods to our [Transformation](../src/cs5004/animator/model/Transformation.java) 
 interface and two new fields to each sub-class as shown below.
@@ -104,7 +104,7 @@ We implemented three views, a [Text](../src/cs5004/animator/view/TextView.java),
 and [Visual](../src/cs5004/animator/view/GraphicView.java) views. We first started by defining and implementing
 a [View](../src/cs5004/animator/view/View.java) interface that has methods for reading inputs from the
 CLI, extracting useful information (in file, out file, view and speed) and passing that information
-to our ```animate()``` method that then displays the output of the each veiw. From our main class,
+to our ```animate()``` method that then displays the output of each view. From our main class,
 [EasyAnimator](../src/cs5004/animator/EasyAnimator.java), we call each respectful view based on what
 is read from the CLI. To store our view, we uses an abstract factory, [ViewFactory](../src/cs5004/animator/view/ViewFactory.java)
 that creates the view from this input. 
