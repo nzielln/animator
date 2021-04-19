@@ -20,7 +20,6 @@ public class GraphicsPanel extends JPanel {
 
     Objects.requireNonNull(model, "Model can't be null");
   
-  
     this.shapes = shapes;
     setBackground(Color.WHITE);
     setLayout(new BorderLayout());
@@ -28,22 +27,6 @@ public class GraphicsPanel extends JPanel {
     
   
   }
-  /*
-  //Do we need this second constructor??
-  public GraphicsPanel(List<Shape> model) {
-    super(true);
-
-    Objects.requireNonNull(model, "Model can't be null");
-
-    this.model = model;
-    setBackground(Color.WHITE);
-    setLocation(0, 0);
-    setBounds(20, 20, 500, 500);
-    setBorder(new LineBorder(Color.BLACK, 3));
-    
-  }
-  
-  */
   
   public void updateModel(List<Shape> shapes) {
     Objects.requireNonNull(shapes, "Model can't be null");
@@ -59,7 +42,7 @@ public class GraphicsPanel extends JPanel {
     Graphics2D graphics = (Graphics2D) g;
   
     if (this.shapes == null) {
-      return; // should we return here or should we throw an exception?
+      return;
     }
   
     int count = 0;

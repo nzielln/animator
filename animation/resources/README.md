@@ -57,15 +57,13 @@ Because the properties for particular shape and its name and type are set at dif
 constructor for our shapes. Our constructor now takes in two argument, name and type. A seperate
 methods was added to set the other properties for the shape.
 
-*TODO* Upload new UML diagrams with color-coding to show where changes were made
-
 #### Shape Arguments
 We also changed our shapes to accept arguments of type int instead of float, again, to adhere to the
 methodsas defined in the [AnimationBuilder](/src/cs5004/animator/util/AnimationBuilder.java) 
 interface. In order to output a correctly formated string representation where needed, the 
 DecimalFomart class is used.
 
-*TODO* Upload new UML diagrams with color-coding to show where changes were made
+![Updated Shape UML Diagram](images/Shapes2.jpeg)
 
 ### Transformation
 
@@ -75,7 +73,7 @@ initial property for each transformation, with this informatio being read from t
 these changes, we added 8 new methods to our [Transformation](/src/cs5004/animator/model/Transformation.java) 
 interface and three new fields to each sub-class as shown below.
 
-*TODO* Upload new UML diagrams with color-coding to show where changes were made
+![Updated Transformatoin UML Diagram](images/Transformation2.jpeg)
 
 ### Animation
 
@@ -85,8 +83,11 @@ We made changes to some of our method signatures (as indicated below in the UML 
 everything work well with the [AnimationBuilder](/src/cs5004/animator/util/AnimationBuilder.java) and
 files being read in.
 
-*TODO* Upload new UML diagrams with color-coding to show where changes were made
+![Updated Animation UML Diagram](images/Animation2.jpeg)
 
+### Updated UML Diagram
+
+![Updated UML Diagram](images/Animator2.jpeg)
 
 ## View Design
 We implemented three views, a [Text](/src/cs5004/animator/view/TextView.java), [SVG](/src/cs5004/animator/view/SVGView.java), 
@@ -103,4 +104,4 @@ the implementation of the views.
 
 ### Graphic View
 
-## Controller Design
+## Controller Design (Assignment 8)
