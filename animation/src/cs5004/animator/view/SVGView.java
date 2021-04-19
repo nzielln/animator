@@ -49,9 +49,9 @@ public class SVGView implements View {
      * Height: 100%
      */
     try {
-      
-      
-      FileWriter f = new FileWriter("./resources/outputs/"
+  
+  
+      FileWriter f = new FileWriter("../outputs/"
               + inputs.get("out").replace("\"", ""));
       String canvas = "<svg width=\"" + 100 + "%\" height=\"" + 100
               + "%\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";

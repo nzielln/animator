@@ -74,7 +74,7 @@ public class TextView implements View {
   
   private void writeFile(String str, HashMap<String, String> inputs) {
     try {
-      FileWriter f = new FileWriter("./resources/outputs/" + inputs.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter("../outputs/" + inputs.get("out").replace("\"", ""));
       Scanner s = new Scanner(str).useDelimiter("\n");
       while (s.hasNext()) {
         String line = s.next();

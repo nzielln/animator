@@ -103,6 +103,7 @@ public class GraphicView extends JFrame implements View {
     this.panel = new GraphicsPanel(m.getByTime(0), m);
     this.panel.setPreferredSize(new Dimension(m.getCanvasWidth(),
             m.getCanvasHeight()));
+    this.panel.setLocation(m.getCanvasX(), m.getCanvasY());
   
     add(panel, BorderLayout.CENTER);
     

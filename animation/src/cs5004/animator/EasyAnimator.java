@@ -16,16 +16,22 @@ Main class that renders CLI argument and renders view based on inputs.
    * @param args the CLI arguments
    */
   public static void main(String[] args) {
-    ViewFactory factory = new ViewFactory();
-    Reader r = new Reader();
-    System.out.println("Provide an \"-in\" file, \"-out\" the type of \"-view\" "
-            + "you would like to see, and \"-speed\" if applicable.");
     
+    StringBuilder instr = new StringBuilder();
+    
+    for (String s : args) {
+      instr.append(s).append(" ");
+    }
+  
     //Read inputs
-    Scanner scan = new Scanner(System.in);
-    
+    Scanner scan = new Scanner(instr.toString());
+  
     //Parse Inputs
     String in = scan.nextLine();
+    
+    ViewFactory factory = new ViewFactory();
+    Reader r = new Reader();
+
     View view = factory.create(in);
     r.readIn(in);
     //Get readbale and generate model
