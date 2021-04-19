@@ -22,7 +22,6 @@ import javax.swing.*;
 public class GraphicView extends JFrame implements View {
   private HashMap<String, String> inputs;
   private GraphicsPanel panel;
-  private JScrollPane scroll;
   private Animation model;
   private String view;
   
@@ -123,13 +122,19 @@ public class GraphicView extends JFrame implements View {
     setLayout(new BorderLayout());
     setVisible(true);
     
-    this.panel = new GraphicsPanel(model.getByTime(0));
+    this.panel = new GraphicsPanel(model.getByTime(0), model);
     this.panel.setPreferredSize(new Dimension(model.getCanvasWidth(),
             model.getCanvasHeight()));
   
     add(panel, BorderLayout.CENTER);
+    
+    JScrollPane scroll = new JScrollPane(this.panel);
+    setPreferredSize(new Dimension(model.getCanvasWidth(), model.getCanvasHeight() ));
+    add(scroll, BorderLayout.CENTER);
+    
     setVisible(true);
     panel.setVisible(true);
+    scroll.setVisible(true);
   
   }
   

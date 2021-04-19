@@ -8,21 +8,24 @@ import java.util.Objects;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
 public class GraphicsPanel extends JPanel {
-  private List<Shape> model;
-  private JScrollPane scroll;
+  private List<Shape> shapes;
+  private Animation model;
   
-  public GraphicsPanel(List<Shape> model) {
+  public GraphicsPanel(List<Shape> shapes, Animation model) {
     super(true);
 
     Objects.requireNonNull(model, "Model can't be null");
   
   
-    this.model = model;
+    this.shapes = shapes;
     setBackground(Color.WHITE);
+    setLayout(new BorderLayout());
     setBorder(new LineBorder(Color.BLACK, 3));
+    
   
   }
   /*
@@ -42,9 +45,9 @@ public class GraphicsPanel extends JPanel {
   
   */
   
-  public void updateModel(List<Shape> model) {
-    Objects.requireNonNull(model, "Model can't be null");
-    this.model = model;
+  public void updateModel(List<Shape> shapes) {
+    Objects.requireNonNull(shapes, "Model can't be null");
+    this.shapes = shapes;
   }
   
   @Override
@@ -55,12 +58,12 @@ public class GraphicsPanel extends JPanel {
   
     Graphics2D graphics = (Graphics2D) g;
   
-    if (this.model == null) {
+    if (this.shapes == null) {
       return; // should we return here or should we throw an exception?
     }
   
     int count = 0;
-    for (Shape s: model) {
+    for (Shape s: shapes) {
       if (s.getType().equals("RECTANGLE")) {
         Color c = new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB());
         graphics.setColor(c);
