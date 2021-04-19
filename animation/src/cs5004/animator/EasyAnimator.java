@@ -16,6 +16,10 @@ Main class that renders CLI argument and renders view based on inputs.
    * @param args the CLI arguments
    */
   public static void main(String[] args) {
+    /*for (String each: args) {
+      System.out.println(each);
+
+    }*/
     ViewFactory factory = new ViewFactory();
     Reader r = new Reader();
     System.out.println("Provide an \"-in\" file, \"-out\" the type of \"-view\" "
@@ -28,7 +32,8 @@ Main class that renders CLI argument and renders view based on inputs.
     String in = scan.nextLine();
     View view = factory.create(in);
     r.readIn(in);
-    //Get readbale and generate model
+
+    //Get readable and generate model
     r.makeModel(r.getInputs(), view);
     
     //Animate
