@@ -98,13 +98,13 @@ public interface Transformation {
   Color getInitialColor();
 
   /**
-   * Returns the initial Shape as read from the -in file
+   * Returns the initial Shape as read from the -in file in the AnimationBuilder.
    * @return shape, initial Shape with properties
    */
   Shape getInitialshape();
 
   /**
-   * Returns the final shape as read from the -in file
+   * Returns the final shape as read from the -in file in the AnimationBuilder.
    * @return shape, final shape with properties
    */
   Shape getFinalshape();
@@ -113,7 +113,7 @@ public interface Transformation {
   
   /**
    * Creates and sets the properties for the initial shape as read from the -in file in
-   * AnimationBuilder
+   * AnimationBuilder.
    * @param name, String, the name of the shape
    * @param type, String, the type of shape
    * @param x, int, initial x position
@@ -128,7 +128,7 @@ public interface Transformation {
   
   /**
    * Creates and sets the properties for the final shape as read from the -in file in
-   * AnimationBuilder
+   * AnimationBuilder.
    * @param name, String, the name of the shape
    * @param type, String, the type of shape
    * @param x, int, final x position
