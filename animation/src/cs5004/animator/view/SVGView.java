@@ -46,9 +46,10 @@ public class SVGView extends AbstractView {
         StringBuilder str = new StringBuilder();
         if (s.getType().equals("ELLIPSE")) {
           String sh = "<ellipse id=\"" + s.getName() + "\" cx=\"" + s.getPositionX() + "\" cy=\""
-                  + s.getPositionY() + "\" rx=\"" + s.getWidth() + "\" ry=\"" + s.getHeight()
-                  + "\" fill=\"rgb(" + s.getColor().getR() + "," + s.getColor().getG() + ","
-                  + s.getColor().getB() + ")\" visibility=\"visible\" >\n";
+                  + s.getPositionY() + "\" rx=\"" + s.getWidth() / 2 + "\" ry=\""
+                  + s.getHeight() / 2 + "\" fill=\"rgb(" + s.getColor().getR() + ","
+                  + s.getColor().getG() + "," + s.getColor().getB()
+                  + ")\" visibility=\"visible\" >\n";
           str.append(sh);
         } else if (s.getType().equals("RECTANGLE")) {
           String sh = "<rect id=\"" + s.getName() + "\" x=\"" + s.getPositionX() + "\" y=\""

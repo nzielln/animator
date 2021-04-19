@@ -1,4 +1,4 @@
-<svg width="560" height="560" version="1.1"
+<svg width="360" height="360" version="1.1" 
 	xmlns="http://www.w3.org/2000/svg">
 
 <rect id="R" x="200" y="200" width="50" height="100" fill="rgb(255,0,0)" visibility="visible" >
@@ -10,7 +10,7 @@
 	<animate attributeType="xml" begin="35s" dur="15s" attributeName="y" from="300" to="200" fill="freeze" />
 </rect>
 
-<ellipse id="C" cx="440" cy="70" rx="60" ry="30" fill="rgb(0,0,255)" visibility="visible" >
+<ellipse id="C" cx="440" cy="70" rx="120" ry="60" fill="rgb(0,0,255)" visibility="visible" >
 	<animate attributeType="xml" begin="10s" dur="15s" attributeName="cx" from="440" to="440" fill="freeze" />
 	<animate attributeType="xml" begin="10s" dur="15s" attributeName="cy" from="70" to="250" fill="freeze" />
 	<animate attributeType="xml" begin="25s" dur="10s" attributeName="cx" from="440" to="440" fill="freeze" />
