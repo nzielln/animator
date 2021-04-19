@@ -11,15 +11,17 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
 public interface View {
-  String getView();
+  String getViewType();
   
-  void animate();
+  View getView();
   
+  void animate(Animation m, HashMap<String, String> inputs);
+  /*
   void readInputs(String in);
-  
-  void buildModel(FileReader f);
-  
   void getReadable() throws FileNotFoundException;
+  */
+  void buildModel(Animation f);
+  
   
   void currentView(List<Shape> shapes);
   

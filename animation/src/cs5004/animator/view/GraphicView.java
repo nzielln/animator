@@ -20,39 +20,45 @@ import cs5004.animator.util.AnimationReader;
 import javax.swing.*;
 
 public class GraphicView extends JFrame implements View {
-  private HashMap<String, String> inputs;
+  //private HashMap<String, String> inputs;
   private GraphicsPanel panel;
-  private Animation model;
+  //private Animation model;
   private String view;
   
   public GraphicView() {
     super("Animation");
-    this.inputs = new HashMap<>();
-    this.model = new AnimationImpl();
+    //inputs = new HashMap<>();
+    //m = new AnimationImpl();
     this.view = "Visual";
   }
   
-  public void currentView(List<Shape> model) {
-    Objects.requireNonNull(model, "Model can't be null");
+  @Override
+  public void currentView(List<Shape> m) {
+    Objects.requireNonNull(m, "Model can't be null");
 
-    this.panel.updateModel(model);
+    this.panel.updateModel(m);
     this.repaint();
   }
   
   @Override
-  public String getView() {
+  public String getViewType() {
     return this.view;
   }
   
   @Override
-  public void animate() {
+  public View getView() {
+    return this;
+  }
   
-    List<Shape> model = new ArrayList<>(this.model.getShapes());
+  @Override
+  public void animate(Animation m, HashMap<String, String> in) {
+  
+    List<Shape> model = new ArrayList<>(m.getShapes());
 
     int tick = 1;
 
-    if (this.inputs.get("speed") != null) {
-      tick = Integer.parseInt(this.inputs.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
+    if (in.get("speed") != null) {
+      tick = Integer.parseInt(in.get("speed")); //not sure if this is how to correctly rep speed + figure out how to use timer class
       if (tick <= 0) {
         throw new IllegalArgumentException("Speed needs to be positive integer");
       }
@@ -70,7 +76,7 @@ public class GraphicView extends JFrame implements View {
   
     //do we get how long the animation is from the user at all? Does this need to be <= or <?
     while (count < lengthAnimation) {
-      List<Shape> modified = this.model.getByTime(count);
+      List<Shape> modified = m.getByTime(count);
     
       //update the animation and model to newModel
       //update count
@@ -86,51 +92,51 @@ public class GraphicView extends JFrame implements View {
     }
   }
   
+  /*
   @Override
   public void readInputs(String in) {
     Scanner s = new Scanner(in);
     while (s.hasNext()) {
       String next = s.next();
       if (next.equals("-in")) {
-        this.inputs.put("in", s.next());
+        inputs.put("in", s.next());
       } else if (next.equals("-out")) {
-        this.inputs.put("out", s.next());
+        inputs.put("out", s.next());
       } else if (next.equals("-view")) {
-        this.inputs.put("view", s.next());
+        inputs.put("view", s.next());
       } else if (next.equals("-speed")) {
-        this.inputs.put("speed", s.next());
+        inputs.put("speed", s.next());
       }
     }
-    if (this.inputs.get("in") == null || this.inputs.get("in").equals("")) {
+    if (inputs.get("in") == null || inputs.get("in").equals("")) {
       JOptionPane.showMessageDialog(this, "You must provide an \"-in\" file.",
               "ERROR", JOptionPane.ERROR_MESSAGE);
     }
     
   }
   
-  @Override
-  public void buildModel(FileReader f) {
-    AnimationBuilder<Animation> b = new AnimationBuilderImpl(model);
-    AnimationReader.parseFile(f, b);
+   */
   
-    setSize(model.getCanvasWidth(),
-            model.getCanvasHeight());
+  @Override
+  public void buildModel(Animation m) {
+    setSize(m.getCanvasWidth(),
+            m.getCanvasHeight());
     
-    setLocation(model.getCanvasX(),
-            model.getCanvasY());
+    setLocation(m.getCanvasX(),
+            m.getCanvasY());
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
     setVisible(true);
     
-    this.panel = new GraphicsPanel(model.getByTime(0), model);
-    this.panel.setPreferredSize(new Dimension(model.getCanvasWidth(),
-            model.getCanvasHeight()));
+    this.panel = new GraphicsPanel(m.getByTime(0), m);
+    this.panel.setPreferredSize(new Dimension(m.getCanvasWidth(),
+            m.getCanvasHeight()));
   
     add(panel, BorderLayout.CENTER);
     
     JScrollPane scroll = new JScrollPane(this.panel);
-    setPreferredSize(new Dimension(model.getCanvasWidth(), model.getCanvasHeight() ));
+    setPreferredSize(new Dimension(m.getCanvasWidth(), m.getCanvasHeight() ));
     add(scroll, BorderLayout.CENTER);
     
     setVisible(true);
@@ -139,9 +145,12 @@ public class GraphicView extends JFrame implements View {
   
   }
   
+  
+  
+  /*
   @Override
   public void getReadable() throws FileNotFoundException {
-    String fileInput = this.inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
+    String fileInput = inputs.get("in").replace("\"", ""); //from the CLI - should have a method for this??
     String filename = "./resources/files/" + fileInput;
     try {
       File demo = new File(filename);
@@ -152,5 +161,7 @@ public class GraphicView extends JFrame implements View {
               "ERROR", JOptionPane.ERROR_MESSAGE);
     }
   }
+  
+   */
   
 }

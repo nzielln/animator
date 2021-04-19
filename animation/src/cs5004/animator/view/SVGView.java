@@ -20,29 +20,29 @@ public class SVGView extends AbstractView {
   
   
   @Override
-  public String getView() {
+  public String getViewType() {
     return this.view;
   }
   
   @Override
-  public void animate() {
-    Objects.requireNonNull(this.model, "Animation can't be null");
-    Objects.requireNonNull(this.inputs, "Inputs can't be null");
+  public void animate(Animation m, HashMap<String, String> inputs) {
+    Objects.requireNonNull(m, "Animation can't be null");
+    Objects.requireNonNull(inputs, "Inputs can't be null");
     
     int speed = 1;
-    if (this.inputs.get("speed") != null) {
-      speed = Integer.parseInt(this.inputs.get("speed").replace("\"",""));
+    if (inputs.get("speed") != null) {
+      speed = Integer.parseInt(inputs.get("speed").replace("\"",""));
     }
     
     try {
       
-      FileWriter f = new FileWriter("./resources/outputs/" + this.inputs.get("out").replace("\"", ""));
-      String canvas = "<svg width=\"" + this.model.getCanvasWidth() + "\" height=\"" + this.model.getCanvasHeight()
+      FileWriter f = new FileWriter("./resources/outputs/" + inputs.get("out").replace("\"", ""));
+      String canvas = "<svg width=\"" + m.getCanvasWidth() + "\" height=\"" + m.getCanvasHeight()
               + "\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
       
       
-      for (Shape s : this.model.getShapes()) {
+      for (Shape s : m.getShapes()) {
         StringBuilder str = new StringBuilder();
         if (s.getType().equals("ELLIPSE")) {
           String sh = "<ellipse id=\"" + s.getName() + "\" cx=\"" + s.getPositionX() + "\" cy=\""
@@ -60,7 +60,7 @@ public class SVGView extends AbstractView {
         }
         
         
-        for (Transformation t : this.model.getTransformations(s.getName())) {
+        for (Transformation t : m.getTransformations(s.getName())) {
           String tx = "";
           String ty = "";
           if (t.getTransformationType().equals("Moves")) {
@@ -140,6 +140,17 @@ public class SVGView extends AbstractView {
       e.printStackTrace();
     }
     
+  }
+  
+  @Override
+  public void buildModel(Animation f) {
+    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+    
+  }
+  
+  @Override
+  public View getView() {
+    throw new UnsupportedOperationException("This operation isn't supported by this class.");
   }
   
 }

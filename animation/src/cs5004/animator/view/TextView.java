@@ -3,8 +3,10 @@ package cs5004.animator.view;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Scanner;
 
+import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
 public class TextView extends AbstractView {
@@ -17,24 +19,24 @@ public class TextView extends AbstractView {
   For testing: -in "smalldemo.txt" -view "text"
   */
   @Override
-  public String getView() {
+  public String getViewType() {
     return this.view;
   }
   
   @Override
-  public void animate() {
+  public void animate(Animation m, HashMap<String, String> inputs) {
     
     //determine when to make a new animation???
     int interval = 0;
-    if (this.inputs.get("speed") != null) {
-      int time = Integer.parseInt(this.inputs.get("speed"));
+    if (inputs.get("speed") != null) {
+      int time = Integer.parseInt(inputs.get("speed"));
       interval = 1000 / time;
     }
     
     StringBuilder str = new StringBuilder();
     System.out.println("Text View of the Animation:________________________________________________"
            + "\n");
-    for (Shape s : this.model.getShapes()) {
+    for (Shape s : m.getShapes()) {
       if (s.getType().equals("RECTANGLE")) {
         String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
                 + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
@@ -50,7 +52,7 @@ public class TextView extends AbstractView {
     
     str.append("\n");
     
-    for (Shape s : this.model.getShapes()) {
+    for (Shape s : m.getShapes()) {
       String timeDesc = s.getName() + " appears at t=" + s.getAppears() + " and disappears at t="
               + s.getDisappears();
       str.append(timeDesc).append("\n");
@@ -58,12 +60,12 @@ public class TextView extends AbstractView {
     
     str.append("\n");
   
-    for (Shape s : this.model.getShapes()) {
-      str.append(this.model.tranformationString(s).replace("Shape ", ""));
+    for (Shape s : m.getShapes()) {
+      str.append(m.tranformationString(s).replace("Shape ", ""));
     }
   
-    if (this.inputs.get("out") != null) {
-      writeFile(str.toString());
+    if (inputs.get("out") != null) {
+      writeFile(str.toString(), inputs);
     }
   
     System.out.println(str);
@@ -71,9 +73,20 @@ public class TextView extends AbstractView {
   
   }
   
-  private void writeFile(String str) {
+  @Override
+  public void buildModel(Animation f) {
+    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+    
+  }
+  
+  @Override
+  public View getView() {
+    throw new UnsupportedOperationException("This operation isn't supported by this class.");
+  }
+  
+  private void writeFile(String str, HashMap<String, String> inputs) {
     try {
-      FileWriter f = new FileWriter("./resources/outputs/" + this.inputs.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter("./resources/outputs/" + inputs.get("out").replace("\"", ""));
       Scanner s = new Scanner(str).useDelimiter("\n");
       while (s.hasNext()) {
         String line = s.next();

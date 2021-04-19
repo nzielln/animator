@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import cs5004.animator.view.Reader;
 import cs5004.animator.view.View;
 import cs5004.animator.view.ViewFactory;
 
@@ -20,6 +21,7 @@ import static org.junit.Assert.fail;
 public class TextTest {
 
   ViewFactory factory = new ViewFactory();
+  Reader r = new Reader();
 
   /**
    * Tests that the TextView has the correct output when given an empty file.
@@ -33,9 +35,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:______________________________________" +
@@ -58,9 +60,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -98,9 +100,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:___________________________________" +
@@ -159,9 +161,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -201,9 +203,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       String filepath = "./resources/outputs/small.txt";
@@ -241,9 +243,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -280,9 +282,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -302,9 +304,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -324,9 +326,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -347,9 +349,9 @@ public class TextTest {
       PrintStream sys = System.out;
       System.setOut(out);
       View view = factory.create(in);
-      view.readInputs(in);
-      view.getReadable();
-      view.animate();
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");

@@ -24,7 +24,6 @@ public class GraphicsPanel extends JPanel {
     setBackground(Color.WHITE);
     setLayout(new BorderLayout());
     setBorder(new LineBorder(Color.BLACK, 3));
-    
   
   }
   
