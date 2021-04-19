@@ -66,52 +66,56 @@ public interface Shape {
   int getDisappears();
   
   /**
-   *
+   * Determines if a shape has been created yet.
+   * @return returns true if shape has been created, false if not
    */
   boolean getCreated();
-
-  /**
-   *
-   * @param x
-   * @param y
-   */
-  void changePosition(int x, int y);
-
-  /**
-   *
-   * @param w
-   * @param h
-   */
-  void changeSize(int w, int h);
-
-  /**
-   *
-   * @param r
-   * @param g
-   * @param b
-   */
-  void changeColor(int r,int g, int b);
   
   //SETTERS AND OTHER------------------------------------------------------------------------------
   /**
-   * @param x
-   * @param y
-   * @param w
-   * @param h
-   * @param r
-   * @param g
-   * @param b
+   * Sets the properties for a new shape.
+   * @param x, int, x position for the shape
+   * @param y, int, y position for the shape
+   * @param w, int, width for the shape
+   * @param h, int, height for the shape
+   * @param r, int, red value for the shape
+   * @param g, int, green value for the shape
+   * @param b, int, blue value for the shape
    */
   void setProperties(int x, int y, int w, int h, int r, int g, int b);
+
   
   /**
-   * Set the time the Shape appears in the animation.
+   * Set the time the Shape appears and disappears in the animation.
    * @param appears time in int, when shape appears
-   * @throws IllegalArgumentException if time object appears in less than 0 or if appears is greater
+   * @param disappears time in int, when the shape disappears
+   * @throws IllegalArgumentException if time object appears/disappears in less than 0 or if appears is greater
    *        than this.disappears.
    */
-  void setAppearsDisappears(int appears, int disappears);
-
+  void setAppearsDisappears(int appears, int disappears) throws IllegalArgumentException;
+  
+  /**
+   * Changes the x and y positions of a shape.
+   * @param x int, new x poisition for the shape
+   * @param y int, new y position for the shape
+   */
+  void changePosition(int x, int y);
+  
+  /**
+   * Changes the width and height of a shape.
+   * @param w, int, new width for the shape
+   * @param h, int, new height for the shape
+   */
+  void changeSize(int w, int h);
+  
+  /**
+   * Changes the red, green and blue values for a shape.
+   * @param r, int, new red value
+   * @param g, int, new green value
+   * @param b, int, new blue value.
+   */
+  void changeColor(int r,int g, int b);
+  
   
   /**
    * Returns a copy of the Shape object.
