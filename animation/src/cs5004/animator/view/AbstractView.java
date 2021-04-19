@@ -25,14 +25,15 @@ public abstract class AbstractView implements View {
     this.inputs = new HashMap<>();
     this.model = new AnimationImpl();
   }
-  
+
   @Override
   public void animate() {
-  
+    throw new UnsupportedOperationException("AbstractView does not support animate method");
   }
   
   @Override
   public void currentView(List<Shape> shapes) {
+    throw new UnsupportedOperationException("AbstractView does not support currentView method");
   }
   
   @Override
