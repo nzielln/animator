@@ -13,7 +13,7 @@ import cs5004.animator.model.Shape;
 import cs5004.animator.model.Transformation;
 
 /**
- * AnimationBuilder class that implements the AnimationBuilder<Doc> interface.
+ * AnimationBuilder class that implements the AnimationBuilder interface.
  */
 public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
   private Animation model;

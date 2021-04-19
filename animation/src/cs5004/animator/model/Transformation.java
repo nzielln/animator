@@ -62,31 +62,31 @@ public interface Transformation {
   Color getToColor();
 
   /**
-   * Returns the initial x position of the shape (as provided in the -in file)
+   * Returns the initial x position of the shape (as provided in the -in file).
    * @return int, initial x position
    */
   int getInitialX();
   
   /**
-   * Returns the initial y position of the shape (as provided in the -in file)
+   * Returns the initial y position of the shape (as provided in the -in file).
    * @return int, initial y position
    */
   int getInitialY();
   
   /**
-   * Returns the initial width of the shape (as provided in the -in file)
+   * Returns the initial width of the shape (as provided in the -in file).
    * @return int, initial width
    */
   int getInitialWidth();
   
   /**
-   * Returns the initial height of the shape (as provided in the -in file)
+   * Returns the initial height of the shape (as provided in the -in file).
    * @return int, initial height
    */
   int getInitialHeight();
   
   /**
-   * Returns the initial Color of the shape (as provided in the -in file)
+   * Returns the initial Color of the shape (as provided in the -in file).
    * @return int, initial Color
    */
   Color getInitialColor();

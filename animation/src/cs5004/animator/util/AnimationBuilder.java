@@ -2,7 +2,7 @@ package cs5004.animator.util;
 
 /**
  * An interface representing an AnimationBuilder.
- * @param <Doc>
+ * @param <Doc> the generic type of Animation
  */
 public interface AnimationBuilder<Doc> {
   /**
