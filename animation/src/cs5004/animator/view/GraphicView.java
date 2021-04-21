@@ -47,8 +47,15 @@ public class GraphicView extends JFrame implements View {
   }
   
   @Override
-  public void animate(Animation m, HashMap<String, String> in) {
+  public void animate(HashMap<String, String> str) {
+    throw new UnsupportedOperationException(" ");
+    
+  }
   
+  
+  @Override
+  public void animateVisual(List<Shape> m) {
+  /*
     List<Shape> model = new ArrayList<>(m.getShapes());
 
     int tick = 1;
@@ -85,30 +92,30 @@ public class GraphicView extends JFrame implements View {
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
-    }
+    }*/
   }
 
   @Override
-  public void buildModel(Animation m) {
-    setSize(m.getCanvasWidth(),
-            m.getCanvasHeight());
+  public void buildModel(int x, int y, int w, int h) {
+    setSize(w,
+            h);
     
-    setLocation(m.getCanvasX(),
-            m.getCanvasY());
+    setLocation(x,
+           y);
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
     setVisible(true);
     
-    this.panel = new GraphicsPanel(m.getByTime(0), m);
-    this.panel.setPreferredSize(new Dimension(m.getCanvasWidth(),
-            m.getCanvasHeight()));
-    this.panel.setLocation(m.getCanvasX(), m.getCanvasY());
+    this.panel = new GraphicsPanel();
+    this.panel.setPreferredSize(new Dimension(w,
+            h));
+    this.panel.setLocation(x, y);
   
     add(panel, BorderLayout.CENTER);
     
     JScrollPane scroll = new JScrollPane(this.panel);
-    setPreferredSize(new Dimension(m.getCanvasWidth(), m.getCanvasHeight() ));
+    setPreferredSize(new Dimension(w, h));
     add(scroll, BorderLayout.CENTER);
     
     setVisible(true);

@@ -28,13 +28,14 @@ public interface View {
    * @param m Animation, the model for the animation
    * @param inputs HashMap, input read from CLI
    */
-  void animate(Animation m, HashMap<String, String> inputs);
+  void animate(HashMap<String, String> str);
+  void animateVisual(List<Shape> m);
   
   /**
    * Builds a JFrame model using information from the model.
    * @param m Animation, the model for the animation
    */
-  void buildModel(Animation m) throws UnsupportedOperationException;
+  void buildModel(int x, int y, int width, int height) throws UnsupportedOperationException;
   
   /**
    * Updates the view for the GraphicView, takes in a list of shapes.

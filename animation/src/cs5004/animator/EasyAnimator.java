@@ -2,15 +2,14 @@ package cs5004.animator;
 
 import java.util.Scanner;
 
-import cs5004.animator.view.Reader;
-import cs5004.animator.view.View;
-import cs5004.animator.view.ViewFactory;
+import cs5004.animator.controller.Controller;
+import cs5004.animator.controller.ViewController;
+
 
 /**
  * Entry class for the animation program, parse CLI argument and renders appropriate view.
  */
 public class EasyAnimator {
-
   /**
 Main class that renders CLI argument and renders view based on inputs.
    * @param args the CLI arguments
@@ -22,23 +21,9 @@ Main class that renders CLI argument and renders view based on inputs.
     for (String s : args) {
       instr.append(s).append(" ");
     }
-  
-    //Read inputs
-    Scanner scan = new Scanner(instr.toString());
-  
-    //Parse Inputs
-    String in = scan.nextLine();
     
-    ViewFactory factory = new ViewFactory();
-    Reader r = new Reader();
-
-    View view = factory.create(in);
-    r.readIn(in);
-    //Get readbale and generate model
-    r.makeModel(r.getInputs(), view);
-    
-    //Animate
-    view.animate(r.getModel(), r.getInputs());
+    Controller controller = new ViewController(instr.toString());
+    controller.go();
  
   }
 }

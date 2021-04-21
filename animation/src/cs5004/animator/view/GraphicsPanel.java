@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +12,6 @@ import javax.swing.JPanel;
 
 import javax.swing.border.LineBorder;
 
-import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 
 /**
@@ -20,17 +20,11 @@ import cs5004.animator.model.Shape;
 public class GraphicsPanel extends JPanel {
   private List<Shape> shapes;
   
-  /**
-   * Graphic Panel constructor that takes in a list of shapes passed from GraphicView and the model.
-   * @param shapes list, a list of shapes passed from the GraphicView
-   * @param model Animation, the animation model.
-   */
-  public GraphicsPanel(List<Shape> shapes, Animation model) {
+  public GraphicsPanel() {
     super(true);
 
-    Objects.requireNonNull(model, "Model can't be null");
   
-    this.shapes = shapes;
+    this.shapes = new ArrayList<>();
     setBackground(Color.WHITE);
     setLayout(new BorderLayout());
     setBorder(new LineBorder(Color.BLACK, 3));

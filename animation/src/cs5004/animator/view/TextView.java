@@ -30,46 +30,24 @@ public class TextView implements View {
   }
   
   @Override
-  public void animate(Animation m, HashMap<String, String> inputs) {
-    
-    StringBuilder str = new StringBuilder();
-    System.out.println("Text View of the Animation:________________________________________________"
-           + "\n");
-    for (Shape s : m.getShapes()) {
-      if (s.getType().equals("RECTANGLE")) {
-        String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
-                + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
-                + "), width " + s.getWidth() + " height " + s.getHeight() + ".";
-        str.append(desc).append("\n");
-      } else if (s.getType().equals("ELLIPSE")) {
-        String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
-                + s.getColor() + " with center at (" + s.getPositionX() + "," + s.getPositionY()
-                + "), radius " + s.getWidth() + " and " + s.getHeight() + ".";
-        str.append(desc).append("\n");
-      }
-    }
-    
-    str.append("\n");
-    
-    for (Shape s : m.getShapes()) {
-      String timeDesc = s.getName() + " appears at t=" + s.getAppears() + " and disappears at t="
-              + s.getDisappears();
-      str.append(timeDesc).append("\n");
-    }
-    
-    str.append("\n");
-  
-    for (Shape s : m.getShapes()) {
-      str.append(m.tranformationString(s).replace("Shape ", ""));
+  public void animate(HashMap<String, String> str) {
+    System.out.println(str.get("output"));
+    if (str.get("out") != null) {
+      writeFile(str.get("output"), str);
     }
   
-    if (inputs.get("out") != null) {
-      writeFile(str.toString(), inputs);
-    }
+  }
   
-    System.out.println(str);
+  @Override
+  public void animateVisual(List<Shape> m) {
+    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+    
+  }
   
-  
+  @Override
+  public void buildModel(int x, int y, int width, int height) throws UnsupportedOperationException {
+    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+    
   }
   
   private void writeFile(String str, HashMap<String, String> inputs) {
@@ -91,11 +69,6 @@ public class TextView implements View {
     
   }
   
-  @Override
-  public void buildModel(Animation f) {
-    throw new UnsupportedOperationException("This method is not supported by the Text view.");
-    
-  }
   
   @Override
   public void currentView(List<Shape> shapes) {

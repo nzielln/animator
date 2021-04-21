@@ -7,6 +7,8 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import cs5004.animator.controller.Controller;
+import cs5004.animator.controller.ViewController;
 import cs5004.animator.view.Reader;
 import cs5004.animator.view.View;
 import cs5004.animator.view.ViewFactory;
@@ -34,10 +36,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:______________________________________" +
@@ -59,10 +59,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -102,10 +100,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:___________________________________" +
@@ -163,10 +159,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -205,10 +199,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       String filepath = "./resources/outputs/small.txt";
@@ -247,10 +239,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -291,10 +281,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -313,10 +301,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -335,10 +321,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -358,10 +342,8 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      View view = factory.create(in);
-      r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      Controller con = new ViewController(in);
+      con.go();
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");

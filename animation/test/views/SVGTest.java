@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 
+import cs5004.animator.controller.Controller;
+import cs5004.animator.controller.ViewController;
 import cs5004.animator.view.Reader;
 import cs5004.animator.view.View;
 import cs5004.animator.view.ViewFactory;
@@ -24,11 +26,8 @@ public class SVGTest {
   public void testViewReader() {
     try {
       String in = "-in smalldemo.txt -view visual -speed 2";
-      View v = factory.create(in);
-      Reader r1 = new Reader();
-      r1.readIn(in);
-      r1.makeModel(r1.getInputs(), v);
-      assertEquals("Visual", v.getViewType());
+      Controller con = new ViewController(in);
+      con.go();
     } catch (Exception e) {
       fail("Exception should not be thrown.");
     }
@@ -36,33 +35,24 @@ public class SVGTest {
     //different order
     try {
       String in = "-speed 2 -view visual -in smalldemo.txt";
-      View v = factory.create(in);
-      Reader r2 = new Reader();
-      r2.readIn(in);
-      r2.makeModel(r2.getInputs(), v);
-      assertEquals("Visual", v.getViewType());
+      Controller con = new ViewController(in);
+      con.go();
     } catch (Exception e) {
       fail("Exception should not be thrown.");
     }
     
     try {
       String in2 = "-in smalldemo.txt -view text";
-      View v2 = factory.create(in2);
-      Reader r3 = new Reader();
-      r3.readIn(in2);
-      r3.makeModel(r3.getInputs(), v2);
-      assertEquals("Text", v2.getViewType());
+      Controller con = new ViewController(in2);
+      con.go();
     } catch (Exception e) {
       fail("Exception should not be thrown.");
     }
     
     try {
       String in3 = "-in smalldemo.txt -view svg -out s.svg";
-      View v3 = factory.create(in3);
-      Reader r4 = new Reader();
-      r4.readIn(in3);
-      r4.makeModel(r4.getInputs(), v3);
-      assertEquals("SVG", v3.getViewType());
+      Controller con = new ViewController(in3);
+      con.go();
     } catch (Exception e) {
       fail("Exception should not be thrown.");
     }
@@ -75,10 +65,8 @@ public class SVGTest {
     //in not provided
     try {
       String in = "-view text -speed 3";
-      View v = factory.create(in);
-      Reader r1 = new Reader();
-      r1.readIn(in);
-      r1.makeModel(r1.getInputs(), v);
+      Controller con = new ViewController(in);
+      con.go();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -86,10 +74,8 @@ public class SVGTest {
     //in and view not provided
     try {
       String in = "-out text.txt -speed 3";
-      View v = factory.create(in);
-      Reader r3 = new Reader();
-      r3.readIn(in);
-      r3.makeModel(r3.getInputs(), v);
+      Controller con = new ViewController(in);
+      con.go();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -97,11 +83,8 @@ public class SVGTest {
     //view not provided
     try {
       String ins = "-in smalldemo.txt -out text.txt -speed 3";
-      View vs = factory.create(ins);
-      Reader r2 = new Reader();
-      r2.readIn(ins);
-      r2.makeModel(r2.getInputs(), vs);
-      System.out.println(r2.getInputs());
+      Controller con = new ViewController(ins);
+      con.go();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -109,10 +92,8 @@ public class SVGTest {
     //File not found - text
     try {
       String in = "-in smalldmo.txt -view text";
-      View v = factory.create(in);
-      Reader r4 = new Reader();
-      r4.readIn(in);
-      r4.makeModel(r4.getInputs(), v);
+      Controller con = new ViewController(in);
+      con.go();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -120,10 +101,8 @@ public class SVGTest {
     //File not found - svg
     try {
       String in = "-in smalldmo.txt -view svg -speed 2";
-      View v = factory.create(in);
-      Reader r5 = new Reader();
-      r5.readIn(in);
-      r5.makeModel(r5.getInputs(), v);
+      Controller con = new ViewController(in);
+      con.go();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -131,10 +110,8 @@ public class SVGTest {
     //svg mispelled
     try {
       String in = "-in smalldemo.txt -view swg -speed 2";
-      View v = factory.create(in);
-      Reader r6 = new Reader();
-      r6.readIn(in);
-      r6.makeModel(r6.getInputs(), v);
+      Controller con = new ViewController(in);
+      con.go();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -142,10 +119,8 @@ public class SVGTest {
     //File not found - visual
     try {
       String in = "-in smalldmo.txt -view visual -speed 2";
-      View v = factory.create(in);
-      Reader r7 = new Reader();
-      r7.readIn(in);
-      r7.makeModel(r7.getInputs(), v);
+      Controller con = new ViewController(in);
+      con.go();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -153,10 +128,8 @@ public class SVGTest {
     //no in file
     try {
       String in = "-speed 2 -view text";
-      View v = factory.create(in);
-      Reader r7 = new Reader();
-      r7.readIn(in);
-      r7.makeModel(r7.getInputs(), v);
+      Controller con = new ViewController(in);
+      con.go();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -164,10 +137,8 @@ public class SVGTest {
     //no out file - svg
     try {
       String in = "-in smalldemo.txt -view svg";
-      View v = factory.create(in);
-      Reader r8 = new Reader();
-      r8.readIn(in);
-      r8.makeModel(r8.getInputs(), v);
+      Controller con = new ViewController(in);
+      con.go();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -177,11 +148,8 @@ public class SVGTest {
   @Test
   public void emptyFile() throws FileNotFoundException {
     String in = "-in empty.txt -view svg -speed 2 -out out.svg";
-    View v = factory.create(in);
-    Reader r = new Reader();
-    r.readIn(in);
-    r.makeModel(r.getInputs(), v);
-    v.animate(r.getModel(), r.getInputs());
+    Controller con = new ViewController(in);
+    con.go();
     StringBuilder s = new StringBuilder();
     File demo = new File("./resources/outputs/out.svg");
     FileReader f = new FileReader(demo);
@@ -201,11 +169,8 @@ public class SVGTest {
   @Test
   public void smalldemoSvg() throws FileNotFoundException {
     String in = "-in smalldemo.txt -view svg -speed 2 -out out.svg";
-    View v = factory.create(in);
-    Reader r = new Reader();
-    r.readIn(in);
-    r.makeModel(r.getInputs(), v);
-    v.animate(r.getModel(), r.getInputs());
+    Controller con = new ViewController(in);
+    con.go();
     StringBuilder s = new StringBuilder();
     File demo = new File("./resources/outputs/out.svg");
     FileReader f = new FileReader(demo);

@@ -12,6 +12,7 @@ same shape object.
 
 ![Animation Class](images/Animation.jpeg)
 
+
 Our [AnimationImpl](../src/cs5004/animator/model/AnimationImpl.java) has methods to handle tasks such 
 as adding new shapes/transformation to the animation or removing shapes/transformation from the the 
 animation. 
