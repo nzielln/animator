@@ -80,4 +80,5 @@ public class TextView implements View {
   public View getView() {
     return this;
   }
+
 }

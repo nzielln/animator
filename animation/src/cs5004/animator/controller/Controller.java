@@ -25,4 +25,5 @@ public interface Controller {
    */
   void callView(String in);
   void go();
+
 }

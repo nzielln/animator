@@ -28,6 +28,7 @@ Main class that renders CLI argument and renders view based on inputs.
   }
 }
 
+
 //test text: -in smalldemo.txt -view text -speed 2
 //test svg: -in smalldemo.txt -view svg -speed 2 -out s.svg
 //test visual: -in smalldemo.txt -view visual -speed 20

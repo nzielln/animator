@@ -77,6 +77,7 @@ public class SVGView implements View {
   public View getView() {
     return this;
   }
+
   
 }
 

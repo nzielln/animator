@@ -111,4 +111,5 @@ public class Reader {
   public Animation getModel() {
     return this.model;
   }
+
 }
