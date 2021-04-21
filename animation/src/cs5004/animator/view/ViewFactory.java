@@ -13,9 +13,9 @@ public class ViewFactory {
    * @return veiw, a view object
    */
   public View create(String in) {
-
+    
     Objects.requireNonNull(in, "Inputs can't be null");
-
+    
     if (in.contains("-view text")) {
       return new TextView();
     } else if (in.contains("-view svg")) {
@@ -26,7 +26,6 @@ public class ViewFactory {
     
     return null;
   }
-
-
+  
   
 }

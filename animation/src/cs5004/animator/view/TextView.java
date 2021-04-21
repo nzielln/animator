@@ -1,6 +1,5 @@
 package cs5004.animator.view;
 
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,23 +29,45 @@ public class TextView implements View {
   }
   
   @Override
-  public void animate(HashMap<String, String> str) {
-    System.out.println(str.get("output"));
-    if (str.get("out") != null) {
-      writeFile(str.get("output"), str);
-    }
-  
-  }
-  
-  @Override
-  public void animateVisual(List<Shape> m) {
-    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+  public void animate(Animation m, HashMap<String, String> inputs) {
     
-  }
-  
-  @Override
-  public void buildModel(int x, int y, int width, int height) throws UnsupportedOperationException {
-    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+    StringBuilder str = new StringBuilder();
+    System.out.println("Text View of the Animation:________________________________________________"
+            + "\n");
+    for (Shape s : m.getShapes()) {
+      if (s.getType().equals("RECTANGLE")) {
+        String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
+                + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
+                + "), width " + s.getWidth() + " height " + s.getHeight() + ".";
+        str.append(desc).append("\n");
+      } else if (s.getType().equals("ELLIPSE")) {
+        String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
+                + s.getColor() + " with center at (" + s.getPositionX() + "," + s.getPositionY()
+                + "), radius " + s.getWidth() + " and " + s.getHeight() + ".";
+        str.append(desc).append("\n");
+      }
+    }
+    
+    str.append("\n");
+    
+    for (Shape s : m.getShapes()) {
+      String timeDesc = s.getName() + " appears at t=" + s.getAppears() + " and disappears at t="
+              + s.getDisappears();
+      str.append(timeDesc).append("\n");
+    }
+    
+    str.append("\n");
+    
+    for (Shape s : m.getShapes()) {
+      str.append(m.tranformationString(s).replace("Shape ", ""));
+    }
+    
+    if (inputs.get("out") != null) {
+      writeFile(str.toString(), inputs);
+    }
+    
+    System.out.println(str);
+    
     
   }
   
@@ -69,6 +90,11 @@ public class TextView implements View {
     
   }
   
+  @Override
+  public void buildModel(Animation f) {
+    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+    
+  }
   
   @Override
   public void currentView(List<Shape> shapes) {
@@ -80,5 +106,4 @@ public class TextView implements View {
   public View getView() {
     return this;
   }
-
 }
