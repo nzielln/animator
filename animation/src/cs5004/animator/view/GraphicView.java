@@ -31,7 +31,7 @@ public class GraphicView extends JFrame implements View {
   @Override
   public void currentView(List<Shape> m) {
     Objects.requireNonNull(m, "Model can't be null");
-
+    
     this.panel.updateModel(m);
     this.repaint();
   }
@@ -47,81 +47,74 @@ public class GraphicView extends JFrame implements View {
   }
   
   @Override
-  public void animate(HashMap<String, String> str) {
-    throw new UnsupportedOperationException(" ");
+  public void animate(Animation m, HashMap<String, String> in) {
     
-  }
-  
-  
-  @Override
-  public void animateVisual(List<Shape> m) {
-  /*
     List<Shape> model = new ArrayList<>(m.getShapes());
-
+    
     int tick = 1;
-
+    
     if (in.get("speed") != null) {
       tick = Integer.parseInt(in.get("speed"));
       if (tick <= 0) {
         throw new IllegalArgumentException("Speed needs to be positive integer");
       }
     }
-  
+    
     int count = 0;
     int lengthAnimation = 0;
-  
+    
     //get the total length of the animation
     for (Shape shape : model) {
       if (shape.getDisappears() > lengthAnimation) {
         lengthAnimation = shape.getDisappears();
       }
     }
-  
+    
     //do we get how long the animation is from the user at all? Does this need to be <= or <?
     while (count < lengthAnimation) {
       List<Shape> modified = m.getByTime(count);
-    
+      
       //update the animation and model to newModel
       //update count
       this.currentView(modified);
       count += 1;
-    
+      
       //Timer to let user see changes
       try {
         Thread.sleep(1000 / tick);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
-    }*/
+    }
   }
-
+  
   @Override
-  public void buildModel(int x, int y, int w, int h) {
-    setSize(w,
-            h);
+  public void buildModel(Animation m) {
+    setSize(m.getCanvasWidth(),
+            m.getCanvasHeight());
     
-    setLocation(x,
-           y);
+    setLocation(m.getCanvasX(),
+            m.getCanvasY());
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
     setVisible(true);
     
-    this.panel = new GraphicsPanel();
-    this.panel.setPreferredSize(new Dimension(w,
-            h));
-    this.panel.setLocation(x, y);
-  
+    this.panel = new GraphicsPanel(m.getByTime(0), m);
+    this.panel.setPreferredSize(new Dimension(m.getCanvasWidth(),
+            m.getCanvasHeight()));
+    this.panel.setLocation(m.getCanvasX(), m.getCanvasY());
+    
     add(panel, BorderLayout.CENTER);
     
     JScrollPane scroll = new JScrollPane(this.panel);
-    setPreferredSize(new Dimension(w, h));
+    setPreferredSize(new Dimension(m.getCanvasWidth(), m.getCanvasHeight() ));
     add(scroll, BorderLayout.CENTER);
     
     setVisible(true);
     panel.setVisible(true);
     scroll.setVisible(true);
-  
+    
   }
-
+  
 }

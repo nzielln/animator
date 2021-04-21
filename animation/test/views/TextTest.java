@@ -7,8 +7,6 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import cs5004.animator.controller.Controller;
-import cs5004.animator.controller.ViewController;
 import cs5004.animator.view.Reader;
 import cs5004.animator.view.View;
 import cs5004.animator.view.ViewFactory;
@@ -21,10 +19,10 @@ import static org.junit.Assert.fail;
  * TextView is supposed to support.
  */
 public class TextTest {
-
+  
   ViewFactory factory = new ViewFactory();
   Reader r = new Reader();
-
+  
   /**
    * Tests that the TextView has the correct output when given an empty file.
    */
@@ -36,8 +34,10 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:______________________________________" +
@@ -46,7 +46,7 @@ public class TextTest {
       fail("Exception should not be thrown");
     }
   }
-
+  
   /**
    * Tests that the TextView correctly prints out the the information from the smalldemo.txt
    * in the correct format when given the file and type of view.
@@ -59,8 +59,10 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -87,7 +89,7 @@ public class TextTest {
       fail("Exception should not have been thrown");
     }
   }
-
+  
   /**
    * Tests the Text view prints the correct information in the correct format when given toh-3.txt
    * as the in file and text as the view type.
@@ -100,8 +102,10 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:___________________________________" +
@@ -146,7 +150,7 @@ public class TextTest {
       fail("Exception should not have been throw");
     }
   }
-
+  
   /**
    * Tests the TextView correctly outputs the correct information when given smalldemo.txt as the
    * in file, text as the view type, and 2 as the speed.
@@ -159,8 +163,10 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -186,7 +192,7 @@ public class TextTest {
       fail("Exception should not have been thrown");
     }
   }
-
+  
   /**
    * Tests the correct information is written to a text file (small.txt) when given smalldemo.txt
    * as the in file, small.txt as the out, and view as text.
@@ -199,8 +205,10 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       String filepath = "./resources/outputs/small.txt";
@@ -226,7 +234,7 @@ public class TextTest {
       fail("Exception should not have been thrown");
     }
   }
-
+  
   /**
    * Tests that the TextView still correctly prints out the information when the order of the in,
    * view, and speed are different.
@@ -239,8 +247,10 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -269,7 +279,7 @@ public class TextTest {
       fail("Exception should not have been thrown");
     }
   }
-
+  
   /**
    * Tests that the TextView correctly throws an exception when the file isn't found.
    */
@@ -281,15 +291,17 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
   }
-
+  
   /**
    * Tests that the TextView correctly throws and exception when there is no view type specified.
    */
@@ -301,15 +313,17 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
   }
-
+  
   /**
    * Tests that the TextView correctly throws an exception when the view type is misspelled.
    */
@@ -321,15 +335,17 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
   }
-
+  
   /**
    * Tests that the TextView correctly throws and exception when no in file or view type is
    * specified.
@@ -342,13 +358,15 @@ public class TextTest {
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
       System.setOut(out);
-      Controller con = new ViewController(in);
-      con.go();
+      View view = factory.create(in);
+      r.readIn(in);
+      r.makeModel(r.getInputs(), view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
   }
-
+  
 }

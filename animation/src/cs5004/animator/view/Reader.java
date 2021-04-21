@@ -53,13 +53,14 @@ public class Reader {
     
     if (this.inputs.get("in") == null || this.inputs.get("in").equals("")) {
       throw new IllegalArgumentException("You must provide an \"-in\" file.");
-    
+      
     } else if (this.inputs.get("view") == null || this.inputs.get("view").equals("")) {
       throw new IllegalArgumentException("You must provide a \"-view\" type.");
-    
+      
     } else if (!(this.inputs.get("view").equalsIgnoreCase("svg")
             || this.inputs.get("view").equalsIgnoreCase("text")
-            || this.inputs.get("view").equalsIgnoreCase("visual"))) {
+            || this.inputs.get("view").equalsIgnoreCase("visual")
+            || this.inputs.get("view").equalsIgnoreCase("playback"))) {
       
       throw new IllegalArgumentException("You must provide a supported \"-view\" type.");
       
@@ -67,7 +68,7 @@ public class Reader {
       if (this.inputs.get("out") == null || this.inputs.get("out").equals("")) {
         throw new IllegalArgumentException("You must provide an \"-out\" file.");
       }
-    
+      
     }
     
   }
@@ -78,7 +79,7 @@ public class Reader {
    */
   public HashMap<String, String> getInputs() {
     return this.inputs;
-  
+    
   }
   
   /**
@@ -93,7 +94,10 @@ public class Reader {
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(this.model);
       AnimationReader.parseFile(f, b);
-
+      if (inputs.get("view").equalsIgnoreCase("visual")
+              || inputs.get("view").equalsIgnoreCase("playback")) {
+        view.buildModel(this.model);
+      }
     } catch (FileNotFoundException e) {
       if (inputs.get("view").equals("visual")) {
         JOptionPane.showMessageDialog((Component) view.getView(), "File not found.",

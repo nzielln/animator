@@ -13,14 +13,14 @@ public class ViewFactory {
    * @return veiw, a view object
    */
   public View create(String in) {
-
+    
     Objects.requireNonNull(in, "Inputs can't be null");
-
+    
     if (in.contains("-view text")) {
       return new TextView();
     } else if (in.contains("-view svg")) {
       return new SVGView();
-    } else if (in.contains("-view visual")) {
+    } else if (in.contains("-view visual") || in.contains("-view playback")) {
       return new GraphicView();
     }
     
