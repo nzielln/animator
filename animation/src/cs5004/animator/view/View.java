@@ -31,6 +31,7 @@ public interface View {
    */
   void animate(Animation m, HashMap<String, String> inputs);
   
+  
   /**
    * Builds a JFrame model using information from the model.
    * @param m Animation, the model for the animation

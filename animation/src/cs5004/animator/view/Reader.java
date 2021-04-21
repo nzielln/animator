@@ -59,7 +59,8 @@ public class Reader {
       
     } else if (!(this.inputs.get("view").equalsIgnoreCase("svg")
             || this.inputs.get("view").equalsIgnoreCase("text")
-            || this.inputs.get("view").equalsIgnoreCase("visual"))) {
+            || this.inputs.get("view").equalsIgnoreCase("visual")
+            || this.inputs.get("view").equalsIgnoreCase("playback"))) {
       
       throw new IllegalArgumentException("You must provide a supported \"-view\" type.");
       
@@ -93,7 +94,8 @@ public class Reader {
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(this.model);
       AnimationReader.parseFile(f, b);
-      if (inputs.get("view").equalsIgnoreCase("visual")) {
+      if (inputs.get("view").equalsIgnoreCase("visual")
+              || inputs.get("view").equalsIgnoreCase("playback")) {
         view.buildModel(this.model);
       }
     } catch (FileNotFoundException e) {
