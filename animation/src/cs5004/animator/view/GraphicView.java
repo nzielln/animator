@@ -98,6 +98,7 @@ public class GraphicView extends JFrame implements View {
     this.m = m;
     this.in = in;
     
+    
     setSize(this.m.getCanvasWidth(),
             this.m.getCanvasHeight());
     

@@ -5,10 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -19,22 +20,35 @@ import cs5004.animator.model.Shape;
 import cs5004.animator.model.AnimationImpl;
 
 public class PlaybackView extends JFrame implements ActionListener, ItemListener, ListSelectionListener {
-  private GraphicsPanel panel;
-  private JPanel btnspanel;
-  private JScrollPane mainscroll;
-  private JButton play;
-  private JButton pause;
-  private JButton rewind;
-  private JButton fast;
-  private JButton looper;
-  private String view;
+  //main
   private Animation model;
   private HashMap<String, String> in;
   private int count;
   private int tick;
+  private int length;
   private boolean loop;
   private String state;
-  private JLabel output;
+  private Timer timer;
+  
+  private GraphicsPanel panel;
+  private JScrollPane mainscroll;
+  
+  //playback panel
+  private JPanel btnspanel;
+  private JButton playpause;
+  private JButton rewind;
+  private JButton fast;
+  private JButton looper;
+  private String view;
+  
+  //state panel
+  private JPanel statepanel;
+  private JLabel speedlabel;
+  private JLabel looplabel;
+  private JLabel statelabel;
+  private JPanel speedpanel;
+  private JPanel looppanel;
+  private JPanel pppanel;
   
   public PlaybackView() {
     super("Animation");
@@ -49,96 +63,106 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
   public void buildModel(Animation m, HashMap<String, String> in) {
     this.model = m;
     this.in = in;
+    this.loop = false;
+    this.count = 0;
+    this.state = "play";
+    this.tick = Integer.parseInt(in.get("speed"));
+    this.length = Integer.parseInt(in.get("length"));
+    
     int x = m.getCanvasX();
     int y = m.getCanvasY();
     int w = m.getCanvasWidth();
     int h = m.getCanvasHeight();
     
-    setSize(w, h);
-    setLocation(x, y);
+    setSize(1000, 1000);
+    setLocation(0, 0);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
-    setVisible(true);
     
     panel = new GraphicsPanel(m.getByTime(0), model);
-    panel.setPreferredSize(new Dimension(w, h));
-    panel.setLocation(x, y);
+    panel.setPreferredSize(new Dimension(1000, 800));
+    panel.setLocation(0,0);
     add(panel, BorderLayout.CENTER);
     mainscroll = new JScrollPane(panel);
     setPreferredSize(new Dimension(w, h));
     add(mainscroll, BorderLayout.CENTER);
     
-    setVisible(true);
-    panel.setVisible(true);
-    mainscroll.setVisible(true);
+    //state panel
+    statepanel = new JPanel();
+    statepanel.setLayout(new BoxLayout(statepanel, BoxLayout.X_AXIS));
+    statepanel.setSize(new Dimension(1000, 100));
+    statepanel.setBackground(Color.white);
+    statepanel.setAlignmentY(Component.CENTER_ALIGNMENT);
+    add(statepanel, BorderLayout.NORTH);
     
+    //buttonpanel
     btnspanel = new JPanel();
-    btnspanel.setLayout(new BoxLayout(btnspanel, BoxLayout.PAGE_AXIS));
-    btnspanel.setSize(new Dimension(500, 200));
+    btnspanel.setLayout(new BoxLayout(btnspanel, BoxLayout.X_AXIS));
+    btnspanel.setSize(new Dimension(1000, 100));
     btnspanel.setBackground(Color.lightGray);
-    btnspanel.setVisible(true);
-    add(btnspanel, BorderLayout.PAGE_END);
-    
-    play = createButton("Play", "pl.png", "play");
-    pause = createButton("Pause", "po.png", "pause");
+    btnspanel.setAlignmentY(Component.CENTER_ALIGNMENT);
+    add(btnspanel, BorderLayout.SOUTH);
+  
+    btnspanel.add(Box.createHorizontalGlue());
     rewind = createButton("Rewind", "re.png", "rewind");
-    fast = createButton("Fast Foward", "fo.png", "foward");
-    looper = createButton("Loop", "fo.png", "loop");
-  
-    output = new JLabel("Output goes here.");
-    output.setBorder(BorderFactory.createLineBorder(Color.red));
+    playpause = createButton("Pause ", "po.png", "pause");
+    fast = createButton("Speed", "forward.png", "speed");
+    looper = createButton("Loop", "Asset 1.png", "loop");
+    btnspanel.add(Box.createHorizontalGlue());
     
-    btnspanel.add(output);
+    //timer
+    timer = new Timer();
+  
+    
+    //set visible
+    mainscroll.setVisible(true);
+    panel.setVisible(true);
+    btnspanel.setVisible(true);
+    setVisible(true);
+    
+    //btnspanel.add(output);
   }
+  //Animation Task
   
-  public void animate(int t, boolean l, int c) {
-    this.count = c;
-    this.tick = t;
-    this.loop = l;
-    
-    List<Shape> model = new ArrayList<>(this.model.getShapes());
-  
-    int lengthAnimation = 0;
-    
-    //get the total length of the animation
-    for (Shape shape : model) {
-      if (shape.getDisappears() > lengthAnimation) {
-        lengthAnimation = shape.getDisappears();
-      }
+  private class AnimateTask extends TimerTask {
+    private AnimateTask() {
+      super();
     }
+  
+    @Override
+    public void run() {
     
-    //do we get how long the animation is from the user at all? Does this need to be <= or <?
-    while (count < lengthAnimation) {
-      List<Shape> modified = this.model.getByTime(count);
+      if (count > length) {
+        
+        count = length;
+      }
       
-      //update the animation and model to newModel
-      //update count
-      this.currentView(modified);
-      count += 1;
+      List<Shape> modified = model.getByTime(count);
+      currentView(modified);
+      if (state.equals("paused")) {
+        count = count;
+      } else {
+        count += 1;
+      }
       //If loop is on, reset the count to 0 so the animation can start again
       if (loop) {
-        if (count == lengthAnimation) {
+        if (count == length) {
           count = 0;
         }
       }
-      
-      //Timer to let user see changes
-      try {
-        Thread.sleep(1000 / tick);
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-      }
+    
     }
+  }
+  
+  
+  public void animate() {
+    timer.schedule(new AnimateTask(), count, 1000 / tick);
   
   }
   
   private void getFrame(int frame) {
     
-    //do we get how long the animation is from the user at all? Does this need to be <= or <?
     List<Shape> modified = this.model.getByTime(frame);
-      
-      //update the animation and model to newModel
-      //update count
     this.currentView(modified);
     
   }
@@ -152,12 +176,12 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
   }
   
   private JButton createButton(String name, String file, String command) {
-    ImageIcon img = new ImageIcon(new ImageIcon("./resources/icons/pl.png").getImage()
-            .getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+    ImageIcon img = new ImageIcon(new ImageIcon("./resources/icons/" + file).getImage()
+            .getScaledInstance(20, 20, Image.SCALE_DEFAULT));
     
     JButton btn = new JButton(name, img);
     
-    btn.setPreferredSize(new Dimension(150, 30));
+    btn.setPreferredSize(new Dimension(100, 80));
     btn.setMinimumSize(getSize());
     btn.setAlignmentX(Component.CENTER_ALIGNMENT);
     btn.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -165,6 +189,8 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     btn.setHorizontalTextPosition(AbstractButton.CENTER);
     btn.addActionListener(this);
     btn.setActionCommand(command);
+    btn.setOpaque(true);
+    btn.setBorderPainted(false);
     
     btnspanel.add(btn);
     
@@ -176,45 +202,65 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     switch (e.getActionCommand()) {
       case "play":
         this.state = "play";
+        for (Component c : btnspanel.getComponents()) {
+          c.setBackground(Color.WHITE);
+        }
+        playpause.setText("Pause");
+        playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/po.png").getImage()
+                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+        playpause.setActionCommand("pause");
         
-        animate(tick, loop, count);
-        this.revalidate();
-        this.repaint();
         break;
       case "pause":
-        this.state = "pause";
-        while (e.getActionCommand().equals("pause")) {
-          getFrame(count);
+        this.state = "paused";
+        for (Component c : btnspanel.getComponents()) {
+          if (c.isBackgroundSet()) {
+            c.setBackground(Color.WHITE);
+          }
         }
-        this.revalidate();
-        this.repaint();
+        playpause.setText("Play");
+        playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/pl.png").getImage()
+                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+        playpause.setActionCommand("play");
+        
+        
         break;
       case "rewind":
         this.count = 0;
         this.state = "rewind";
-        animate(tick, loop, count);
-        this.revalidate();
-        this.repaint();
+        for (Component c : btnspanel.getComponents()) {
+          if (c.isBackgroundSet()) {
+            c.setBackground(Color.WHITE);
+          }
+        }
+        rewind.setBackground(Color.GREEN);
         
         break;
-      case "forward":
-        this.state = "forward";
+      case "speed":
+        this.state = "speed";
         this.tick += 1;
+        for (Component c : btnspanel.getComponents()) {
+          if (c.isBackgroundSet()) {
+            if (c.isBackgroundSet()) {
+              c.setBackground(Color.WHITE);
+            }
+          }
+        }
+        fast.setBackground(Color.YELLOW);
         
-        animate(tick, loop, count);
-        this.revalidate();
-        this.repaint();
         break;
       case "loop":
         this.state = "loop";
         this.loop = !this.loop;
-        animate(tick, loop, count);
-        this.revalidate();
-        this.repaint();
-    
+        for (Component c : btnspanel.getComponents()) {
+          if (c.isBackgroundSet()) {
+            c.setBackground(Color.WHITE);
+          }
+        }
+  
+        looper.setBackground(Color.RED);
         break;
     }
-  
   }
   
   @Override

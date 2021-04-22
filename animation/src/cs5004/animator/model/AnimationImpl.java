@@ -2,6 +2,7 @@ package cs5004.animator.model;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -335,6 +336,18 @@ public class AnimationImpl implements Animation {
       }
     }
   }
+  
+  @Override
+  public int getAnimationLength() {
+    List<Integer> length = new ArrayList<>();
+    
+    for (Shape s : hashmap.keySet()) {
+      length.add(s.getDisappears());
+    }
+    return Collections.max(length);
+    
+  }
+  
   
   @Override
   public String toString() {

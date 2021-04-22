@@ -131,6 +131,11 @@ public interface Animation {
    */
   void removeTransformation(String id, Transformation t);
   
+  /*
+  
+   */
+  int getAnimationLength();
+  
   /**
    * Returns a string representation of the animation.
    * @return a string

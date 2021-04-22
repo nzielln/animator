@@ -64,21 +64,19 @@ public class ViewController implements Controller {
     PlaybackView playback = new PlaybackView();
     String fileInput = in.get("in").replace("\"", "");
     try {
-      File demo = new File(fileInput);
+      File demo = new File("./resources/files/" + fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
+      in.put("length", "" + m.getAnimationLength());
       playback.buildModel(m, in);
     } catch (FileNotFoundException e) {
       throw new IllegalArgumentException("File not found.");
     }
-    int speed = 1;
-    if (in.get("speed") != null) {
-      speed = Integer.parseInt(in.get("speed"));
-    }
     
-    playback.animate(speed, false, 0);
+    playback.animate();
     
   }
+ 
     
   }
