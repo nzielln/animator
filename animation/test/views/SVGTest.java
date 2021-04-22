@@ -181,7 +181,7 @@ public class SVGTest {
     Reader r = new Reader();
     r.readIn(in);
     r.makeModel(r.getInputs(), v);
-    v.animate(r.getModel(), r.getInputs());
+    v.animate();
     StringBuilder s = new StringBuilder();
     File demo = new File("./resources/outputs/out.svg");
     FileReader f = new FileReader(demo);
@@ -205,7 +205,7 @@ public class SVGTest {
     Reader r = new Reader();
     r.readIn(in);
     r.makeModel(r.getInputs(), v);
-    v.animate(r.getModel(), r.getInputs());
+    v.animate();
     StringBuilder s = new StringBuilder();
     File demo = new File("./resources/outputs/out.svg");
     FileReader f = new FileReader(demo);

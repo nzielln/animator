@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.Animation;
 
@@ -19,6 +20,8 @@ import javax.swing.JScrollPane;
 public class GraphicView extends JFrame implements View {
   private GraphicsPanel panel;
   private String view;
+  private Animation m;
+  private HashMap<String, String> in;
   
   /**
    * Constructor for a GraphicView, takes in no arguments.
@@ -26,6 +29,8 @@ public class GraphicView extends JFrame implements View {
   public GraphicView() {
     super("Animation");
     this.view = "Visual";
+    this.m = new AnimationImpl();
+    this.in =  new HashMap<>();
   }
   
   @Override
@@ -47,14 +52,14 @@ public class GraphicView extends JFrame implements View {
   }
   
   @Override
-  public void animate(Animation m, HashMap<String, String> in) {
+  public void animate() {
     
-    List<Shape> model = new ArrayList<>(m.getShapes());
+    List<Shape> model = new ArrayList<>(this.m.getShapes());
     
     int tick = 1;
     
-    if (in.get("speed") != null) {
-      tick = Integer.parseInt(in.get("speed"));
+    if (this.in.get("speed") != null) {
+      tick = Integer.parseInt(this.in.get("speed"));
       if (tick <= 0) {
         throw new IllegalArgumentException("Speed needs to be positive integer");
       }
@@ -72,7 +77,7 @@ public class GraphicView extends JFrame implements View {
     
     //do we get how long the animation is from the user at all? Does this need to be <= or <?
     while (count < lengthAnimation) {
-      List<Shape> modified = m.getByTime(count);
+      List<Shape> modified = this.m.getByTime(count);
       
       //update the animation and model to newModel
       //update count
@@ -89,26 +94,29 @@ public class GraphicView extends JFrame implements View {
   }
   
   @Override
-  public void buildModel(Animation m) {
-    setSize(m.getCanvasWidth(),
-            m.getCanvasHeight());
+  public void buildModel(Animation m, HashMap<String, String> in) {
+    this.m = m;
+    this.in = in;
     
-    setLocation(m.getCanvasX(),
-            m.getCanvasY());
+    setSize(this.m.getCanvasWidth(),
+            this.m.getCanvasHeight());
+    
+    setLocation(this.m.getCanvasX(),
+            this.m.getCanvasY());
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
     setVisible(true);
     
-    this.panel = new GraphicsPanel(m.getByTime(0), m);
-    this.panel.setPreferredSize(new Dimension(m.getCanvasWidth(),
-            m.getCanvasHeight()));
-    this.panel.setLocation(m.getCanvasX(), m.getCanvasY());
+    this.panel = new GraphicsPanel(this.m.getByTime(0), this.m);
+    this.panel.setPreferredSize(new Dimension(this.m.getCanvasWidth(),
+            this.m.getCanvasHeight()));
+    this.panel.setLocation(this.m.getCanvasX(), this.m.getCanvasY());
     
     add(panel, BorderLayout.CENTER);
     
     JScrollPane scroll = new JScrollPane(this.panel);
-    setPreferredSize(new Dimension(m.getCanvasWidth(), m.getCanvasHeight() ));
+    setPreferredSize(new Dimension(this.m.getCanvasWidth(), this.m.getCanvasHeight() ));
     add(scroll, BorderLayout.CENTER);
     
     setVisible(true);

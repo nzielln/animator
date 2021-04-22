@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import cs5004.animator.model.Animation;
+import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.Transformation;
 
@@ -15,12 +16,16 @@ import cs5004.animator.model.Transformation;
  */
 public class SVGView implements View {
   private String view;
+  private Animation m;
+  private HashMap<String, String> in;
   
   /**
    * SVGView constructor that takes in no argument, define the type of view.
    */
   public SVGView() {
     this.view = "SVG";
+    this.m = new AnimationImpl();
+    this.in =  new HashMap<>();
   }
   
   
@@ -30,13 +35,13 @@ public class SVGView implements View {
   }
   
   @Override
-  public void animate(Animation m, HashMap<String, String> inputs) {
+  public void animate() {
     Objects.requireNonNull(m, "Animation can't be null");
-    Objects.requireNonNull(inputs, "Inputs can't be null");
+    Objects.requireNonNull(this.in, "Inputs can't be null");
     
     int speed = 1;
-    if (inputs.get("speed") != null) {
-      speed = Integer.parseInt(inputs.get("speed").replace("\"",""));
+    if (this.in.get("speed") != null) {
+      speed = Integer.parseInt(this.in.get("speed").replace("\"",""));
     }
     
     /**
@@ -52,13 +57,13 @@ public class SVGView implements View {
       
       
       FileWriter f = new FileWriter("../outputs/"
-              + inputs.get("out").replace("\"", ""));
+              + this.in.get("out").replace("\"", ""));
       String canvas = "<svg width=\"" + 100 + "%\" height=\"" + 100
               + "%\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
       
       
-      for (Shape s : m.getShapes()) {
+      for (Shape s : this.m.getShapes()) {
         StringBuilder str = new StringBuilder();
         if (s.getType().equals("ELLIPSE")) {
           String sh = "<ellipse id=\"" + s.getName() + "\" cx=\"" + s.getPositionX() + "\" cy=\""
@@ -76,7 +81,7 @@ public class SVGView implements View {
         }
         
         
-        for (Transformation t : m.getTransformations(s.getName())) {
+        for (Transformation t : this.m.getTransformations(s.getName())) {
           String tx = "";
           String ty = "";
           if (t.getTransformationType().equals("Moves")) {
@@ -161,8 +166,9 @@ public class SVGView implements View {
   }
   
   @Override
-  public void buildModel(Animation f) {
-    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+  public void buildModel(Animation m, HashMap<String, String> in) {
+    this.m = m;
+    this.in = in;
     
   }
   

@@ -94,10 +94,7 @@ public class Reader {
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(this.model);
       AnimationReader.parseFile(f, b);
-      if (inputs.get("view").equalsIgnoreCase("visual")
-              || inputs.get("view").equalsIgnoreCase("playback")) {
-        view.buildModel(this.model);
-      }
+      view.buildModel(this.model, inputs);
     } catch (FileNotFoundException e) {
       if (inputs.get("view").equals("visual")) {
         JOptionPane.showMessageDialog((Component) view.getView(), "File not found.",

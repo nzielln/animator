@@ -10,4 +10,5 @@ public interface Playback {
   //ASSIGNMENT 8
   
   void makeFrame(/*int x, int y, int w, int h*/);
+  void animate();
 }

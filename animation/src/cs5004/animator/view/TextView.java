@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import cs5004.animator.model.Animation;
+import cs5004.animator.model.AnimationImpl;
 import cs5004.animator.model.Shape;
 
 
@@ -14,13 +15,17 @@ import cs5004.animator.model.Shape;
  * Represents a class for a TestView, implements the View interface.
  */
 public class TextView implements View {
-  String view;
+  private String view;
+  private Animation m;
+  private HashMap<String, String> in;
   
   /**
    * TextView constructor that takes in no argument, define the type of view.
    */
   public TextView() {
     this.view = "Text";
+    this.m = new AnimationImpl();
+    this.in =  new HashMap<>();
   }
   
   @Override
@@ -29,12 +34,12 @@ public class TextView implements View {
   }
   
   @Override
-  public void animate(Animation m, HashMap<String, String> inputs) {
+  public void animate() {
     
     StringBuilder str = new StringBuilder();
     System.out.println("Text View of the Animation:________________________________________________"
             + "\n");
-    for (Shape s : m.getShapes()) {
+    for (Shape s :this.m.getShapes()) {
       if (s.getType().equals("RECTANGLE")) {
         String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
                 + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
@@ -50,7 +55,7 @@ public class TextView implements View {
     
     str.append("\n");
     
-    for (Shape s : m.getShapes()) {
+    for (Shape s :this.m.getShapes()) {
       String timeDesc = s.getName() + " appears at t=" + s.getAppears() + " and disappears at t="
               + s.getDisappears();
       str.append(timeDesc).append("\n");
@@ -58,12 +63,12 @@ public class TextView implements View {
     
     str.append("\n");
     
-    for (Shape s : m.getShapes()) {
+    for (Shape s :this.m.getShapes()) {
       str.append(m.tranformationString(s).replace("Shape ", ""));
     }
     
-    if (inputs.get("out") != null) {
-      writeFile(str.toString(), inputs);
+    if (this.in.get("out") != null) {
+      writeFile(str.toString(), this.in);
     }
     
     System.out.println(str);
@@ -71,9 +76,9 @@ public class TextView implements View {
     
   }
   
-  private void writeFile(String str, HashMap<String, String> inputs) {
+  private void writeFile(String str, HashMap<String, String> in) {
     try {
-      FileWriter f = new FileWriter("../outputs/" + inputs.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter("../outputs/" + this.in.get("out").replace("\"", ""));
       Scanner s = new Scanner(str).useDelimiter("\n");
       while (s.hasNext()) {
         String line = s.next();
@@ -91,8 +96,9 @@ public class TextView implements View {
   }
   
   @Override
-  public void buildModel(Animation f) {
-    throw new UnsupportedOperationException("This method is not supported by the Text view.");
+  public void buildModel(Animation m, HashMap<String, String> in) {
+    this.m = m;
+    this.in = in;
     
   }
   

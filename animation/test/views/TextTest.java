@@ -29,7 +29,7 @@ public class TextTest {
   @Test
   public void testEmptyFile() {
     try {
-      String in = "-in empty.txt -view text";
+      String in = "-in ./resources/files/empty.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -37,7 +37,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:______________________________________" +
@@ -54,7 +54,7 @@ public class TextTest {
   @Test
   public void testSmallDemo() {
     try {
-      String in = "-in smalldemo.txt -view text";
+      String in = "-in ./resources/files/smalldemo.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -62,7 +62,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -97,7 +97,7 @@ public class TextTest {
   @Test
   public void testToh3() {
     try {
-      String in = "-in toh-3.txt -view text";
+      String in = "-in ./resources/files/toh-3.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -105,7 +105,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:___________________________________" +
@@ -158,7 +158,7 @@ public class TextTest {
   @Test
   public void testTextWithSpeed() {
     try {
-      String in = "-in smalldemo.txt -view text -speed 2";
+      String in = "-in ./resources/files/smalldemo.txt -view text -speed 2";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -166,7 +166,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -200,7 +200,7 @@ public class TextTest {
   @Test
   public void testTextWithOut() {
     try {
-      String in = "-in smalldemo.txt -out small.txt -view text";
+      String in = "-in ./resources/files/smalldemo.txt -out small.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -208,7 +208,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       String filepath = "./resources/outputs/small.txt";
@@ -242,7 +242,7 @@ public class TextTest {
   @Test
   public void testDifferentOrder() {
     try {
-      String in = "-speed 3 -in smalldemo.txt -view text";
+      String in = "-speed 3 -in ./resources/files/smalldemo.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -250,7 +250,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -286,7 +286,7 @@ public class TextTest {
   @Test
   public void testNoFileFound() {
     try {
-      String in = "-in smalldeo.txt -view text";
+      String in = "-in ./resources/files/smalldeo.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -294,7 +294,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -308,7 +308,7 @@ public class TextTest {
   @Test
   public void testNoViewSpecified() {
     try {
-      String in = "-in smalldemo.txt";
+      String in = "-in ./resources/files/smalldemo.txt";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -316,7 +316,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -330,7 +330,7 @@ public class TextTest {
   @Test
   public void testWithViewMisspelled() {
     try {
-      String in = "-in smalldemo.txt -view txt";
+      String in = "-in ./resources/files/smalldemo.txt -view txt";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -338,7 +338,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -361,7 +361,7 @@ public class TextTest {
       View view = factory.create(in);
       r.readIn(in);
       r.makeModel(r.getInputs(), view);
-      view.animate(r.getModel(), r.getInputs());
+      view.animate();
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");

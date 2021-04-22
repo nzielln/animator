@@ -13,7 +13,8 @@ import cs5004.animator.view.ViewFactory;
  * Entry class for the animation program, parse CLI argument and renders appropriate view.
  */
 public class EasyAnimator {
-  //java -jar animation.jar -in smalldemo.txt -view playback -speed 15
+  //java -jar animation.jar -in buildings.txt -view playback -speed 15
+  //java -jar animation.jar -in buildings.txt -view visual -speed 15
   /**
    Main class that renders CLI argument and renders view based on inputs.
    * @param args the CLI arguments
