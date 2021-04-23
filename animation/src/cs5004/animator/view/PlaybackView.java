@@ -207,9 +207,7 @@ public class PlaybackView extends JFrame {
       if (count > length) {
         count = length;
       }
-      
       List<Shape> modified = model.getByTime(count);
-      
       currentView(modified);
       if (state.equals("paused")) {
         count = count;
@@ -224,14 +222,19 @@ public class PlaybackView extends JFrame {
           count = 0;
         }
       }
-      
     }
   }
   
-  
-  
   public void animate() {
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
+    swingtimer.setInitialDelay(1000);
+    swingtimer.start();
+    // timer.schedule(new AnimateTask(), count, 1000 / tick);
+    
+  }
+  
+  public void slowanimate() {
+    swingtimer = new javax.swing.Timer((1000 / tick) + 1000, new AnimateAction());
     swingtimer.setInitialDelay(1000);
     swingtimer.start();
     // timer.schedule(new AnimateTask(), count, 1000 / tick);
@@ -366,6 +369,10 @@ public class PlaybackView extends JFrame {
     animate();
   }
   
+  public void slow() {
+    slowanimate();
+  }
+  
   public void changeRewindBg() {
     rewind.setBackground(Color.YELLOW);
   }
@@ -382,112 +389,6 @@ public class PlaybackView extends JFrame {
   public void changeLoopBg() {
     looper.setBackground(Color.YELLOW);
   }
-  
-  /*
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    switch (e.getActionCommand()) {
-      case "play":
-        this.state = "play";
-        for (Component c : btnspanel.getComponents()) {
-          c.setBackground(Color.WHITE);
-        }
-        playpause.setText("Pause");
-        playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/po.png").getImage()
-                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-        playpause.setActionCommand("pause");
-        statetext.setText(String.valueOf(state).toUpperCase());
-        
-        break;
-      case "pause":
-        this.state = "paused";
-        for (Component c : btnspanel.getComponents()) {
-          if (c.isBackgroundSet()) {
-            c.setBackground(Color.WHITE);
-          }
-        }
-        
-        playpause.setText("Play");
-        playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/pl.png").getImage()
-                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-        playpause.setActionCommand("play");
-        statetext.setText(String.valueOf(state).toUpperCase());
-        
-        
-        break;
-      case "rewind":
-        this.count = 0;
-        this.state = "rewind";
-        for (Component c : btnspanel.getComponents()) {
-          if (c.isBackgroundSet()) {
-            c.setBackground(Color.WHITE);
-          }
-        }
-        swingtimer.stop();
-        panel.removeAll();
-        rewind.setBackground(Color.GREEN);
-        swingtimer.restart();
-        animate();
-        
-        
-        break;
-      case "up speed":
-        this.state = "up speed";
-        this.tick += 1;
-        
-        for (Component c : btnspanel.getComponents()) {
-          if (c.isBackgroundSet()) {
-            if (c.isBackgroundSet()) {
-              c.setBackground(Color.WHITE);
-            }
-          }
-        }
-        up.setBackground(Color.YELLOW);
-        speedtext.setText(String.valueOf(tick).toUpperCase());
-        swingtimer.restart();
-        animate();
-        
-        break;
-      case "down speed":
-        this.state = "down speed";
-        if (tick == 1) {
-          JOptionPane.showMessageDialog(this,
-                  "Speed can't be less than 0",
-                  "Speed warning",
-                  JOptionPane.WARNING_MESSAGE);
-          
-        } else {
-          this.tick -= 1;
-          
-          for (Component c : btnspanel.getComponents()) {
-            if (c.isBackgroundSet()) {
-              if (c.isBackgroundSet()) {
-                c.setBackground(Color.WHITE);
-              }
-            }
-          }
-          down.setBackground(Color.YELLOW);
-          speedtext.setText(String.valueOf(tick).toUpperCase());
-          swingtimer.restart();
-          animate();
-        }
-        
-        break;
-      case "loop":
-        this.state = "loop";
-        this.loop = !this.loop;
-        for (Component c : btnspanel.getComponents()) {
-          if (c.isBackgroundSet()) {
-            c.setBackground(Color.WHITE);
-          }
-        }
-        
-        looper.setBackground(Color.RED);
-        looptext.setText(String.valueOf(loop).toUpperCase());
-        break;
-    }
-  }
-  
-   */
+
   
 }
