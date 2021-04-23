@@ -151,7 +151,7 @@ public class ViewController implements Controller{
       playbackview.setComponents();
       playbackview.changeUpBg();
       playbackview.setTick();
-      playbackview.restartimer();
+      //playbackview.restartimer();
     }
   }
   
@@ -164,7 +164,7 @@ public class ViewController implements Controller{
       playbackview.setComponents();
       playbackview.changeDownBg();
       playbackview.setTick();
-      playbackview.slow();
+      //playbackview.restartimer();
       
     }
   }
