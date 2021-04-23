@@ -19,7 +19,7 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.AnimationImpl;
 
-public class PlaybackView extends JFrame implements ActionListener, ItemListener, ListSelectionListener {
+public class PlaybackView extends JFrame {
   //main
   private Animation model;
   private HashMap<String, String> in;
@@ -69,7 +69,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     this.in = in;
     this.loop = false;
     this.count = 0;
-    this.state = "play";
+    this.state = "playing";
     this.tick = Integer.parseInt(in.get("speed"));
     this.length = Integer.parseInt(in.get("length"));
     
@@ -157,8 +157,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     looper = createButton("Loop", "Asset 1.png", "loop");
     btnspanel.add(Box.createHorizontalGlue());
     
-    //timer
-    //timer = new Timer();
+    //
     
     //set visible
     mainscroll.setVisible(true);
@@ -167,16 +166,6 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     setVisible(true);
     
     //btnspanel.add(output);
-  }
-  
-  @Override
-  public void itemStateChanged(ItemEvent e) {
-  
-  }
-  
-  @Override
-  public void valueChanged(ListSelectionEvent e) {
-  
   }
   
   //Animation Task
@@ -202,6 +191,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
       }
       //If loop is on, reset the count to 0 so the animation can start again
       if (loop) {
+          looper.setBackground(Color.GREEN);
         if (count == length) {
           count = 0;
         }
@@ -229,6 +219,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
       }
       //If loop is on, reset the count to 0 so the animation can start again
       if (loop) {
+        looper.setBackground(Color.GREEN);
         if (count == length) {
           count = 0;
         }
@@ -274,7 +265,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     btn.setAlignmentY(Component.CENTER_ALIGNMENT);
     btn.setVerticalTextPosition(AbstractButton.BOTTOM);
     btn.setHorizontalTextPosition(AbstractButton.CENTER);
-    btn.addActionListener(this);
+    //btn.addActionListener(this);
     btn.setActionCommand(command);
     btn.setOpaque(true);
     btn.setBorderPainted(false);
@@ -292,7 +283,107 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     return l;
   }
   
+  public void addListener(ActionListener al) {
+    playpause.addActionListener(al);
+    up.addActionListener(al);
+    down.addActionListener(al);
+    looper.addActionListener(al);
+    rewind.addActionListener(al);
+  }
   
+  public void setPlayState() {
+    setComponents();
+    playpause.setText("Pause");
+    playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/po.png").getImage()
+            .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+    playpause.setActionCommand("pause");
+    statetext.setText(String.valueOf(state).toUpperCase());
+    
+  }
+  
+  public void setPauseState() {
+    setComponents();
+    playpause.setText("Play");
+    playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/pl.png").getImage()
+            .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+    playpause.setActionCommand("play");
+    statetext.setText(String.valueOf(state).toUpperCase());
+    
+  }
+  
+  public void setLoop() {
+    looptext.setText(String.valueOf(loop).toUpperCase());
+    
+  }
+  
+  public void setTick() {
+    speedtext.setText(String.valueOf(tick).toUpperCase());
+  }
+  
+  
+  public void setState(String s) {
+    this.state = s;
+  }
+  
+  public void changeCount(int i) {
+    this.count = i;
+  }
+  public void loop() {
+    this.loop = !loop;
+  }
+  
+  public void increaseTick() {
+    this.tick += 1;
+  }
+  
+  public void decreaseTick() {
+    if (tick == 1) {
+      JOptionPane.showMessageDialog(this,
+              "Speed can't be less than 0",
+              "Speed warning",
+              JOptionPane.WARNING_MESSAGE);
+    
+    } else {
+      this.tick -= 1;
+    }
+  }
+  
+  public void setComponents() {
+    for (Component c : btnspanel.getComponents()) {
+        c.setBackground(Color.WHITE);
+    }
+  }
+  
+  public void rewindTimer() {
+    swingtimer.stop();
+    panel.removeAll();
+    swingtimer.restart();
+    animate();
+  }
+  
+  public void restartimer() {
+    swingtimer.restart();
+    animate();
+  }
+  
+  public void changeRewindBg() {
+    rewind.setBackground(Color.YELLOW);
+  }
+  
+  public void changeUpBg() {
+    up.setBackground(Color.YELLOW);
+  }
+  
+  
+  public void changeDownBg() {
+    down.setBackground(Color.YELLOW);
+  }
+  
+  public void changeLoopBg() {
+    looper.setBackground(Color.YELLOW);
+  }
+  
+  /*
   @Override
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
@@ -396,5 +487,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
         break;
     }
   }
+  
+   */
   
 }
