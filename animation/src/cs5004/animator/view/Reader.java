@@ -90,7 +90,7 @@ public class Reader {
   public void makeModel(HashMap<String, String> inputs, View view) {
     String fileInput = inputs.get("in").replace("\"", "");
     try {
-      File demo = new File(fileInput);
+      File demo = new File("./resources/files/" + fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(this.model);
       AnimationReader.parseFile(f, b);

@@ -56,8 +56,6 @@ public class ViewController implements Controller {
       //Animate
       view.animate();
     }
-  
-  
   }
   
   private void playback(HashMap<String, String> in, Animation m) {
@@ -77,6 +75,4 @@ public class ViewController implements Controller {
     playback.animate();
     
   }
- 
-    
-  }
+}

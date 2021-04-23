@@ -74,14 +74,14 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     int w = m.getCanvasWidth();
     int h = m.getCanvasHeight();
     
-    setSize(1000, 1000);
-    setLocation(0, 0);
+    setSize(w, h);
+    setLocation(x, y);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
     
     panel = new GraphicsPanel(m.getByTime(0), model);
-    panel.setPreferredSize(new Dimension(1000, 800));
-    panel.setLocation(0,0);
+    panel.setPreferredSize(new Dimension(w, 800));
+    panel.setLocation(x,y);
     add(panel, BorderLayout.CENTER);
     mainscroll = new JScrollPane(panel);
     setPreferredSize(new Dimension(w, h));
@@ -90,7 +90,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     //state panel
     statepanel = new JPanel();
     statepanel.setLayout(new BoxLayout(statepanel, BoxLayout.X_AXIS));
-    statepanel.setSize(new Dimension(1000, 100));
+    statepanel.setSize(new Dimension(w, 100));
     statepanel.setBackground(Color.white);
     statepanel.setAlignmentY(Component.CENTER_ALIGNMENT);
     add(statepanel, BorderLayout.NORTH);
@@ -98,7 +98,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     //buttonpanel
     btnspanel = new JPanel();
     btnspanel.setLayout(new BoxLayout(btnspanel, BoxLayout.X_AXIS));
-    btnspanel.setSize(new Dimension(1000, 100));
+    btnspanel.setSize(new Dimension(w, 100));
     btnspanel.setBackground(Color.lightGray);
     btnspanel.setAlignmentY(Component.CENTER_ALIGNMENT);
     add(btnspanel, BorderLayout.SOUTH);
@@ -218,6 +218,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
             c.setBackground(Color.WHITE);
           }
         }
+        
         playpause.setText("Play");
         playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/pl.png").getImage()
                 .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
