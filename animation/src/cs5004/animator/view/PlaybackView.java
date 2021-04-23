@@ -19,10 +19,11 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.AnimationImpl;
 
-public class PlaybackView extends JFrame implements ActionListener, ItemListener, ListSelectionListener {
+public class PlaybackView extends JFrame {
   //main
   private Animation model;
   private HashMap<String, String> in;
+  private HashMap<String, Component> componentHashMap;
   private int count;
   private int tick;
   private int length;
@@ -38,7 +39,8 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
   private JPanel btnspanel;
   private JButton playpause;
   private JButton rewind;
-  private JButton fast;
+  private JButton up;
+  private JButton down;
   private JButton looper;
   private String view;
   
@@ -61,7 +63,6 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     this.in =  new HashMap<>();
     
   }
-  
   
   
   public void buildModel(Animation m, HashMap<String, String> in) {
@@ -91,6 +92,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     setPreferredSize(new Dimension(w, h));
     add(mainscroll, BorderLayout.CENTER);
     
+    
     //state panel
     statepanel = new JPanel();
     statepanel.setLayout(new BoxLayout(statepanel, BoxLayout.X_AXIS));
@@ -104,12 +106,12 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     speedpanel.setLayout(new BorderLayout());
     speedpanel.setAlignmentX(Component.CENTER_ALIGNMENT);
     speedpanel.setSize(new Dimension(50, 80));
-  
+    
     looppanel = new JPanel();
     looppanel.setLayout(new BorderLayout());
     looppanel.setAlignmentX(Component.CENTER_ALIGNMENT);
     looppanel.setSize(new Dimension(50, 80));
-  
+    
     pppanel = new JPanel();
     pppanel.setLayout(new BorderLayout());
     pppanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -117,20 +119,26 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     
     //create labels
     speedlabel = createLabelPnel("Current Speed", speedpanel.getWidth());
+    componentHashMap.put("speedlabel", speedlabel);
     looplabel = createLabelPnel("Looped", looppanel.getWidth());
+    componentHashMap.put("looplabel", looplabel);
     statelabel = createLabelPnel("Current State", pppanel.getWidth());
-  
+    componentHashMap.put("statelabel", statelabel);
+    
     //create labels' label
     speedtext = createLabelPnel(String.valueOf(tick).toUpperCase(), speedpanel.getWidth());
+    componentHashMap.put("speedtext", speedtext);
     looptext = createLabelPnel(String.valueOf(loop).toUpperCase(), looppanel.getWidth());
+    componentHashMap.put("looptext", looptext);
     statetext = createLabelPnel(state.toUpperCase(), pppanel.getWidth());
+    componentHashMap.put("statetext", statetext);
     
     pppanel.add(statelabel, BorderLayout.NORTH);
     pppanel.add(statetext, BorderLayout.SOUTH);
-  
+    
     speedpanel.add(speedlabel, BorderLayout.NORTH);
     speedpanel.add(speedtext, BorderLayout.SOUTH);
-  
+    
     looppanel.add(looplabel, BorderLayout.NORTH);
     looppanel.add(looptext, BorderLayout.SOUTH);
     
@@ -144,21 +152,28 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     btnspanel = new JPanel();
     btnspanel.setLayout(new BoxLayout(btnspanel, BoxLayout.X_AXIS));
     btnspanel.setSize(new Dimension(w, 80));
-    btnspanel.setBackground(Color.lightGray);
+    btnspanel.setBackground(Color.white);
     btnspanel.setAlignmentY(Component.CENTER_ALIGNMENT);
     add(btnspanel, BorderLayout.SOUTH);
-  
+    
     btnspanel.add(Box.createHorizontalGlue());
     rewind = createButton("Rewind", "re.png", "rewind");
+    up = createButton("Increase Speed", "up.png", "up speed");
     playpause = createButton("Pause ", "po.png", "pause");
-    fast = createButton("Speed", "forward.png", "speed");
+    down = createButton("Decrease Speed", "down.png", "down speed");
     looper = createButton("Loop", "Asset 1.png", "loop");
     btnspanel.add(Box.createHorizontalGlue());
     
     //timer
     //timer = new Timer();
-   
   
+    componentHashMap.put("panel", panel);
+    componentHashMap.put("mainscroll", mainscroll);
+    componentHashMap.put("statepanel", statepanel);
+    componentHashMap.put("btnpanel", btnspanel);
+    componentHashMap.put("speedpanel", speedpanel);
+    componentHashMap.put("looppanel", looppanel);
+    componentHashMap.put("pppanel", pppanel);
     
     //set visible
     mainscroll.setVisible(true);
@@ -168,16 +183,17 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     
     //btnspanel.add(output);
   }
+  
   //Animation Task
   
   private class AnimateTask extends TimerTask {
     private AnimateTask() {
       super();
     }
-  
+    
     @Override
     public void run() {
-    
+      
       if (count > length) {
         timer.cancel();
       }
@@ -195,7 +211,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
           count = 0;
         }
       }
-    
+      
     }
   }
   
@@ -206,9 +222,9 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
       if (count > length) {
         count = length;
       }
-  
+      
       List<Shape> modified = model.getByTime(count);
-  
+      
       currentView(modified);
       if (state.equals("paused")) {
         count = count;
@@ -222,12 +238,12 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
           count = 0;
         }
       }
-  
+      
     }
   }
   
   
-
+  
   public void animate() {
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
     swingtimer.setInitialDelay(1000);
@@ -263,12 +279,13 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     btn.setAlignmentY(Component.CENTER_ALIGNMENT);
     btn.setVerticalTextPosition(AbstractButton.BOTTOM);
     btn.setHorizontalTextPosition(AbstractButton.CENTER);
-    btn.addActionListener(this);
+    //TODO btn.addActionListener(this);
     btn.setActionCommand(command);
     btn.setOpaque(true);
     btn.setBorderPainted(false);
     
     btnspanel.add(btn);
+    componentHashMap.put(command, btn);
     
     return btn;
   }
@@ -281,92 +298,9 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     return l;
   }
   
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    switch (e.getActionCommand()) {
-      case "play":
-        this.state = "play";
-        for (Component c : btnspanel.getComponents()) {
-          c.setBackground(Color.WHITE);
-        }
-        playpause.setText("Pause");
-        playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/po.png").getImage()
-                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-        playpause.setActionCommand("pause");
-        statetext.setText(String.valueOf(state).toUpperCase());
-        
-        break;
-      case "pause":
-        this.state = "paused";
-        for (Component c : btnspanel.getComponents()) {
-          if (c.isBackgroundSet()) {
-            c.setBackground(Color.WHITE);
-          }
-        }
-        
-        playpause.setText("Play");
-        playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/pl.png").getImage()
-                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
-        playpause.setActionCommand("play");
-        statetext.setText(String.valueOf(state).toUpperCase());
-        
-        
-        break;
-      case "rewind":
-        this.count = 0;
-        this.state = "rewind";
-        for (Component c : btnspanel.getComponents()) {
-          if (c.isBackgroundSet()) {
-            c.setBackground(Color.WHITE);
-          }
-        }
-        swingtimer.stop();
-        panel.removeAll();
-        rewind.setBackground(Color.GREEN);
-        swingtimer.restart();
-        animate();
-        
-        
-        break;
-      case "speed":
-        this.state = "speed";
-        this.tick += 1;
-        
-        for (Component c : btnspanel.getComponents()) {
-          if (c.isBackgroundSet()) {
-            if (c.isBackgroundSet()) {
-              c.setBackground(Color.WHITE);
-            }
-          }
-        }
-        fast.setBackground(Color.YELLOW);
-        speedtext.setText(String.valueOf(tick).toUpperCase());
-        swingtimer.restart();
-        animate();
-        
-        break;
-      case "loop":
-        this.state = "loop";
-        this.loop = !this.loop;
-        for (Component c : btnspanel.getComponents()) {
-          if (c.isBackgroundSet()) {
-            c.setBackground(Color.WHITE);
-          }
-        }
-  
-        looper.setBackground(Color.RED);
-        looptext.setText(String.valueOf(loop).toUpperCase());
-        break;
-    }
+  public HashMap<String, Component> getComponentHashMap() {
+    return componentHashMap;
   }
+
   
-  @Override
-  public void itemStateChanged(ItemEvent e) {
-  
-  }
-  
-  @Override
-  public void valueChanged(ListSelectionEvent e) {
-  
-  }
 }
