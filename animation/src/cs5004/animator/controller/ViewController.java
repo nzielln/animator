@@ -1,16 +1,11 @@
 package cs5004.animator.controller;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
-import javax.swing.*;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.util.AnimationBuilder;
@@ -25,7 +20,7 @@ import cs5004.animator.view.ViewFactory;
 /**
  *
  */
-public class ViewController implements Controller{
+public class ViewController implements Controller {
   private final Reader r;
   private final ViewFactory factory;
   private View view;
