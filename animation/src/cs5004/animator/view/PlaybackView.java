@@ -29,6 +29,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
   private boolean loop;
   private String state;
   private Timer timer;
+  private javax.swing.Timer swingtimer;
   
   private GraphicsPanel panel;
   private JScrollPane mainscroll;
@@ -46,6 +47,9 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
   private JLabel speedlabel;
   private JLabel looplabel;
   private JLabel statelabel;
+  private JLabel speedtext;
+  private JLabel looptext;
+  private JLabel statetext;
   private JPanel speedpanel;
   private JPanel looppanel;
   private JPanel pppanel;
@@ -80,7 +84,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     setLayout(new BorderLayout());
     
     panel = new GraphicsPanel(m.getByTime(0), model);
-    panel.setPreferredSize(new Dimension(w, 800));
+    panel.setPreferredSize(new Dimension(w, 650));
     panel.setLocation(x,y);
     add(panel, BorderLayout.CENTER);
     mainscroll = new JScrollPane(panel);
@@ -95,10 +99,51 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     statepanel.setAlignmentY(Component.CENTER_ALIGNMENT);
     add(statepanel, BorderLayout.NORTH);
     
+    //create text panels
+    speedpanel = new JPanel();
+    speedpanel.setLayout(new BorderLayout());
+    speedpanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    speedpanel.setSize(new Dimension(50, 80));
+  
+    looppanel = new JPanel();
+    looppanel.setLayout(new BorderLayout());
+    looppanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    looppanel.setSize(new Dimension(50, 80));
+  
+    pppanel = new JPanel();
+    pppanel.setLayout(new BorderLayout());
+    pppanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    pppanel.setSize(new Dimension(50, 80));
+    
+    //create labels
+    speedlabel = createLabelPnel("Current Speed", speedpanel.getWidth());
+    looplabel = createLabelPnel("Looped", looppanel.getWidth());
+    statelabel = createLabelPnel("Current State", pppanel.getWidth());
+  
+    //create labels' label
+    speedtext = createLabelPnel(String.valueOf(tick).toUpperCase(), speedpanel.getWidth());
+    looptext = createLabelPnel(String.valueOf(loop).toUpperCase(), looppanel.getWidth());
+    statetext = createLabelPnel(state.toUpperCase(), pppanel.getWidth());
+    
+    pppanel.add(statelabel, BorderLayout.NORTH);
+    pppanel.add(statetext, BorderLayout.SOUTH);
+  
+    speedpanel.add(speedlabel, BorderLayout.NORTH);
+    speedpanel.add(speedtext, BorderLayout.SOUTH);
+  
+    looppanel.add(looplabel, BorderLayout.NORTH);
+    looppanel.add(looptext, BorderLayout.SOUTH);
+    
+    
+    statepanel.add(pppanel);
+    statepanel.add(speedpanel);
+    statepanel.add(looppanel);
+    
+    
     //buttonpanel
     btnspanel = new JPanel();
     btnspanel.setLayout(new BoxLayout(btnspanel, BoxLayout.X_AXIS));
-    btnspanel.setSize(new Dimension(w, 100));
+    btnspanel.setSize(new Dimension(w, 80));
     btnspanel.setBackground(Color.lightGray);
     btnspanel.setAlignmentY(Component.CENTER_ALIGNMENT);
     add(btnspanel, BorderLayout.SOUTH);
@@ -111,7 +156,8 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     btnspanel.add(Box.createHorizontalGlue());
     
     //timer
-    timer = new Timer();
+    //timer = new Timer();
+   
   
     
     //set visible
@@ -133,8 +179,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     public void run() {
     
       if (count > length) {
-        
-        count = length;
+        timer.cancel();
       }
       
       List<Shape> modified = model.getByTime(count);
@@ -154,10 +199,41 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     }
   }
   
+  private class AnimateAction implements ActionListener {
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      if (count > length) {
+        count = length;
+      }
   
+      List<Shape> modified = model.getByTime(count);
+  
+      currentView(modified);
+      if (state.equals("paused")) {
+        count = count;
+        
+      } else {
+        count += 1;
+      }
+      //If loop is on, reset the count to 0 so the animation can start again
+      if (loop) {
+        if (count == length) {
+          count = 0;
+        }
+      }
+  
+    }
+  }
+  
+  
+
   public void animate() {
-    timer.schedule(new AnimateTask(), count, 1000 / tick);
-  
+    swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
+    swingtimer.setInitialDelay(1000);
+    swingtimer.start();
+    // timer.schedule(new AnimateTask(), count, 1000 / tick);
+    
   }
   
   private void getFrame(int frame) {
@@ -197,6 +273,14 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
     return btn;
   }
   
+  private JLabel createLabelPnel(String text, int width) {
+    JLabel l = new JLabel(text, JLabel.CENTER);
+    l.setSize(new Dimension(width, 40));
+    
+    
+    return l;
+  }
+  
   @Override
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
@@ -209,6 +293,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
         playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/po.png").getImage()
                 .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
         playpause.setActionCommand("pause");
+        statetext.setText(String.valueOf(state).toUpperCase());
         
         break;
       case "pause":
@@ -223,6 +308,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
         playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/pl.png").getImage()
                 .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
         playpause.setActionCommand("play");
+        statetext.setText(String.valueOf(state).toUpperCase());
         
         
         break;
@@ -234,12 +320,18 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
             c.setBackground(Color.WHITE);
           }
         }
+        swingtimer.stop();
+        panel.removeAll();
         rewind.setBackground(Color.GREEN);
+        swingtimer.restart();
+        animate();
+        
         
         break;
       case "speed":
         this.state = "speed";
         this.tick += 1;
+        
         for (Component c : btnspanel.getComponents()) {
           if (c.isBackgroundSet()) {
             if (c.isBackgroundSet()) {
@@ -248,6 +340,9 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
           }
         }
         fast.setBackground(Color.YELLOW);
+        speedtext.setText(String.valueOf(tick).toUpperCase());
+        swingtimer.restart();
+        animate();
         
         break;
       case "loop":
@@ -260,6 +355,7 @@ public class PlaybackView extends JFrame implements ActionListener, ItemListener
         }
   
         looper.setBackground(Color.RED);
+        looptext.setText(String.valueOf(loop).toUpperCase());
         break;
     }
   }
