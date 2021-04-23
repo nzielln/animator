@@ -75,10 +75,16 @@ public class TextView implements View {
     
     
   }
-  
+
+  /**
+   * Writes the outputted string to a text file.
+   * @param str (String) the text-based string of the animation.
+   * @param in (Hashmap) a hashmap of commands passed in
+   */
   private void writeFile(String str, HashMap<String, String> in) {
     try {
-      FileWriter f = new FileWriter("../outputs/" + this.in.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter("../outputs/"
+              + this.in.get("out").replace("\"", ""));
       Scanner s = new Scanner(str).useDelimiter("\n");
       while (s.hasNext()) {
         String line = s.next();

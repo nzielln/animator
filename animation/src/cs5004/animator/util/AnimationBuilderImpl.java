@@ -79,7 +79,27 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
     }
     return null;
   }
-  
+
+  /**
+   * Creates a transformation and adds it to the model.
+   * @param name (String) the name of the transformation
+   * @param t1 (int) the initial start/appears time
+   * @param x1 (int) the initial x-coordinate
+   * @param y1 (int) the initial y-coordinate
+   * @param w1 (int) the initial width
+   * @param h1 (int) the initial height
+   * @param r1 (int) the initial R-value
+   * @param g1 (int) the initial G-value
+   * @param b1 (int) the inital B-value
+   * @param t2 (int) the final end/disappears time
+   * @param x2 (int) the end x-coordinate
+   * @param y2 (int) the end y-coordinate
+   * @param w2 (int) the end width
+   * @param h2 (int) the end height
+   * @param r2 (int) the end R-value
+   * @param g2 (int) the end G-value
+   * @param b2 (int) the end B-value
+   */
   private void createMotion(String name, int t1, int x1, int y1, int w1, int h1, int r1, int g1,
                             int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2,
                             int b2) {
@@ -119,8 +139,28 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
       transformation -= 1;
     }
   }
-  
-  
+
+  /**
+   * Sets the initial and ending properties for the initial and end shapes
+   * @param t1 (int) the initial/appears time
+   * @param x1 (int) the initial x-coordinate position
+   * @param y1 (int) the initial y-coordinate position
+   * @param w1 (int) the initial width
+   * @param h1 (int) the initial height
+   * @param r1 (int) the initial R-value
+   * @param g1 (int) the initial G-value
+   * @param b1 (int) the initial B-value
+   * @param t2 (int) the end/disappears time
+   * @param x2 (int) the end x-coordinate position
+   * @param y2 (int) the end y-coordinate position
+   * @param w2 (int) the end width
+   * @param h2 (int) the end height
+   * @param r2 (int) the end R-value
+   * @param g2 (int) the end G-value
+   * @param b2 (int) the end B-value
+   * @param start (Shape) the starting Shape
+   * @param end (Shape) the ending Shape
+   */
   private void createShape(int t1, int x1, int y1, int w1, int h1, int r1, int g1, int b1,
                            int t2, int x2, int y2, int w2, int h2, int r2, int g2, int b2,
                            Shape start, Shape end) {

@@ -8,9 +8,9 @@ import java.util.Objects;
 public class ViewFactory {
   
   /**
-   * Takes in a string to determine what view objec to animate.
+   * Takes in a string to determine what view object to animate.
    * @param in string, input from CLI, passed from EasyAnimator
-   * @return veiw, a view object
+   * @return view, a view object
    */
   public View create(String in) {
     

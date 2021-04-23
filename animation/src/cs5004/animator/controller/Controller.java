@@ -19,5 +19,9 @@ public interface Controller {
   Add new option -playback to CLI commands - should upen editor view
   
    */
+
+  /**
+   *
+   */
   void go();
 }

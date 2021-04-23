@@ -64,7 +64,12 @@ public class ViewController implements Controller{
       view.animate();
     }
   }
-  
+
+  /**
+   *
+   * @param in
+   * @param m
+   */
   private void playback(HashMap<String, String> in, Animation m) {
     String fileInput = in.get("in").replace("\"", "");
     try {
@@ -80,8 +85,10 @@ public class ViewController implements Controller{
       throw new IllegalArgumentException("File not found.");
     }
   }
-  
-  
+
+  /**
+   *
+   */
   private void configButtonListener() {
     Map<String, Runnable> buttonsmap = new HashMap<>();
     ButtonListener bs = new ButtonListener();
@@ -96,9 +103,15 @@ public class ViewController implements Controller{
     
     playbackview.addListener(bs);
   }
-  
+
+  /**
+   *
+   */
   class PlayAction implements Runnable {
-  
+
+    /**
+     *
+     */
     @Override
     public void run() {
       playbackview.setState("playing");
@@ -106,9 +119,15 @@ public class ViewController implements Controller{
     
     }
   }
-  
+
+  /**
+   *
+   */
   class PauseAction implements Runnable {
-    
+
+    /**
+     *
+     */
     @Override
     public void run() {
       playbackview.setState("paused");
@@ -116,9 +135,15 @@ public class ViewController implements Controller{
       
     }
   }
-  
+
+  /**
+   *
+   */
   class RewindAction implements Runnable {
-    
+
+    /**
+     *
+     */
     @Override
     public void run() {
       playbackview.setState("rewind");
@@ -128,9 +153,15 @@ public class ViewController implements Controller{
       playbackview.rewindTimer();
     }
   }
-  
+
+  /**
+   *
+   */
   class LoopAction implements Runnable {
-    
+
+    /**
+     *
+     */
     @Override
     public void run() {
       playbackview.setState("loop");
@@ -141,9 +172,15 @@ public class ViewController implements Controller{
       
     }
   }
-  
+
+  /**
+   *
+   */
   class IncreaseSpeedAction implements Runnable {
-    
+
+    /**
+     *
+     */
     @Override
     public void run() {
       playbackview.setState("up speed");
@@ -154,9 +191,15 @@ public class ViewController implements Controller{
       playbackview.restartimer();
     }
   }
-  
+
+  /**
+   *
+   */
   class DecreaseSpeedAction implements Runnable {
-    
+
+    /**
+     *
+     */
     @Override
     public void run() {
       playbackview.setState("down speed");
