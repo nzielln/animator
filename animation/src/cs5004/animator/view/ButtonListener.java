@@ -8,13 +8,13 @@ import java.util.Map;
  *
  */
 public class ButtonListener implements ActionListener {
-  private Map<String, Runnable> buttonevents;
+  private Map<String, Runnable> buttonEvents;
 
   /**
    *
    */
   public ButtonListener() {
-    buttonevents = null;
+    buttonEvents = null;
   }
 
   /**
@@ -22,7 +22,7 @@ public class ButtonListener implements ActionListener {
    * @param map
    */
   public void setButtonClickedActionMap(Map<String, Runnable> map) {
-    buttonevents = map;
+    buttonEvents = map;
   }
 
   /**
@@ -31,8 +31,8 @@ public class ButtonListener implements ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (buttonevents.containsKey(e.getActionCommand())) {
-      buttonevents.get(e.getActionCommand()).run();
+    if (buttonEvents.containsKey(e.getActionCommand())) {
+      buttonEvents.get(e.getActionCommand()).run();
     }
   
   }

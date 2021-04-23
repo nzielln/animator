@@ -1,13 +1,7 @@
 package cs5004.animator;
 
-import java.util.Scanner;
-
 import cs5004.animator.controller.Controller;
 import cs5004.animator.controller.ViewController;
-import cs5004.animator.model.Color;
-import cs5004.animator.view.Reader;
-import cs5004.animator.view.View;
-import cs5004.animator.view.ViewFactory;
 
 /**
  * Entry class for the animation program, parse CLI argument and renders appropriate view.

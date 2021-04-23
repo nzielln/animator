@@ -44,9 +44,9 @@ public class SVGView implements View {
       speed = Integer.parseInt(this.in.get("speed").replace("\"",""));
     }
     
-    /**
+    /*
      * The dimensions provided in each .txt file were too small to display the full animation
-     * For example, for the smalledemo.txt, the dimensions are 360by 360, but, the ellipse is
+     * For example, for the smalldemo.txt, the dimensions are 360by 360, but, the ellipse is
      * drawn at positions between (440, 70) and (440, 370), making it unviewable in the space
      * allocated for the animation. To solve this problem, we decided to set a default dimensions
      * to make sure everything is seen.

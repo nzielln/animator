@@ -166,9 +166,7 @@ public class PlaybackView extends JFrame {
     down = createButton("Decrease Speed", "down.png", "down speed");
     looper = createButton("Loop", "Asset 1.png", "loop");
     btnspanel.add(Box.createHorizontalGlue());
-    
-    //
-    
+
     //set visible
     mainscroll.setVisible(true);
     panel.setVisible(true);
@@ -191,7 +189,10 @@ public class PlaybackView extends JFrame {
     private AnimateTask() {
       super();
     }
-    
+
+    /**
+     *
+     */
     @Override
     public void run() {
       

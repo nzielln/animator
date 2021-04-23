@@ -15,7 +15,7 @@ public interface Controller {
   Enable/Disable looping
   
   Increase/Decrease speed
-  Takes in user input/keyboard interfact/clicks
+  Takes in user input/keyboard interact/clicks
   Add new option -playback to CLI commands - should upen editor view
   
    */
