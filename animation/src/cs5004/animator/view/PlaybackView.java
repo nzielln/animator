@@ -19,11 +19,10 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.AnimationImpl;
 
-public class PlaybackView extends JFrame {
+public class PlaybackView extends JFrame implements ActionListener, ItemListener, ListSelectionListener {
   //main
   private Animation model;
   private HashMap<String, String> in;
-  private HashMap<String, Component> componentHashMap;
   private int count;
   private int tick;
   private int length;
@@ -119,19 +118,13 @@ public class PlaybackView extends JFrame {
     
     //create labels
     speedlabel = createLabelPnel("Current Speed", speedpanel.getWidth());
-    componentHashMap.put("speedlabel", speedlabel);
     looplabel = createLabelPnel("Looped", looppanel.getWidth());
-    componentHashMap.put("looplabel", looplabel);
     statelabel = createLabelPnel("Current State", pppanel.getWidth());
-    componentHashMap.put("statelabel", statelabel);
     
     //create labels' label
     speedtext = createLabelPnel(String.valueOf(tick).toUpperCase(), speedpanel.getWidth());
-    componentHashMap.put("speedtext", speedtext);
     looptext = createLabelPnel(String.valueOf(loop).toUpperCase(), looppanel.getWidth());
-    componentHashMap.put("looptext", looptext);
     statetext = createLabelPnel(state.toUpperCase(), pppanel.getWidth());
-    componentHashMap.put("statetext", statetext);
     
     pppanel.add(statelabel, BorderLayout.NORTH);
     pppanel.add(statetext, BorderLayout.SOUTH);
@@ -166,14 +159,6 @@ public class PlaybackView extends JFrame {
     
     //timer
     //timer = new Timer();
-  
-    componentHashMap.put("panel", panel);
-    componentHashMap.put("mainscroll", mainscroll);
-    componentHashMap.put("statepanel", statepanel);
-    componentHashMap.put("btnpanel", btnspanel);
-    componentHashMap.put("speedpanel", speedpanel);
-    componentHashMap.put("looppanel", looppanel);
-    componentHashMap.put("pppanel", pppanel);
     
     //set visible
     mainscroll.setVisible(true);
@@ -182,6 +167,16 @@ public class PlaybackView extends JFrame {
     setVisible(true);
     
     //btnspanel.add(output);
+  }
+  
+  @Override
+  public void itemStateChanged(ItemEvent e) {
+  
+  }
+  
+  @Override
+  public void valueChanged(ListSelectionEvent e) {
+  
   }
   
   //Animation Task
@@ -279,13 +274,12 @@ public class PlaybackView extends JFrame {
     btn.setAlignmentY(Component.CENTER_ALIGNMENT);
     btn.setVerticalTextPosition(AbstractButton.BOTTOM);
     btn.setHorizontalTextPosition(AbstractButton.CENTER);
-    //TODO btn.addActionListener(this);
+    btn.addActionListener(this);
     btn.setActionCommand(command);
     btn.setOpaque(true);
     btn.setBorderPainted(false);
     
     btnspanel.add(btn);
-    componentHashMap.put(command, btn);
     
     return btn;
   }
@@ -298,9 +292,109 @@ public class PlaybackView extends JFrame {
     return l;
   }
   
-  public HashMap<String, Component> getComponentHashMap() {
-    return componentHashMap;
+  
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    switch (e.getActionCommand()) {
+      case "play":
+        this.state = "play";
+        for (Component c : btnspanel.getComponents()) {
+          c.setBackground(Color.WHITE);
+        }
+        playpause.setText("Pause");
+        playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/po.png").getImage()
+                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+        playpause.setActionCommand("pause");
+        statetext.setText(String.valueOf(state).toUpperCase());
+        
+        break;
+      case "pause":
+        this.state = "paused";
+        for (Component c : btnspanel.getComponents()) {
+          if (c.isBackgroundSet()) {
+            c.setBackground(Color.WHITE);
+          }
+        }
+        
+        playpause.setText("Play");
+        playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/pl.png").getImage()
+                .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+        playpause.setActionCommand("play");
+        statetext.setText(String.valueOf(state).toUpperCase());
+        
+        
+        break;
+      case "rewind":
+        this.count = 0;
+        this.state = "rewind";
+        for (Component c : btnspanel.getComponents()) {
+          if (c.isBackgroundSet()) {
+            c.setBackground(Color.WHITE);
+          }
+        }
+        swingtimer.stop();
+        panel.removeAll();
+        rewind.setBackground(Color.GREEN);
+        swingtimer.restart();
+        animate();
+        
+        
+        break;
+      case "up speed":
+        this.state = "up speed";
+        this.tick += 1;
+        
+        for (Component c : btnspanel.getComponents()) {
+          if (c.isBackgroundSet()) {
+            if (c.isBackgroundSet()) {
+              c.setBackground(Color.WHITE);
+            }
+          }
+        }
+        up.setBackground(Color.YELLOW);
+        speedtext.setText(String.valueOf(tick).toUpperCase());
+        swingtimer.restart();
+        animate();
+        
+        break;
+      case "down speed":
+        this.state = "down speed";
+        if (tick == 1) {
+          JOptionPane.showMessageDialog(this,
+                  "Speed can't be less than 0",
+                  "Speed warning",
+                  JOptionPane.WARNING_MESSAGE);
+          
+        } else {
+          this.tick -= 1;
+          
+          for (Component c : btnspanel.getComponents()) {
+            if (c.isBackgroundSet()) {
+              if (c.isBackgroundSet()) {
+                c.setBackground(Color.WHITE);
+              }
+            }
+          }
+          down.setBackground(Color.YELLOW);
+          speedtext.setText(String.valueOf(tick).toUpperCase());
+          swingtimer.restart();
+          animate();
+        }
+        
+        break;
+      case "loop":
+        this.state = "loop";
+        this.loop = !this.loop;
+        for (Component c : btnspanel.getComponents()) {
+          if (c.isBackgroundSet()) {
+            c.setBackground(Color.WHITE);
+          }
+        }
+        
+        looper.setBackground(Color.RED);
+        looptext.setText(String.valueOf(loop).toUpperCase());
+        break;
+    }
   }
-
   
 }
