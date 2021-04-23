@@ -254,7 +254,6 @@ public class PlaybackView extends JFrame {
    */
   public void animate() {
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
-    swingtimer.setInitialDelay(1000);
     swingtimer.start();
     // timer.schedule(new AnimateTask(), count, 1000 / tick);
     
@@ -418,6 +417,7 @@ public class PlaybackView extends JFrame {
    */
   public void increaseTick() {
     this.tick += 1;
+    swingtimer.setDelay(1000 / tick);
   }
 
   /**
@@ -433,6 +433,7 @@ public class PlaybackView extends JFrame {
     } else {
       this.tick -= 1;
     }
+    swingtimer.setDelay(1000 / tick);
   }
 
   /**
@@ -458,6 +459,7 @@ public class PlaybackView extends JFrame {
    *
    */
   public void restartimer() {
+    //swingtimer.setDelay();
     swingtimer.restart();
     animate();
   }
