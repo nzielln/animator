@@ -227,6 +227,7 @@ public class PlaybackView extends JFrame {
   
   public void animate() {
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
+    swingtimer.setInitialDelay(1000);
     swingtimer.start();
     // timer.schedule(new AnimateTask(), count, 1000 / tick);
     
@@ -363,16 +364,6 @@ public class PlaybackView extends JFrame {
     panel.removeAll();
     swingtimer.restart();
     animate();
-  }
-  
-  public void restartimer() {
-    //swingtimer.setDelay();
-    swingtimer.restart();
-    animate();
-  }
-  
-  public void slow() {
-    slowanimate();
   }
   
   public void changeRewindBg() {
