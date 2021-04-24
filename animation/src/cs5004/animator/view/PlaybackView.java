@@ -3,17 +3,12 @@ package cs5004.animator.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
