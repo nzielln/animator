@@ -4,35 +4,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
 
-/**
- *
- */
 public class ButtonListener implements ActionListener {
-  private Map<String, Runnable> buttonEvents;
-
+  private Map<String, Runnable> buttonevents;
+  
   /**
    *
    */
   public ButtonListener() {
-    buttonEvents = null;
+    buttonevents = null;
   }
-
+  
   /**
    *
    * @param map
    */
   public void setButtonClickedActionMap(Map<String, Runnable> map) {
-    buttonEvents = map;
+    buttonevents = map;
   }
-
-  /**
-   *
-   * @param e
-   */
+  
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (buttonEvents.containsKey(e.getActionCommand())) {
-      buttonEvents.get(e.getActionCommand()).run();
+    if (buttonevents.containsKey(e.getActionCommand())) {
+      buttonevents.get(e.getActionCommand()).run();
     }
   
   }

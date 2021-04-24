@@ -59,7 +59,6 @@ public class GraphicsPanel extends JPanel {
       return;
     }
     
-    int count = 0;
     for (Shape s: shapes) {
       if (s.getType().equals("RECTANGLE")) {
         Color c = new Color(s.getColor().getR(), s.getColor().getG(), s.getColor().getB());

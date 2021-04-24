@@ -1,4 +1,4 @@
-package views;
+package controller;
 
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ import static org.junit.Assert.fail;
  * Junit test class for TextView. Tests all the methods and functionality that the
  * TextView is supposed to support.
  */
-public class TextTest {
+public class ControllerTextTest {
   
   ViewFactory factory = new ViewFactory();
   Reader r = new Reader();
@@ -29,7 +29,7 @@ public class TextTest {
   @Test
   public void testEmptyFile() {
     try {
-      String in = "-in empty.txt -view text";
+      String in = "-in ./resources/files/empty.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -54,7 +54,7 @@ public class TextTest {
   @Test
   public void testSmallDemo() {
     try {
-      String in = "-in smalldemo.txt -view text";
+      String in = "-in ./resources/files/smalldemo.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -97,7 +97,7 @@ public class TextTest {
   @Test
   public void testToh3() {
     try {
-      String in = "-in toh-3.txt -view text";
+      String in = "-in ./resources/files/toh-3.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -158,7 +158,7 @@ public class TextTest {
   @Test
   public void testTextWithSpeed() {
     try {
-      String in = "-in smalldemo.txt -view text -speed 2";
+      String in = "-in ./resources/files/smalldemo.txt -view text -speed 2";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -200,7 +200,7 @@ public class TextTest {
   @Test
   public void testTextWithOut() {
     try {
-      String in = "-in smalldemo.txt -out small.txt -view text";
+      String in = "-in ./resources/files/smalldemo.txt -out small.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -242,7 +242,7 @@ public class TextTest {
   @Test
   public void testDifferentOrder() {
     try {
-      String in = "-speed 3 -in smalldemo.txt -view text";
+      String in = "-speed 3 -in ./resources/files/smalldemo.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -286,7 +286,7 @@ public class TextTest {
   @Test
   public void testNoFileFound() {
     try {
-      String in = "-in smalldeo.txt -view text";
+      String in = "-in ./resources/files/smalldeo.txt -view text";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -308,7 +308,7 @@ public class TextTest {
   @Test
   public void testNoViewSpecified() {
     try {
-      String in = "-in smalldemo.txt";
+      String in = "-in ./resources/files/smalldemo.txt";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;
@@ -330,7 +330,7 @@ public class TextTest {
   @Test
   public void testWithViewMisspelled() {
     try {
-      String in = "-in smalldemo.txt -view txt";
+      String in = "-in ./resources/files/smalldemo.txt -view txt";
       ByteArrayOutputStream by = new ByteArrayOutputStream();
       PrintStream out = new PrintStream(by);
       PrintStream sys = System.out;

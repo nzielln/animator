@@ -1,11 +1,16 @@
 package cs5004.animator.controller;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import javax.swing.*;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.util.AnimationBuilder;
@@ -20,7 +25,7 @@ import cs5004.animator.view.ViewFactory;
 /**
  *
  */
-public class ViewController implements Controller {
+public class ViewController implements Controller{
   private final Reader r;
   private final ViewFactory factory;
   private View view;
@@ -39,6 +44,13 @@ public class ViewController implements Controller {
     
   }
   
+  public View getView() {
+    return this.view;
+  }
+  
+  public PlaybackView getPlaybackview() {
+    return this.playbackview;
+  }
   
   @Override
   public void go() {
@@ -59,16 +71,21 @@ public class ViewController implements Controller {
       view.animate();
     }
   }
-
-  /**
-   *
-   * @param in
-   * @param m
-   */
+  
+  @Override
+  public void exit() {
+    if (r.getInputs().get("view").equalsIgnoreCase("playback")) {
+      playbackview.exitView();
+    } else {
+      view.exitView();
+    }
+  }
+  
+  
   private void playback(HashMap<String, String> in, Animation m) {
     String fileInput = in.get("in").replace("\"", "");
     try {
-      File demo = new File("./resources/files/" + fileInput);
+      File demo = new File(fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
@@ -80,10 +97,8 @@ public class ViewController implements Controller {
       throw new IllegalArgumentException("File not found.");
     }
   }
-
-  /**
-   *
-   */
+  
+  
   private void configButtonListener() {
     Map<String, Runnable> buttonsmap = new HashMap<>();
     ButtonListener bs = new ButtonListener();
@@ -98,47 +113,27 @@ public class ViewController implements Controller {
     
     playbackview.addListener(bs);
   }
-
-  /**
-   *
-   */
+  
   class PlayAction implements Runnable {
-
-    /**
-     *
-     */
+  
     @Override
     public void run() {
       playbackview.setState("playing");
       playbackview.setPlayState();
-    
     }
   }
-
-  /**
-   *
-   */
+  
   class PauseAction implements Runnable {
-
-    /**
-     *
-     */
+    
     @Override
     public void run() {
       playbackview.setState("paused");
       playbackview.setPauseState();
-      
     }
   }
-
-  /**
-   *
-   */
+  
   class RewindAction implements Runnable {
-
-    /**
-     *
-     */
+    
     @Override
     public void run() {
       playbackview.setState("rewind");
@@ -146,17 +141,12 @@ public class ViewController implements Controller {
       playbackview.setComponents();
       playbackview.changeRewindBg();
       playbackview.rewindTimer();
+      playbackview.setPlayState();
     }
   }
-
-  /**
-   *
-   */
+  
   class LoopAction implements Runnable {
-
-    /**
-     *
-     */
+    
     @Override
     public void run() {
       playbackview.setState("loop");
@@ -164,18 +154,11 @@ public class ViewController implements Controller {
       playbackview.setComponents();
       playbackview.changeLoopBg();
       playbackview.setLoop();
-      
     }
   }
-
-  /**
-   *
-   */
+  
   class IncreaseSpeedAction implements Runnable {
-
-    /**
-     *
-     */
+    
     @Override
     public void run() {
       playbackview.setState("up speed");
@@ -183,18 +166,11 @@ public class ViewController implements Controller {
       playbackview.setComponents();
       playbackview.changeUpBg();
       playbackview.setTick();
-      //playbackview.restartimer();
     }
   }
-
-  /**
-   *
-   */
+  
   class DecreaseSpeedAction implements Runnable {
-
-    /**
-     *
-     */
+    
     @Override
     public void run() {
       playbackview.setState("down speed");
@@ -202,7 +178,6 @@ public class ViewController implements Controller {
       playbackview.setComponents();
       playbackview.changeDownBg();
       playbackview.setTick();
-      //playbackview.restartimer();
       
     }
   }

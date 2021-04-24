@@ -1,5 +1,8 @@
 package cs5004.animator.controller;
 
+import cs5004.animator.view.PlaybackView;
+import cs5004.animator.view.View;
+
 /**
  * Controller for the Animation program.
  */
@@ -24,4 +27,9 @@ public interface Controller {
    *
    */
   void go();
+  void exit();
+  
+  View getView();
+  
+  PlaybackView getPlaybackview();
 }

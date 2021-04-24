@@ -57,7 +57,7 @@ public class PlaybackView extends JFrame {
   private JPanel speedpanel;
   private JPanel looppanel;
   private JPanel pppanel;
-
+  
   /**
    *
    */
@@ -68,7 +68,7 @@ public class PlaybackView extends JFrame {
     this.in =  new HashMap<>();
     
   }
-
+  
   /**
    *
    * @param m
@@ -166,66 +166,20 @@ public class PlaybackView extends JFrame {
     down = createButton("Decrease Speed", "down.png", "down speed");
     looper = createButton("Loop", "Asset 1.png", "loop");
     btnspanel.add(Box.createHorizontalGlue());
-
+    
+    //
+    
     //set visible
     mainscroll.setVisible(true);
     panel.setVisible(true);
     btnspanel.setVisible(true);
     setVisible(true);
     
-    //btnspanel.add(output);
   }
   
-  //Animation Task
-
-  /**
-   *
-   */
-  private class AnimateTask extends TimerTask {
-
-    /**
-     *
-     */
-    private AnimateTask() {
-      super();
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void run() {
-      
-      if (count > length) {
-        timer.cancel();
-      }
-      
-      List<Shape> modified = model.getByTime(count);
-      currentView(modified);
-      if (state.equals("paused")) {
-        count = count;
-      } else {
-        count += 1;
-      }
-      //If loop is on, reset the count to 0 so the animation can start again
-      if (loop) {
-          looper.setBackground(Color.GREEN);
-        if (count == length) {
-          count = 0;
-        }
-      }
-    }
-  }
-
-  /**
-   *
-   */
+  //Animation Action
   private class AnimateAction implements ActionListener {
-
-    /**
-     *
-     * @param e
-     */
+    
     @Override
     public void actionPerformed(ActionEvent e) {
       if (count > length) {
@@ -248,17 +202,18 @@ public class PlaybackView extends JFrame {
       }
     }
   }
-
+  
   /**
    *
    */
   public void animate() {
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
+    swingtimer.setInitialDelay(1000);
     swingtimer.start();
     // timer.schedule(new AnimateTask(), count, 1000 / tick);
     
   }
-
+  
   /**
    *
    */
@@ -269,18 +224,14 @@ public class PlaybackView extends JFrame {
     // timer.schedule(new AnimateTask(), count, 1000 / tick);
     
   }
-
-  /**
-   *
-   * @param frame
-   */
+  
   private void getFrame(int frame) {
     
     List<Shape> modified = this.model.getByTime(frame);
     this.currentView(modified);
     
   }
-
+  
   /**
    *
    * @param m
@@ -292,14 +243,7 @@ public class PlaybackView extends JFrame {
     this.repaint();
     
   }
-
-  /**
-   *
-   * @param name
-   * @param file
-   * @param command
-   * @return
-   */
+  
   private JButton createButton(String name, String file, String command) {
     ImageIcon img = new ImageIcon(new ImageIcon("./resources/icons/" + file).getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT));
@@ -321,13 +265,7 @@ public class PlaybackView extends JFrame {
     
     return btn;
   }
-
-  /**
-   *
-   * @param text
-   * @param width
-   * @return
-   */
+  
   private JLabel createLabelPnel(String text, int width) {
     JLabel l = new JLabel(text, JLabel.CENTER);
     l.setSize(new Dimension(width, 40));
@@ -335,7 +273,7 @@ public class PlaybackView extends JFrame {
     
     return l;
   }
-
+  
   /**
    *
    * @param al
@@ -347,7 +285,7 @@ public class PlaybackView extends JFrame {
     looper.addActionListener(al);
     rewind.addActionListener(al);
   }
-
+  
   /**
    *
    */
@@ -360,7 +298,7 @@ public class PlaybackView extends JFrame {
     statetext.setText(String.valueOf(state).toUpperCase());
     
   }
-
+  
   /**
    *
    */
@@ -373,7 +311,7 @@ public class PlaybackView extends JFrame {
     statetext.setText(String.valueOf(state).toUpperCase());
     
   }
-
+  
   /**
    *
    */
@@ -381,14 +319,14 @@ public class PlaybackView extends JFrame {
     looptext.setText(String.valueOf(loop).toUpperCase());
     
   }
-
+  
   /**
    *
    */
   public void setTick() {
     speedtext.setText(String.valueOf(tick).toUpperCase());
   }
-
+  
   /**
    *
    * @param s
@@ -396,7 +334,7 @@ public class PlaybackView extends JFrame {
   public void setState(String s) {
     this.state = s;
   }
-
+  
   /**
    *
    * @param i
@@ -404,14 +342,14 @@ public class PlaybackView extends JFrame {
   public void changeCount(int i) {
     this.count = i;
   }
-
+  
   /**
    *
    */
   public void loop() {
     this.loop = !loop;
   }
-
+  
   /**
    *
    */
@@ -419,7 +357,7 @@ public class PlaybackView extends JFrame {
     this.tick += 1;
     swingtimer.setDelay(1000 / tick);
   }
-
+  
   /**
    *
    */
@@ -435,7 +373,7 @@ public class PlaybackView extends JFrame {
     }
     swingtimer.setDelay(1000 / tick);
   }
-
+  
   /**
    *
    */
@@ -444,59 +382,48 @@ public class PlaybackView extends JFrame {
         c.setBackground(Color.WHITE);
     }
   }
-
+  
   /**
    *
    */
   public void rewindTimer() {
-    swingtimer.stop();
-    panel.removeAll();
-    swingtimer.restart();
-    animate();
+    swingtimer.setDelay(1000 / tick);
   }
-
-  /**
-   *
-   */
-  public void restartimer() {
-    //swingtimer.setDelay();
-    swingtimer.restart();
-    animate();
-  }
-
-  /**
-   *
-   */
-  public void slow() {
-    slowanimate();
-  }
-
+  
   /**
    *
    */
   public void changeRewindBg() {
     rewind.setBackground(Color.YELLOW);
   }
-
+  
   /**
    *
    */
   public void changeUpBg() {
     up.setBackground(Color.YELLOW);
   }
-
+  
+  
   /**
    *
    */
   public void changeDownBg() {
     down.setBackground(Color.YELLOW);
   }
-
+  
   /**
    *
    */
   public void changeLoopBg() {
     looper.setBackground(Color.YELLOW);
+  }
+  
+  /**
+   *
+   */
+  public void exitView() {
+    System.exit(0);
   }
 
   

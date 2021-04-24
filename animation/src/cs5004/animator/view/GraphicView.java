@@ -126,4 +126,9 @@ public class GraphicView extends JFrame implements View {
     
   }
   
+  @Override
+  public void exitView() {
+    System.exit(0);
+  }
+  
 }
