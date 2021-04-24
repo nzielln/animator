@@ -131,6 +131,10 @@ public interface Animation {
    */
   void removeTransformation(String id, Transformation t);
   
+  
+  
+  String clicked(int x, int y, int t);
+  
   /*
   
    */

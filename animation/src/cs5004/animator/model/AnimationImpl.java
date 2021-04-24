@@ -93,11 +93,18 @@ public class AnimationImpl implements Animation {
   public List<Shape> getByTime(int t) {
     if (t < 0) {
       throw new IllegalArgumentException("Time must be positive");
+    } else if (t == 0) {
+      for (Shape is : hashmap.keySet()) {
+        lastest.put(is.getName(), is);
+      }
     }
     
     List<Shape> shapesAtTick = new LinkedList<>();
     
     for (Shape s : hashmap.keySet()) {
+      if (s.getName().equals("eclipse")) {
+        int a = 5;
+      }
       
       List<Transformation> atTime = new LinkedList<>();
       for (Transformation tr : hashmap.get(s)) {
@@ -346,6 +353,21 @@ public class AnimationImpl implements Animation {
     }
     return Collections.max(length);
     
+  }
+  
+  @Override
+  public String clicked(int x, int y, int t) {
+    for (Shape s: getByTime(t) ) {
+      for (int i = 0; i < s.getWidth(); i++) {
+        for (int j = 0; j < s.getHeight(); j++) {
+          if (x == i && y == j) {
+            return s.getName();
+          }
+        }
+      }
+    }
+    
+    return null;
   }
   
   
