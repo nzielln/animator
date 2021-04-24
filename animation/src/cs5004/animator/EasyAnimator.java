@@ -9,6 +9,7 @@ import cs5004.animator.controller.ViewController;
 public class EasyAnimator {
   //java -jar animation.jar -in buildings.txt -view playback -speed 15
   //java -jar animation.jar -in buildings.txt -view visual -speed 15
+  //java -jar animation.jar -in buildings.txt -view playback -speed 20
   /**
    Main class that renders CLI argument and renders view based on inputs.
    * @param args the CLI arguments

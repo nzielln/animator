@@ -87,7 +87,7 @@ public class PlaybackView extends JFrame {
     setLayout(new BorderLayout());
     
     panel = new GraphicsPanel(m.getByTime(0), model);
-    panel.setPreferredSize(new Dimension(w, 650));
+    panel.setPreferredSize(new Dimension(w, h));
     panel.setLocation(x,y);
     add(panel, BorderLayout.CENTER);
     mainscroll = new JScrollPane(panel);
@@ -171,43 +171,7 @@ public class PlaybackView extends JFrame {
     //btnspanel.add(output);
   }
 
-  //Animation Task
-
-  /**
-   *
-   */
-  private class AnimateTask extends TimerTask {
-    private AnimateTask() {
-      super();
-    }
-
-    /**
-     *
-     */
-    @Override
-    public void run() {
-      
-      if (count > length) {
-        timer.cancel();
-      }
-      
-      List<Shape> modified = model.getByTime(count);
-      currentView(modified);
-      if (state.equals("paused")) {
-        count = count;
-      } else {
-        count += 1;
-      }
-      //If loop is on, reset the count to 0 so the animation can start again
-      if (loop) {
-          looper.setBackground(Color.GREEN);
-        if (count == length) {
-          count = 0;
-        }
-      }
-      
-    }
-  }
+  //Animation Action
 
   /**
    *
@@ -241,6 +205,26 @@ public class PlaybackView extends JFrame {
    *
    */
   public void animate() {
+    Object[] options = {"Play Animation", "Exit Animation"};
+    int pane = JOptionPane.showOptionDialog(this,
+            "Use the buttons on the screen or your keyboard to control the animation.\n"
+                    + "UP - Increase Speed\n"
+                    + "DOWN - Decrease Speed\n"
+                    + "LEFT - Rewind\n"
+                    + "RIGHT - Loop\n"
+                    + "SPACE - Play/Pause\n",
+            "Playback Animation",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.PLAIN_MESSAGE,
+            null,
+            options,
+            options[0]);
+    
+    if (pane == JOptionPane.NO_OPTION) {
+      System.exit(0);
+    }
+  
+    
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
     swingtimer.setInitialDelay(1000);
     swingtimer.start();
@@ -290,7 +274,7 @@ public class PlaybackView extends JFrame {
    * @return
    */
   private JButton createButton(String name, String file, String command) {
-    ImageIcon img = new ImageIcon(new ImageIcon("./resources/icons/" + file).getImage()
+    ImageIcon img = new ImageIcon(new ImageIcon("../icons/" + file).getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT));
     
     JButton btn = new JButton(name, img);
@@ -344,7 +328,7 @@ public class PlaybackView extends JFrame {
   public void setPlayState() {
     setComponents();
     playpause.setText("Pause");
-    playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/po.png").getImage()
+    playpause.setIcon(new ImageIcon(new ImageIcon("../icons/po.png").getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
     playpause.setActionCommand("pause");
     statetext.setText(String.valueOf(state).toUpperCase());
@@ -358,7 +342,7 @@ public class PlaybackView extends JFrame {
   public void setPauseState() {
     setComponents();
     playpause.setText("Play");
-    playpause.setIcon(new ImageIcon(new ImageIcon("./resources/icons/pl.png").getImage()
+    playpause.setIcon(new ImageIcon(new ImageIcon("../icons/pl.png").getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
     playpause.setActionCommand("play");
     statetext.setText(String.valueOf(state).toUpperCase());
@@ -476,5 +460,16 @@ public class PlaybackView extends JFrame {
    */
   public void exitView() {
     System.exit(0);
+  }
+  
+  public String getCurrentState() {
+    return state;
+  }
+  /**
+   * Exits the current view.
+   */
+  public void resetFocus() {
+    this.setFocusable(true);
+    this.requestFocus();
   }
 }
