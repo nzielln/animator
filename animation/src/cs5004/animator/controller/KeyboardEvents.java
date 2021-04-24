@@ -134,7 +134,7 @@ class KeyboardEvents {
   class DecreaseSpeedAction implements Runnable {
     
     /**
-     * Tells the view and model to decrease the speed of the animation.
+     * Tells the view to decrease the speed of the animation.
      */
     @Override
     public void run() {
@@ -148,12 +148,12 @@ class KeyboardEvents {
   }
   
   /**
-   * A class that represents a decrease speed action.
+   *
    */
   class Refocus implements Runnable {
     
     /**
-     * Tells the view and model to decrease the speed of the animation.
+     *
      */
     @Override
     public void run() {
