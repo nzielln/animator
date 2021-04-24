@@ -214,7 +214,6 @@ public class PlaybackView extends JFrame {
           count = 0;
         }
       }
-      
     }
   }
 
