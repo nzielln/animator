@@ -18,6 +18,9 @@ public interface Playback {
    * Animates the animation for the Playback View.
    */
   void animate();
-  
+
+  /**
+   * Exits the current view
+   */
   void exitView();
 }
