@@ -148,12 +148,12 @@ class KeyboardEvents {
   }
   
   /**
-   *
+   * Refocuses the keyboard focus.
    */
   class Refocus implements Runnable {
     
     /**
-     *
+     * Resets the keyboard focus for the playback view.
      */
     @Override
     public void run() {
