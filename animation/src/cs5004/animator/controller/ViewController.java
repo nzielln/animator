@@ -74,8 +74,13 @@ public class ViewController implements Controller{
   
   @Override
   public void exit() {
-    view.exitView();
+    if (r.getInputs().get("view").equalsIgnoreCase("playback")) {
+      playbackview.exitView();
+    } else {
+      view.exitView();
+    }
   }
+  
   
   private void playback(HashMap<String, String> in, Animation m) {
     String fileInput = in.get("in").replace("\"", "");

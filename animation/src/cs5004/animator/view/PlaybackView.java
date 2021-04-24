@@ -19,6 +19,9 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.AnimationImpl;
 
+/**
+ *
+ */
 public class PlaybackView extends JFrame {
   //main
   private Animation model;
@@ -55,6 +58,9 @@ public class PlaybackView extends JFrame {
   private JPanel looppanel;
   private JPanel pppanel;
   
+  /**
+   *
+   */
   public PlaybackView() {
     super("Animation");
     this.view = "Playback";
@@ -63,7 +69,11 @@ public class PlaybackView extends JFrame {
     
   }
   
-  
+  /**
+   *
+   * @param m
+   * @param in
+   */
   public void buildModel(Animation m, HashMap<String, String> in) {
     this.model = m;
     this.in = in;
@@ -165,11 +175,9 @@ public class PlaybackView extends JFrame {
     btnspanel.setVisible(true);
     setVisible(true);
     
-    //btnspanel.add(output);
   }
   
   //Animation Action
-  
   private class AnimateAction implements ActionListener {
     
     @Override
@@ -195,6 +203,9 @@ public class PlaybackView extends JFrame {
     }
   }
   
+  /**
+   *
+   */
   public void animate() {
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
     swingtimer.setInitialDelay(1000);
@@ -203,6 +214,9 @@ public class PlaybackView extends JFrame {
     
   }
   
+  /**
+   *
+   */
   public void slowanimate() {
     swingtimer = new javax.swing.Timer((1000 / tick) + 1000, new AnimateAction());
     swingtimer.setInitialDelay(1000);
@@ -218,6 +232,10 @@ public class PlaybackView extends JFrame {
     
   }
   
+  /**
+   *
+   * @param m
+   */
   public void currentView(List<Shape> m) {
     Objects.requireNonNull(m, "Model can't be null");
     
@@ -256,6 +274,10 @@ public class PlaybackView extends JFrame {
     return l;
   }
   
+  /**
+   *
+   * @param al
+   */
   public void addListener(ActionListener al) {
     playpause.addActionListener(al);
     up.addActionListener(al);
@@ -264,6 +286,9 @@ public class PlaybackView extends JFrame {
     rewind.addActionListener(al);
   }
   
+  /**
+   *
+   */
   public void setPlayState() {
     setComponents();
     playpause.setText("Pause");
@@ -274,6 +299,9 @@ public class PlaybackView extends JFrame {
     
   }
   
+  /**
+   *
+   */
   public void setPauseState() {
     setComponents();
     playpause.setText("Play");
@@ -284,33 +312,55 @@ public class PlaybackView extends JFrame {
     
   }
   
+  /**
+   *
+   */
   public void setLoop() {
     looptext.setText(String.valueOf(loop).toUpperCase());
     
   }
   
+  /**
+   *
+   */
   public void setTick() {
     speedtext.setText(String.valueOf(tick).toUpperCase());
   }
   
-  
+  /**
+   *
+   * @param s
+   */
   public void setState(String s) {
     this.state = s;
   }
   
+  /**
+   *
+   * @param i
+   */
   public void changeCount(int i) {
     this.count = i;
   }
   
+  /**
+   *
+   */
   public void loop() {
     this.loop = !loop;
   }
   
+  /**
+   *
+   */
   public void increaseTick() {
     this.tick += 1;
     swingtimer.setDelay(1000 / tick);
   }
   
+  /**
+   *
+   */
   public void decreaseTick() {
     if (tick == 1) {
       JOptionPane.showMessageDialog(this,
@@ -324,33 +374,54 @@ public class PlaybackView extends JFrame {
     swingtimer.setDelay(1000 / tick);
   }
   
+  /**
+   *
+   */
   public void setComponents() {
     for (Component c : btnspanel.getComponents()) {
         c.setBackground(Color.WHITE);
     }
   }
   
+  /**
+   *
+   */
   public void rewindTimer() {
     swingtimer.setDelay(1000 / tick);
   }
   
+  /**
+   *
+   */
   public void changeRewindBg() {
     rewind.setBackground(Color.YELLOW);
   }
   
+  /**
+   *
+   */
   public void changeUpBg() {
     up.setBackground(Color.YELLOW);
   }
   
   
+  /**
+   *
+   */
   public void changeDownBg() {
     down.setBackground(Color.YELLOW);
   }
   
+  /**
+   *
+   */
   public void changeLoopBg() {
     looper.setBackground(Color.YELLOW);
   }
   
+  /**
+   *
+   */
   public void exitView() {
     System.exit(0);
   }
