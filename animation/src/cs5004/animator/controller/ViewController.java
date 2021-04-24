@@ -103,7 +103,6 @@ public class ViewController implements Controller{
     public void run() {
       playbackview.setState("playing");
       playbackview.setPlayState();
-    
     }
   }
   
@@ -113,7 +112,6 @@ public class ViewController implements Controller{
     public void run() {
       playbackview.setState("paused");
       playbackview.setPauseState();
-      
     }
   }
   
@@ -126,6 +124,7 @@ public class ViewController implements Controller{
       playbackview.setComponents();
       playbackview.changeRewindBg();
       playbackview.rewindTimer();
+      playbackview.setPlayState();
     }
   }
   
@@ -138,7 +137,6 @@ public class ViewController implements Controller{
       playbackview.setComponents();
       playbackview.changeLoopBg();
       playbackview.setLoop();
-      
     }
   }
   
@@ -151,7 +149,6 @@ public class ViewController implements Controller{
       playbackview.setComponents();
       playbackview.changeUpBg();
       playbackview.setTick();
-      //playbackview.restartimer();
     }
   }
   

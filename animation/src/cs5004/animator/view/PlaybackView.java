@@ -331,6 +331,7 @@ public class PlaybackView extends JFrame {
   public void changeCount(int i) {
     this.count = i;
   }
+  
   public void loop() {
     this.loop = !loop;
   }
@@ -360,10 +361,7 @@ public class PlaybackView extends JFrame {
   }
   
   public void rewindTimer() {
-    swingtimer.stop();
-    panel.removeAll();
-    swingtimer.restart();
-    animate();
+    swingtimer.setDelay(1000 / tick);
   }
   
   public void changeRewindBg() {
