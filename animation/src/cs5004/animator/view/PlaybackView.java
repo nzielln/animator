@@ -175,7 +175,7 @@ public class PlaybackView extends JFrame {
     
     //btnspanel.add(output);
   }
-  
+
   //Animation Task
 
   /**
@@ -476,5 +476,10 @@ public class PlaybackView extends JFrame {
     looper.setBackground(Color.YELLOW);
   }
 
-  
+  /**
+   * Exits the current view.
+   */
+  public void exitView() {
+    System.exit(0);
+  }
 }

@@ -27,9 +27,21 @@ public interface Controller {
    * Gets the input information and plays the correct animation view type.
    */
   void go();
+
+  /**
+   * Exits the current view.
+   */
   void exit();
-  
+
+  /**
+   * Returns the current view.
+   * @return (View) the view.
+   */
   View getView();
-  
+
+  /**
+   * Returns a PlaybackView object.
+   * @return the playback view object.
+   */
   PlaybackView getPlaybackview();
 }

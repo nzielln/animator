@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+
 import cs5004.animator.model.Animation;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
@@ -22,13 +23,13 @@ import cs5004.animator.view.ViewFactory;
  * defined in the Controller interface and adds functionality for increasing and decreasing speed,
  * looping the animation, and play and pausing the animation.
  */
-public class ViewController implements Controller {
+public class ViewController implements Controller{
   private final Reader r;
   private final ViewFactory factory;
   private View view;
   private PlaybackView playbackview;
   private final String instr;
-  
+
   /**
    * This is the constructor for the ViewController. It creates a new Reader, ViewFactory, and
    * PlaybackView objects. It takes int TODO
@@ -39,7 +40,19 @@ public class ViewController implements Controller {
     this.factory = new ViewFactory();
     this.playbackview = new PlaybackView();
     this.instr = instr;
-    
+
+  }
+
+
+
+  @Override
+  public View getView() {
+    return this.view;
+  }
+
+  @Override
+  public PlaybackView getPlaybackview() {
+    return this.playbackview;
   }
 
 
@@ -50,16 +63,25 @@ public class ViewController implements Controller {
     //Parse Inputs
     String in = scan.nextLine();
     r.readIn(in);
-    
+
     if (r.getInputs().get("view").equalsIgnoreCase("playback")) {
       playback(r.getInputs(), r.getModel());
     } else {
-  
+
       view = factory.create(in);
       //Get readbale and generate model
       r.makeModel(r.getInputs(), view);
       //Animate
       view.animate();
+    }
+  }
+
+  @Override
+  public void exit() {
+    if (r.getInputs().get("view").equalsIgnoreCase("playback")) {
+      playbackview.exitView();
+    } else {
+      view.exitView();
     }
   }
 
@@ -71,7 +93,7 @@ public class ViewController implements Controller {
   private void playback(HashMap<String, String> in, Animation m) {
     String fileInput = in.get("in").replace("\"", "");
     try {
-      File demo = new File("./resources/files/" + fileInput);
+      File demo = new File(fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
@@ -84,6 +106,7 @@ public class ViewController implements Controller {
     }
   }
 
+
   /**
    * The configButtonListener creates new button listeners for the play/pause, rewind, loop, and
    * up and down speed functionality.
@@ -91,7 +114,7 @@ public class ViewController implements Controller {
   private void configButtonListener() {
     Map<String, Runnable> buttonsmap = new HashMap<>();
     ButtonListener bs = new ButtonListener();
-    
+
     buttonsmap.put("play", new PlayAction());
     buttonsmap.put("pause", new PauseAction());
     buttonsmap.put("rewind", new RewindAction());
@@ -99,9 +122,10 @@ public class ViewController implements Controller {
     buttonsmap.put("down speed", new DecreaseSpeedAction());
     buttonsmap.put("up speed", new IncreaseSpeedAction());
     bs.setButtonClickedActionMap(buttonsmap);
-    
+
     playbackview.addListener(bs);
   }
+
 
   /**
    * The PlayAction class represents the view playing the animation.
@@ -203,7 +227,6 @@ public class ViewController implements Controller {
       playbackview.setComponents();
       playbackview.changeDownBg();
       playbackview.setTick();
-      //playbackview.restartimer();
       
     }
   }
