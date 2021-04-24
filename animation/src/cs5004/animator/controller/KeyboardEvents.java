@@ -7,6 +7,9 @@ import java.util.Map;
 import cs5004.animator.view.KeyboardListener;
 import cs5004.animator.view.PlaybackView;
 
+/**
+ *
+ */
 class KeyboardEvents {
   private PlaybackView playbackview;
   
@@ -14,7 +17,10 @@ class KeyboardEvents {
     this.playbackview = p;
     
   }
-  
+
+  /**
+   *
+   */
   public void configureKeyboardListener() {
     Map<Character, Runnable> type = new HashMap<>();
     Map<Integer, Runnable> press = new HashMap<>();

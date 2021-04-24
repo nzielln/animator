@@ -53,7 +53,11 @@ public class PlaybackView extends JFrame {
   private JPanel speedpanel;
   private JPanel looppanel;
   private JPanel pppanel;
-  
+
+  /**
+   * Our PlaybackView constructor inherits the title for the animation. It sets the view type to
+   * "playback" and creates a new AnimationImpl and Hashmap
+   */
   public PlaybackView() {
     super("Animation");
     this.view = "Playback";
@@ -63,9 +67,11 @@ public class PlaybackView extends JFrame {
   }
 
   /**
-   *
-   * @param m
-   * @param in
+   * The buildModel method builds the graphics frame and panel for the Playback view based on
+   * information from the model. Sets up additional functionality for rewinding, looping,
+   * increasing or decreasing speed, as well as play/pause.
+   * @param m (Animation) the animation that is to be played.
+   * @param in (Hashmap<String, String>) the hashmap of String commands.
    */
   public void buildModel(Animation m, HashMap<String, String> in) {
     this.model = m;
@@ -233,7 +239,7 @@ public class PlaybackView extends JFrame {
   }
 
   /**
-   *
+   * Slows the animation down via the timer.
    */
   public void slowanimate() {
     swingtimer = new javax.swing.Timer((1000 / tick) + 1000, new AnimateAction());

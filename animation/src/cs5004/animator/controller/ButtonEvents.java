@@ -6,9 +6,17 @@ import java.util.Map;
 import cs5004.animator.view.ButtonListener;
 import cs5004.animator.view.PlaybackView;
 
+/**
+ * ButtonEvents objects used to change the state of the play/pause, rewind, loop,
+ * and increase and decrease speed buttons.
+ */
 class ButtonEvents {
   private final PlaybackView playbackview;
-  
+
+  /**
+   * Constructor the ButtonEvents class. Takes in and holds reference to the PlaybackView object.
+   * @param p (PlaybackView) the
+   */
   ButtonEvents(PlaybackView p) {
     this.playbackview = p;
   }
