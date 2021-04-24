@@ -56,7 +56,7 @@ public class SVGView implements View {
     try {
       
       
-      FileWriter f = new FileWriter("../outputs/"
+      FileWriter f = new FileWriter("./resources/outputs/"
               + this.in.get("out").replace("\"", ""));
       String canvas = "<svg width=\"" + 100 + "%\" height=\"" + 100
               + "%\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
@@ -181,6 +181,11 @@ public class SVGView implements View {
   @Override
   public View getView() {
     return this;
+  }
+  
+  @Override
+  public void exitView() {
+    throw new UnsupportedOperationException("This operation is not supported by this class.");
   }
   
 }

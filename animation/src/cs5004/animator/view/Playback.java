@@ -11,4 +11,6 @@ public interface Playback {
   
   void makeFrame(/*int x, int y, int w, int h*/);
   void animate();
+  
+  void exitView();
 }

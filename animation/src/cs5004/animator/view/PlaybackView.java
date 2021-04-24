@@ -168,37 +168,7 @@ public class PlaybackView extends JFrame {
     //btnspanel.add(output);
   }
   
-  //Animation Task
-  
-  private class AnimateTask extends TimerTask {
-    private AnimateTask() {
-      super();
-    }
-    
-    @Override
-    public void run() {
-      
-      if (count > length) {
-        timer.cancel();
-      }
-      
-      List<Shape> modified = model.getByTime(count);
-      currentView(modified);
-      if (state.equals("paused")) {
-        count = count;
-      } else {
-        count += 1;
-      }
-      //If loop is on, reset the count to 0 so the animation can start again
-      if (loop) {
-          looper.setBackground(Color.GREEN);
-        if (count == length) {
-          count = 0;
-        }
-      }
-      
-    }
-  }
+  //Animation Action
   
   private class AnimateAction implements ActionListener {
     
@@ -379,6 +349,10 @@ public class PlaybackView extends JFrame {
   
   public void changeLoopBg() {
     looper.setBackground(Color.YELLOW);
+  }
+  
+  public void exitView() {
+    System.exit(0);
   }
 
   

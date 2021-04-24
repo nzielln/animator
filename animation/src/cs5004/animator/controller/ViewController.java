@@ -44,6 +44,13 @@ public class ViewController implements Controller{
     
   }
   
+  public View getView() {
+    return this.view;
+  }
+  
+  public PlaybackView getPlaybackview() {
+    return this.playbackview;
+  }
   
   @Override
   public void go() {
@@ -65,10 +72,15 @@ public class ViewController implements Controller{
     }
   }
   
+  @Override
+  public void exit() {
+    view.exitView();
+  }
+  
   private void playback(HashMap<String, String> in, Animation m) {
     String fileInput = in.get("in").replace("\"", "");
     try {
-      File demo = new File("./resources/files/" + fileInput);
+      File demo = new File(fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
@@ -161,7 +173,6 @@ public class ViewController implements Controller{
       playbackview.setComponents();
       playbackview.changeDownBg();
       playbackview.setTick();
-      //playbackview.restartimer();
       
     }
   }

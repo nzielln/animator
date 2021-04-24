@@ -78,7 +78,7 @@ public class TextView implements View {
   
   private void writeFile(String str, HashMap<String, String> in) {
     try {
-      FileWriter f = new FileWriter("../outputs/" + this.in.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter("./resources/outputs/" + this.in.get("out").replace("\"", ""));
       Scanner s = new Scanner(str).useDelimiter("\n");
       while (s.hasNext()) {
         String line = s.next();
@@ -111,5 +111,10 @@ public class TextView implements View {
   @Override
   public View getView() {
     return this;
+  }
+  
+  @Override
+  public void exitView() {
+    throw new UnsupportedOperationException("This operation is not supported by this class.");
   }
 }
