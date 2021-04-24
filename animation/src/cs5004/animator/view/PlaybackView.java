@@ -19,6 +19,10 @@ import cs5004.animator.model.Animation;
 import cs5004.animator.model.Shape;
 import cs5004.animator.model.AnimationImpl;
 
+/**
+ * JFrame for the animations for the Playback view. It implements functionality for users to
+ * play/pause, rewind, speed up, slow down, and loop animations.
+ */
 public class PlaybackView extends JFrame {
   //main
   private Animation model;
@@ -62,8 +66,12 @@ public class PlaybackView extends JFrame {
     this.in =  new HashMap<>();
     
   }
-  
-  
+
+  /**
+   *
+   * @param m
+   * @param in
+   */
   public void buildModel(Animation m, HashMap<String, String> in) {
     this.model = m;
     this.in = in;
@@ -169,12 +177,18 @@ public class PlaybackView extends JFrame {
   }
   
   //Animation Task
-  
+
+  /**
+   *
+   */
   private class AnimateTask extends TimerTask {
     private AnimateTask() {
       super();
     }
-    
+
+    /**
+     *
+     */
     @Override
     public void run() {
       
@@ -199,7 +213,10 @@ public class PlaybackView extends JFrame {
       
     }
   }
-  
+
+  /**
+   *
+   */
   private class AnimateAction implements ActionListener {
     
     @Override
@@ -224,7 +241,10 @@ public class PlaybackView extends JFrame {
       }
     }
   }
-  
+
+  /**
+   *
+   */
   public void animate() {
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
     swingtimer.setInitialDelay(1000);
@@ -232,7 +252,10 @@ public class PlaybackView extends JFrame {
     // timer.schedule(new AnimateTask(), count, 1000 / tick);
     
   }
-  
+
+  /**
+   *
+   */
   public void slowanimate() {
     swingtimer = new javax.swing.Timer((1000 / tick) + 1000, new AnimateAction());
     swingtimer.setInitialDelay(1000);
@@ -240,14 +263,22 @@ public class PlaybackView extends JFrame {
     // timer.schedule(new AnimateTask(), count, 1000 / tick);
     
   }
-  
+
+  /**
+   * Gets the current frame a point in time.
+   * @param frame (int) the specific time point.
+   */
   private void getFrame(int frame) {
     
     List<Shape> modified = this.model.getByTime(frame);
     this.currentView(modified);
     
   }
-  
+
+  /**
+   * Updates the view panel with the new list of shapes and states from the animation.
+   * @param m (List<Shape>) a list of shapes at a particular time in the animation.
+   */
   public void currentView(List<Shape> m) {
     Objects.requireNonNull(m, "Model can't be null");
     
@@ -255,7 +286,14 @@ public class PlaybackView extends JFrame {
     this.repaint();
     
   }
-  
+
+  /**
+   * Creates a JButton object for the view.
+   * @param name (String) the name of the button.
+   * @param file (String) the name of the image file for the button.
+   * @param command (String) the command to set the action for.
+   * @return
+   */
   private JButton createButton(String name, String file, String command) {
     ImageIcon img = new ImageIcon(new ImageIcon("./resources/icons/" + file).getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT));
@@ -277,7 +315,13 @@ public class PlaybackView extends JFrame {
     
     return btn;
   }
-  
+
+  /**
+   * Creates a text label for the panel.
+   * @param text (String) the text to put in the panel.
+   * @param width (int) the width of the panel
+   * @return
+   */
   private JLabel createLabelPnel(String text, int width) {
     JLabel l = new JLabel(text, JLabel.CENTER);
     l.setSize(new Dimension(width, 40));
@@ -285,7 +329,11 @@ public class PlaybackView extends JFrame {
     
     return l;
   }
-  
+
+  /**
+   * Adds an action listener to each of the buttons (play/pause, increase, decrease, loop, rewind).
+   * @param al (ActionListener) action listener object for each of the buttons.
+   */
   public void addListener(ActionListener al) {
     playpause.addActionListener(al);
     up.addActionListener(al);
@@ -293,7 +341,11 @@ public class PlaybackView extends JFrame {
     looper.addActionListener(al);
     rewind.addActionListener(al);
   }
-  
+
+  /**
+   * Sets the play/pause button to play. Shows the paused icon if the user wants to pause the
+   * animation.
+   */
   public void setPlayState() {
     setComponents();
     playpause.setText("Pause");
@@ -303,7 +355,11 @@ public class PlaybackView extends JFrame {
     statetext.setText(String.valueOf(state).toUpperCase());
     
   }
-  
+
+  /**
+   * Sets the play/pause button to paused. Shows the play icon if the user wants the animation to
+   * play again.
+   */
   public void setPauseState() {
     setComponents();
     playpause.setText("Play");
@@ -313,34 +369,56 @@ public class PlaybackView extends JFrame {
     statetext.setText(String.valueOf(state).toUpperCase());
     
   }
-  
+
+  /**
+   * Sets the status of looping to the viewer frame.
+   */
   public void setLoop() {
     looptext.setText(String.valueOf(loop).toUpperCase());
     
   }
-  
+
+  /**
+   * Sets the speed of the tick to the viewer frame.
+   */
   public void setTick() {
     speedtext.setText(String.valueOf(tick).toUpperCase());
   }
-  
-  
+
+  /**
+   * Sets the state.
+   * @param s (state) the new state.
+   */
   public void setState(String s) {
     this.state = s;
   }
-  
+
+  /**
+   * Sets the count for the animation to the new count.
+   * @param i (int) the new count that the animation should be at.
+   */
   public void changeCount(int i) {
     this.count = i;
   }
-  
+
+  /**
+   * Changes the status of loop.
+   */
   public void loop() {
     this.loop = !loop;
   }
-  
+
+  /**
+   * Increases the tick speed.
+   */
   public void increaseTick() {
     this.tick += 1;
     swingtimer.setDelay(1000 / tick);
   }
-  
+
+  /**
+   * Decreases the tick speed. Shows error message when the tick is at 1 and trying to decrease.
+   */
   public void decreaseTick() {
     if (tick == 1) {
       JOptionPane.showMessageDialog(this,
@@ -353,30 +431,47 @@ public class PlaybackView extends JFrame {
     }
     swingtimer.setDelay(1000 / tick);
   }
-  
+
+  /**
+   * Sets the background of each of the components of the button pannel to white.
+   */
   public void setComponents() {
     for (Component c : btnspanel.getComponents()) {
         c.setBackground(Color.WHITE);
     }
   }
-  
+
+  /**
+   * Sets delay for the rewind timer.
+   */
   public void rewindTimer() {
     swingtimer.setDelay(1000 / tick);
   }
-  
+
+  /**
+   * Changes the background of the rewind button.
+   */
   public void changeRewindBg() {
     rewind.setBackground(Color.YELLOW);
   }
-  
+
+  /**
+   * Changes the background of the increase speed button.
+   */
   public void changeUpBg() {
     up.setBackground(Color.YELLOW);
   }
-  
-  
+
+  /**
+   * Changes the background of the decrease speed button.
+   */
   public void changeDownBg() {
     down.setBackground(Color.YELLOW);
   }
-  
+
+  /**
+   * Changes the background of the loop button.
+   */
   public void changeLoopBg() {
     looper.setBackground(Color.YELLOW);
   }

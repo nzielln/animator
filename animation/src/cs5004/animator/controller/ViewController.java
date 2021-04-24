@@ -18,7 +18,9 @@ import cs5004.animator.view.View;
 import cs5004.animator.view.ViewFactory;
 
 /**
- *
+ * The ViewController class represents a controller for the view. It implements the functionality
+ * defined in the Controller interface and adds functionality for increasing and decreasing speed,
+ * looping the animation, and play and pausing the animation.
  */
 public class ViewController implements Controller {
   private final Reader r;
@@ -28,8 +30,9 @@ public class ViewController implements Controller {
   private final String instr;
   
   /**
-   *
-    * @param instr
+   * This is the constructor for the ViewController. It creates a new Reader, ViewFactory, and
+   * PlaybackView objects. It takes int TODO
+   * @param instr (string) the
    */
   public ViewController(String instr) {
     this.r = new Reader();
@@ -38,8 +41,8 @@ public class ViewController implements Controller {
     this.instr = instr;
     
   }
-  
-  
+
+
   @Override
   public void go() {
     //Read inputs
@@ -61,9 +64,9 @@ public class ViewController implements Controller {
   }
 
   /**
-   *
-   * @param in
-   * @param m
+   * Creates an animation with the provided information and an animation model.
+   * @param in (Hashmap<String, String>) a hashmap of -in, -out, -view, -speed information.
+   * @param m (Animation) the specified Animation.
    */
   private void playback(HashMap<String, String> in, Animation m) {
     String fileInput = in.get("in").replace("\"", "");
@@ -82,7 +85,8 @@ public class ViewController implements Controller {
   }
 
   /**
-   *
+   * The configButtonListener creates new button listeners for the play/pause, rewind, loop, and
+   * up and down speed functionality.
    */
   private void configButtonListener() {
     Map<String, Runnable> buttonsmap = new HashMap<>();
@@ -100,12 +104,12 @@ public class ViewController implements Controller {
   }
 
   /**
-   *
+   * The PlayAction class represents the view playing the animation.
    */
   class PlayAction implements Runnable {
 
     /**
-     *
+     * This runs the animation to start playing.
      */
     @Override
     public void run() {
@@ -115,12 +119,12 @@ public class ViewController implements Controller {
   }
 
   /**
-   *
+   * The PausedAction represents the view pausing the animation.
    */
   class PauseAction implements Runnable {
 
     /**
-     *
+     * This sets the view to pausing the animation.
      */
     @Override
     public void run() {
@@ -130,12 +134,12 @@ public class ViewController implements Controller {
   }
 
   /**
-   *
+   * The RewindAction represents the view rewinding the animation to the beginning again.
    */
   class RewindAction implements Runnable {
 
     /**
-     *
+     * Rewinds the animation to the beginning.
      */
     @Override
     public void run() {
@@ -149,12 +153,12 @@ public class ViewController implements Controller {
   }
 
   /**
-   *
+   * LoopAction is a class that sets the view to loop through the animation over and over again.
    */
   class LoopAction implements Runnable {
 
     /**
-     *
+     * Keeps looping through the animation until the user requests to stop.
      */
     @Override
     public void run() {
@@ -167,12 +171,12 @@ public class ViewController implements Controller {
   }
 
   /**
-   *
+   * A class that represents an increase speed action.
    */
   class IncreaseSpeedAction implements Runnable {
 
     /**
-     *
+     * Tells the view to increase the speed.
      */
     @Override
     public void run() {
@@ -185,12 +189,12 @@ public class ViewController implements Controller {
   }
 
   /**
-   *
+   * A class that represents a decrease speed action.
    */
   class DecreaseSpeedAction implements Runnable {
 
     /**
-     *
+     * Tells the view and model to decrease the speed of the animation.
      */
     @Override
     public void run() {

@@ -21,7 +21,7 @@ public interface Controller {
    */
 
   /**
-   *
+   * Gets the input information and plays the correct animation view type.
    */
   void go();
 }

@@ -46,7 +46,12 @@ public class GraphicsPanel extends JPanel {
     Objects.requireNonNull(shapes, "Model can't be null");
     this.shapes = shapes;
   }
-  
+
+  /**
+   * Paints the different shapes to the Graphics2D object. Casts the Graphics object to the
+   * Graphics2D object type. Requires that graphics object passed in is not null.
+   * @param g
+   */
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
