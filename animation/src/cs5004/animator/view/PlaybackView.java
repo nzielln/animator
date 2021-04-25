@@ -172,7 +172,7 @@ public class PlaybackView extends JFrame {
     up = createButton("Increase Speed", "up.png", "up speed");
     playpause = createButton("Pause ", "po.png", "pause");
     down = createButton("Decrease Speed", "down.png", "down speed");
-    looper = createButton("Loop", "Asset 1.png", "loop");
+    looper = createButton("Loop", "loop.png", "loop");
     save = createButton("Save File", "save.png", "save");
     btnspanel.add(Box.createHorizontalGlue());
     
@@ -244,30 +244,6 @@ public class PlaybackView extends JFrame {
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
     swingtimer.setInitialDelay(1000);
     swingtimer.start();
-    // timer.schedule(new AnimateTask(), count, 1000 / tick);
-    
-  }
-
-  /**
-   *
-   */
-  public void slowanimate() {
-    swingtimer = new javax.swing.Timer((1000 / tick) + 1000, new AnimateAction());
-    swingtimer.setInitialDelay(1000);
-    swingtimer.start();
-    // timer.schedule(new AnimateTask(), count, 1000 / tick);
-    
-  }
-
-  /**
-   * Gets the current frame a point in time.
-   * @param frame (int) the specific time point.
-   */
-  private void getFrame(int frame) {
-    
-    List<Shape> modified = this.model.getByTime(frame);
-    this.currentView(modified);
-    
   }
 
   /**

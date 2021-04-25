@@ -84,6 +84,7 @@ public class MouseEventListener implements MouseListener {
   public void mouseClicked(MouseEvent e) {
     if (mouseclick.containsKey(e.getButton())) {
       mouseclick.get(e.getButton()).run();
+      System.out.println("MOUSE WAS CLICKED");
       x = e.getX();
       y = e.getY();
     }
@@ -98,6 +99,9 @@ public class MouseEventListener implements MouseListener {
   public void mousePressed(MouseEvent e) {
     if (mousepressed.containsKey(e.getButton())) {
       mousepressed.get(e.getButton()).run();
+      System.out.println("MOUSE WAS CLICKED");
+      x = e.getX();
+      y = e.getY();
     }
   }
 

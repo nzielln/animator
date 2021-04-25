@@ -13,7 +13,6 @@ import cs5004.animator.view.View;
 
 class ButtonEvents {
   private final PlaybackView playbackview;
-  private File file;
   private Controller controller;
   private final Reader r = new Reader();
   
@@ -196,7 +195,6 @@ class ButtonEvents {
           instr.append("-").append(s).append(" ").append(in.get(s)).append(" ");
         }
       }
-      System.out.println(instr.toString());
       controller = new ViewController(instr.toString());
       controller.go();
     }
@@ -237,7 +235,6 @@ class ButtonEvents {
         instr.append("-").append(s).append(" ").append(in.get(s)).append(" ");
     
       }
-      System.out.println(instr.toString());
       r.readIn(instr.toString());
       r.makeModel(playbackview);
       playbackview.updateModel(r.getModel());

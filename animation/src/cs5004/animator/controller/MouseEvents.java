@@ -31,6 +31,7 @@ class MouseEvents {
     Map<Integer, Runnable> click = new HashMap<>();
     
     click.put(MouseEvent.BUTTON1, new RemoveShape());
+    pressed.put(MouseEvent.BUTTON1, new RemoveShape());
     
     ml.setMouseclick(click);
     ml.setMouseentered(entered);
@@ -38,8 +39,7 @@ class MouseEvents {
     ml.setMousereleased(released);
     ml.setMousepressed(pressed);
     playbackview.addMouseListener(ml);
-    
-    
+  
   }
   
   /**
