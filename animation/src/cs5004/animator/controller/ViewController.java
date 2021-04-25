@@ -100,7 +100,7 @@ public class ViewController implements Controller{
   public void playback(HashMap<String, String> in, Animation m) {
     String fileInput = in.get("in").replace("\"", "");
     try {
-      File demo = new File("./resources/files/" + fileInput);
+      File demo = new File(fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
