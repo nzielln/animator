@@ -90,12 +90,14 @@ public class SVGView implements View {
         } else if (s.getType().equals("RECTANGLE")) {
           if (s.getAppears() > 1) {
             sh = "<rect id=\"" + s.getName() + "\" x=\"" + s.getPositionX() + "\" y=\""
-                    + s.getPositionY() + "\" width=\"" + s.getWidth() + "\" height=\"" + s.getHeight()
+                    + s.getPositionY() + "\" width=\"" + s.getWidth() + "\" height=\""
+                    + s.getHeight()
                     + "\" fill=\"rgb(" + s.getColor().getR() + "," + s.getColor().getG() + ","
                     + s.getColor().getB() + ")\" visibility=\"hidden\" >\n";
           } else {
             sh = "<rect id=\"" + s.getName() + "\" x=\"" + s.getPositionX() + "\" y=\""
-                    + s.getPositionY() + "\" width=\"" + s.getWidth() + "\" height=\"" + s.getHeight()
+                    + s.getPositionY() + "\" width=\"" + s.getWidth() + "\" height=\""
+                    + s.getHeight()
                     + "\" fill=\"rgb(" + s.getColor().getR() + "," + s.getColor().getG() + ","
                     + s.getColor().getB() + ")\" visibility=\"visible\" >\n";
           }

@@ -1,9 +1,9 @@
 package cs5004.animator.view;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -21,8 +21,6 @@ import javax.swing.JScrollPane;
 public class GraphicView extends JFrame implements View {
   private GraphicsPanel panel;
   private String view;
-  private javax.swing.Timer swingtimer;
-  private JScrollPane scroll;
   private int count;
   private int length;
   private Animation model;
@@ -59,6 +57,8 @@ public class GraphicView extends JFrame implements View {
   
   @Override
   public void animate(Animation m, HashMap<String, String> in) {
+    javax.swing.Timer swingtimer;
+
     this.tick = Integer.parseInt(in.get("speed"));
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
     swingtimer.setInitialDelay(1000);
@@ -81,6 +81,8 @@ public class GraphicView extends JFrame implements View {
   
   @Override
   public void buildModel(Animation m) {
+    JScrollPane scroll;
+
     this.length = m.getAnimationLength();
     this.model = m;
   

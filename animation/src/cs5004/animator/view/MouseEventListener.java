@@ -52,16 +52,16 @@ public class MouseEventListener extends MouseAdapter {
   }
   
   /**
-   * Returns the most recents MouseEvent's x position
-   * @return int, x poisition
+   * Returns the most recent MouseEvent's x position.
+   * @return int, x position
    */
   public int getX() {
     return x;
   }
   
   /**
-   * Returns the most recents MouseEvent's y position
-   * @return int, y poisition
+   * Returns the most recent MouseEvent's y position.
+   * @return int, y position
    */
   public int getY() {
     return y;

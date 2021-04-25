@@ -21,7 +21,7 @@ public class EasyAnimator {
     
     
     Controller controller = new ViewController(instr.toString());
-    controller.go();
+    controller.play();
     
   }
 }

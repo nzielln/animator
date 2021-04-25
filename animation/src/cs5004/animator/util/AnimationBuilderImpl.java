@@ -141,7 +141,7 @@ public class AnimationBuilderImpl implements AnimationBuilder<Animation> {
   }
 
   /**
-   * Sets the initial and ending properties for the initial and end shapes
+   * Sets the initial and ending properties for the initial and end shapes.
    * @param t1 (int) the initial/appears time
    * @param x1 (int) the initial x-coordinate position
    * @param y1 (int) the initial y-coordinate position

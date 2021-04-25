@@ -208,8 +208,8 @@ public class ControllerTextTest {
       String fileOut = new String(Files.readAllBytes(Paths.get(filepath)));
       assertEquals("Create rectangle R of color (255.0, 0.0, 0.0) with corner at "
                       + "(200,200), width 50 height 100.\n"
-                      + "Create ellipse C of color (0.0, 0.0, 255.0) with center at (440,70), " +
-                      "radius 120 and 60.\n\n"
+                      + "Create ellipse C of color (0.0, 0.0, 255.0) with center at (440,70), "
+                      + "radius 120 and 60.\n\n"
                       + "R appears at t=1 and disappears at t=100\n"
                       + "C appears at t=6 and disappears at t=100\n\n"
                       + "R moves from (200.0,200.0) to (300.0,300.0) from t=10 to t=50.\n"
@@ -248,8 +248,8 @@ public class ControllerTextTest {
       System.setOut(sys);
       assertEquals("Create rectangle R of color (255.0, 0.0, 0.0) with corner at (200,200), "
                       + "width 50 "
-                      + "height 100.\n" +
-                      "Create ellipse C of color (0.0, 0.0, 255.0) with center at (440,70), "
+                      + "height 100.\n"
+                      + "Create ellipse C of color (0.0, 0.0, 255.0) with center at (440,70), "
                       + "radius 120 "
                       + "and 60.\n\n"
                       + "R appears at t=1 and disappears at t=100\n"

@@ -26,7 +26,7 @@ public class ControllerSVGTest {
     try {
       String in = "-in ./resources/files/smalldemo.txt -view visual -speed 2";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       assertEquals("Visual", controller.getView().getViewType());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -36,7 +36,7 @@ public class ControllerSVGTest {
     try {
       String in = "-speed 2 -view visual -in ./resources/files/smalldemo.txt";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       assertEquals("Visual", controller.getView().getViewType());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -45,7 +45,7 @@ public class ControllerSVGTest {
     try {
       String in2 = "-in ./resources/files/smalldemo.txt -view text";
       controller = new ViewController(in2);
-      controller.go();
+      controller.play();
       assertEquals("Text", controller.getView().getViewType());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -55,7 +55,7 @@ public class ControllerSVGTest {
     try {
       String in3 = "-in ./resources/files/smalldemo.txt -view svg -out s.svg";
       controller = new ViewController(in3);
-      controller.go();
+      controller.play();
       assertEquals("SVG", controller.getView().getViewType());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -72,7 +72,7 @@ public class ControllerSVGTest {
     try {
       String in = "-view text -speed 3";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -81,7 +81,7 @@ public class ControllerSVGTest {
     try {
       String in = "-out text.txt -speed 3";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -90,7 +90,7 @@ public class ControllerSVGTest {
     try {
       String ins = "-in ./resources/files/smalldemo.txt -out text.txt -speed 3";
       controller = new ViewController(ins);
-      controller.go();
+      controller.play();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -99,7 +99,7 @@ public class ControllerSVGTest {
     try {
       String in = "-in ./resources/files/smalldmo.txt -view text";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -108,7 +108,7 @@ public class ControllerSVGTest {
     try {
       String in = "-in ./resources/files/smalldmo.txt -view svg -speed 2";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -117,7 +117,7 @@ public class ControllerSVGTest {
     try {
       String in = "-in ./resources/files/smalldemo.txt -view swg -speed 2";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -126,7 +126,7 @@ public class ControllerSVGTest {
     try {
       String in = "-in ./resources/files/smalldmo.txt -view visual -speed 2";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -135,7 +135,7 @@ public class ControllerSVGTest {
     try {
       String in = "-speed 2 -view text";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -144,7 +144,7 @@ public class ControllerSVGTest {
     try {
       String in = "-in ./resources/files/smalldemo.txt -view svg";
       controller = new ViewController(in);
-      controller.go();
+      controller.play();
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -155,7 +155,7 @@ public class ControllerSVGTest {
   public void emptyFile() throws FileNotFoundException {
     String in = "-in ./resources/files/empty.txt -view svg -speed 2 -out out.svg";
     controller = new ViewController(in);
-    controller.go();
+    controller.play();
     StringBuilder s = new StringBuilder();
     File demo = new File("./resources/outputs/out.svg");
     FileReader f = new FileReader(demo);
@@ -176,7 +176,7 @@ public class ControllerSVGTest {
   public void smalldemoSvg() throws FileNotFoundException {
     String in = "-in ./resources/files/smalldemo.txt -view svg -speed 2 -out out.svg";
     controller = new ViewController(in);
-    controller.go();
+    controller.play();
     StringBuilder s = new StringBuilder();
     File demo = new File("./resources/outputs/out.svg");
     FileReader f = new FileReader(demo);
@@ -204,8 +204,8 @@ public class ControllerSVGTest {
             + "attributeName=\"y\" from=\"300\" to=\"200\" fill=\"freeze\" />\n"
             + "</rect>\n\n"
             + "<ellipse id=\"C\" cx=\"440\" cy=\"70\" rx=\"60\" ry=\"30\" "
-            + "fill=\"rgb(0,0,255)\" visibility=\"hidden\" >\n" +
-            "<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" "
+            + "fill=\"rgb(0,0,255)\" visibility=\"hidden\" >\n"
+            + "<set attributeName=\"visibility\" attributeType=\"CSS\" to=\"visible\" "
             + "begin=\"2500ms\" dur=\"500ms\" fill=\"freeze\" />\n"
             + "\t<animate attributeType=\"xml\" begin=\"10000ms\" dur=\"15000ms\" "
             + "attributeName=\"cx\" from=\"440\" to=\"440\" fill=\"freeze\" />\n"

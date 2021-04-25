@@ -1,7 +1,5 @@
 package cs5004.animator.controller;
 
-import java.util.HashMap;
-import cs5004.animator.model.Animation;
 import cs5004.animator.view.PlaybackView;
 import cs5004.animator.view.View;
 
@@ -13,7 +11,7 @@ public interface Controller {
   /**
    * Gets the input information and plays the correct animation view type.
    */
-  void go();
+  void play();
 
   /**
    * Exits the current view.

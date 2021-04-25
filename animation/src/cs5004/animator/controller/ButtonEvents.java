@@ -49,10 +49,10 @@ public class ButtonEvents {
   }
   
   /**
-   * Returns the button listener
+   * Returns the button listener.
    * @return ActionListener
    */
-  public ButtonListener getBs () {
+  public ButtonListener getBs() {
     return this.bs;
   }
   
@@ -212,7 +212,7 @@ public class ButtonEvents {
         }
       }
       controller = new ViewController(instr.toString());
-      controller.go();
+      controller.play();
     }
   }
   

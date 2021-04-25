@@ -46,8 +46,7 @@ public class PlaybackView extends JFrame {
   private Timer swingtimer;
   
   private GraphicsPanel panel;
-  private JScrollPane mainscroll;
-  
+
   //playback panel
   private JPanel btnspanel;
   private JButton playpause;
@@ -57,20 +56,11 @@ public class PlaybackView extends JFrame {
   private JButton up;
   private JButton down;
   private JButton looper;
-  private String view;
-  
-  //state panel
-  private JPanel statepanel;
-  private JLabel speedlabel;
-  private JLabel looplabel;
-  private JLabel statelabel;
+
   private JLabel speedtext;
   private JLabel looptext;
   private JLabel statetext;
-  private JPanel speedpanel;
-  private JPanel looppanel;
-  private JPanel pppanel;
-  
+
   //File Choose
   private JFileChooser chooser;
   private String playstate;
@@ -80,7 +70,7 @@ public class PlaybackView extends JFrame {
    */
   public PlaybackView() {
     super("Playback Animation");
-    this.view = "Playback";
+    String view = "Playback";
     this.model = new AnimationImpl();
     this.in =  new HashMap<>();
     
@@ -116,12 +106,13 @@ public class PlaybackView extends JFrame {
     panel.setPreferredSize(new Dimension(w, h));
     panel.setLocation(x,y);
     add(panel, BorderLayout.CENTER);
-    mainscroll = new JScrollPane(panel);
+    JScrollPane mainscroll = new JScrollPane(panel);
     setPreferredSize(new Dimension(w, h));
     add(mainscroll, BorderLayout.CENTER);
     
     //state panel
-    statepanel = new JPanel();
+    //state panel
+    JPanel statepanel = new JPanel();
     statepanel.setLayout(new BoxLayout(statepanel, BoxLayout.X_AXIS));
     statepanel.setSize(new Dimension(w, 100));
     statepanel.setBackground(Color.white);
@@ -129,25 +120,25 @@ public class PlaybackView extends JFrame {
     add(statepanel, BorderLayout.NORTH);
     
     //create text panels
-    speedpanel = new JPanel();
+    JPanel speedpanel = new JPanel();
     speedpanel.setLayout(new BorderLayout());
     speedpanel.setAlignmentX(Component.CENTER_ALIGNMENT);
     speedpanel.setSize(new Dimension(50, 80));
-    
-    looppanel = new JPanel();
+
+    JPanel looppanel = new JPanel();
     looppanel.setLayout(new BorderLayout());
     looppanel.setAlignmentX(Component.CENTER_ALIGNMENT);
     looppanel.setSize(new Dimension(50, 80));
-    
-    pppanel = new JPanel();
+
+    JPanel pppanel = new JPanel();
     pppanel.setLayout(new BorderLayout());
     pppanel.setAlignmentX(Component.CENTER_ALIGNMENT);
     pppanel.setSize(new Dimension(50, 80));
     
     //create labels
-    speedlabel = createLabelPnel("Current Speed", speedpanel.getWidth());
-    looplabel = createLabelPnel("Looped", looppanel.getWidth());
-    statelabel = createLabelPnel("Current State", pppanel.getWidth());
+    JLabel speedlabel = createLabelPnel("Current Speed", speedpanel.getWidth());
+    JLabel looplabel = createLabelPnel("Looped", looppanel.getWidth());
+    JLabel statelabel = createLabelPnel("Current State", pppanel.getWidth());
     
     //create labels' label
     speedtext = createLabelPnel(String.valueOf(tick).toUpperCase(), speedpanel.getWidth());
@@ -265,7 +256,7 @@ public class PlaybackView extends JFrame {
 
   /**
    * Updates the view panel with the new list of shapes and states from the animation.
-   * @param m (List<Shape>) a list of shapes at a particular time in the animation
+   * @param m (List of Shapes) a list of shapes at a particular time in the animation
    */
   public void currentView(List<Shape> m) {
     Objects.requireNonNull(m, "Model can't be null");

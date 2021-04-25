@@ -4,7 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import java.awt.event.ActionEvent;
 
-import javax.swing.*;
+
+import javax.swing.JButton;
 
 import cs5004.animator.controller.ButtonEvents;
 import cs5004.animator.controller.Controller;
@@ -21,15 +22,14 @@ public class ButtonsListenerTest {
   PlaybackView p = new PlaybackView();
   private JButton b;
   private ButtonListener bl = new ButtonListener();
-  private ButtonEvents be;
-  
+
   @Before
   public void setUp() {
     String in = "-in ./resources/files/smalldemo.txt -view playback -speed 20";
     controller = new ViewController(in);
-    controller.go();
+    controller.play();
     p = controller.getPlaybackView();
-    be = new ButtonEvents(p);
+    ButtonEvents be = new ButtonEvents(p);
     be.configButtonListener();
     bl = be.getBs();
     p.addListener(bl);

@@ -24,7 +24,7 @@ public class MouseListenerTest {
   public void setUp() {
     String in = "-in ./resources/files/smalldemo.txt -view playback -speed 20";
     controller = new ViewController(in);
-    controller.go();
+    controller.play();
     p = controller.getPlaybackView();
     ml = new MouseEventListener(p);
     ml.configMouseListener(controller);

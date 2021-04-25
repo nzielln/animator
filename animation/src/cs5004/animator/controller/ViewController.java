@@ -27,8 +27,6 @@ public class ViewController implements Controller {
   private View view;
   private PlaybackView playbackview;
   private final String instr;
-  private ButtonEvents btnevents;
-  private MouseEventListener mouseevents;
   private Animation model;
   private HashMap<String, String> inputs;
   private String state;
@@ -59,8 +57,8 @@ public class ViewController implements Controller {
   }
   
   @Override
-  public void go() {
-    Scanner scan = new Scanner(instr.toString());
+  public void play() {
+    Scanner scan = new Scanner(instr);
     String in = scan.nextLine();
     
     r.readIn(in);
@@ -94,15 +92,17 @@ public class ViewController implements Controller {
   
   /**
    * Creates an animation with the provided information and an animation model.
-   * @param in (Hashmap<String, String>) a hashmap of -in, -out, -view, -speed information.
+   * @param in (Hashmap of type String, String) a hashmap of -in, -out, -view, -speed information.
    * @param m (Animation) the specified Animation.
    */
   private void playback(HashMap<String, String> in, Animation m) {
-    
+    ButtonEvents btnevents;
+    MouseEventListener mouseevents;
+
     String fileInput = in.get("in").replace("\"", "");
     
     try {
-      
+
       File demo = new File(fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
@@ -133,7 +133,7 @@ public class ViewController implements Controller {
       
       model.removeShape(name);
       playbackview.updateModel(model);
-      model = model;
+      //model = model;
       
     }
   }
