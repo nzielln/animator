@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-
+import java.lang.Math;
 /**
  * Represents an AnimationImpl class for the animation program, implements Animation interface.
  */
@@ -349,25 +349,37 @@ public class AnimationImpl implements Animation {
     for (Shape s : hashmap.keySet()) {
       length.add(s.getDisappears());
     }
-    return Collections.max(length);
     
+    return Collections.max(length);
   }
   
   @Override
   public String clicked(int x, int y, int t) {
     for (Shape s: getByTime(t) ) {
-      for (int i = 0; i < s.getWidth(); i++) {
-        for (int j = 0; j < s.getHeight(); j++) {
-          if (x == i && y == j) {
-            return s.getName();
-          }
-        }
+      if (s.getType().equalsIgnoreCase("ELLIPSE") && inCircle(x, y, s)) {
+        
+        return s.getName();
+      }
+      
+      int xmin = s.getPositionX();
+      int xmax = s.getPositionX() + s.getWidth();
+      int ymin = s.getPositionY();
+      int ymax = s.getPositionY() + s.getHeight();
+      
+      if ((x >= xmin && x <= xmax) && (y >= ymin && y <= ymax)) {
+        
+        return s.getName();
       }
     }
     
     return null;
   }
   
+  private boolean inCircle(int x, int y, Shape s) {
+    int i = (int) Math.hypot((s.getPositionX() - x), (s.getPositionY() - y));
+    
+    return i <= s.getWidth();
+  }
   
   @Override
   public String toString() {

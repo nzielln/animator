@@ -7,7 +7,8 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
@@ -68,9 +69,7 @@ public class Reader {
       if (this.inputs.get("out") == null || this.inputs.get("out").equals("")) {
         throw new IllegalArgumentException("You must provide an \"-out\" file.");
       }
-      
     }
-    
   }
   
   /**
@@ -104,7 +103,10 @@ public class Reader {
     }
   }
   
-  
+  /**
+   * Makes the model for the animation but does not build it.
+   * @param frame JFrame for displaying error messages.
+   */
   public void makeModel(JFrame frame) {
     String fileInput = inputs.get("in").replace("\"", "");
     try {
@@ -121,8 +123,6 @@ public class Reader {
       throw new IllegalArgumentException("File not found.");
     }
   }
-  
-  
   
   /**
    * Returns the model with shapes and motions from a text file.

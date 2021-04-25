@@ -1,21 +1,26 @@
 package cs5004.animator.controller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 import cs5004.animator.view.ButtonListener;
 import cs5004.animator.view.PlaybackView;
 import cs5004.animator.view.Reader;
-import cs5004.animator.view.View;
 
+/**
+ * ButtonEvents class listens for the buttons events and implements the runnable commands.
+ */
 class ButtonEvents {
   private final PlaybackView playbackview;
   private Controller controller;
   private final Reader r = new Reader();
   
+  /**
+   * Button Events constructor takes in a Playback view and holds reference to it.
+   * @param p a PlayBack view to apply action to
+   */
   ButtonEvents(PlaybackView p) {
     this.playbackview = p;
   }
@@ -23,7 +28,7 @@ class ButtonEvents {
   
   /**
    * The configButtonListener creates new button listeners for the play/pause, rewind, loop, and
-   * up and down speed functionality.
+   * up and down speed functionality, adds the listener to the PlayBack view.
    */
   public void configButtonListener() {
     Map<String, Runnable> buttonsmap = new HashMap<>();
@@ -153,10 +158,13 @@ class ButtonEvents {
     }
   }
   
+  /**
+   * The Save class allows the user to save an animations as either a txt or svg file.
+   */
   class Save implements Runnable {
-    
+  
     /**
-     *
+     * Saves an animation as a txt or svg file.
      */
     @Override
     public void run() {
@@ -200,10 +208,14 @@ class ButtonEvents {
     }
   }
   
+  /**
+   * Allows a user to upload a file to be played as an animation in  the Playback view.
+   */
   class Upload implements Runnable {
-    
+  
     /**
-     *
+     * Updates the animation to the animation uploaded by user. Shows a JOptionPane error message
+     * if the user tries to upload an invalid file type.
      */
     @Override
     public void run() {
