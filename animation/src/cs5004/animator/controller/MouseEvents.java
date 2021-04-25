@@ -7,13 +7,20 @@ import java.util.Map;
 import cs5004.animator.view.MouseEventListener;
 import cs5004.animator.view.PlaybackView;
 
+/**
+ *
+ */
 class MouseEvents {
   private final PlaybackView playbackview;
   private Controller controller;
   private int x;
   private int y;
   MouseEventListener ml = new MouseEventListener();
-  
+
+  /**
+   *
+   * @param p
+   */
   MouseEvents(PlaybackView p) {
     this.playbackview = p;
   }

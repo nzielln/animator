@@ -103,8 +103,11 @@ public class Reader {
       throw new IllegalArgumentException("File not found.");
     }
   }
-  
-  
+
+  /**
+   *
+   * @param frame
+   */
   public void makeModel(JFrame frame) {
     String fileInput = inputs.get("in").replace("\"", "");
     try {

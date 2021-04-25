@@ -132,10 +132,29 @@ from our ```getByTime(int t)``` method.
 
 ## Changes to the View (Assignment 8)
 
-For Assignment 8, our view implementations didn't change for t
+For Assignment 8, our view implementations didn't change much for the 
+[Text](../src/cs5004/animator/view/TextView.java) view or for the 
+[SVG](../src/cs5004/animator/view/SVGView.java) view. The only real change was adding functionality
+for the Text and SVG views to exit the view. 
+Within the [Easy Animator](../src/cs5004/animator/EasyAnimator.java) main class, we moved the
+parsing of the user defined commands to the new [Reader](../src/cs5004/animator/view/Reader.java)
+class. We did make some bigger changes to our [Graphic View](../src/cs5004/animator/view/GraphicView.java), 
+as well as adding an whole new [Playback View](../src/cs5004/animator/view/PlaybackView.java).
+Please see below for more information about the changes and addition for our Graphic and Playback
+views.
 
 ### Graphic View
 
+The most notable changes to our [Graphic View](../src/cs5004/animator/view/GraphicView.java) is
+with the ```animate(Animation m, HashMap<String, String> in)``` method. There was also an additional
+private class called ```AnimateAction``` which implements an ```ActionListener```.
+
 ### Playback View
 
+Our [Playback View](../src/cs5004/animator/view/PlaybackView.java)
+
 ## Controller Design (Assignment 8)
+
+We created a [Controller](../src/cs5004/animator/controller/Controller.java) interface which is
+then implemented in the [View Controller](../src/cs5004/animator/controller/ViewController.java)
+class. 

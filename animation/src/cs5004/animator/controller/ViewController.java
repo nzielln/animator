@@ -117,7 +117,12 @@ public class ViewController implements Controller{
       throw new IllegalArgumentException("File not found.");
     }
   }
-  
+
+  /**
+   *
+   * @param x
+   * @param y
+   */
   @Override
   public void removeShape(int x, int y) {
     for (Shape s: model.getShapes()) {
@@ -130,7 +135,11 @@ public class ViewController implements Controller{
     System.out.println("X: " + x + " Y: " + y);
   
   }
-  
+
+  /**
+   *
+   * @param ext
+   */
   public void createFile(String ext) {
   
   }

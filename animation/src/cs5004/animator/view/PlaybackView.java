@@ -65,9 +65,11 @@ public class PlaybackView extends JFrame {
   
   //File Choose
   private JFileChooser chooser;
-  
-  
-  
+
+
+  /**
+   *
+   */
   public PlaybackView() {
     super("Animation");
     this.view = "Playback";
@@ -502,6 +504,11 @@ public class PlaybackView extends JFrame {
   }
   
   //Methods for Saving/Upload Files
+
+  /**
+   *
+   * @return (File) a file to upload an animation
+   */
   public File openFile() {
     upload.setBackground(Color.GREEN);
     chooser.setDialogTitle("Upload A .txt File.");
@@ -511,7 +518,11 @@ public class PlaybackView extends JFrame {
     
     return null;
   }
-  
+
+  /**
+   *
+   * @return (File) a file that saves the animation
+   */
   public File saveFile() {
     save.setBackground(Color.GREEN);
     chooser.setDialogTitle("Save Animation as a Text or SVG File.");

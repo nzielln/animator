@@ -11,6 +11,9 @@ import cs5004.animator.view.PlaybackView;
 import cs5004.animator.view.Reader;
 import cs5004.animator.view.View;
 
+/**
+ *
+ */
 class ButtonEvents {
   private final PlaybackView playbackview;
   private File file;
@@ -153,11 +156,14 @@ class ButtonEvents {
       
     }
   }
-  
+
+  /**
+   * The Save class allows the user to save an animations as either a txt or svg file.
+   */
   class Save implements Runnable {
     
     /**
-     *
+     * Saves an animation as a txt or svg file.
      */
     @Override
     public void run() {
@@ -166,7 +172,7 @@ class ButtonEvents {
       String ext = f.substring(f.lastIndexOf(".") + 1);
       
       if (!(ext.equals("txt") || ext.equals("svg"))) {
-        Object[] options = {"Try Again", "Cance"};
+        Object[] options = {"Try Again", "Cancel"};
         int pane = JOptionPane.showOptionDialog(playbackview,
                 "Only .txt and .svg files accepted.",
                 "Invalid File",
@@ -201,7 +207,10 @@ class ButtonEvents {
       controller.go();
     }
   }
-  
+
+  /**
+   * Allows a user to upload
+   */
   class Upload implements Runnable {
     
     /**

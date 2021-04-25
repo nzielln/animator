@@ -64,9 +64,16 @@ public class GraphicView extends JFrame implements View {
     swingtimer.setInitialDelay(1000);
     swingtimer.start();
   }
-  
+
+  /**
+   *
+   */
   private class AnimateAction implements ActionListener {
-    
+
+    /**
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
       if (count > length) {

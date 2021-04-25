@@ -76,7 +76,12 @@ public class TextView implements View {
     
     
   }
-  
+
+  /**
+   *
+   * @param str
+   * @param in
+   */
   private void writeFile(String str, HashMap<String, String> in) {
     try {
       FileWriter f = new FileWriter("../outputs/" + in.get("out").replace("\"", ""));

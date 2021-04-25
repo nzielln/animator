@@ -27,7 +27,11 @@ public class ButtonListener implements ActionListener {
   public void setButtonClickedActionMap(Map<String, Runnable> map) {
     buttonevents = map;
   }
-  
+
+  /**
+   *
+   * @param e
+   */
   @Override
   public void actionPerformed(ActionEvent e) {
     if (buttonevents.containsKey(e.getActionCommand())) {
@@ -35,11 +39,19 @@ public class ButtonListener implements ActionListener {
     }
   
   }
-  
+
+  /**
+   *
+   * @return
+   */
   public File getSaveFile() {
     return savefile;
   }
-  
+
+  /**
+   *
+   * @return
+   */
   public File getUploadFile() {
     return uploadfile;
   }
