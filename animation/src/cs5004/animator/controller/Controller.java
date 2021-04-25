@@ -41,7 +41,6 @@ public interface Controller {
    */
   void removeShape(int x, int y);
   
-  void createFile(String ext);
 
   /**
    * Returns the current view.
