@@ -41,7 +41,10 @@ public interface View {
    * @param shapes list, a list of shapes for update the current frame of the JFrame.
    */
   void currentView(List<Shape> shapes) throws UnsupportedOperationException;
-  
+
+  /**
+   * Exits the current view.
+   */
   void exitView();
   
   

@@ -7,14 +7,26 @@ import java.util.Map;
 import cs5004.animator.view.KeyboardListener;
 import cs5004.animator.view.PlaybackView;
 
+/**
+ * KeyboardEvents class represents a collection of keyboard listeners that listen for when a user
+ * presses and releases different keys.
+ */
 class KeyboardEvents {
   private PlaybackView playbackview;
-  
+
+  /**
+   * Constructor the the KeyboardEvents holds reference and takes in a PlaybackView object.
+   * @param p (PlaybackView) the PlaybackView object
+   */
   KeyboardEvents(PlaybackView p) {
     this.playbackview = p;
     
   }
-  
+
+  /**
+   * Configures the different keys for user key presses and releases for different actions (i.e.
+   * play/pause, increase speed, decrease speed, loop, and rewind).
+   */
   public void configureKeyboardListener() {
     Map<Character, Runnable> type = new HashMap<>();
     Map<Integer, Runnable> press = new HashMap<>();
