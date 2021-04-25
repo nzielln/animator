@@ -2,6 +2,7 @@ package cs5004.animator.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Map;
 
 /**
@@ -9,6 +10,8 @@ import java.util.Map;
  */
 public class ButtonListener implements ActionListener {
   private Map<String, Runnable> buttonevents;
+  private File savefile;
+  private File uploadfile;
   
   /**
    *
@@ -32,4 +35,13 @@ public class ButtonListener implements ActionListener {
     }
   
   }
+  
+  public File getSaveFile() {
+    return savefile;
+  }
+  
+  public File getUploadFile() {
+    return uploadfile;
+  }
+  
 }

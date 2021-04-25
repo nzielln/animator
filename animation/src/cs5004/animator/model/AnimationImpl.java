@@ -102,9 +102,6 @@ public class AnimationImpl implements Animation {
     List<Shape> shapesAtTick = new LinkedList<>();
     
     for (Shape s : hashmap.keySet()) {
-      if (s.getName().equals("eclipse")) {
-        int a = 5;
-      }
       
       List<Transformation> atTime = new LinkedList<>();
       for (Transformation tr : hashmap.get(s)) {

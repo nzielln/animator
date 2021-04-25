@@ -25,26 +25,6 @@ public class EasyAnimator {
     Controller controller = new ViewController(instr.toString());
     controller.go();
     
-    /*
-    //Read inputs
-    Scanner scan = new Scanner(instr.toString());
-    
-    //Parse Inputs
-    String in = scan.nextLine();
-    
-    ViewFactory factory = new ViewFactory();
-    Reader r = new Reader();
-    
-    View view = factory.create(in);
-    r.readIn(in);
-    //Get readbale and generate model
-    r.makeModel(r.getInputs(), view);
-    
-    //Animate
-    view.animate(r.getModel(), r.getInputs());
-    
-     */
-    
   }
 }
 

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 
 import cs5004.animator.model.Animation;
+import cs5004.animator.model.Shape;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
 import cs5004.animator.util.AnimationReader;
@@ -29,6 +30,9 @@ public class ViewController implements Controller{
   private final String instr;
   private ButtonEvents btnevents;
   private KeyboardEvents keyevents;
+  private MouseEvents mouseevents;
+  private Animation model;
+  private HashMap<String, String> inputs;
 
   /**
    * This is the constructor for the ViewController. It creates a new Reader, ViewFactory, and
@@ -37,12 +41,12 @@ public class ViewController implements Controller{
    */
   public ViewController(String instr) {
     this.r = new Reader();
+    this.inputs = new HashMap<>();
     this.factory = new ViewFactory();
     this.playbackview = new PlaybackView();
     this.instr = instr;
 
   }
-
 
 
   @Override
@@ -63,24 +67,26 @@ public class ViewController implements Controller{
     //Parse Inputs
     String in = scan.nextLine();
     r.readIn(in);
-
-    if (r.getInputs().get("view").equalsIgnoreCase("playback")) {
-      playback(r.getInputs(), r.getModel());
-      
-      
+    inputs = r.getInputs();
+    
+    
+    if (inputs.get("view").equalsIgnoreCase("playback")) {
+      playback(inputs, r.getModel());
     } else {
 
       view = factory.create(in);
       //Get readbale and generate model
-      r.makeModel(r.getInputs(), view);
+      r.makeModel(view);
+      model = r.getModel();
+      view.buildModel(model);
       //Animate
-      view.animate();
+      view.animate(model, inputs);
     }
   }
 
   @Override
   public void exit() {
-    if (r.getInputs().get("view").equalsIgnoreCase("playback")) {
+    if (inputs.get("view").equalsIgnoreCase("playback")) {
       playbackview.exitView();
     } else {
       view.exitView();
@@ -95,7 +101,7 @@ public class ViewController implements Controller{
   private void playback(HashMap<String, String> in, Animation m) {
     String fileInput = in.get("in").replace("\"", "");
     try {
-      File demo = new File(fileInput);
+      File demo = new File("./resources/files/" + fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
@@ -103,16 +109,32 @@ public class ViewController implements Controller{
       playbackview.buildModel(m, in);
       btnevents = new ButtonEvents(playbackview);
       keyevents = new KeyboardEvents(playbackview);
+      mouseevents = new MouseEvents(playbackview);
       btnevents.configButtonListener();
       keyevents.configureKeyboardListener();
+      mouseevents.configMouseListener();
       playbackview.animate();
     } catch (FileNotFoundException e) {
       throw new IllegalArgumentException("File not found.");
     }
   }
   
+  @Override
+  public void removeShape(int x, int y) {
+    for (Shape s: model.getShapes()) {
+      if ((x >= s.getPositionX() && x <= s.getWidth()) && (y >= s.getPositionY() && y <= s.getHeight())) {
+        model.removeShape(s.getName());
+        playbackview.updateModel(model);
+      }
+      
+    }
+    System.out.println("X: " + x + " Y: " + y);
   
+  }
   
+  public void createFile(String ext) {
+  
+  }
 }
 
 

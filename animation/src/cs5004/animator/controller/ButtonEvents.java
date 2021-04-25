@@ -1,13 +1,18 @@
 package cs5004.animator.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.swing.*;
 
 import cs5004.animator.view.ButtonListener;
 import cs5004.animator.view.PlaybackView;
 
 class ButtonEvents {
   private final PlaybackView playbackview;
+  private File file;
+  private Controller controller;
   
   ButtonEvents(PlaybackView p) {
     this.playbackview = p;
@@ -18,7 +23,7 @@ class ButtonEvents {
    * The configButtonListener creates new button listeners for the play/pause, rewind, loop, and
    * up and down speed functionality.
    */
-   public void configButtonListener() {
+  public void configButtonListener() {
     Map<String, Runnable> buttonsmap = new HashMap<>();
     ButtonListener bs = new ButtonListener();
     
@@ -28,6 +33,8 @@ class ButtonEvents {
     buttonsmap.put("loop", new LoopAction());
     buttonsmap.put("down speed", new DecreaseSpeedAction());
     buttonsmap.put("up speed", new IncreaseSpeedAction());
+    buttonsmap.put("save", new Save());
+    buttonsmap.put("upload", new Upload());
     bs.setButtonClickedActionMap(buttonsmap);
     
     playbackview.addListener(bs);
@@ -140,6 +147,68 @@ class ButtonEvents {
       playbackview.changeDownBg();
       playbackview.setTick();
       playbackview.resetFocus();
+      
+    }
+  }
+  
+  class Save implements Runnable {
+    
+    /**
+     * Tells the view and model to decrease the speed of the animation.
+     */
+    @Override
+    public void run() {
+      playbackview.setComponents();
+      String f = playbackview.saveFile().getName();
+      String ext = f.substring(f.lastIndexOf(".") + 1);
+      
+      if (!(ext.equals("txt") || ext.equals("svg"))) {
+        Object[] options = {"Try Again", "Cance"};
+        int pane = JOptionPane.showOptionDialog(playbackview,
+                "Only .txt and .svg file accepted.",
+                "Invalid File Name",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]);
+        
+        if (pane == JOptionPane.YES_OPTION) {
+          run();
+        }
+      }
+      
+      HashMap<String, String> in = playbackview.getInputs();
+      in.put("out", f);
+      StringBuilder instr = new StringBuilder();
+      
+      if (ext.equals("txt")) {
+        in.replace("view", "text");
+      } else if (ext.equals("svg")) {
+        in.replace("view", "svg");
+      }
+      
+      for (String s : in.keySet()) {
+        if (!s.equals("length")) {
+          instr.append("-").append(s).append(" ").append(in.get(s)).append(" ");
+        }
+      }
+      System.out.println(instr.toString());
+      controller = new ViewController(instr.toString());
+      controller.go();
+    }
+  }
+  class Upload implements Runnable {
+    
+    /**
+     * Tells the view and model to decrease the speed of the animation.
+     */
+    @Override
+    public void run() {
+      playbackview.setComponents();
+      File f = playbackview.openFile();
+      System.out.println(f.getName());
+      
       
     }
   }

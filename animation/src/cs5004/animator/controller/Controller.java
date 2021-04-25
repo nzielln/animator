@@ -32,6 +32,13 @@ public interface Controller {
    * Exits the current view.
    */
   void exit();
+  
+  /**
+   * Exits the current view.
+   */
+  void removeShape(int x, int y);
+  
+  void createFile(String ext);
 
   /**
    * Returns the current view.

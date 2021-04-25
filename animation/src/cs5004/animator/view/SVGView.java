@@ -16,16 +16,14 @@ import cs5004.animator.model.Transformation;
  */
 public class SVGView implements View {
   private String view;
-  private Animation m;
-  private HashMap<String, String> in;
+  
   
   /**
    * SVGView constructor that takes in no argument, define the type of view.
    */
   public SVGView() {
     this.view = "SVG";
-    this.m = new AnimationImpl();
-    this.in =  new HashMap<>();
+    
   }
   
   
@@ -35,14 +33,15 @@ public class SVGView implements View {
   }
   
   @Override
-  public void animate() {
+  public void animate(Animation m, HashMap<String, String> in) {
     Objects.requireNonNull(m, "Animation can't be null");
-    Objects.requireNonNull(this.in, "Inputs can't be null");
+    Objects.requireNonNull(in, "Inputs can't be null");
     
     int speed = 1;
-    if (this.in.get("speed") != null) {
-      speed = Integer.parseInt(this.in.get("speed").replace("\"",""));
+    if (in.get("speed") != null) {
+      speed = Integer.parseInt(in.get("speed").replace("\"",""));
     }
+    System.out.println(in.get("speed"));
     
     /*
      * The dimensions provided in each .txt file were too small to display the full animation
@@ -54,16 +53,15 @@ public class SVGView implements View {
      * Height: 100%
      */
     try {
-      
-      
-      FileWriter f = new FileWriter("./resources/outputs/"
-              + this.in.get("out").replace("\"", ""));
+    
+    
+      FileWriter f = new FileWriter("../outputs/" + in.get("out").replace("\"", ""));
       String canvas = "<svg width=\"" + 100 + "%\" height=\"" + 100
               + "%\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
-      
-      
-      for (Shape s : this.m.getShapes()) {
+    
+    
+      for (Shape s : m.getShapes()) {
         StringBuilder str = new StringBuilder();
         if (s.getType().equals("ELLIPSE")) {
           String sh = "<ellipse id=\"" + s.getName() + "\" cx=\"" + s.getPositionX() + "\" cy=\""
@@ -79,26 +77,26 @@ public class SVGView implements View {
                   + s.getColor().getB() + ")\" visibility=\"visible\" >\n";
           str.append(sh);
         }
-        
-        
-        for (Transformation t : this.m.getTransformations(s.getName())) {
+      
+      
+        for (Transformation t : m.getTransformations(s.getName())) {
           String tx = "";
           String ty = "";
           if (t.getTransformationType().equals("Moves")) {
             if (s.getType().equals("RECTANGLE")) {
-              
+            
               tx = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
                       + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
                       + "s\" attributeName=\"x" + "\" from=\"" + t.getInitialX() + "\" to=\""
                       + t.getToX() + "\" fill=\"freeze\" />\n";
-              
+            
               ty = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
                       + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
                       + "s\" attributeName=\"y" + "\" from=\"" + t.getInitialY() + "\" to=\""
                       + t.getToY() + "\" fill=\"freeze\" />\n";
               str.append(tx);
               str.append(ty);
-              
+            
             } else {
               tx = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
                       + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
@@ -111,7 +109,7 @@ public class SVGView implements View {
               str.append(tx);
               str.append(ty);
             }
-            
+          
           } else if (t.getTransformationType().equals("Scales")) {
             if (s.getType().equals("ELLIPSE")) {
               tx = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
@@ -124,7 +122,7 @@ public class SVGView implements View {
                       + t.getToHeight() + "\" fill=\"freeze\" />\n";
               str.append(tx);
               str.append(ty);
-              
+            
             } else {
               tx = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
                       + "s\" dur=\"" + (t.getTimeEnd() - t.getTimeStart()) / speed
@@ -138,7 +136,7 @@ public class SVGView implements View {
                       + t.getToHeight() + "\" fill=\"freeze\" />\n";
               str.append(tx);
               str.append(ty);
-              
+            
             }
           } else if (t.getTransformationType().equals("Color")) {
             ty = "\t<animate attributeType=\"xml\" begin=\"" + t.getTimeStart() / speed
@@ -150,25 +148,24 @@ public class SVGView implements View {
                     + ")\" fill=\"freeze\" />\n";
             str.append(ty);
           }
-          
+        
         }
         f.write(str.toString());
         f.write("</" + s.getType().toLowerCase().replace("angle", "") + ">\n\n");
       }
-      
+    
       f.write("\n\n</svg>");
       f.close();
-      
+    
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
+  
   }
   
   @Override
-  public void buildModel(Animation m, HashMap<String, String> in) {
-    this.m = m;
-    this.in = in;
+  public void buildModel(Animation m) {
+    throw new UnsupportedOperationException("This operation is not supported by this class.");
     
   }
   
