@@ -117,7 +117,12 @@ public class ViewController implements Controller{
       throw new IllegalArgumentException("File not found.");
     }
   }
-  
+
+  /**
+   * Removes a shape from the animation at the particular coordinate points.
+   * @param x (int) the x-coordinate of the shape
+   * @param y (int) the y-coordinate of the shape
+   */
   @Override
   public void removeShape(int x, int y) {
     for (Shape s: model.getShapes()) {
@@ -130,7 +135,14 @@ public class ViewController implements Controller{
     System.out.println("X: " + x + " Y: " + y);
   
   }
+
+  /**
+   *
+   * @param ext
+   */
+  public void createFile(String ext) {
   
+  }
 }
 
 

@@ -119,7 +119,8 @@ a .txt file will be generated to store the information.
 ### Graphic View
 
 Our [Visual](../src/cs5004/animator/view/GraphicView.java) uses a JFrame with our animation taking 
-place in a JPanel, [GraphicPanel](../src/cs5004/animator/view/GraphicPanel.java), component. The [GraphicView](../src/cs5004/animator/view/GraphicView.java) frame passes infromation from our file to the panel as 
+place in a JPanel, [GraphicPanel](../src/cs5004/animator/view/GraphicPanel.java), component. 
+The [GraphicView](../src/cs5004/animator/view/GraphicView.java) frame passes infromation from our file to the panel as 
 a list of shapes at time 0 to start of the animation, as well as our whole model for further updates. 
 To ensure that the full animation is shown at each time, our GraphicPanel inherits the dimensions of 
 the frame (which uses a BorderLayout). This ensures that the dimension of the canvas and preserved when
@@ -130,24 +131,36 @@ Our GraphicPanel updates the canvas at every increment of time, with a thread ad
 before each new display of shapes on the canvas. The shape to be displayed is a list of shapes generated
 from our ```getByTime(int t)``` method.
 
+## Changes to the Model (Assignment 8)
+
+For the Model, we did not implement any major changes to the existing structure of our model. The 
+only change that we did make to our model was adding the ability to get the length of the animation
+within [AnimationImpl](../src/cs5004/animator/model/AnimationImpl.java).
+
 ## Changes to the View (Assignment 8)
 
 For Assignment 8, our view implementations didn't change much for the 
 [Text](../src/cs5004/animator/view/TextView.java) view or for the 
 [SVG](../src/cs5004/animator/view/SVGView.java) view. The only real change was adding functionality
-for the Text and SVG views to exit the view. 
+for the Text and SVG views to exit the view, as well as creating an out file if given one in the 
+commands from the user for the Text view and changing some visibility settings in the SVG view.
 Within the [Easy Animator](../src/cs5004/animator/EasyAnimator.java) main class, we moved the
 parsing of the user defined commands to the new [Reader](../src/cs5004/animator/view/Reader.java)
 class. We did make some bigger changes to our [Graphic View](../src/cs5004/animator/view/GraphicView.java), 
-as well as adding an whole new [Playback View](../src/cs5004/animator/view/PlaybackView.java).
+as well as adding a whole new [Playback View](../src/cs5004/animator/view/PlaybackView.java).
 Please see below for more information about the changes and addition for our Graphic and Playback
 views.
+
 
 ### Graphic View
 
 The most notable changes to our [Graphic View](../src/cs5004/animator/view/GraphicView.java) is
 with the ```animate(Animation m, HashMap<String, String> in)``` method. There was also an additional
-private class called ```AnimateAction``` which implements an ```ActionListener```.
+private class called ```AnimateAction``` which implements an ```ActionListener```. Within the
+animate method in the Graphic view, we switched the timer from a Java timer to a Java Swing timer.
+We decided to make this change to add more cohesion between our timers throughout the rest of our program.
+This helped with functionality with increasing and decreasing the speed of an animation based on 
+user input.
 
 ### Playback View
 
@@ -156,7 +169,9 @@ signatures for making a frame, exiting the view, and playing the animation are d
 view itself uses a JFrame, JButton, JPanel, and JLabel to set up the visual layout and functionality
 for the user slow down, speed up, loop, rewind, or play and pause the animation within the Playback
 view. We also make use of JMenuBar, JMenuItem and JFileChooser to allow the user to save their 
-animation and/or upload an animation to the playback view for viewing.
+animation and/or upload an animation to the playback view for viewing. We chose to create a different
+interface for the Playback View as it did not have a lot of overlapping methods with the other
+view types.
 
 ## Controller Design (Assignment 8)
 
@@ -164,6 +179,6 @@ We created a [Controller](../src/cs5004/animator/controller/Controller.java) int
 then implemented in the [View Controller](../src/cs5004/animator/controller/ViewController.java)
 class. We also added [Button Events](../src/cs5004/animator/controller/ButtonEvents.java), 
 [Keyboard Events](../src/cs5004/animator/controller/KeyboardEvents.java), and 
-[Mouse Events](../src/cs5004/animator/controller/MouseEvents.java) classes. These classes implement
-functionality which allows the user to increase speed, decrease speed, loop, rewind, and play or
-pause the animation from buttons and keyboard inputs from the view.
+[Mouse Events](../src/cs5004/animator/controller/MouseEvents.java) classes. These classes help to 
+implement functionality which allows the user to increase speed, decrease speed, loop, rewind, 
+and play or pause the animation from buttons and keyboard inputs from the view.

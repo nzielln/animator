@@ -29,7 +29,9 @@ public class GraphicView extends JFrame implements View {
   private int tick;
   
   /**
-   * Constructor for a GraphicView, takes in no arguments.
+   * Constructor for a GraphicView, takes in no arguments. Inherits the title of the animation and
+   * sets the initial values for the count and tick, while also holding reference to a new
+   * AnimationImpl.
    */
   public GraphicView() {
     super("Animation");
@@ -66,13 +68,13 @@ public class GraphicView extends JFrame implements View {
   }
 
   /**
-   *
+   * Updates the animation based upon the the action
    */
   private class AnimateAction implements ActionListener {
 
     /**
      *
-     * @param e
+     * @param e (ActionEvent) the action that the user selected
      */
     @Override
     public void actionPerformed(ActionEvent e) {
