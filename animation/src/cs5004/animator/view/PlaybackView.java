@@ -491,6 +491,8 @@ public class PlaybackView extends JFrame {
   
   public void updateModel(Animation m) {
     this.model = m;
+    this.length = m.getAnimationLength();
+    
   }
   /**
    * Exits the current view.

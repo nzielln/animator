@@ -76,7 +76,7 @@ public class ViewController implements Controller{
 
       view = factory.create(in);
       //Get readbale and generate model
-      r.makeModel(view);
+      r.buildModel(view);
       model = r.getModel();
       view.buildModel(model);
       //Animate
@@ -98,7 +98,7 @@ public class ViewController implements Controller{
    * @param in (Hashmap<String, String>) a hashmap of -in, -out, -view, -speed information.
    * @param m (Animation) the specified Animation.
    */
-  private void playback(HashMap<String, String> in, Animation m) {
+  public void playback(HashMap<String, String> in, Animation m) {
     String fileInput = in.get("in").replace("\"", "");
     try {
       File demo = new File("./resources/files/" + fileInput);

@@ -8,11 +8,14 @@ import javax.swing.*;
 
 import cs5004.animator.view.ButtonListener;
 import cs5004.animator.view.PlaybackView;
+import cs5004.animator.view.Reader;
+import cs5004.animator.view.View;
 
 class ButtonEvents {
   private final PlaybackView playbackview;
   private File file;
   private Controller controller;
+  private final Reader r = new Reader();
   
   ButtonEvents(PlaybackView p) {
     this.playbackview = p;
@@ -154,7 +157,7 @@ class ButtonEvents {
   class Save implements Runnable {
     
     /**
-     * Tells the view and model to decrease the speed of the animation.
+     *
      */
     @Override
     public void run() {
@@ -165,8 +168,8 @@ class ButtonEvents {
       if (!(ext.equals("txt") || ext.equals("svg"))) {
         Object[] options = {"Try Again", "Cance"};
         int pane = JOptionPane.showOptionDialog(playbackview,
-                "Only .txt and .svg file accepted.",
-                "Invalid File Name",
+                "Only .txt and .svg files accepted.",
+                "Invalid File",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.PLAIN_MESSAGE,
                 null,
@@ -174,7 +177,7 @@ class ButtonEvents {
                 options[0]);
         
         if (pane == JOptionPane.YES_OPTION) {
-          run();
+          this.run();
         }
       }
       
@@ -198,18 +201,50 @@ class ButtonEvents {
       controller.go();
     }
   }
+  
   class Upload implements Runnable {
     
     /**
-     * Tells the view and model to decrease the speed of the animation.
+     *
      */
     @Override
     public void run() {
       playbackview.setComponents();
-      File f = playbackview.openFile();
-      System.out.println(f.getName());
+      String f = playbackview.openFile().getName();
+      String ext = f.substring(f.lastIndexOf(".") + 1);
       
-      
+      if (!ext.equals("txt")) {
+        Object[] options = {"Try Again", "Cance"};
+        int pane = JOptionPane.showOptionDialog(playbackview,
+                "Only .txt file accepted.",
+                "Invalid File",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[0]);
+  
+        if (pane == JOptionPane.YES_OPTION) {
+          this.run();
+        }
+      }
+  
+      HashMap<String, String> in = playbackview.getInputs();
+      in.replace("in", f);
+      StringBuilder instr = new StringBuilder();
+  
+      for (String s : in.keySet()) {
+        instr.append("-").append(s).append(" ").append(in.get(s)).append(" ");
+    
+      }
+      System.out.println(instr.toString());
+      r.readIn(instr.toString());
+      r.makeModel(playbackview);
+      playbackview.updateModel(r.getModel());
+      playbackview.changeCount(0);
+      playbackview.setComponents();
+      playbackview.setPlayState();
+  
     }
   }
   

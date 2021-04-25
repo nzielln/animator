@@ -2,6 +2,7 @@ package cs5004.animator.model;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -348,6 +349,7 @@ public class AnimationImpl implements Animation {
     for (Shape s : hashmap.keySet()) {
       length.add(s.getDisappears());
     }
+    System.out.println(Arrays.asList(length));
     return Collections.max(length);
     
   }
