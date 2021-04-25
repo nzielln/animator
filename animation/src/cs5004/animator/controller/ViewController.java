@@ -78,7 +78,6 @@ public class ViewController implements Controller{
       //Get readbale and generate model
       r.buildModel(view);
       model = r.getModel();
-      view.buildModel(model);
       //Animate
       view.animate(model, inputs);
     }

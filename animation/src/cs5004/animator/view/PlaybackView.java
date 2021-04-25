@@ -185,7 +185,6 @@ public class PlaybackView extends JFrame {
     btnspanel.setVisible(true);
     setVisible(true);
     
-    //btnspanel.add(output);
   }
 
   //Animation Action

@@ -349,7 +349,6 @@ public class AnimationImpl implements Animation {
     for (Shape s : hashmap.keySet()) {
       length.add(s.getDisappears());
     }
-    System.out.println(Arrays.asList(length));
     return Collections.max(length);
     
   }

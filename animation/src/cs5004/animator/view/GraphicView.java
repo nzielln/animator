@@ -22,6 +22,7 @@ public class GraphicView extends JFrame implements View {
   private GraphicsPanel panel;
   private String view;
   private javax.swing.Timer swingtimer;
+  private JScrollPane scroll;
   private int count;
   private int length;
   private Animation model;
@@ -34,7 +35,6 @@ public class GraphicView extends JFrame implements View {
     super("Animation");
     this.view = "Visual";
     this.model = new AnimationImpl();
-    this.length = 0;
     this.count = 0;
     this.tick = 0;
   }
@@ -83,31 +83,32 @@ public class GraphicView extends JFrame implements View {
   public void buildModel(Animation m) {
     this.length = m.getAnimationLength();
     this.model = m;
-    
-    setSize(m.getCanvasWidth(),
-            m.getCanvasHeight());
-    
-    setLocation(m.getCanvasX(),
-            m.getCanvasY());
-    
+  
+    int x = m.getCanvasX();
+    int y = m.getCanvasY();
+    int w = m.getCanvasWidth();
+    int h = m.getCanvasHeight();
+  
+    setSize(w, h);
+    setLocation(x, y);
+  
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
-    setVisible(true);
     
-    this.panel = new GraphicsPanel(m.getByTime(0), m);
-    this.panel.setPreferredSize(new Dimension(m.getCanvasWidth(),
-            m.getCanvasHeight()));
-    this.panel.setLocation(m.getCanvasX(), m.getCanvasY());
-    
+  
+    panel = new GraphicsPanel(m.getByTime(0), model);
+    panel.setPreferredSize(new Dimension(w, h));
+    panel.setLocation(x,y);
+  
     add(panel, BorderLayout.CENTER);
-    
-    JScrollPane scroll = new JScrollPane(this.panel);
-    setPreferredSize(new Dimension(m.getCanvasWidth(), m.getCanvasHeight() ));
+  
+    scroll = new JScrollPane(panel);
+    setPreferredSize(new Dimension(w, h));
     add(scroll, BorderLayout.CENTER);
   
-    pack();
-    setVisible(true);
     panel.setVisible(true);
+    scroll.setVisible(true);
+    setVisible(true);
     
     
   }
