@@ -36,7 +36,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
@@ -61,7 +61,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
@@ -104,7 +104,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
@@ -165,7 +165,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
@@ -207,7 +207,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
@@ -249,7 +249,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
@@ -293,7 +293,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
@@ -315,7 +315,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
@@ -337,7 +337,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
@@ -360,7 +360,7 @@ public class ControllerTextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(view);
+      r.buildModel(view);
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);

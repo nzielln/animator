@@ -27,7 +27,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r1 = new Reader();
       r1.readIn(in);
-      r1.makeModel(v);
+      r1.buildModel(v);
       assertEquals("Visual", v.getViewType());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -39,7 +39,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r2 = new Reader();
       r2.readIn(in);
-      r2.makeModel(v);
+      r2.buildModel(v);
       assertEquals("Visual", v.getViewType());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -50,7 +50,7 @@ public class SVGTest {
       View v2 = factory.create(in2);
       Reader r3 = new Reader();
       r3.readIn(in2);
-      r3.makeModel(v2);
+      r3.buildModel(v2);
       assertEquals("Text", v2.getViewType());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -61,7 +61,7 @@ public class SVGTest {
       View v3 = factory.create(in3);
       Reader r4 = new Reader();
       r4.readIn(in3);
-      r4.makeModel(v3);
+      r4.buildModel(v3);
       assertEquals("SVG", v3.getViewType());
     } catch (Exception e) {
       fail("Exception should not be thrown.");
@@ -78,7 +78,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r1 = new Reader();
       r1.readIn(in);
-      r1.makeModel(v);
+      r1.buildModel(v);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -89,7 +89,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r3 = new Reader();
       r3.readIn(in);
-      r3.makeModel(v);
+      r3.buildModel(v);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -100,7 +100,7 @@ public class SVGTest {
       View vs = factory.create(ins);
       Reader r2 = new Reader();
       r2.readIn(ins);
-      r2.makeModel(vs);
+      r2.buildModel(vs);
       System.out.println(r2.getInputs());
       fail("Exception should be thrown");
     } catch (Exception ignored) {
@@ -112,7 +112,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r4 = new Reader();
       r4.readIn(in);
-      r4.makeModel(v);
+      r4.buildModel(v);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -123,7 +123,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r5 = new Reader();
       r5.readIn(in);
-      r5.makeModel(v);
+      r5.buildModel(v);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -134,7 +134,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r6 = new Reader();
       r6.readIn(in);
-      r6.makeModel(v);
+      r6.buildModel(v);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -145,7 +145,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r7 = new Reader();
       r7.readIn(in);
-      r7.makeModel(v);
+      r7.buildModel(v);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -156,7 +156,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r7 = new Reader();
       r7.readIn(in);
-      r7.makeModel(v);
+      r7.buildModel(v);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -167,7 +167,7 @@ public class SVGTest {
       View v = factory.create(in);
       Reader r8 = new Reader();
       r8.readIn(in);
-      r8.makeModel(v);
+      r8.buildModel(v);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
@@ -180,7 +180,7 @@ public class SVGTest {
     View v = factory.create(in);
     Reader r = new Reader();
     r.readIn(in);
-    r.makeModel(v);
+    r.buildModel(v);
     v.animate(r.getModel(), r.getInputs());
     StringBuilder s = new StringBuilder();
     File demo = new File("./resources/outputs/out.svg");
@@ -204,7 +204,7 @@ public class SVGTest {
     View v = factory.create(in);
     Reader r = new Reader();
     r.readIn(in);
-    r.makeModel(v);
+    r.buildModel(v);
     v.animate(r.getModel(), r.getInputs());
     StringBuilder s = new StringBuilder();
     File demo = new File("./resources/outputs/outs.svg");

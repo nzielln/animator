@@ -185,7 +185,6 @@ public class PlaybackView extends JFrame {
     btnspanel.setVisible(true);
     setVisible(true);
     
-    //btnspanel.add(output);
   }
 
   //Animation Action
@@ -491,6 +490,8 @@ public class PlaybackView extends JFrame {
   
   public void updateModel(Animation m) {
     this.model = m;
+    this.length = m.getAnimationLength();
+    
   }
   /**
    * Exits the current view.

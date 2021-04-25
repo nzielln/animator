@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import cs5004.animator.model.Animation;
 import cs5004.animator.model.AnimationImpl;
@@ -86,7 +86,7 @@ public class Reader {
    * Uses AnimationReader and AnimationBuilder to read a text file and populate the model.
    * @param view Animation, the model for the animation
    */
-  public void makeModel(View view) {
+  public void buildModel(View view) {
     String fileInput = inputs.get("in").replace("\"", "");
     try {
       File demo = new File("./resources/files/" + fileInput);
@@ -103,6 +103,26 @@ public class Reader {
       throw new IllegalArgumentException("File not found.");
     }
   }
+  
+  
+  public void makeModel(JFrame frame) {
+    String fileInput = inputs.get("in").replace("\"", "");
+    try {
+      File demo = new File("./resources/files/" + fileInput);
+      FileReader f = new FileReader(demo);
+      AnimationBuilder<Animation> b = new AnimationBuilderImpl(this.model);
+      AnimationReader.parseFile(f, b);
+    } catch (FileNotFoundException e) {
+      if (inputs.get("view").equals("visual")) {
+        JOptionPane.showMessageDialog(frame, "File not found.",
+                "ERROR", JOptionPane.ERROR_MESSAGE);
+      }
+      
+      throw new IllegalArgumentException("File not found.");
+    }
+  }
+  
+  
   
   /**
    * Returns the model with shapes and motions from a text file.

@@ -1,5 +1,8 @@
 package cs5004.animator.controller;
 
+import java.util.HashMap;
+
+import cs5004.animator.model.Animation;
 import cs5004.animator.view.PlaybackView;
 import cs5004.animator.view.View;
 
@@ -45,6 +48,8 @@ public interface Controller {
    * @return (View) the view.
    */
   View getView();
+  
+  void playback(HashMap<String, String> in, Animation m);
 
   /**
    * Returns a PlaybackView object.
