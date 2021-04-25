@@ -151,10 +151,19 @@ private class called ```AnimateAction``` which implements an ```ActionListener``
 
 ### Playback View
 
-Our [Playback View](../src/cs5004/animator/view/PlaybackView.java)
+Our [Playback View](../src/cs5004/animator/view/PlaybackView.java) has its own interface where the 
+signatures for making a frame, exiting the view, and playing the animation are defined. The Playback
+view itself uses a JFrame, JButton, JPanel, and JLabel to set up the visual layout and functionality
+for the user slow down, speed up, loop, rewind, or play and pause the animation within the Playback
+view. We also make use of JMenuBar, JMenuItem and JFileChooser to allow the user to save their 
+animation and/or upload an animation to the playback view for viewing.
 
 ## Controller Design (Assignment 8)
 
 We created a [Controller](../src/cs5004/animator/controller/Controller.java) interface which is
 then implemented in the [View Controller](../src/cs5004/animator/controller/ViewController.java)
-class. 
+class. We also added [Button Events](../src/cs5004/animator/controller/ButtonEvents.java), 
+[Keyboard Events](../src/cs5004/animator/controller/KeyboardEvents.java), and 
+[Mouse Events](../src/cs5004/animator/controller/MouseEvents.java) classes. These classes implement
+functionality which allows the user to increase speed, decrease speed, loop, rewind, and play or
+pause the animation from buttons and keyboard inputs from the view.
