@@ -3,6 +3,7 @@ package cs5004.animator.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.List;
@@ -37,6 +38,8 @@ public class PlaybackView extends JFrame {
   private JPanel btnspanel;
   private JButton playpause;
   private JButton rewind;
+  private JButton save;
+  private JButton upload;
   private JButton up;
   private JButton down;
   private JButton looper;
@@ -53,11 +56,18 @@ public class PlaybackView extends JFrame {
   private JPanel speedpanel;
   private JPanel looppanel;
   private JPanel pppanel;
-
-  /**
-   * Our PlaybackView constructor inherits the title for the animation. It sets the view type to
-   * "playback" and creates a new AnimationImpl and Hashmap
-   */
+  
+  //menu for saving/uploading files
+  private JMenuBar menubar;
+  private JMenuBar menu;
+  private JMenuItem savefile;
+  private JMenuItem uploadfile;
+  
+  //File Choose
+  private JFileChooser chooser;
+  
+  
+  
   public PlaybackView() {
     super("Animation");
     this.view = "Playback";
@@ -67,11 +77,9 @@ public class PlaybackView extends JFrame {
   }
 
   /**
-   * The buildModel method builds the graphics frame and panel for the Playback view based on
-   * information from the model. Sets up additional functionality for rewinding, looping,
-   * increasing or decreasing speed, as well as play/pause.
-   * @param m (Animation) the animation that is to be played.
-   * @param in (Hashmap<String, String>) the hashmap of String commands.
+   *
+   * @param m
+   * @param in
    */
   public void buildModel(Animation m, HashMap<String, String> in) {
     this.model = m;
@@ -159,14 +167,17 @@ public class PlaybackView extends JFrame {
     add(btnspanel, BorderLayout.SOUTH);
     
     btnspanel.add(Box.createHorizontalGlue());
+    upload = createButton("Upload File", "uplo.png", "upload");
     rewind = createButton("Rewind", "re.png", "rewind");
     up = createButton("Increase Speed", "up.png", "up speed");
     playpause = createButton("Pause ", "po.png", "pause");
     down = createButton("Decrease Speed", "down.png", "down speed");
     looper = createButton("Loop", "Asset 1.png", "loop");
+    save = createButton("Save File", "save.png", "save");
     btnspanel.add(Box.createHorizontalGlue());
     
-    //
+    //Files
+    chooser = new JFileChooser();
     
     //set visible
     mainscroll.setVisible(true);
@@ -239,7 +250,7 @@ public class PlaybackView extends JFrame {
   }
 
   /**
-   * Slows the animation down via the timer.
+   *
    */
   public void slowanimate() {
     swingtimer = new javax.swing.Timer((1000 / tick) + 1000, new AnimateAction());
@@ -271,7 +282,11 @@ public class PlaybackView extends JFrame {
     this.repaint();
     
   }
-
+  
+  public HashMap<String, String> getInputs() {
+    return in;
+  }
+  
   /**
    * Creates a JButton object for the view.
    * @param name (String) the name of the button.
@@ -291,7 +306,6 @@ public class PlaybackView extends JFrame {
     btn.setAlignmentY(Component.CENTER_ALIGNMENT);
     btn.setVerticalTextPosition(AbstractButton.BOTTOM);
     btn.setHorizontalTextPosition(AbstractButton.CENTER);
-    //btn.addActionListener(this);
     btn.setActionCommand(command);
     btn.setOpaque(true);
     btn.setBorderPainted(false);
@@ -314,6 +328,7 @@ public class PlaybackView extends JFrame {
     
     return l;
   }
+  
 
   /**
    * Adds an action listener to each of the buttons (play/pause, increase, decrease, loop, rewind).
@@ -325,6 +340,8 @@ public class PlaybackView extends JFrame {
     down.addActionListener(al);
     looper.addActionListener(al);
     rewind.addActionListener(al);
+    save.addActionListener(al);
+    upload.addActionListener(al);
   }
 
   /**
@@ -471,11 +488,36 @@ public class PlaybackView extends JFrame {
   public String getCurrentState() {
     return state;
   }
+  
+  public void updateModel(Animation m) {
+    this.model = m;
+  }
   /**
    * Exits the current view.
    */
   public void resetFocus() {
     this.setFocusable(true);
     this.requestFocus();
+  }
+  
+  //Methods for Saving/Upload Files
+  public File openFile() {
+    upload.setBackground(Color.GREEN);
+    chooser.setDialogTitle("Upload A .txt File.");
+    if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+      return chooser.getSelectedFile();
+    }
+    
+    return null;
+  }
+  
+  public File saveFile() {
+    save.setBackground(Color.GREEN);
+    chooser.setDialogTitle("Save Animation as a Text or SVG File.");
+    if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+      return chooser.getSelectedFile();
+    }
+    
+    return null;
   }
 }

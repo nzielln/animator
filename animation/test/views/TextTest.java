@@ -36,8 +36,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:______________________________________" +
@@ -61,8 +61,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -104,8 +104,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:___________________________________" +
@@ -165,8 +165,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -207,8 +207,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       String filepath = "./resources/outputs/small.txt";
@@ -249,8 +249,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       assertEquals("Text View of the Animation:__________________________________________"
@@ -293,8 +293,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -315,8 +315,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -337,8 +337,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");
@@ -360,8 +360,8 @@ public class TextTest {
       System.setOut(out);
       View view = factory.create(in);
       r.readIn(in);
-      r.makeModel(r.getInputs(), view);
-      view.animate();
+      r.makeModel(view);
+      view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
       fail("Exception should be thrown");

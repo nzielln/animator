@@ -16,16 +16,14 @@ import cs5004.animator.model.Shape;
  */
 public class TextView implements View {
   private String view;
-  private Animation m;
-  private HashMap<String, String> in;
+  
   
   /**
    * TextView constructor that takes in no argument, define the type of view.
    */
   public TextView() {
     this.view = "Text";
-    this.m = new AnimationImpl();
-    this.in =  new HashMap<>();
+   
   }
   
   @Override
@@ -34,12 +32,11 @@ public class TextView implements View {
   }
   
   @Override
-  public void animate() {
+  public void animate(Animation m, HashMap<String, String> in) {
     
     StringBuilder str = new StringBuilder();
-    System.out.println("Text View of the Animation:________________________________________________"
-            + "\n");
-    for (Shape s :this.m.getShapes()) {
+
+    for (Shape s :m.getShapes()) {
       if (s.getType().equals("RECTANGLE")) {
         String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
                 + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
@@ -55,7 +52,7 @@ public class TextView implements View {
     
     str.append("\n");
     
-    for (Shape s :this.m.getShapes()) {
+    for (Shape s :m.getShapes()) {
       String timeDesc = s.getName() + " appears at t=" + s.getAppears() + " and disappears at t="
               + s.getDisappears();
       str.append(timeDesc).append("\n");
@@ -63,22 +60,24 @@ public class TextView implements View {
     
     str.append("\n");
     
-    for (Shape s :this.m.getShapes()) {
+    for (Shape s :m.getShapes()) {
       str.append(m.tranformationString(s).replace("Shape ", ""));
     }
     
-    if (this.in.get("out") != null) {
-      writeFile(str.toString(), this.in);
+    if (in.get("out") != null) {
+      writeFile(str.toString(), in);
+    } else {
+      System.out.println("Text View of the Animation:________________________________________________"
+              + "\n");
+      System.out.println(str);
     }
-    
-    System.out.println(str);
     
     
   }
   
   private void writeFile(String str, HashMap<String, String> in) {
     try {
-      FileWriter f = new FileWriter("./resources/outputs/" + this.in.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter("../outputs/" + in.get("out").replace("\"", ""));
       Scanner s = new Scanner(str).useDelimiter("\n");
       while (s.hasNext()) {
         String line = s.next();
@@ -96,9 +95,8 @@ public class TextView implements View {
   }
   
   @Override
-  public void buildModel(Animation m, HashMap<String, String> in) {
-    this.m = m;
-    this.in = in;
+  public void buildModel(Animation m) {
+    throw new UnsupportedOperationException("This operation is not supported by this class.");
     
   }
   

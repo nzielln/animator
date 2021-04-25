@@ -84,17 +84,16 @@ public class Reader {
   
   /**
    * Uses AnimationReader and AnimationBuilder to read a text file and populate the model.
-   * @param inputs HashMap, a hash map of the animation inputs
    * @param view Animation, the model for the animation
    */
-  public void makeModel(HashMap<String, String> inputs, View view) {
+  public void makeModel(View view) {
     String fileInput = inputs.get("in").replace("\"", "");
     try {
       File demo = new File("./resources/files/" + fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(this.model);
       AnimationReader.parseFile(f, b);
-      view.buildModel(this.model, inputs);
+      view.buildModel(this.model);
     } catch (FileNotFoundException e) {
       if (inputs.get("view").equals("visual")) {
         JOptionPane.showMessageDialog((Component) view.getView(), "File not found.",
