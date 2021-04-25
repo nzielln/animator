@@ -89,7 +89,7 @@ public class Reader {
   public void buildModel(View view) {
     String fileInput = inputs.get("in").replace("\"", "");
     try {
-      File demo = new File("./resources/files/" + fileInput);
+      File demo = new File(fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(this.model);
       AnimationReader.parseFile(f, b);
@@ -108,7 +108,7 @@ public class Reader {
   public void makeModel(JFrame frame) {
     String fileInput = inputs.get("in").replace("\"", "");
     try {
-      File demo = new File("./resources/files/" + fileInput);
+      File demo = new File(fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(this.model);
       AnimationReader.parseFile(f, b);

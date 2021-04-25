@@ -16,6 +16,7 @@ import cs5004.animator.model.Shape;
  */
 public class TextView implements View {
   private String view;
+  private Animation model;
   
   
   /**
@@ -23,6 +24,7 @@ public class TextView implements View {
    */
   public TextView() {
     this.view = "Text";
+    this.model = new AnimationImpl();
    
   }
   
@@ -96,7 +98,7 @@ public class TextView implements View {
   
   @Override
   public void buildModel(Animation m) {
-    throw new UnsupportedOperationException("This operation is not supported by this class.");
+    this.model = m;
     
   }
   
