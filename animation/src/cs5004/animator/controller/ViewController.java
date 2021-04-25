@@ -6,12 +6,11 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
 import cs5004.animator.model.Animation;
-import cs5004.animator.model.Shape;
 import cs5004.animator.util.AnimationBuilder;
 import cs5004.animator.util.AnimationBuilderImpl;
 import cs5004.animator.util.AnimationReader;
+import cs5004.animator.view.MouseEventListener;
 import cs5004.animator.view.PlaybackView;
 import cs5004.animator.view.Reader;
 import cs5004.animator.view.View;
@@ -22,7 +21,7 @@ import cs5004.animator.view.ViewFactory;
  * defined in the Controller interface and adds functionality for increasing and decreasing speed,
  * looping the animation, and play and pausing the animation.
  */
-public class ViewController implements Controller{
+public class ViewController implements Controller {
   private final Reader r;
   private final ViewFactory factory;
   private View view;
@@ -30,10 +29,10 @@ public class ViewController implements Controller{
   private final String instr;
   private ButtonEvents btnevents;
   private KeyboardEvents keyevents;
-  private MouseEvents mouseevents;
+  private MouseEventListener mouseevents;
   private Animation model;
   private HashMap<String, String> inputs;
-
+  
   /**
    * This is the constructor for the ViewController. It creates a new Reader, ViewFactory, and
    * PlaybackView objects. It takes int TODO
@@ -45,61 +44,59 @@ public class ViewController implements Controller{
     this.factory = new ViewFactory();
     this.playbackview = new PlaybackView();
     this.instr = instr;
-
+    
   }
-
-
+  
   @Override
   public View getView() {
     return this.view;
   }
-
-  @Override
-  public PlaybackView getPlaybackview() {
-    return this.playbackview;
-  }
-
-
+  
   @Override
   public void go() {
-    //Read inputs
     Scanner scan = new Scanner(instr.toString());
-    //Parse Inputs
     String in = scan.nextLine();
+    
     r.readIn(in);
     inputs = r.getInputs();
     
-    
     if (inputs.get("view").equalsIgnoreCase("playback")) {
+      
       playback(inputs, r.getModel());
+      model = r.getModel();
+      
     } else {
-
+      
       view = factory.create(in);
-      //Get readbale and generate model
       r.buildModel(view);
       model = r.getModel();
-      //Animate
       view.animate(model, inputs);
+      
     }
   }
-
+  
   @Override
   public void exit() {
     if (inputs.get("view").equalsIgnoreCase("playback")) {
       playbackview.exitView();
+      
     } else {
       view.exitView();
+      
     }
   }
-
+  
   /**
    * Creates an animation with the provided information and an animation model.
    * @param in (Hashmap<String, String>) a hashmap of -in, -out, -view, -speed information.
    * @param m (Animation) the specified Animation.
    */
   public void playback(HashMap<String, String> in, Animation m) {
+    
     String fileInput = in.get("in").replace("\"", "");
+    
     try {
+      
       File demo = new File(fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
@@ -108,34 +105,31 @@ public class ViewController implements Controller{
       playbackview.buildModel(m, in);
       btnevents = new ButtonEvents(playbackview);
       keyevents = new KeyboardEvents(playbackview);
-      mouseevents = new MouseEvents(playbackview);
+      mouseevents = new MouseEventListener(playbackview);
       btnevents.configButtonListener();
       keyevents.configureKeyboardListener();
-      mouseevents.configMouseListener();
+      mouseevents.configMouseListener(this);
       playbackview.animate();
+      
     } catch (FileNotFoundException e) {
       throw new IllegalArgumentException("File not found.");
-    }
-  }
-
-  /**
-   * Removes a shape from the animation at the particular coordinate points.
-   * @param x (int) the x-coordinate of the shape
-   * @param y (int) the y-coordinate of the shape
-   */
-  @Override
-  public void removeShape(int x, int y) {
-    for (Shape s: model.getShapes()) {
-      if ((x >= s.getPositionX() && x <= s.getWidth()) && (y >= s.getPositionY() && y <= s.getHeight())) {
-        model.removeShape(s.getName());
-        playbackview.updateModel(model);
-      }
       
     }
-    System.out.println("X: " + x + " Y: " + y);
-  
   }
-
+  
+  @Override
+  public void removeShape(int x, int y) {
+    
+    String name = model.clicked(x, y, playbackview.getCount());
+    
+    if (name != null) {
+      
+      model.removeShape(name);
+      playbackview.updateModel(model);
+      model = model;
+      
+    }
+  }
 }
 
 

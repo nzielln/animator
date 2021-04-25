@@ -117,37 +117,33 @@ public abstract class AbstractTransformation implements Transformation {
   @Override
   public void setFinal(String name, String type, int x, int y, int w,
                        int h, int r, int g, int b) {
+    Shape sh;
     if (type.equals("Ellipse")) {
-      Shape sh = new Ellipse(name, type.toUpperCase());
-      sh.setProperties(x, y, w, h, r, g, b);
-      sh.setAppearsDisappears(this.timeStart, this.timeEnd);
-      this.finalshape = sh;
+      sh = new Ellipse(name, type.toUpperCase());
     } else {
-      Shape sh = new Rectangle(name, type.toUpperCase());
-      sh.setProperties(x, y, w, h, r, g, b);
-      sh.setAppearsDisappears(this.timeStart, this.timeEnd);
-      this.finalshape = sh;
-      
-    }
+      sh = new Rectangle(name, type.toUpperCase());
     
+    }
+    sh.setProperties(x, y, w, h, r, g, b);
+    sh.setAppearsDisappears(this.timeStart, this.timeEnd);
+    this.finalshape = sh;
+  
   }
   
   @Override
   public void setInitial(String name, String type, int x, int y, int w,
                          int h, int r, int g, int b) {
+    Shape sh;
     if (type.equalsIgnoreCase("Ellipse")) {
-      Shape sh = new Ellipse(name, type.toUpperCase());
-      sh.setProperties(x, y, w, h, r, g, b);
-      sh.setAppearsDisappears(this.timeStart, this.timeEnd);
-      this.initialshape = sh;
+      sh = new Ellipse(name, type.toUpperCase());
     } else {
-      Shape sh = new Rectangle(name, type.toUpperCase());
-      sh.setProperties(x, y, w, h, r, g, b);
-      sh.setAppearsDisappears(this.timeStart, this.timeEnd);
-      this.initialshape = sh;
-      
-    }
+      sh = new Rectangle(name, type.toUpperCase());
     
+    }
+    sh.setProperties(x, y, w, h, r, g, b);
+    sh.setAppearsDisappears(this.timeStart, this.timeEnd);
+    this.initialshape = sh;
+  
   }
 
 }

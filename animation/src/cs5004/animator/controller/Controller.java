@@ -1,30 +1,13 @@
 package cs5004.animator.controller;
 
 import java.util.HashMap;
-
 import cs5004.animator.model.Animation;
-import cs5004.animator.view.PlaybackView;
 import cs5004.animator.view.View;
 
 /**
  * Controller for the Animation program.
  */
 public interface Controller {
-  //ASSIGNMENT 8
-  /*
-  Methods we'll need
-  Start
-  Play
-  Pause
-  Rewind/Restart
-  
-  Enable/Disable looping
-  
-  Increase/Decrease speed
-  Takes in user input/keyboard interact/clicks
-  Add new option -playback to CLI commands - should upen editor view
-  
-   */
 
   /**
    * Gets the input information and plays the correct animation view type.
@@ -37,7 +20,9 @@ public interface Controller {
   void exit();
   
   /**
-   * Exits the current view.
+   * Removes a shape at the given x and y positions from the current model.
+   * @param x int, x position of shape to remove
+   * @param y int, y position of shape to remove
    */
   void removeShape(int x, int y);
   
@@ -48,11 +33,12 @@ public interface Controller {
    */
   View getView();
   
+  /**
+   * Creates and plays the playback view model, configures listeners for button, keyboard and mouse
+   * events.
+   * @param in HashMap of CLI input string
+   * @param m Animation, the model for the animation
+   */
   void playback(HashMap<String, String> in, Animation m);
 
-  /**
-   * Returns a PlaybackView object.
-   * @return the playback view object.
-   */
-  PlaybackView getPlaybackview();
 }

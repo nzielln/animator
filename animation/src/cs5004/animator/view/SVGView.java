@@ -18,7 +18,6 @@ public class SVGView implements View {
   private String view;
   private Animation model;
   
-  
   /**
    * SVGView constructor that takes in no argument, define the type of view.
    */
@@ -54,17 +53,17 @@ public class SVGView implements View {
      * Height: 100%
      */
     try {
-    
-    
+      
+      
       FileWriter f = new FileWriter("../outputs/" + in.get("out").replace("\"", ""));
       String canvas = "<svg width=\"" + 100 + "%\" height=\"" + 100
               + "%\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
-    
-    
+      
+      
       for (Shape s : m.getShapes()) {
         StringBuilder str = new StringBuilder();
-        String sh = "";
+        String sh;
         
         if (s.getType().equals("ELLIPSE")) {
           if (s.getAppears() > 1) {
@@ -81,7 +80,7 @@ public class SVGView implements View {
                     + ")\" visibility=\"visible\" >\n";
           }
           str.append(sh);
-   
+          
         } else if (s.getType().equals("RECTANGLE")) {
           if (s.getAppears() > 1) {
             sh = "<rect id=\"" + s.getName() + "\" x=\"" + s.getPositionX() + "\" y=\""
@@ -103,25 +102,26 @@ public class SVGView implements View {
                   + "ms\" dur=\"" + 1000 / speed + "ms\" fill=\"freeze\" />";
           str.append(visibility);
         }
-       
-      
-      
+        
+        
+        
         for (Transformation t : m.getTransformations(s.getName())) {
-          String tx = "";
-          String ty = "";
+          String tx;
+          String ty;
+          
           if (t.getTransformationType().equals("Moves")) {
             if (s.getType().equals("RECTANGLE")) {
-            
+              
               tx = "\t<animate attributeType=\"xml\" begin=\"" + (t.getTimeStart() / speed) * 1000
                       + "ms\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
                       + "ms\" attributeName=\"x" + "\" from=\"" + t.getInitialX() + "\" to=\""
                       + t.getToX() + "\" fill=\"freeze\" />\n";
-            
+              
               ty = "\t<animate attributeType=\"xml\" begin=\"" + (t.getTimeStart() / speed) * 1000
                       + "ms\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
                       + "ms\" attributeName=\"y" + "\" from=\"" + t.getInitialY() + "\" to=\""
                       + t.getToY() + "\" fill=\"freeze\" />\n";
-  
+              
             } else {
               tx = "\t<animate attributeType=\"xml\" begin=\"" + (t.getTimeStart() / speed) * 1000
                       + "ms\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
@@ -133,7 +133,7 @@ public class SVGView implements View {
                       + t.getToY() + "\" fill=\"freeze\" />\n";
             }
             str.append(tx).append(ty);
-  
+            
           } else if (t.getTransformationType().equals("Scales")) {
             if (s.getType().equals("ELLIPSE")) {
               tx = "\t<animate attributeType=\"xml\" begin=\"" + (t.getTimeStart() / speed) * 1000
@@ -144,7 +144,7 @@ public class SVGView implements View {
                       + "s\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
                       + "s\" attributeName=\"ry" + "\" from=\"" + t.getInitialHeight() + "\" to=\""
                       + t.getToHeight() + "\" fill=\"freeze\" />\n";
-  
+              
             } else {
               tx = "\t<animate attributeType=\"xml\" begin=\"" + (t.getTimeStart() / speed) * 1000
                       + "s\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
@@ -156,7 +156,7 @@ public class SVGView implements View {
                       + "s\" attributeName=\"height" + "\" from=\"" + t.getInitialHeight()
                       + "\" to=\""
                       + t.getToHeight() + "\" fill=\"freeze\" />\n";
-  
+              
             }
             str.append(tx).append(ty);
           } else if (t.getTransformationType().equals("Color")) {
@@ -169,19 +169,18 @@ public class SVGView implements View {
                     + ")\" fill=\"freeze\" />\n";
             str.append(ty);
           }
-        
+          
         }
         f.write(str.toString());
         f.write("</" + s.getType().toLowerCase().replace("angle", "") + ">\n\n");
       }
-    
+      
       f.write("\n\n</svg>");
       f.close();
-    
+      
     } catch (Exception e) {
       e.printStackTrace();
     }
-  
   }
   
   @Override

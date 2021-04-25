@@ -131,12 +131,18 @@ public interface Animation {
    */
   void removeTransformation(String id, Transformation t);
   
-  
-  
+  /**
+   * Returns the name of the shape at the position clicked at the given time.
+   * @param x int, x position of the click
+   * @param y int, y position of the click
+   * @param t int, current time in the animation
+   * @return String, name of the shape
+   */
   String clicked(int x, int y, int t);
   
-  /*
-  
+  /**
+   * Determines and returns the length of the current model/animation.
+   * @return int, length of the animation
    */
   int getAnimationLength();
   

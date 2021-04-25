@@ -3,7 +3,7 @@ package cs5004.animator.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 import cs5004.animator.view.ButtonListener;
 import cs5004.animator.view.PlaybackView;
@@ -16,10 +16,10 @@ class ButtonEvents {
   private final PlaybackView playbackview;
   private Controller controller;
   private final Reader r = new Reader();
-
+  
   /**
    * Button Events constructor takes in a Playback view and holds reference to it.
-   * @param p
+   * @param p a PlayBack view to apply action to
    */
   ButtonEvents(PlaybackView p) {
     this.playbackview = p;
@@ -28,7 +28,7 @@ class ButtonEvents {
   
   /**
    * The configButtonListener creates new button listeners for the play/pause, rewind, loop, and
-   * up and down speed functionality.
+   * up and down speed functionality, adds the listener to the PlayBack view.
    */
   public void configButtonListener() {
     Map<String, Runnable> buttonsmap = new HashMap<>();
@@ -157,12 +157,12 @@ class ButtonEvents {
       
     }
   }
-
+  
   /**
    * The Save class allows the user to save an animations as either a txt or svg file.
    */
   class Save implements Runnable {
-    
+  
     /**
      * Saves an animation as a txt or svg file.
      */
@@ -173,7 +173,7 @@ class ButtonEvents {
       String ext = f.substring(f.lastIndexOf(".") + 1);
       
       if (!(ext.equals("txt") || ext.equals("svg"))) {
-        Object[] options = {"Try Again", "Cancel"};
+        Object[] options = {"Try Again", "Cance"};
         int pane = JOptionPane.showOptionDialog(playbackview,
                 "Only .txt and .svg files accepted.",
                 "Invalid File",
@@ -207,12 +207,12 @@ class ButtonEvents {
       controller.go();
     }
   }
-
+  
   /**
    * Allows a user to upload a file to be played as an animation in  the Playback view.
    */
   class Upload implements Runnable {
-    
+  
     /**
      * Updates the animation to the animation uploaded by user. Shows a JOptionPane error message
      * if the user tries to upload an invalid file type.
@@ -224,7 +224,7 @@ class ButtonEvents {
       String ext = f.substring(f.lastIndexOf(".") + 1);
       
       if (!ext.equals("txt")) {
-        Object[] options = {"Try Again", "Cancel"};
+        Object[] options = {"Try Again", "Cance"};
         int pane = JOptionPane.showOptionDialog(playbackview,
                 "Only .txt file accepted.",
                 "Invalid File",

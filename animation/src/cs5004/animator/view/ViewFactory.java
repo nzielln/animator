@@ -20,7 +20,7 @@ public class ViewFactory {
       return new TextView();
     } else if (in.contains("-view svg")) {
       return new SVGView();
-    } else if (in.contains("-view visual") || in.contains("-view playback")) {
+    } else if (in.contains("-view visual")) {
       return new GraphicView();
     }
     

@@ -15,7 +15,7 @@ import cs5004.animator.model.Shape;
  * Represents a class for a TestView, implements the View interface.
  */
 public class TextView implements View {
-  private String view;
+  private final String view;
   private Animation model;
   
   
@@ -37,7 +37,6 @@ public class TextView implements View {
   public void animate(Animation m, HashMap<String, String> in) {
     
     StringBuilder str = new StringBuilder();
-
     for (Shape s :m.getShapes()) {
       if (s.getType().equals("RECTANGLE")) {
         String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
@@ -69,8 +68,6 @@ public class TextView implements View {
     if (in.get("out") != null) {
       writeFile(str.toString(), in);
     } else {
-      System.out.println("Text View of the Animation:________________________________________________"
-              + "\n");
       System.out.println(str);
     }
     

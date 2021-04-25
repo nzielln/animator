@@ -25,7 +25,8 @@ class KeyboardEvents {
 
   /**
    * Configures the different keys for user key presses and releases for different actions (i.e.
-   * play/pause, increase speed, decrease speed, loop, and rewind).
+   * play/pause, increase speed, decrease speed, loop, and rewind), sets listener for the
+   * PlaybackView.
    */
   public void configureKeyboardListener() {
     Map<Character, Runnable> type = new HashMap<>();

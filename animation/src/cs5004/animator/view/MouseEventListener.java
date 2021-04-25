@@ -1,148 +1,69 @@
 package cs5004.animator.view;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Map;
+
+import cs5004.animator.controller.Controller;
 
 /**
- *
+ * MouseEventListener listens for click events on the PlaybackView and saves the position.
  */
-public class MouseEventListener implements MouseListener {
-  private Map<Integer, Runnable> mouseclick;
-  private Map<Integer, Runnable> mouseentered;
-  private Map<Integer, Runnable> mouseexited;
-  private Map<Integer, Runnable> mousepressed;
-  private Map<Integer, Runnable> mousereleased;
+public class MouseEventListener extends MouseAdapter {
+  private PlaybackView playbackview;
   private int x;
   private int y;
+  private Controller controller;
   
-
   /**
-   *
+   * Constructor takes in a PlaybackView that it listens for events on.
+   * @param p PlaybackView
    */
-  public MouseEventListener() {
-    mouseclick = null;
-    mouseentered = null;
-    mousepressed = null;
-    mouseexited = null;
-    mousereleased = null;
-  }
-
-  /**
-   *
-   * @param map
-   */
-  public void setMouseclick(Map<Integer, Runnable> map) {
-    mouseclick = map;
+  public MouseEventListener(PlaybackView p) {
+    this.playbackview = p;
   }
   
   /**
-   *
-   * @param map
+   * Configures the mouse listener for the PlaybackView, sets the controller.
+   * @param con Controller, a controller to send information to
    */
-  public void setMouseentered(Map<Integer, Runnable> map) {
-    mouseentered = map;
+  public void configMouseListener(Controller con) {
+    playbackview.addMouseClickListener(this);
+    this.controller = con;
   }
   
   /**
-   *
-   * @param map
+   * On a mouse click events, the listener will save the x and y coordinates and send thos
+   * to the removeShape() method.
+   * @param e MouseEvent
    */
-  public void setMouseexited(Map<Integer, Runnable> map) {
-    mouseexited = map;
+  @Override
+  public void mouseClicked(MouseEvent e) {
+    x = e.getX();
+    y = e.getY();
+    removeShape();
   }
   
   /**
-   *
-   * @param map
+   * Call the controller's removeShape method and resets the focus of the view.
    */
-  public void setMousepressed(Map<Integer, Runnable> map) {
-    mousepressed = map;
+  public void removeShape() {
+    controller.removeShape(x, y);
+    playbackview.resetFocus();
   }
   
   /**
-   *
-   * @param map
-   */
-  public void setMousereleased(Map<Integer, Runnable> map) {
-    mousereleased = map;
-  }
-
-  /**
-   * Returns the x-coordinate where the mouse was clicked.
-   * @return (int) the x-coordinate
+   * Returns the most recents MouseEvent's x position
+   * @return int, x poisition
    */
   public int getX() {
     return x;
   }
-
+  
   /**
-   * Returns the y-coordinate where the mouse was clicked.
-   * @return (int) the y-coordinate
+   * Returns the most recents MouseEvent's y position
+   * @return int, y poisition
    */
   public int getY() {
     return y;
-  }
-
-  /**
-   *
-   * @param e
-   */
-  @Override
-  public void mouseClicked(MouseEvent e) {
-    if (mouseclick.containsKey(e.getButton())) {
-      mouseclick.get(e.getButton()).run();
-      System.out.println("MOUSE WAS CLICKED");
-      x = e.getX();
-      y = e.getY();
-    }
-  
-  }
-
-  /**
-   *
-   * @param
-   */
-  @Override
-  public void mousePressed(MouseEvent e) {
-    if (mousepressed.containsKey(e.getButton())) {
-      mousepressed.get(e.getButton()).run();
-      System.out.println("MOUSE WAS CLICKED");
-      x = e.getX();
-      y = e.getY();
-    }
-  }
-
-  /**
-   *
-   * @param e
-   */
-  @Override
-  public void mouseReleased(MouseEvent e) {
-    if (mousereleased.containsKey(e.getButton())) {
-      mousereleased.get(e.getButton()).run();
-    }
-  }
-
-  /**
-   *
-   * @param e
-   */
-  @Override
-  public void mouseEntered(MouseEvent e) {
-    if (mouseentered.containsKey(e.getButton())) {
-      mouseentered.get(e.getButton()).run();
-    }
-  }
-
-  /**
-   *
-   * @param e
-   */
-  @Override
-  public void mouseExited(MouseEvent e) {
-    if (mouseexited.containsKey(e.getButton())) {
-      mouseexited.get(e.getButton()).run();
-    }
   }
 }
