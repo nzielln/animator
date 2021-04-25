@@ -133,7 +133,6 @@ public class ViewController implements Controller {
       
       model.removeShape(name);
       playbackview.updateModel(model);
-      //model = model;
       
     }
   }
