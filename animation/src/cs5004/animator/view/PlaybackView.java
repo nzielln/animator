@@ -68,7 +68,8 @@ public class PlaybackView extends JFrame {
 
 
   /**
-   *
+   * The Playback View constructor which takes in no arguments, but inherits title. It creates a new
+   * AnimationImpl and a hashmap for the incoming commands.
    */
   public PlaybackView() {
     super("Animation");
@@ -259,7 +260,11 @@ public class PlaybackView extends JFrame {
     this.repaint();
     
   }
-  
+
+  /**
+   * Returns the input commands.
+   * @return (Hashmap<String, String>) the initial input commands.
+   */
   public HashMap<String, String> getInputs() {
     return in;
   }
@@ -461,18 +466,27 @@ public class PlaybackView extends JFrame {
   public void exitView() {
     System.exit(0);
   }
-  
+
+  /**
+   * Returns the current state of the animation.
+   * @return (String) the current state of the animation
+   */
   public String getCurrentState() {
     return state;
   }
-  
+
+  /**
+   *
+   * @param m
+   */
   public void updateModel(Animation m) {
     this.model = m;
     this.length = m.getAnimationLength();
     
   }
+
   /**
-   * Exits the current view.
+   * Resets the keyboard focus so it can take in more commands from the user.
    */
   public void resetFocus() {
     this.setFocusable(true);

@@ -1,6 +1,5 @@
 package cs5004.animator.controller;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,16 +8,19 @@ import javax.swing.*;
 import cs5004.animator.view.ButtonListener;
 import cs5004.animator.view.PlaybackView;
 import cs5004.animator.view.Reader;
-import cs5004.animator.view.View;
 
 /**
- *
+ * ButtonEvents class listens for the buttons events and implements the runnable commands.
  */
 class ButtonEvents {
   private final PlaybackView playbackview;
   private Controller controller;
   private final Reader r = new Reader();
-  
+
+  /**
+   * Button Events constructor takes in a Playback view and holds reference to it.
+   * @param p
+   */
   ButtonEvents(PlaybackView p) {
     this.playbackview = p;
   }
@@ -207,12 +209,13 @@ class ButtonEvents {
   }
 
   /**
-   * Allows a user to upload
+   * Allows a user to upload a file to be played as an animation in  the Playback view.
    */
   class Upload implements Runnable {
     
     /**
-     *
+     * Updates the animation to the animation uploaded by user. Shows a JOptionPane error message
+     * if the user tries to upload an invalid file type.
      */
     @Override
     public void run() {
@@ -221,7 +224,7 @@ class ButtonEvents {
       String ext = f.substring(f.lastIndexOf(".") + 1);
       
       if (!ext.equals("txt")) {
-        Object[] options = {"Try Again", "Cance"};
+        Object[] options = {"Try Again", "Cancel"};
         int pane = JOptionPane.showOptionDialog(playbackview,
                 "Only .txt file accepted.",
                 "Invalid File",

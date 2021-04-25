@@ -68,14 +68,22 @@ public class MouseEventListener implements MouseListener {
     mousereleased = map;
   }
 
-  
+  /**
+   * Returns the x-coordinate where the mouse was clicked.
+   * @return (int) the x-coordinate
+   */
   public int getX() {
     return x;
   }
-  
+
+  /**
+   * Returns the y-coordinate where the mouse was clicked.
+   * @return (int) the y-coordinate
+   */
   public int getY() {
     return y;
   }
+
   /**
    *
    * @param e

@@ -105,8 +105,9 @@ public class Reader {
   }
 
   /**
-   *
-   * @param frame
+   * Makes the model of the animation from the file and JFrame.
+   * Shows a JOptionPane Error message if the file is not found.
+   * @param frame (JFrame) frame of the animation.
    */
   public void makeModel(JFrame frame) {
     String fileInput = inputs.get("in").replace("\"", "");

@@ -8,7 +8,7 @@ import cs5004.animator.view.MouseEventListener;
 import cs5004.animator.view.PlaybackView;
 
 /**
- *
+ * MouseEvents handles
  */
 class MouseEvents {
   private final PlaybackView playbackview;
@@ -18,7 +18,7 @@ class MouseEvents {
   MouseEventListener ml = new MouseEventListener();
 
   /**
-   *
+   * Constructor for MouseEvents takes in and holds reference to a Playback View object.
    * @param p
    */
   MouseEvents(PlaybackView p) {

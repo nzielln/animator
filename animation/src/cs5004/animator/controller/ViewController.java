@@ -136,13 +136,6 @@ public class ViewController implements Controller{
   
   }
 
-  /**
-   *
-   * @param ext
-   */
-  public void createFile(String ext) {
-  
-  }
 }
 
 

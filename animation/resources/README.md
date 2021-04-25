@@ -164,14 +164,11 @@ user input.
 
 ### Playback View
 
-Our [Playback View](../src/cs5004/animator/view/PlaybackView.java) has its own interface where the 
-signatures for making a frame, exiting the view, and playing the animation are defined. The Playback
-view itself uses a JFrame, JButton, JPanel, and JLabel to set up the visual layout and functionality
-for the user slow down, speed up, loop, rewind, or play and pause the animation within the Playback
-view. We also make use of JMenuBar, JMenuItem and JFileChooser to allow the user to save their 
-animation and/or upload an animation to the playback view for viewing. We chose to create a different
-interface for the Playback View as it did not have a lot of overlapping methods with the other
-view types.
+Our [Playback View](../src/cs5004/animator/view/PlaybackView.java) itself uses a JFrame, JButton, 
+JPanel, and JLabel to set up the visual layout and functionality for the user slow down, speed up, 
+loop, rewind, or play and pause the animation within the Playback view. We also make use of 
+JMenuBar, JMenuItem and JFileChooser to allow the user to save their animation and/or upload an 
+animation to the playback view for viewing. 
 
 ## Controller Design (Assignment 8)
 
