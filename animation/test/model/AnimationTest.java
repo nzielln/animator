@@ -3,6 +3,7 @@ package model;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -551,6 +552,56 @@ public class AnimationTest {
       
       ani2.addShape(rect3, new ArrayList<>());
       ani2.removeTransformation("rect3", move);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+  }
+
+  @Test
+  public void testGetAnimationLength() {
+    //Empty animation
+    try {
+      Animation ani2 = new AnimationImpl();
+      assertEquals(0, ani2.getAnimationLength());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+
+    //Valid animation
+    try {
+      assertEquals(15, ani.getAnimationLength());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+  }
+
+  @Test
+  public void testClicked() {
+    //empty animation
+    try {
+      Animation ani2 = new AnimationImpl();
+      ani2.clicked(5, 5, 10);
+      fail("Exception should be thrown");
+    } catch (Exception ignored) {
+    }
+
+    //valid inputs: rectangle
+    try {
+      assertEquals("rect", ani.clicked(12, 34, 1));
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+
+    //valid inputs: ellipse
+    try {
+      assertEquals("oval", ani.clicked(34, 34, 2));
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+
+    //no such shape
+    try {
+      ani.clicked(0, 0, 4);
       fail("Exception should be thrown");
     } catch (Exception ignored) {
     }
