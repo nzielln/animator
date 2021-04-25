@@ -130,4 +130,12 @@ Our GraphicPanel updates the canvas at every increment of time, with a thread ad
 before each new display of shapes on the canvas. The shape to be displayed is a list of shapes generated
 from our ```getByTime(int t)``` method.
 
+## Changes to the View (Assignment 8)
+
+For Assignment 8, our view implementations didn't change for t
+
+### Graphic View
+
+### Playback View
+
 ## Controller Design (Assignment 8)
