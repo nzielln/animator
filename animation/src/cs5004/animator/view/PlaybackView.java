@@ -73,12 +73,13 @@ public class PlaybackView extends JFrame {
   
   //File Choose
   private JFileChooser chooser;
+  private String playstate;
   
   /**
    * Contructor for the PlaybackView, initializes the model and hashmap for inputs.
    */
   public PlaybackView() {
-    super("Animation");
+    super("Playback Animation");
     this.view = "Playback";
     this.model = new AnimationImpl();
     this.in =  new HashMap<>();
@@ -97,6 +98,7 @@ public class PlaybackView extends JFrame {
     this.loop = false;
     this.count = 0;
     this.state = "playing";
+    this.playstate = "playing";
     this.tick = Integer.parseInt(in.get("speed"));
     this.length = Integer.parseInt(in.get("length"));
     
@@ -150,7 +152,7 @@ public class PlaybackView extends JFrame {
     //create labels' label
     speedtext = createLabelPnel(String.valueOf(tick).toUpperCase(), speedpanel.getWidth());
     looptext = createLabelPnel(String.valueOf(loop).toUpperCase(), looppanel.getWidth());
-    statetext = createLabelPnel(state.toUpperCase(), pppanel.getWidth());
+    statetext = createLabelPnel(playstate.toUpperCase(), pppanel.getWidth());
     
     pppanel.add(statelabel, BorderLayout.NORTH);
     pppanel.add(statetext, BorderLayout.SOUTH);
@@ -182,6 +184,13 @@ public class PlaybackView extends JFrame {
     looper = createButton("Loop", "loop.png", "loop");
     save = createButton("Save File", "save.png", "save");
     btnspanel.add(Box.createHorizontalGlue());
+    upload.setFocusable(false);
+    save.setFocusable(false);
+    rewind.setFocusable(true);
+    playpause.setFocusable(true);
+    down.setFocusable(true);
+    looper.setFocusable(true);
+    
     
     //Files
     chooser = new JFileChooser();
@@ -234,7 +243,9 @@ public class PlaybackView extends JFrame {
                     + "DOWN - Decrease Speed\n"
                     + "LEFT - Rewind\n"
                     + "RIGHT - Loop\n"
-                    + "SPACE - Play/Pause\n",
+                    + "SPACE - Play/Pause\n"
+                    + "Click on a shape to delete it from the model.\n"
+                    + "Upload a new animation (.txt) or save animation as .txt or .svg.",
             "Playback Animation",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.PLAIN_MESSAGE,
@@ -246,6 +257,7 @@ public class PlaybackView extends JFrame {
       System.exit(0);
     }
   
+    setPlayState();
     swingtimer = new javax.swing.Timer(1000 / tick, new AnimateAction());
     swingtimer.setInitialDelay(1000);
     swingtimer.start();
@@ -327,6 +339,7 @@ public class PlaybackView extends JFrame {
     upload.addActionListener(al);
   }
   
+ 
   /**
    * Adds a mouse click listener to the panel in this view, where the animation takes place.
    * @param ml MouseListener
@@ -341,11 +354,12 @@ public class PlaybackView extends JFrame {
    */
   public void setPlayState() {
     setComponents();
+    playstate = "playing";
     playpause.setText("Pause");
     playpause.setIcon(new ImageIcon(new ImageIcon("../icons/po.png").getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
     playpause.setActionCommand("pause");
-    statetext.setText(String.valueOf(state).toUpperCase());
+    statetext.setText(String.valueOf(playstate).toUpperCase());
     
   }
 
@@ -355,11 +369,12 @@ public class PlaybackView extends JFrame {
    */
   public void setPauseState() {
     setComponents();
+    playstate = "paused";
     playpause.setText("Play");
     playpause.setIcon(new ImageIcon(new ImageIcon("../icons/pl.png").getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
     playpause.setActionCommand("play");
-    statetext.setText(String.valueOf(state).toUpperCase());
+    statetext.setText(String.valueOf(playstate).toUpperCase());
     
   }
 
@@ -387,7 +402,7 @@ public class PlaybackView extends JFrame {
   }
   
   /**
-   * Sets the state.
+   * Gets the current count.
    */
   public int getCount() {
     return count;
@@ -446,6 +461,7 @@ public class PlaybackView extends JFrame {
    */
   public void rewindTimer() {
     swingtimer.setDelay(1000 / tick);
+    setPlayState();
   }
   
   /**

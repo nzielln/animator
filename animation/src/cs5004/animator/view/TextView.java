@@ -35,48 +35,55 @@ public class TextView implements View {
   
   @Override
   public void animate(Animation m, HashMap<String, String> in) {
-    
+  
     StringBuilder str = new StringBuilder();
-    for (Shape s :m.getShapes()) {
-      if (s.getType().equals("RECTANGLE")) {
-        String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
-                + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
-                + "), width " + s.getWidth() + " height " + s.getHeight() + ".";
-        str.append(desc).append("\n");
-      } else if (s.getType().equals("ELLIPSE")) {
-        String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
-                + s.getColor() + " with center at (" + s.getPositionX() + "," + s.getPositionY()
-                + "), radius " + s.getWidth() + " and " + s.getHeight() + ".";
-        str.append(desc).append("\n");
+    if (m.getSize() != 0) {
+      for (Shape s : m.getShapes()) {
+        if (s.getType().equals("RECTANGLE")) {
+          String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
+                  + s.getColor() + " with corner at (" + s.getPositionX() + "," + s.getPositionY()
+                  + "), width " + s.getWidth() + " height " + s.getHeight() + ".";
+          str.append(desc).append("\n");
+        } else if (s.getType().equals("ELLIPSE")) {
+          String desc = "Create " + s.getType().toLowerCase() + " " + s.getName() + " of color "
+                  + s.getColor() + " with center at (" + s.getPositionX() + "," + s.getPositionY()
+                  + "), radius " + s.getWidth() + " and " + s.getHeight() + ".";
+          str.append(desc).append("\n");
+        }
+      }
+  
+      str.append("\n");
+  
+      for (Shape s : m.getShapes()) {
+        String timeDesc = s.getName() + " appears at t=" + s.getAppears() + " and disappears at t="
+                + s.getDisappears();
+        str.append(timeDesc).append("\n");
+      }
+  
+      str.append("\n");
+  
+      for (Shape s : m.getShapes()) {
+        str.append(m.tranformationString(s).replace("Shape ", ""));
+      }
+  
+      if (in.get("out") != null) {
+        writeFile(str.toString(), in);
+      } else {
+        System.out.println(str.toString().trim());
       }
     }
-    
-    str.append("\n");
-    
-    for (Shape s :m.getShapes()) {
-      String timeDesc = s.getName() + " appears at t=" + s.getAppears() + " and disappears at t="
-              + s.getDisappears();
-      str.append(timeDesc).append("\n");
-    }
-    
-    str.append("\n");
-    
-    for (Shape s :m.getShapes()) {
-      str.append(m.tranformationString(s).replace("Shape ", ""));
-    }
-    
-    if (in.get("out") != null) {
-      writeFile(str.toString(), in);
-    } else {
-      System.out.println(str);
-    }
-    
     
   }
   
   private void writeFile(String str, HashMap<String, String> in) {
     try {
-      FileWriter f = new FileWriter("../outputs/" + in.get("out").replace("\"", ""));
+      String n = "";
+      if (in.get("in").contains("/")) {
+        n = "./resources/outputs/" + in.get("out").replace("\"", "");
+      } else {
+        n = "../outputs/" + in.get("out").replace("\"", "");
+      }
+      FileWriter f = new FileWriter(n);
       Scanner s = new Scanner(str).useDelimiter("\n");
       while (s.hasNext()) {
         String line = s.next();

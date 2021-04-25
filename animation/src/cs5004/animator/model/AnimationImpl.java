@@ -344,6 +344,10 @@ public class AnimationImpl implements Animation {
   
   @Override
   public int getAnimationLength() {
+    if (hashmap.size() == 0) {
+      return 0;
+    }
+    
     List<Integer> length = new ArrayList<>();
     
     for (Shape s : hashmap.keySet()) {
@@ -355,25 +359,30 @@ public class AnimationImpl implements Animation {
   
   @Override
   public String clicked(int x, int y, int t) {
+    if (t < 0) {
+      throw new IllegalArgumentException("Time must be positive");
+    }
+  
     for (Shape s: getByTime(t) ) {
       if (s.getType().equalsIgnoreCase("ELLIPSE") && inCircle(x, y, s)) {
-        
+      
         return s.getName();
       }
-      
+    
       int xmin = s.getPositionX();
       int xmax = s.getPositionX() + s.getWidth();
       int ymin = s.getPositionY();
       int ymax = s.getPositionY() + s.getHeight();
-      
+    
       if ((x >= xmin && x <= xmax) && (y >= ymin && y <= ymax)) {
-        
+      
         return s.getName();
       }
     }
-    
+  
     return null;
   }
+  
   
   private boolean inCircle(int x, int y, Shape s) {
     int i = (int) Math.hypot((s.getPositionX() - x), (s.getPositionY() - y));

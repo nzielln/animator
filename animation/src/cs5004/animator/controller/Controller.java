@@ -2,6 +2,7 @@ package cs5004.animator.controller;
 
 import java.util.HashMap;
 import cs5004.animator.model.Animation;
+import cs5004.animator.view.PlaybackView;
 import cs5004.animator.view.View;
 
 /**
@@ -26,19 +27,20 @@ public interface Controller {
    */
   void removeShape(int x, int y);
   
-
+  /**
+   * Returns the a placback view object.
+   * @return (PlaybackView) the playbackview.
+   */
+  PlaybackView getPlaybackView();
+  
   /**
    * Returns the current view.
    * @return (View) the view.
    */
   View getView();
   
-  /**
-   * Creates and plays the playback view model, configures listeners for button, keyboard and mouse
-   * events.
-   * @param in HashMap of CLI input string
-   * @param m Animation, the model for the animation
-   */
-  void playback(HashMap<String, String> in, Animation m);
-
+  
+  
+  String getState();
+  
 }

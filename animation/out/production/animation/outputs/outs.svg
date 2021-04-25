@@ -1,0 +1,25 @@
+<svg width="100%" height="100%" version="1.1" 
+	xmlns="http://www.w3.org/2000/svg">
+
+<rect id="R" x="200" y="200" width="50" height="100" fill="rgb(255,0,0)" visibility="visible" >
+	<animate attributeType="xml" begin="5000ms" dur="20000ms" attributeName="x" from="200" to="300" fill="freeze" />
+	<animate attributeType="xml" begin="5000ms" dur="20000ms" attributeName="y" from="200" to="300" fill="freeze" />
+	<animate attributeType="xml" begin="25000ms" dur="9500ms" attributeName="width" from="50" to="25" fill="freeze" />
+	<animate attributeType="xml" begin="25000ms" dur="9500ms" attributeName="height" from="100" to="100" fill="freeze" />
+	<animate attributeType="xml" begin="35000ms" dur="15000ms" attributeName="x" from="300" to="200" fill="freeze" />
+	<animate attributeType="xml" begin="35000ms" dur="15000ms" attributeName="y" from="300" to="200" fill="freeze" />
+</rect>
+
+<ellipse id="C" cx="440" cy="70" rx="60" ry="30" fill="rgb(0,0,255)" visibility="hidden" >
+<set attributeName="visibility" attributeType="CSS" to="visible" begin="2500ms" dur="500ms" fill="freeze" />
+	<animate attributeType="xml" begin="10000ms" dur="15000ms" attributeName="cx" from="440" to="440" fill="freeze" />
+	<animate attributeType="xml" begin="10000ms" dur="15000ms" attributeName="cy" from="70" to="250" fill="freeze" />
+	<animate attributeType="xml" begin="25000ms" dur="10000ms" attributeName="cx" from="440" to="440" fill="freeze" />
+	<animate attributeType="xml" begin="25000ms" dur="10000ms" attributeName="cy" from="250" to="370" fill="freeze" />
+	<animate attributeType="CSS" begin="25000ms" dur="10000ms" attributeName="fill" from="rgb(0,0,255)" to="rgb(0,170,85)" fill="freeze" />
+	<animate attributeType="CSS" begin="35000ms" dur="5000ms" attributeName="fill" from="rgb(0,170,85)" to="rgb(0,255,0)" fill="freeze" />
+</ellipse>
+
+
+
+</svg>

@@ -28,10 +28,10 @@ public class ViewController implements Controller {
   private PlaybackView playbackview;
   private final String instr;
   private ButtonEvents btnevents;
-  private KeyboardEvents keyevents;
   private MouseEventListener mouseevents;
   private Animation model;
   private HashMap<String, String> inputs;
+  private String state;
   
   /**
    * This is the constructor for the ViewController. It creates a new Reader, ViewFactory, and
@@ -49,7 +49,13 @@ public class ViewController implements Controller {
   
   @Override
   public View getView() {
+    
     return this.view;
+  }
+  
+  @Override
+  public PlaybackView getPlaybackView() {
+    return this.playbackview;
   }
   
   @Override
@@ -91,7 +97,7 @@ public class ViewController implements Controller {
    * @param in (Hashmap<String, String>) a hashmap of -in, -out, -view, -speed information.
    * @param m (Animation) the specified Animation.
    */
-  public void playback(HashMap<String, String> in, Animation m) {
+  private void playback(HashMap<String, String> in, Animation m) {
     
     String fileInput = in.get("in").replace("\"", "");
     
@@ -104,10 +110,8 @@ public class ViewController implements Controller {
       in.put("length", "" + m.getAnimationLength());
       playbackview.buildModel(m, in);
       btnevents = new ButtonEvents(playbackview);
-      keyevents = new KeyboardEvents(playbackview);
       mouseevents = new MouseEventListener(playbackview);
       btnevents.configButtonListener();
-      keyevents.configureKeyboardListener();
       mouseevents.configMouseListener(this);
       playbackview.animate();
       
@@ -119,7 +123,10 @@ public class ViewController implements Controller {
   
   @Override
   public void removeShape(int x, int y) {
-    
+    if (this.playbackview.getInputs().size() == 0) {
+      throw new IllegalStateException("Can only remove shape from a playback view.");
+    }
+    state = "Removing shape....";
     String name = model.clicked(x, y, playbackview.getCount());
     
     if (name != null) {
@@ -130,6 +137,11 @@ public class ViewController implements Controller {
       
     }
   }
+  
+  public String getState() {
+    return this.state;
+  }
+  
 }
 
 

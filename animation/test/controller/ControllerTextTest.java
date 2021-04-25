@@ -40,8 +40,7 @@ public class ControllerTextTest {
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
-      assertEquals("Text View of the Animation:______________________________________" +
-              "__________\n\n\n\n\n", by.toString());
+      assertEquals("", by.toString());
     } catch (Exception e) {
       fail("Exception should not be thrown");
     }
@@ -65,9 +64,7 @@ public class ControllerTextTest {
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
-      assertEquals("Text View of the Animation:__________________________________________"
-                      + "______\n\n"
-                      + "Create rectangle R of color (255.0, 0.0, 0.0) with corner at (200,200), "
+      assertEquals("Create rectangle R of color (255.0, 0.0, 0.0) with corner at (200,200), "
                       + "width 50 height 100.\n"
                       + "Create ellipse C of color (0.0, 0.0, 255.0) with center at (440,70), "
                       + "radius 120 "
@@ -83,7 +80,7 @@ public class ControllerTextTest {
                       + "C changes color from (0.0, 0.0, 255.0) to (0.0, 170.0, 85.0) "
                       + "from t=50 to t=70.\n"
                       + "C changes color from (0.0, 170.0, 85.0) to (0.0, 255.0, 0.0) "
-                      + "from t=70 to t=80.\n\n",
+                      + "from t=70 to t=80.\n",
               by.toString());
     } catch (Exception e) {
       fail("Exception should not have been thrown");
@@ -108,9 +105,7 @@ public class ControllerTextTest {
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
-      assertEquals("Text View of the Animation:___________________________________" +
-              "_____________\n\n"
-              + "Create rectangle disk1 of color (0.0, 49.0, 90.0) with corner at (190,180), "
+      assertEquals("Create rectangle disk1 of color (0.0, 49.0, 90.0) with corner at (190,180), "
               + "width 20 height 30.\n"
               + "Create rectangle disk2 of color (6.0, 247.0, 41.0) with corner at (167,210), "
               + "width 65 height 30.\n"
@@ -145,7 +140,7 @@ public class ControllerTextTest {
               + "disk3 moves from (145.0,50.0) to (445.0,50.0) from t=132 to t=142.\n"
               + "disk3 moves from (445.0,50.0) to (445.0,240.0) from t=143 to t=153.\n"
               + "disk3 changes color from (11.0, 45.0, 175.0) to (0.0, 255.0, 0.0) "
-              + "from t=153 to t=161.\n\n", by.toString());
+              + "from t=153 to t=161.\n", by.toString());
     } catch (Exception e) {
       fail("Exception should not have been throw");
     }
@@ -169,9 +164,7 @@ public class ControllerTextTest {
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
-      assertEquals("Text View of the Animation:__________________________________________"
-                      + "______\n\n"
-                      + "Create rectangle R of color (255.0, 0.0, 0.0) with corner at (200,200), "
+      assertEquals("Create rectangle R of color (255.0, 0.0, 0.0) with corner at (200,200), "
                       + "width 50 height 100.\n"
                       + "Create ellipse C of color (0.0, 0.0, 255.0) with center at (440,70), "
                       + "radius 120 and 60.\n\n"
@@ -186,7 +179,7 @@ public class ControllerTextTest {
                       + "C changes color from (0.0, 0.0, 255.0) to (0.0, 170.0, 85.0) from "
                       + "t=50 to t=70.\n"
                       + "C changes color from (0.0, 170.0, 85.0) to (0.0, 255.0, 0.0) from "
-                      + "t=70 to t=80.\n\n",
+                      + "t=70 to t=80.\n",
               by.toString());
     } catch (Exception e) {
       fail("Exception should not have been thrown");
@@ -253,9 +246,7 @@ public class ControllerTextTest {
       view.animate(r.getModel(), r.getInputs());
       System.out.flush();
       System.setOut(sys);
-      assertEquals("Text View of the Animation:__________________________________________"
-                      + "______\n\n"
-                      + "Create rectangle R of color (255.0, 0.0, 0.0) with corner at (200,200), "
+      assertEquals("Create rectangle R of color (255.0, 0.0, 0.0) with corner at (200,200), "
                       + "width 50 "
                       + "height 100.\n" +
                       "Create ellipse C of color (0.0, 0.0, 255.0) with center at (440,70), "
@@ -273,7 +264,7 @@ public class ControllerTextTest {
                       + "C changes color from (0.0, 0.0, 255.0) to (0.0, 170.0, 85.0) "
                       + "from t=50 to t=70.\n"
                       + "C changes color from (0.0, 170.0, 85.0) to (0.0, 255.0, 0.0) "
-                      + "from t=70 to t=80.\n\n",
+                      + "from t=70 to t=80.\n",
               by.toString());
     } catch (Exception e) {
       fail("Exception should not have been thrown");

@@ -12,16 +12,17 @@ import cs5004.animator.view.Reader;
 /**
  * ButtonEvents class listens for the buttons events and implements the runnable commands.
  */
-class ButtonEvents {
+public class ButtonEvents {
   private final PlaybackView playbackview;
   private Controller controller;
   private final Reader r = new Reader();
+  ButtonListener bs = new ButtonListener();
   
   /**
    * Button Events constructor takes in a Playback view and holds reference to it.
    * @param p a PlayBack view to apply action to
    */
-  ButtonEvents(PlaybackView p) {
+  public ButtonEvents(PlaybackView p) {
     this.playbackview = p;
   }
   
@@ -32,7 +33,7 @@ class ButtonEvents {
    */
   public void configButtonListener() {
     Map<String, Runnable> buttonsmap = new HashMap<>();
-    ButtonListener bs = new ButtonListener();
+    
     
     buttonsmap.put("play", new PlayAction());
     buttonsmap.put("pause", new PauseAction());
@@ -47,6 +48,13 @@ class ButtonEvents {
     playbackview.addListener(bs);
   }
   
+  /**
+   * Returns the button listener
+   * @return ActionListener
+   */
+  public ButtonListener getBs () {
+    return this.bs;
+  }
   
   /**
    * The PlayAction class represents the view playing the animation.

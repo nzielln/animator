@@ -53,9 +53,15 @@ public class SVGView implements View {
      * Height: 100%
      */
     try {
+      String filename = "";
+      if (in.get("in").contains("/")) {
+        filename = "./resources/outputs/" + in.get("out").replace("\"", "");
+      } else {
+        filename = "../outputs/" + in.get("out").replace("\"", "");
+      }
       
       
-      FileWriter f = new FileWriter("../outputs/" + in.get("out").replace("\"", ""));
+      FileWriter f = new FileWriter(filename);
       String canvas = "<svg width=\"" + 100 + "%\" height=\"" + 100
               + "%\" version=\"1.1\" \n\txmlns=\"http://www.w3.org/2000/svg\">\n\n";
       f.write(canvas);
@@ -99,7 +105,7 @@ public class SVGView implements View {
         if (s.getAppears() > 1) {
           String visibility = "<set attributeName=\"visibility\" attributeType=\"CSS\" "
                   + "to=\"visible\" begin=\"" + ((s.getAppears() - 1) * 1000) / speed
-                  + "ms\" dur=\"" + 1000 / speed + "ms\" fill=\"freeze\" />";
+                  + "ms\" dur=\"" + 1000 / speed + "ms\" fill=\"freeze\" />\n";
           str.append(visibility);
         }
         
@@ -137,23 +143,23 @@ public class SVGView implements View {
           } else if (t.getTransformationType().equals("Scales")) {
             if (s.getType().equals("ELLIPSE")) {
               tx = "\t<animate attributeType=\"xml\" begin=\"" + (t.getTimeStart() / speed) * 1000
-                      + "s\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
-                      + "s\" attributeName=\"rx" + "\" from=\"" + t.getInitialWidth() + "\" to=\""
+                      + "ms\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
+                      + "ms\" attributeName=\"rx" + "\" from=\"" + t.getInitialWidth() + "\" to=\""
                       + t.getToWidth() + "\" fill=\"freeze\" />\n";
               ty = "\t<animate attributeType=\"xml\" begin=\"" + (t.getTimeStart() / speed) * 1000
-                      + "s\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
-                      + "s\" attributeName=\"ry" + "\" from=\"" + t.getInitialHeight() + "\" to=\""
+                      + "ms\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
+                      + "ms\" attributeName=\"ry" + "\" from=\"" + t.getInitialHeight() + "\" to=\""
                       + t.getToHeight() + "\" fill=\"freeze\" />\n";
               
             } else {
               tx = "\t<animate attributeType=\"xml\" begin=\"" + (t.getTimeStart() / speed) * 1000
-                      + "s\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
-                      + "s\" attributeName=\"width" + "\" from=\"" + t.getInitialWidth()
+                      + "ms\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
+                      + "ms\" attributeName=\"width" + "\" from=\"" + t.getInitialWidth()
                       + "\" to=\""
                       + t.getToWidth() + "\" fill=\"freeze\" />\n";
               ty = "\t<animate attributeType=\"xml\" begin=\"" + (t.getTimeStart() / speed) * 1000
-                      + "s\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
-                      + "s\" attributeName=\"height" + "\" from=\"" + t.getInitialHeight()
+                      + "ms\" dur=\"" + ((t.getTimeEnd() - t.getTimeStart()) * 1000) / speed
+                      + "ms\" attributeName=\"height" + "\" from=\"" + t.getInitialHeight()
                       + "\" to=\""
                       + t.getToHeight() + "\" fill=\"freeze\" />\n";
               

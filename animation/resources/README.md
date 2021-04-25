@@ -171,8 +171,7 @@ JFileChooser to allow the user to save their animation and/or upload an animatio
 
 We created a [Controller](../src/cs5004/animator/controller/Controller.java) interface which is
 then implemented in the [ViewController](../src/cs5004/animator/controller/ViewController.java)
-class. We also added [ButtonEvents](../src/cs5004/animator/controller/ButtonEvents.java),
-[KeyboardEvents](../src/cs5004/animator/controller/KeyboardEvents.java), and
+class. We also added [ButtonEvents](../src/cs5004/animator/controller/ButtonEvents.java) and
 [MouseEvents](../src/cs5004/animator/view/MouseEventListener.java) classes. These classes help to
-implement functionality that are called when a user triggers a button/keyboar/mouse event to increase/decrease
+implement functionality that are called when a user triggers a button event to increase/decrease
 loop, rewind, and play/pause, save/upload a file and delete a shape from the animation.

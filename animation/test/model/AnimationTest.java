@@ -557,6 +557,42 @@ public class AnimationTest {
   }
   
   @Test
+  public void testGetAnimationLength() {
+    //Empty animation
+    try {
+      Animation ani2 = new AnimationImpl();
+      assertEquals(0, ani2.getAnimationLength());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+    
+    //Valid animation
+    try {
+      assertEquals(15, ani.getAnimationLength());
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+  }
+  
+  @Test
+  public void testClicked() {
+    //valid inputs: rectangle
+    try {
+      assertEquals("rect", ani.clicked(12, 34, 1));
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+    
+    //valid inputs: ellipse
+    try {
+      assertEquals("oval", ani.clicked(34, 34, 2));
+    } catch (Exception e) {
+      fail("Exception should not be thrown");
+    }
+    
+  }
+  
+  @Test
   public void testToString() {
     //empty hashmap
     try {
