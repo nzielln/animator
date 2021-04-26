@@ -71,7 +71,7 @@ methodsas defined in the [AnimationBuilder](../src/cs5004/animator/util/Animatio
 interface. In order to output a correctly formated string representation where needed, the
 DecimalFomart class is used.
 
-![Updated Shape UML Diagram](images/Shapes2.jpeg)
+![Updated Shape UML Diagram](images/ShapesUpdated.jped)
 
 ### Transformation
 
@@ -81,7 +81,7 @@ these initial properties, with this information being read from the files when e
 is created. To make these changes, we added 9 new methods to our [Transformation](../src/cs5004/animator/model/Transformation.java)
 interface and two new fields to each sub-class as shown below.
 
-![Updated Transformatoin UML Diagram](images/Transformation2.jpeg)
+![Updated Transformatoin UML Diagram](images/TransformationUpdated.jpeg)
 
 ### Animation
 
@@ -94,11 +94,11 @@ files being read in.
 Two private methods were added to aid with our ```getByTime(int t)``` method, a method to perform the
 tweening and another to generate the shape from the tweening results.
 
-![Updated Animation UML Diagram](images/Animation2.jpeg)
+![Updated Animation UML Diagram](images/AnimationUpdated.jpeg)
 
 ### Updated UML Diagram
 
-![Updated UML Diagram](images/Animator2.jpeg)
+![Updated UML Diagram](images/Animator - UML.jpeg)
 
 ## View Design
 We implemented three views, a [Text](../src/cs5004/animator/view/TextView.java), [SVG](../src/cs5004/animator/view/SVGView.java),
