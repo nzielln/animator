@@ -98,7 +98,7 @@ tweening and another to generate the shape from the tweening results.
 
 ### Updated UML Diagram
 
-![Updated UML Diagram](images/Animator - UML.jpeg)
+![Updated UML Diagram](images/Animator - UML Class.jpeg)
 
 ## View Design
 We implemented three views, a [Text](../src/cs5004/animator/view/TextView.java), [SVG](../src/cs5004/animator/view/SVGView.java),
