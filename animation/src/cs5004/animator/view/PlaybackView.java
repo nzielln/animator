@@ -91,6 +91,7 @@ public class PlaybackView extends JFrame {
     this.playstate = "playing";
     this.tick = Integer.parseInt(in.get("speed"));
     this.length = Integer.parseInt(in.get("length"));
+    String icons_path = "animation/resources/icons/";
     
     int x = m.getCanvasX();
     int y = m.getCanvasY();
@@ -165,15 +166,15 @@ public class PlaybackView extends JFrame {
     btnspanel.setBackground(Color.white);
     btnspanel.setAlignmentY(Component.CENTER_ALIGNMENT);
     add(btnspanel, BorderLayout.SOUTH);
-    
+
     btnspanel.add(Box.createHorizontalGlue());
-    upload = createButton("Upload File", "uplo.png", "upload");
-    rewind = createButton("Rewind", "re.png", "rewind");
-    up = createButton("Increase Speed", "up.png", "up speed");
-    playpause = createButton("Pause ", "po.png", "pause");
-    down = createButton("Decrease Speed", "down.png", "down speed");
-    looper = createButton("Loop", "loop.png", "loop");
-    save = createButton("Save File", "save.png", "save");
+    upload = createButton("Upload File", icons_path + "uplo.png", "upload");
+    rewind = createButton("Rewind", icons_path + "re.png", "rewind");
+    up = createButton("Increase Speed", icons_path + "up.png", "up speed");
+    playpause = createButton("Pause ", icons_path + "up.png", "pause");
+    down = createButton("Decrease Speed", icons_path + "down.png", "down speed");
+    looper = createButton("Loop", icons_path + "loop.png", "loop");
+    save = createButton("Save File", icons_path + "save.png", "save");
     btnspanel.add(Box.createHorizontalGlue());
     upload.setFocusable(false);
     save.setFocusable(false);
@@ -229,14 +230,15 @@ public class PlaybackView extends JFrame {
   public void animate() {
     Object[] options = {"Play Animation", "Exit Animation"};
     int pane = JOptionPane.showOptionDialog(this,
-            "Use the buttons on the screen or your keyboard to control the animation.\n"
-                    + "UP - Increase Speed\n"
-                    + "DOWN - Decrease Speed\n"
-                    + "LEFT - Rewind\n"
-                    + "RIGHT - Loop\n"
-                    + "SPACE - Play/Pause\n"
-                    + "Click on a shape to delete it from the model.\n"
-                    + "Upload a new animation (.txt) or save animation as .txt or .svg.",
+            """
+                    Use the buttons on the screen or your keyboard to control the animation.
+                    UP - Increase Speed
+                    DOWN - Decrease Speed
+                    LEFT - Rewind
+                    RIGHT - Loop
+                    SPACE - Play/Pause
+                    Click on a shape to delete it from the model.
+                    Upload a new animation (.txt) or save animation as .txt or .svg.""",
             "Playback Animation",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.PLAIN_MESSAGE,
@@ -282,7 +284,7 @@ public class PlaybackView extends JFrame {
    * @return JButton, a button
    */
   private JButton createButton(String name, String file, String command) {
-    ImageIcon img = new ImageIcon(new ImageIcon("../icons/" + file).getImage()
+    ImageIcon img = new ImageIcon(new ImageIcon(file).getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT));
     
     JButton btn = new JButton(name, img);
@@ -347,7 +349,7 @@ public class PlaybackView extends JFrame {
     setComponents();
     playstate = "playing";
     playpause.setText("Pause");
-    playpause.setIcon(new ImageIcon(new ImageIcon("../icons/po.png").getImage()
+    playpause.setIcon(new ImageIcon(new ImageIcon("animation/resources/icons/pau.png").getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
     playpause.setActionCommand("pause");
     statetext.setText(String.valueOf(playstate).toUpperCase());
@@ -362,7 +364,7 @@ public class PlaybackView extends JFrame {
     setComponents();
     playstate = "paused";
     playpause.setText("Play");
-    playpause.setIcon(new ImageIcon(new ImageIcon("../icons/pl.png").getImage()
+    playpause.setIcon(new ImageIcon(new ImageIcon("animation/resources/icons/pl.png").getImage()
             .getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
     playpause.setActionCommand("play");
     statetext.setText(String.valueOf(playstate).toUpperCase());
