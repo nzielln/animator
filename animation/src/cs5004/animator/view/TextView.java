@@ -17,7 +17,9 @@ import cs5004.animator.model.Shape;
 public class TextView implements View {
   private final String view;
   private Animation model;
-  
+  String files_path = "animation/resources/files/";
+  String outputs_path = "animation/resources/outputs/";
+
   
   /**
    * TextView constructor that takes in no argument, define the type of view.
@@ -77,12 +79,7 @@ public class TextView implements View {
   
   private void writeFile(String str, HashMap<String, String> in) {
     try {
-      String n = "";
-      if (in.get("in").contains("/")) {
-        n = "./resources/outputs/" + in.get("out").replace("\"", "");
-      } else {
-        n = "../outputs/" + in.get("out").replace("\"", "");
-      }
+      String n = outputs_path + in.get("out").replace("\"", "");
       FileWriter f = new FileWriter(n);
       Scanner s = new Scanner(str).useDelimiter("\n");
       while (s.hasNext()) {
