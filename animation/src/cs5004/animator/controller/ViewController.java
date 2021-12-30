@@ -30,7 +30,6 @@ public class ViewController implements Controller {
   private Animation model;
   private HashMap<String, String> inputs;
   private String state;
-  String outputs_path = "animation/resources/outputs/";
   String files_path = "animation/resources/files/";
   
   /**

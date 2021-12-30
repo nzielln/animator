@@ -25,8 +25,7 @@ public class Reader {
   HashMap<String, String> inputs;
   Animation model;
   String files_path = "animation/resources/files/";
-  String outputs_path = "animation/resources/outputs/";
-  
+
   /**
    * A Reader constructor, takes in no arguments, sets HashMap for storing input information and
    * our model.
