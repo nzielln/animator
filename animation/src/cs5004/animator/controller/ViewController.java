@@ -25,7 +25,7 @@ public class ViewController implements Controller {
   private final Reader r;
   private final ViewFactory factory;
   private View view;
-  private PlaybackView playbackview;
+  private final PlaybackView playbackview;
   private final String instr;
   private Animation model;
   private HashMap<String, String> inputs;
