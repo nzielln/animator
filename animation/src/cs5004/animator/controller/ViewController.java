@@ -30,6 +30,8 @@ public class ViewController implements Controller {
   private Animation model;
   private HashMap<String, String> inputs;
   private String state;
+  String outputs_path = "animation/resources/outputs/";
+  String files_path = "animation/resources/files/";
   
   /**
    * This is the constructor for the ViewController. It creates a new Reader, ViewFactory, and
@@ -104,7 +106,7 @@ public class ViewController implements Controller {
     try {
 
       File demo = new File(fileInput);
-      FileReader f = new FileReader(demo);
+      FileReader f = new FileReader(files_path + demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(m);
       AnimationReader.parseFile(f, b);
       in.put("length", "" + m.getAnimationLength());

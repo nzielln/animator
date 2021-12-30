@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,6 +24,8 @@ import cs5004.animator.util.AnimationReader;
 public class Reader {
   HashMap<String, String> inputs;
   Animation model;
+  String files_path = "animation/resources/files/";
+  String outputs_path = "animation/resources/outputs/";
   
   /**
    * A Reader constructor, takes in no arguments, sets HashMap for storing input information and
@@ -41,14 +45,11 @@ public class Reader {
     Scanner s = new Scanner(in);
     while (s.hasNext()) {
       String next = s.next();
-      if (next.equals("-in")) {
-        this.inputs.put("in", s.next());
-      } else if (next.equals("-out")) {
-        this.inputs.put("out", s.next());
-      } else if (next.equals("-view")) {
-        this.inputs.put("view", s.next());
-      } else if (next.equals("-speed")) {
-        this.inputs.put("speed", s.next());
+      switch (next) {
+        case "-in" -> this.inputs.put("in", s.next());
+        case "-out" -> this.inputs.put("out", s.next());
+        case "-view" -> this.inputs.put("view", s.next());
+        case "-speed" -> this.inputs.put("speed", s.next());
       }
     }
     
@@ -88,7 +89,7 @@ public class Reader {
   public void buildModel(View view) {
     String fileInput = inputs.get("in").replace("\"", "");
     try {
-      File demo = new File(fileInput);
+      File demo = new File(files_path + fileInput);
       FileReader f = new FileReader(demo);
       AnimationBuilder<Animation> b = new AnimationBuilderImpl(this.model);
       AnimationReader.parseFile(f, b);
