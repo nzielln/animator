@@ -306,7 +306,8 @@ public class AnimationImpl implements Animation {
       }
     }
   }
-  
+
+
   @Override
   public void removeTransformation(String id, Transformation t) {
     Objects.requireNonNull(id, "Id can't be null.");
